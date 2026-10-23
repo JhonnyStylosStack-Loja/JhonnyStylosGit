@@ -25,7 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (result.success) {
       Toast.show('Bem-vindo de volta!', 'Login realizado com sucesso.', 'success')
       // Sempre vai pro início — admin ou não. O painel só é acessado pelo botão do header.
-      setTimeout(() => { location.href = 'index.html' }, 1500)
+      const canAccessCRM = await SupabaseAuth.canAccessCRM()
+      setTimeout(() => { location.href = canAccessCRM ? 'admin.html' : 'index.html' }, 1500)
     } else {
       Toast.show('Erro ao entrar', result.error, 'error')
     }

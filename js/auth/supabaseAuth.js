@@ -60,13 +60,19 @@ const SupabaseAuth = {
     }
   },
 
-  async isAdmin() {
+  async canAccessCRM() {
     try {
       const profile = await this.getCurrentUserProfile()
-      return profile?.is_admin === true
+      return ['admin', 'hr'].includes(profile?.role) || profile?.is_admin === true
     } catch {
       return false
     }
+  },
+
+  // Compatibilidade com os componentes atuais do site.
+  // Admin e RH podem acessar o CRM nesta primeira fase.
+  async isAdmin() {
+    return this.canAccessCRM()
   },
 
   onAuthStateChange(callback) {

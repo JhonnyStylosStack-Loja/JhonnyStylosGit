@@ -1478,7 +1478,27 @@ function initSearch() {
 }
 
 // ── Init ──────────────────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  const user = await SupabaseAuth.getCurrentUser()
+  const profile = user ? await SupabaseAuth.getCurrentUserProfile() : null
+  const canAccessCRM = ['admin', 'hr'].includes(profile?.role) || profile?.is_admin === true
+
+  if (!user || !canAccessCRM) {
+    window.location.replace('login.html')
+    return
+  }
+
+  const displayName = profile.full_name || profile.email || user.email
+  const roleLabel = profile.role === 'hr' ? 'RH' : 'Administrador(a)'
+  const initials = displayName.split(/\s+/).filter(Boolean).slice(0, 2).map(part => part[0]).join('').toUpperCase()
+  const sidebarName = document.querySelector('.adm-sidebar__user-name')
+  const sidebarRole = document.querySelector('.adm-sidebar__user-role')
+  const sidebarAvatar = document.querySelector('.adm-sidebar__user-avatar')
+  if (sidebarName) sidebarName.textContent = displayName
+  if (sidebarRole) sidebarRole.textContent = roleLabel
+  if (sidebarAvatar) sidebarAvatar.textContent = initials || 'JS'
+  document.documentElement.classList.remove('auth-pending')
+
   document.querySelectorAll('.adm-nav__item').forEach(item => {
     item.addEventListener('click', () => navigate(item.dataset.section))
   })

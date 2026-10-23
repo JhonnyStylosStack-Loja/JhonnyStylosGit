@@ -13,8 +13,8 @@ const Header = {
   async _applyAdminAccess() {
     const btns = document.querySelectorAll('.header__action-btn--admin')
     if (!btns.length || typeof SupabaseAuth === 'undefined') return
-    const isAdmin = await SupabaseAuth.isAdmin()
-    if (isAdmin) btns.forEach(btn => btn.classList.add('is-admin-visible'))
+    const canAccessCRM = await SupabaseAuth.canAccessCRM()
+    if (canAccessCRM) btns.forEach(btn => btn.classList.add('is-admin-visible'))
   },
   _restoreBottomNavScroll() {
     const nav = document.querySelector('.bottom-nav')
