@@ -1,0 +1,598 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="assets/images/logotipo/ICONE CIRCULAR.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light only">
+  <title>Jhonny Styles | Moda Feminina</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/components/header.css">
+  <link rel="stylesheet" href="css/components/hero.css">
+  <link rel="stylesheet" href="css/components/product-card.css">
+  <link rel="stylesheet" href="css/components/tabs.css">
+  <link rel="stylesheet" href="css/components/new-arrivals.css">
+  <link rel="stylesheet" href="css/components/banner.css">
+  <link rel="stylesheet" href="css/components/countdown.css">
+  <link rel="stylesheet" href="css/components/mini-list.css">
+  <link rel="stylesheet" href="css/components/blog-card.css">
+  <link rel="stylesheet" href="css/components/footer.css">
+  <link rel="stylesheet" href="css/components/modal.css">
+  <link rel="stylesheet" href="css/components/toast.css">
+  <link rel="stylesheet" href="css/components/animations.css">
+</head>
+<body>
+<div style="display:none">
+  <svg xmlns="http://www.w3.org/2000/svg">
+    <use href="assets/icons/sprite.svg"/>
+  </svg>
+</div>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar__marquee">
+    <span>USE O CUPOM <strong>PRIMEIRACOMPRA</strong> E GANHE 5% OFF &nbsp;&nbsp;•&nbsp;&nbsp; FRETE GRÁTIS ACIMA DE R$150 &nbsp;&nbsp;•&nbsp;&nbsp; PARCELE EM ATÉ 12X SEM JUROS &nbsp;&nbsp;•&nbsp;&nbsp; USE O CUPOM <strong>PRIMEIRACOMPRA</strong> E GANHE 5% OFF &nbsp;&nbsp;•&nbsp;&nbsp; FRETE GRÁTIS ACIMA DE R$150 &nbsp;&nbsp;•&nbsp;&nbsp; PARCELE EM ATÉ 12X SEM JUROS &nbsp;&nbsp;•&nbsp;&nbsp;</span>
+    <span aria-hidden="true">USE O CUPOM <strong>PRIMEIRACOMPRA</strong> E GANHE 5% OFF &nbsp;&nbsp;•&nbsp;&nbsp; FRETE GRÁTIS ACIMA DE R$150 &nbsp;&nbsp;•&nbsp;&nbsp; PARCELE EM ATÉ 12X SEM JUROS &nbsp;&nbsp;•&nbsp;&nbsp; USE O CUPOM <strong>PRIMEIRACOMPRA</strong> E GANHE 5% OFF &nbsp;&nbsp;•&nbsp;&nbsp; FRETE GRÁTIS ACIMA DE R$150 &nbsp;&nbsp;•&nbsp;&nbsp; PARCELE EM ATÉ 12X SEM JUROS &nbsp;&nbsp;•&nbsp;&nbsp;</span>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="container">
+    <div class="header__inner">
+      <a href="index.html" class="header__logo">
+        <img src="assets/images/logotipo/LOGO-MENU.png" alt="Jhonny Styles" class="header__logo-img">
+      </a>
+      <div class="header__search">
+        <input type="search" class="header__search-input" placeholder="O que você está buscando?" aria-label="Buscar">
+        <button class="header__search-btn" aria-label="Buscar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+      </div>
+      <div class="header__actions">
+        <a href="account.html" class="header__action-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span class="header__action-label">Login</span>
+        </a>
+        <a href="wishlist.html" class="header__action-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </a>
+        <a href="cart.html" class="header__action-btn" style="position:relative;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <span class="header__badge cart-count-badge" style="display:none">0</span>
+        </a>
+        <a href="admin.html" class="header__action-btn header__action-btn--admin" title="Painel Admin">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="container">
+    <ul class="nav__inner">
+      <li class="nav__item"><a href="index.html" class="nav__link">Início</a></li>
+      <li class="nav__item">
+        <a href="shop.html" class="nav__link">Produtos<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <ul class="nav__dropdown">
+          <li><a href="shop.html" class="nav__dropdown-link">Vestidos</a></li>
+          <li><a href="shop.html" class="nav__dropdown-link">Conjuntos</a></li>
+          <li><a href="shop.html" class="nav__dropdown-link">Blusas</a></li>
+          <li><a href="shop.html" class="nav__dropdown-link">Calças</a></li>
+          <li><a href="shop.html" class="nav__dropdown-link">Shorts</a></li>
+          <li><a href="shop.html" class="nav__dropdown-link">Saias</a></li>
+        </ul>
+      </li>
+      <li class="nav__item"><a href="loja-fisica.html" class="nav__link">Loja Física</a></li>
+      <li class="nav__item"><a href="novidades.html" class="nav__link">Novidades</a></li>
+      <li class="nav__item"><a href="blog.html" class="nav__link">Blogs</a></li>
+      <li class="nav__item"><a href="https://wa.me/5500000000000" class="nav__link" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px"><svg width="14" height="14" viewBox="0 0 24 24" fill="#25D366" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>WhatsApp de Pedidos</a></li>
+    </ul>
+    <button class="nav__hamburger" aria-label="Abrir menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<nav class="nav__mobile" aria-hidden="true">
+  <div class="nav__mobile-header">
+    <img src="assets/images/logotipo/LOGO-MENU.png" alt="Jhonny Styles" style="height:44px;object-fit:contain;">
+    <button class="nav__mobile-close" aria-label="Fechar menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <ul class="nav__mobile-list">
+    <li><a href="index.html" class="nav__mobile-link">Início</a></li>
+    <li><a href="shop.html" class="nav__mobile-link">Produtos</a></li>
+    <li><a href="shop.html" class="nav__mobile-link">Vestidos</a></li>
+    <li><a href="shop.html" class="nav__mobile-link">Conjuntos</a></li>
+    <li><a href="shop.html" class="nav__mobile-link">Blusas</a></li>
+    <li><a href="shop.html" class="nav__mobile-link">Calças</a></li>
+    <li><a href="loja-fisica.html" class="nav__mobile-link">Loja Física</a></li>
+    <li><a href="novidades.html" class="nav__mobile-link">Novidades</a></li>
+    <li><a href="blog.html" class="nav__mobile-link">Blogs</a></li>
+    <li><a href="account.html" class="nav__mobile-link">Minha Conta</a></li>
+  </ul>
+</nav>
+<div class="nav__overlay"></div>
+
+<main>
+
+  <!-- 1. HERO SLIDER — estilo Amanda Store -->
+  <section class="hero-slider" id="hero-slider">
+    <div class="hero-slider__track" id="slider-track">
+
+      <!-- Slide 1 — Banner -->
+      <div class="hero-slide hero-slide--banner is-active">
+        <div class="hero-slide__inner">
+          <picture>
+            <source media="(max-width: 580px)" srcset="assets/images/banners/MOBILE/banner1.webp">
+            <img class="hero-slide__bg" src="assets/images/banners/banner1.png" alt="Nova Coleção Jhonny Styles">
+          </picture>
+          <div class="hero-slide__center">
+            <span class="hero-slide__handle">@jhonnystylos</span>
+            <p class="hero-slide__sub">Sua primeira vez aqui?</p>
+            <h1 class="hero-slide__title">Seja bem<br><em>vinda!</em></h1>
+            <a href="shop.html" class="btn btn--hero">Confira Aqui</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2 — Banner -->
+      <div class="hero-slide hero-slide--banner">
+        <div class="hero-slide__inner">
+          <picture>
+            <source media="(max-width: 580px)" srcset="assets/images/banners/MOBILE/banner2.webp">
+            <img class="hero-slide__bg" src="assets/images/banners/banner2.png" alt="Coleção Premium Jhonny Styles">
+          </picture>
+          <div class="hero-slide__center">
+            <span class="hero-slide__handle">@jhonnystylos</span>
+            <p class="hero-slide__sub">Nova coleção chegou!</p>
+            <h1 class="hero-slide__title">Looks<br><em>Exclusivos</em></h1>
+            <a href="shop.html" class="btn btn--hero js-featured-collection-cta">Ver Coleção</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <button class="hero-slider__arrow hero-slider__arrow--prev" aria-label="Anterior">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="hero-slider__arrow hero-slider__arrow--next" aria-label="Próximo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+
+    <div class="hero-slider__dots">
+      <button class="hero-slider__dot is-active" data-index="0" aria-label="Slide 1"></button>
+      <button class="hero-slider__dot" data-index="1" aria-label="Slide 2"></button>
+    </div>
+
+    <div class="hero-slider__progress"></div>
+  </section>
+
+  <!-- 2. BENEFITS -->
+  <section class="benefits">
+    <div class="container">
+      <div class="benefits__grid">
+        <div class="benefit">
+          <div class="benefit__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
+          <div>
+            <p class="benefit__title">Enviamos para todo Brasil!</p>
+            <p class="benefit__text">Receba no conforto da sua casa</p>
+          </div>
+        </div>
+        <div class="benefit">
+          <div class="benefit__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          </div>
+          <div>
+            <p class="benefit__title">Parcele suas compras!</p>
+            <p class="benefit__text">Recebemos pagamento por pix</p>
+          </div>
+        </div>
+        <div class="benefit">
+          <div class="benefit__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <p class="benefit__title">Compra 100% Segura!</p>
+            <p class="benefit__text">Seus dados estão protegidos</p>
+          </div>
+        </div>
+        <div class="benefit">
+          <div class="benefit__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.95 10.92 19.79 19.79 0 01.88 2.27 2 2 0 012.86.09h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0121.06 14h.86a2 2 0 011.98 2.92z"/></svg>
+          </div>
+          <div>
+            <p class="benefit__title">Suporte ao Cliente!</p>
+            <p class="benefit__text">Entre em contato com a gente</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. DOUBLE BANNERS -->
+  <section class="banners-double">
+    <div class="container">
+      <div class="banners-double__grid">
+        <div class="banner-card">
+          <img class="banner-card__image" src="assets/images/roupas/689047483_992216516558389_6055088097668892625_n.jpg" alt="Vestidos Exclusivos">
+          <div class="banner-card__overlay">
+            <p class="banner-card__tag">Destaque</p>
+            <h2 class="banner-card__title">Vestidos Exclusivos</h2>
+            <span class="banner-card__discount">Até 30% de Desconto</span>
+            <a href="shop.html" class="btn btn--outline-white btn--sm">Comprar Agora</a>
+          </div>
+        </div>
+        <div class="banner-card">
+          <img class="banner-card__image" src="assets/images/roupas/695795422_1215064067234155_1275461646721207703_n.jpg" alt="Nova Coleção">
+          <div class="banner-card__overlay">
+            <p class="banner-card__tag">Nova Coleção</p>
+            <h2 class="banner-card__title">Looks Completos</h2>
+            <span class="banner-card__discount">Até 25% de Desconto</span>
+            <a href="shop.html" class="btn btn--outline-white btn--sm">Comprar Agora</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. NOVIDADES EM ALTA -->
+  <section class="section new-arrivals" id="novidades">
+    <div class="container">
+      <div class="new-arrivals__header">
+        <div>
+          <p class="new-arrivals__eyebrow">Acabou de Chegar</p>
+          <h2 class="new-arrivals__title">Novidades <em>em Alta</em></h2>
+        </div>
+        <div class="new-arrivals__controls">
+          <div class="new-arrivals__pills" id="na-pills">
+            <button class="na-pill is-active" data-filter="all">Todos</button>
+            <button class="na-pill" data-filter="Vestidos">Vestidos</button>
+            <button class="na-pill" data-filter="Conjuntos">Conjuntos</button>
+            <button class="na-pill" data-filter="Calças">Calças</button>
+          </div>
+          <a href="novidades.html" class="section__link">Ver Todas
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="new-arrivals__body">
+        <div class="new-arrivals__feature" id="na-feature"></div>
+        <div class="new-arrivals__grid" id="na-grid"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. OFFER BANNER -->
+  <section class="banner-offer">
+    <picture>
+      <source media="(max-width: 580px)" srcset="assets/images/banners/MOBILE/banner1.webp">
+      <img class="banner-offer__bg" src="assets/images/banners/banner1.png" alt="">
+    </picture>
+    <div class="banner-offer__overlay"></div>
+    <div class="container">
+      <div class="banner-offer__content">
+        <p class="banner-offer__label">Você é seu maior</p>
+        <h2 class="banner-offer__title">Investimento!</h2>
+        <a href="shop.html" class="btn btn--outline-white js-featured-collection-cta">Ver Coleção</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. MINI LISTS -->
+  <section class="mini-lists section">
+    <div class="container">
+      <div class="mini-lists__grid">
+        <div class="mini-list">
+          <h3 class="mini-list__header">Melhor Oferta</h3>
+          <div class="mini-list__items" id="mini-offer"></div>
+        </div>
+        <div class="mini-list">
+          <h3 class="mini-list__header">Novos Produtos</h3>
+          <div class="mini-list__items" id="mini-new"></div>
+        </div>
+        <div class="mini-list">
+          <h3 class="mini-list__header">Mais Vendidos</h3>
+          <div class="mini-list__items" id="mini-best"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. PROMO BANNERS -->
+  <section class="banners-promo">
+    <div class="container">
+      <div class="banners-promo__grid">
+        <div class="promo-card">
+          <img class="promo-card__image" src="assets/images/roupas/672350601_18133246030550228_6238487994570565479_n.jpg" alt="Blusas">
+          <div class="promo-card__content">
+            <span class="promo-card__discount">Oferta: 20% Off</span>
+            <h3 class="promo-card__title">Blusas Exclusivas</h3>
+            <a href="shop.html" class="btn btn--outline-white btn--sm">Comprar Agora</a>
+          </div>
+        </div>
+        <div class="promo-card">
+          <img class="promo-card__image" src="assets/images/roupas/696182518_1443905297510436_5739259852732623208_n.jpg" alt="Saias">
+          <div class="promo-card__content">
+            <span class="promo-card__discount">Novidade</span>
+            <h3 class="promo-card__title">Saias Midi</h3>
+            <a href="shop.html" class="btn btn--outline-white btn--sm">Comprar Agora</a>
+          </div>
+        </div>
+        <div class="promo-card">
+          <img class="promo-card__image" src="assets/images/roupas/717249195_18138506848550228_5973150353313444939_n.jpg" alt="Conjuntos">
+          <div class="promo-card__content">
+            <span class="promo-card__discount">25% Off Selecionados</span>
+            <h3 class="promo-card__title">Conjuntos Premium</h3>
+            <a href="shop.html" class="btn btn--outline-white btn--sm">Comprar Agora</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. DAILY DEALS -->
+  <section class="daily-deals">
+    <div class="container">
+      <div class="daily-deals__header">
+        <div class="daily-deals__titles">
+          <p class="daily-deals__label">Não perca</p>
+          <h2 class="daily-deals__title">Ofertas do Dia</h2>
+        </div>
+        <div class="countdown" role="timer" aria-label="Ofertas encerram em">
+          <div class="countdown__unit">
+            <span class="countdown__value" id="cd-days">02</span>
+            <span class="countdown__label">Dias</span>
+          </div>
+          <span class="countdown__sep">:</span>
+          <div class="countdown__unit">
+            <span class="countdown__value" id="cd-hours">14</span>
+            <span class="countdown__label">Horas</span>
+          </div>
+          <span class="countdown__sep">:</span>
+          <div class="countdown__unit">
+            <span class="countdown__value" id="cd-minutes">38</span>
+            <span class="countdown__label">Min</span>
+          </div>
+          <span class="countdown__sep">:</span>
+          <div class="countdown__unit">
+            <span class="countdown__value" id="cd-seconds">55</span>
+            <span class="countdown__label">Seg</span>
+          </div>
+        </div>
+      </div>
+      <div class="daily-deals__body">
+        <div class="daily-deals__featured">
+          <img class="daily-deals__featured-image" src="assets/images/roupas/640145856_18127728499550228_8066820905867045664_n.jpg" alt="Destaque">
+          <div class="daily-deals__featured-body">
+            <p class="daily-deals__featured-name">Calça Alfaiataria Premium</p>
+            <p class="daily-deals__featured-price">R$119,90</p>
+            <div class="daily-deals__featured-bar"><div class="daily-deals__featured-progress"></div></div>
+            <p class="daily-deals__featured-sold">65% vendido</p>
+          </div>
+        </div>
+        <div class="daily-deals__tabs">
+          <div class="tabs">
+            <div class="tabs__nav">
+              <button class="tabs__btn is-active">Mais Vendidos</button>
+              <button class="tabs__btn">Novidades</button>
+              <button class="tabs__btn">Promoções</button>
+            </div>
+            <div class="tabs__panel is-active">
+              <div class="daily-deals__grid" id="deals-grid"></div>
+            </div>
+            <div class="tabs__panel">
+              <div class="daily-deals__grid" id="deals-new"></div>
+            </div>
+            <div class="tabs__panel">
+              <div class="daily-deals__grid" id="deals-sale"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. MARCAS -->
+  <section class="brands section--alt">
+    <div class="container">
+      <p class="brands__title">Confiança e elegância em cada peça</p>
+      <div class="brands__grid">
+        <span class="brand-logo">Atacado</span>
+        <span class="brand-logo">Varejo</span>
+        <span class="brand-logo">Fabricação Própria</span>
+        <span class="brand-logo">Eventos</span>
+        <span class="brand-logo">Físico e Online</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. BLOG -->
+  <section class="blog-latest section" id="blog">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title">Últimas do <span>Blog</span></h2>
+        <a href="blog.html" class="section__link">Ver Todos
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="blog-latest__grid" id="blog-latest-grid"></div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__logo">
+          <img src="assets/images/logotipo/ICONE CIRCULAR.png" alt="Jhonny Styles" style="height:64px;width:64px;object-fit:contain;border-radius:50%;">
+        </div>
+        <p class="footer__desc">Moda feminina com estilo, qualidade e personalidade. Peças exclusivas pensadas para a mulher moderna que se ama e se cuida.</p>
+        <div class="footer__social">
+          <a href="#" class="footer__social-link" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="#" class="footer__social-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" class="footer__social-link" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.94a8.16 8.16 0 004.77 1.52V7.01a4.85 4.85 0 01-1-.32z"/></svg>
+          </a>
+          <a href="#" class="footer__social-link" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h4 class="footer__col-title">Categorias</h4>
+        <ul class="footer__links">
+          <li><a href="shop.html" class="footer__link">Vestidos</a></li>
+          <li><a href="shop.html" class="footer__link">Conjuntos</a></li>
+          <li><a href="shop.html" class="footer__link">Blusas &amp; Tops</a></li>
+          <li><a href="shop.html" class="footer__link">Calças</a></li>
+          <li><a href="shop.html" class="footer__link">Shorts</a></li>
+          <li><a href="shop.html" class="footer__link">Saias</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__col-title">Links Rápidos</h4>
+        <ul class="footer__links">
+          <li><a href="index.html" class="footer__link">Início</a></li>
+          <li><a href="shop.html" class="footer__link">Produtos</a></li>
+          <li><a href="cart.html" class="footer__link">Carrinho</a></li>
+          <li><a href="account.html" class="footer__link">Minha Conta</a></li>
+          <li><a href="privacy.html" class="footer__link">Política de Privacidade</a></li>
+          <li><a href="terms.html" class="footer__link">Termos e Condições</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__col-title">Newsletter</h4>
+        <p class="footer__newsletter-text">Receba novidades, promoções exclusivas e dicas de moda diretamente no seu e-mail.</p>
+        <form class="footer__newsletter-form" onsubmit="return false">
+          <input type="email" class="footer__newsletter-input" placeholder="Seu e-mail">
+          <button type="submit" class="footer__newsletter-btn">Assinar</button>
+        </form>
+        <div class="footer__contact" style="margin-top:1.5rem">
+          <div class="footer__contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.95 10.92 19.79 19.79 0 01.88 2.27 2 2 0 012.86.09h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0121.06 14h.86a2 2 0 011.98 2.92z"/></svg>
+            <span>WhatsApp de Pedidos</span>
+          </div>
+          <div class="footer__contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            <span>@jhonnystylos</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copy">&copy; 2026 Jhonny Styles. Todos os direitos reservados.</p>
+      <div class="footer__bottom-links">
+        <a href="privacy.html" class="footer__bottom-link">Privacidade</a>
+        <a href="terms.html" class="footer__bottom-link">Termos</a>
+        <a href="sitemap.html" class="footer__bottom-link">Mapa do Site</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- QUICKVIEW MODAL -->
+<div class="modal-overlay" id="quickview-overlay" role="dialog" aria-modal="true" aria-label="Quick view">
+  <div class="modal">
+    <button class="modal__close" id="quickview-close" aria-label="Fechar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="modal__body">
+      <div class="modal__gallery">
+        <img class="modal__gallery-main" src="" alt="Imagem do produto">
+      </div>
+      <div class="modal__info">
+        <p class="modal__category">Categoria</p>
+        <h2 class="modal__name">Nome do Produto</h2>
+        <div class="modal__pricing">
+          <span class="modal__price">R$0,00</span>
+          <span class="modal__compare"></span>
+        </div>
+        <p class="modal__desc">Peça exclusiva Jhonny Styles, pensada para a mulher moderna com muito estilo e personalidade.</p>
+        <label class="modal__option-label">Tamanho</label>
+        <div class="modal__sizes">
+          <button class="modal__size-btn is-active" data-size="PP">PP</button>
+          <button class="modal__size-btn" data-size="P">P</button>
+          <button class="modal__size-btn" data-size="M">M</button>
+          <button class="modal__size-btn" data-size="G">G</button>
+          <button class="modal__size-btn" data-size="GG">GG</button>
+        </div>
+        <div class="modal__qty">
+          <button class="modal__qty-btn" id="qv-qty-minus">−</button>
+          <span class="modal__qty-val">1</span>
+          <button class="modal__qty-btn" id="qv-qty-plus">+</button>
+        </div>
+        <div class="modal__actions">
+          <button class="btn btn--primary btn--full modal__add-btn">Adicionar ao Carrinho</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config/supabase.js"></script>
+<script src="js/auth/supabaseAuth.js"></script>
+<script src="js/utils/formatter.js"></script>
+<script src="js/utils/debounce.js"></script>
+<script src="js/utils/animations.js"></script>
+<script src="js/data/mock.js"></script>
+<script src="js/data/storage.js"></script>
+<script src="js/components/toast.js"></script>
+<script src="js/components/header.js"></script>
+<script src="js/components/tabs.js"></script>
+<script src="js/components/countdown.js"></script>
+<script src="js/components/quickview.js"></script>
+<script src="js/components/slider.js"></script>
+<script src="js/pages/index.js"></script>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+  <a href="index.html" class="bottom-nav__item">
+    <svg class="bottom-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span class="bottom-nav__label">Início</span>
+  </a>
+  <a href="shop.html" class="bottom-nav__item">
+    <svg class="bottom-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+    <span class="bottom-nav__label">Loja</span>
+  </a>
+  <a href="blog.html" class="bottom-nav__item">
+    <svg class="bottom-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+    <span class="bottom-nav__label">Blog</span>
+  </a>
+  <a href="cart.html" class="bottom-nav__item">
+    <span class="bottom-nav__badge cart-count-badge" style="display:none">0</span>
+    <svg class="bottom-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+    <span class="bottom-nav__label">Carrinho</span>
+  </a>
+  <a href="wishlist.html" class="bottom-nav__item">
+    <svg class="bottom-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+    <span class="bottom-nav__label">Favoritos</span>
+  </a>
+  <a href="account.html" class="bottom-nav__item">
+    <svg class="bottom-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    <span class="bottom-nav__label">Conta</span>
+  </a>
+</nav>
+</body>
+</html>

@@ -1,0 +1,490 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="assets/images/logotipo/ICONE CIRCULAR.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light only">
+  <title>Loja Física | Jhonny Styles</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/components/header.css">
+  <link rel="stylesheet" href="css/components/footer.css">
+  <link rel="stylesheet" href="css/components/toast.css">
+  <link rel="stylesheet" href="css/components/animations.css">
+  <link rel="stylesheet" href="css/pages/store.css">
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar__marquee">
+    <span>USE O CUPOM <strong>PRIMEIRACOMPRA</strong> E GANHE 5% OFF &nbsp;&nbsp;•&nbsp;&nbsp; FRETE GRÁTIS ACIMA DE R$150 &nbsp;&nbsp;•&nbsp;&nbsp; PARCELE EM ATÉ 12X SEM JUROS &nbsp;&nbsp;•&nbsp;&nbsp; USE O CUPOM <strong>PRIMEIRACOMPRA</strong> E GANHE 5% OFF &nbsp;&nbsp;•&nbsp;&nbsp; FRETE GRÁTIS ACIMA DE R$150 &nbsp;&nbsp;•&nbsp;&nbsp; PARCELE EM ATÉ 12X SEM JUROS &nbsp;&nbsp;•&nbsp;&nbsp;</span>
+    <span aria-hidden="true">USE O CUPOM <strong>PRIMEIRACOMPRA</strong> E GANHE 5% OFF &nbsp;&nbsp;•&nbsp;&nbsp; FRETE GRÁTIS ACIMA DE R$150 &nbsp;&nbsp;•&nbsp;&nbsp; PARCELE EM ATÉ 12X SEM JUROS &nbsp;&nbsp;•&nbsp;&nbsp; USE O CUPOM <strong>PRIMEIRACOMPRA</strong> E GANHE 5% OFF &nbsp;&nbsp;•&nbsp;&nbsp; FRETE GRÁTIS ACIMA DE R$150 &nbsp;&nbsp;•&nbsp;&nbsp; PARCELE EM ATÉ 12X SEM JUROS &nbsp;&nbsp;•&nbsp;&nbsp;</span>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="container">
+    <div class="header__inner">
+      <a href="index.html" class="header__logo">
+        <img src="assets/images/logotipo/LOGO-MENU.png" alt="Jhonny Styles" class="header__logo-img">
+      </a>
+      <div class="header__search">
+        <input type="search" class="header__search-input" placeholder="O que você está buscando?" aria-label="Buscar">
+        <button class="header__search-btn" aria-label="Buscar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+      </div>
+      <div class="header__actions">
+        <a href="account.html" class="header__action-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span class="header__action-label">Login</span>
+        </a>
+        <a href="wishlist.html" class="header__action-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </a>
+        <a href="cart.html" class="header__action-btn" style="position:relative;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <span class="header__badge cart-count-badge" style="display:none">0</span>
+        </a><a href="admin.html" class="header__action-btn header__action-btn--admin" title="Painel Admin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="container">
+    <ul class="nav__inner">
+      <li class="nav__item"><a href="index.html" class="nav__link">Início</a></li>
+      <li class="nav__item">
+        <a href="shop.html" class="nav__link">Produtos<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <ul class="nav__dropdown">
+          <li><a href="shop.html" class="nav__dropdown-link">Vestidos</a></li>
+          <li><a href="shop.html" class="nav__dropdown-link">Conjuntos</a></li>
+          <li><a href="shop.html" class="nav__dropdown-link">Blusas</a></li>
+          <li><a href="shop.html" class="nav__dropdown-link">Calças</a></li>
+          <li><a href="shop.html" class="nav__dropdown-link">Shorts</a></li>
+          <li><a href="shop.html" class="nav__dropdown-link">Saias</a></li>
+        </ul>
+      </li>
+      <li class="nav__item nav__item--active"><a href="loja-fisica.html" class="nav__link">Loja Física</a></li>
+      <li class="nav__item"><a href="novidades.html" class="nav__link">Novidades</a></li>
+      <li class="nav__item"><a href="blog.html" class="nav__link">Blogs</a></li>
+      <li class="nav__item"><a href="https://wa.me/5500000000000" class="nav__link" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px"><svg width="14" height="14" viewBox="0 0 24 24" fill="#25D366" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>WhatsApp de Pedidos</a></li>
+    </ul>
+    <button class="nav__hamburger" aria-label="Abrir menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<nav class="nav__mobile" aria-hidden="true">
+  <div class="nav__mobile-header">
+    <img src="assets/images/logotipo/LOGO-MENU.png" alt="Jhonny Styles" style="height:44px;object-fit:contain;">
+    <button class="nav__mobile-close" aria-label="Fechar menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <ul class="nav__mobile-list">
+    <li><a href="index.html" class="nav__mobile-link">Início</a></li>
+    <li><a href="shop.html" class="nav__mobile-link">Produtos</a></li>
+    <li><a href="shop.html" class="nav__mobile-link">Vestidos</a></li>
+    <li><a href="shop.html" class="nav__mobile-link">Conjuntos</a></li>
+    <li><a href="shop.html" class="nav__mobile-link">Blusas</a></li>
+    <li><a href="shop.html" class="nav__mobile-link">Calças</a></li>
+    <li><a href="loja-fisica.html" class="nav__mobile-link">Loja Física</a></li>
+    <li><a href="novidades.html" class="nav__mobile-link">Novidades</a></li>
+    <li><a href="blog.html" class="nav__mobile-link">Blogs</a></li>
+    <li><a href="account.html" class="nav__mobile-link">Minha Conta</a></li>
+  </ul>
+</nav>
+<div class="nav__overlay"></div>
+
+<main>
+
+  <!-- ① HERO ──────────────────────────────────────────────── -->
+  <section class="store-hero">
+    <div class="store-hero__bg">
+      <img src="assets/images/lojafisica/01.png" alt="Jhonny Styles Loja Física">
+      <div class="store-hero__overlay"></div>
+    </div>
+    <div class="container">
+      <div class="store-hero__content">
+        <span class="store-hero__tag">Nossa Loja Física</span>
+        <h1 class="store-hero__title">Venha Nos<br><em>Visitar</em></h1>
+        <p class="store-hero__sub">Uma experiência de moda que vai além do online. Experimente, sinta o tecido e se apaixone pelas peças em pessoa.</p>
+        <div class="store-hero__address">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Rua das Flores, 123 — Centro, Sua Cidade
+        </div>
+        <div class="store-hero__btns">
+          <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn btn--hero" style="background:#ffffff;border-color:#ffffff;color:var(--color-text)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            Falar no WhatsApp
+          </a>
+          <a href="shop.html" class="btn btn--outline" style="color:white;border-color:rgba(255,255,255,.5)">Ver Produtos Online</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ② INFO BAR ──────────────────────────────────────────── -->
+  <div class="store-info-bar">
+    <div class="container">
+      <div class="store-info-bar__grid">
+        <div class="store-info-item">
+          <div class="store-info-item__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <span class="store-info-item__label">Horário</span>
+            <span class="store-info-item__value">Seg – Sáb: 9h às 18h</span>
+          </div>
+        </div>
+        <div class="store-info-item">
+          <div class="store-info-item__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <span class="store-info-item__label">Endereço</span>
+            <span class="store-info-item__value">Rua das Flores, 123 — Centro</span>
+          </div>
+        </div>
+        <div class="store-info-item">
+          <div class="store-info-item__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.95 10.92 19.79 19.79 0 01.88 2.27 2 2 0 012.86.09h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0121.06 14h.86a2 2 0 011.98 2.92z"/></svg>
+          </div>
+          <div>
+            <span class="store-info-item__label">WhatsApp</span>
+            <span class="store-info-item__value">(55) 00000-0000</span>
+          </div>
+        </div>
+        <div class="store-info-item">
+          <div class="store-info-item__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </div>
+          <div>
+            <span class="store-info-item__label">Instagram</span>
+            <span class="store-info-item__value">@jhonnystylos</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ③ GALLERY ───────────────────────────────────────────── -->
+  <section class="section store-gallery">
+    <div class="container">
+      <div class="section__header" style="text-align:center;margin-bottom:var(--space-sm)">
+        <p style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--color-primary-text);margin-bottom:8px">Um espaço feito para você</p>
+        <h2 class="section__title">Conheça Nossa <em style="font-style:italic;font-weight:400;color:var(--color-primary-text)">Loja</em></h2>
+      </div>
+      <div class="store-gallery__grid">
+        <!-- Foto principal -->
+        <div class="store-gallery__main">
+          <img src="assets/images/lojafisica/02.png"
+               alt="Interior da Loja Jhonny Styles" loading="lazy">
+          <div class="store-gallery__label">
+            <span class="store-gallery__label-tag">Loja Física</span>
+            <span class="store-gallery__label-title">Um ambiente pensado para você</span>
+          </div>
+        </div>
+        <!-- Fotos menores -->
+        <div class="store-gallery__item">
+          <img src="assets/images/lojafisica/01.png"
+               alt="Outro ângulo da loja" loading="lazy">
+        </div>
+        <div class="store-gallery__item">
+          <img src="assets/images/lojafisica/02.png"
+               alt="Coleção na loja" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ④ INFO CARDS ────────────────────────────────────────── -->
+  <section class="section store-cards">
+    <div class="container">
+      <div class="store-cards__grid">
+
+        <!-- Card: Horário -->
+        <div class="store-card">
+          <div class="store-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h3 class="store-card__title">Horário de Funcionamento</h3>
+          <ul class="store-card__list">
+            <li>
+              <span class="store-card__list-day">Segunda a Sexta</span>
+              <span class="store-card__list-hours">9h às 18h</span>
+            </li>
+            <li>
+              <span class="store-card__list-day">Sábado</span>
+              <span class="store-card__list-hours">9h às 17h</span>
+            </li>
+            <li>
+              <span class="store-card__list-day">Domingo</span>
+              <span class="store-card__list-hours closed">Fechado</span>
+            </li>
+            <li>
+              <span class="store-card__list-day">Feriados</span>
+              <span class="store-card__list-hours closed">Consulte</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Card: Endereço -->
+        <div class="store-card">
+          <div class="store-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <h3 class="store-card__title">Endereço &amp; Localização</h3>
+          <div class="store-card__address-line">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Rua das Flores, 123<br>Centro — Sua Cidade, UF<br>CEP: 00000-000</span>
+          </div>
+          <div class="store-card__address-line" style="margin-top:var(--space-md)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            <span>Próximo ao Shopping Centro</span>
+          </div>
+          <a href="https://maps.google.com" target="_blank" rel="noopener"
+             class="btn btn--outline" style="display:inline-block;margin-top:var(--space-lg);font-size:0.8rem;padding:10px 22px">
+            Abrir no Google Maps
+          </a>
+        </div>
+
+        <!-- Card: Contato -->
+        <div class="store-card">
+          <div class="store-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.95 10.92 19.79 19.79 0 01.88 2.27 2 2 0 012.86.09h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0121.06 14h.86a2 2 0 011.98 2.92z"/></svg>
+          </div>
+          <h3 class="store-card__title">Fale Conosco</h3>
+          <div class="store-card__contact-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.95 10.92 19.79 19.79 0 01.88 2.27 2 2 0 012.86.09h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0121.06 14h.86a2 2 0 011.98 2.92z"/></svg>
+            <a href="tel:+5500000000000">(55) 0000-0000</a>
+          </div>
+          <div class="store-card__contact-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            <a href="https://wa.me/5500000000000" target="_blank" rel="noopener">WhatsApp de Pedidos</a>
+          </div>
+          <div class="store-card__contact-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            <a href="https://instagram.com/jhonnystylos" target="_blank" rel="noopener">@jhonnystylos</a>
+          </div>
+          <div class="store-card__contact-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <a href="mailto:contato@jhonnystylos.com.br">contato@jhonnystylos.com</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑤ COMO CHEGAR ──────────────────────────────────────── -->
+  <section class="section store-how">
+    <div class="container">
+      <div class="store-how__layout">
+        <div class="store-how__text">
+          <p class="store-how__eyebrow">Localização</p>
+          <h2 class="store-how__title">Fácil de <em>Encontrar</em></h2>
+          <p class="store-how__desc">
+            Nossa loja fica em uma localização privilegiada no centro da cidade, de fácil acesso por diferentes meios de transporte. Venha nos visitar e descobrir pessoalmente nossas coleções exclusivas.
+          </p>
+          <ul class="store-how__checklist">
+            <li>
+              <span class="store-how__check">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              A 5 minutos da estação de metrô/ônibus central
+            </li>
+            <li>
+              <span class="store-how__check">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              Estacionamento conveniado nas proximidades
+            </li>
+            <li>
+              <span class="store-how__check">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              Ambiente acessível para cadeirantes
+            </li>
+            <li>
+              <span class="store-how__check">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              Próximo ao Shopping Centro e Praça Principal
+            </li>
+            <li>
+              <span class="store-how__check">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              Atendimento personalizado com consultoras de moda
+            </li>
+          </ul>
+          <a href="https://maps.google.com" target="_blank" rel="noopener" class="btn btn--primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Como Chegar
+          </a>
+        </div>
+
+        <div class="store-how__map">
+          <img class="store-how__map-img"
+               src="assets/images/lojafisica/01.png"
+               alt="Localização da Loja Jhonny Styles" loading="lazy">
+          <div class="store-how__map-pin">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3" fill="rgba(255,255,255,0.8)"/></svg>
+            Jhonny Styles — Rua das Flores, 123
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑥ CTA FINAL ─────────────────────────────────────────── -->
+  <section class="store-cta">
+    <div class="container">
+      <p class="store-cta__eyebrow">Te esperamos!</p>
+      <h2 class="store-cta__title">Venha Criar Seu Look <em>Perfeito</em></h2>
+      <p class="store-cta__sub">Nossa equipe de consultoras está pronta para te ajudar a encontrar as peças ideais para o seu estilo.</p>
+      <div class="store-cta__btns">
+        <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn btn--hero">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          Agendar Visita via WhatsApp
+        </a>
+        <a href="shop.html" class="btn btn--outline-white">Comprar Online</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__logo">
+          <img src="assets/images/logotipo/ICONE CIRCULAR.png" alt="Jhonny Styles" style="height:64px;width:64px;object-fit:contain;border-radius:50%;">
+        </div>
+        <p class="footer__desc">Moda feminina com estilo, qualidade e personalidade. Peças exclusivas pensadas para a mulher moderna que se ama e se cuida.</p>
+        <div class="footer__social">
+          <a href="#" class="footer__social-link" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="#" class="footer__social-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" class="footer__social-link" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.94a8.16 8.16 0 004.77 1.52V7.01a4.85 4.85 0 01-1-.32z"/></svg>
+          </a>
+          <a href="#" class="footer__social-link" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h4 class="footer__col-title">Categorias</h4>
+        <ul class="footer__links">
+          <li><a href="shop.html" class="footer__link">Vestidos</a></li>
+          <li><a href="shop.html" class="footer__link">Conjuntos</a></li>
+          <li><a href="shop.html" class="footer__link">Blusas &amp; Tops</a></li>
+          <li><a href="shop.html" class="footer__link">Calças</a></li>
+          <li><a href="shop.html" class="footer__link">Shorts</a></li>
+          <li><a href="shop.html" class="footer__link">Saias</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__col-title">Links Rápidos</h4>
+        <ul class="footer__links">
+          <li><a href="index.html" class="footer__link">Início</a></li>
+          <li><a href="shop.html" class="footer__link">Produtos</a></li>
+          <li><a href="loja-fisica.html" class="footer__link">Loja Física</a></li>
+          <li><a href="cart.html" class="footer__link">Carrinho</a></li>
+          <li><a href="account.html" class="footer__link">Minha Conta</a></li>
+          <li><a href="privacy.html" class="footer__link">Política de Privacidade</a></li>
+          <li><a href="terms.html" class="footer__link">Termos e Condições</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__col-title">Newsletter</h4>
+                <p class="footer__newsletter-text">Receba novidades, promoções exclusivas e dicas de moda diretamente no seu e-mail.</p>
+        <form class="footer__newsletter-form" onsubmit="return false">
+          <input type="email" class="footer__newsletter-input" placeholder="Seu e-mail">
+          <button type="submit" class="footer__newsletter-btn">Assinar</button>
+        </form>
+                <div class="footer__contact" style="margin-top:1.5rem">
+          <div class="footer__contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.95 10.92 19.79 19.79 0 01.88 2.27 2 2 0 012.86.09h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0121.06 14h.86a2 2 0 011.98 2.92z"/></svg>
+            <span>WhatsApp de Pedidos</span>
+          </div>
+          <div class="footer__contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            <span>@jhonnystylos</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copy">&copy; 2026 Jhonny Styles. Todos os direitos reservados.</p>
+      <div class="footer__bottom-links">
+        <a href="privacy.html" class="footer__bottom-link">Privacidade</a>
+        <a href="terms.html" class="footer__bottom-link">Termos</a>
+        <a href="sitemap.html" class="footer__bottom-link">Mapa do Site</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+  <a href="index.html" class="bottom-nav__item">
+    <svg class="bottom-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span class="bottom-nav__label">Início</span>
+  </a>
+  <a href="shop.html" class="bottom-nav__item">
+    <svg class="bottom-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+    <span class="bottom-nav__label">Loja</span>
+  </a>
+  <a href="blog.html" class="bottom-nav__item">
+    <svg class="bottom-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+    <span class="bottom-nav__label">Blog</span>
+  </a>
+  <a href="cart.html" class="bottom-nav__item">
+    <span class="bottom-nav__badge cart-count-badge" style="display:none">0</span>
+    <svg class="bottom-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+    <span class="bottom-nav__label">Carrinho</span>
+  </a>
+  <a href="account.html" class="bottom-nav__item">
+    <svg class="bottom-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    <span class="bottom-nav__label">Conta</span>
+  </a>
+</nav>
+
+<div id="toast-container"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config/supabase.js"></script>
+<script src="js/auth/supabaseAuth.js"></script>
+<script src="js/utils/cart.js"></script>
+<script src="js/utils/wishlist.js"></script>
+<script src="js/utils/formatter.js"></script>
+<script src="js/utils/debounce.js"></script>
+<script src="js/utils/animations.js"></script>
+<script src="js/data/mock.js"></script>
+<script src="js/components/toast.js"></script>
+<script src="js/components/header.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof Toast !== 'undefined') Toast.init()
+  })
+</script>
+
+</body>
+</html>

@@ -1,0 +1,209 @@
+/* ── Benefits strip ──────────────────────────────────── */
+.benefits {
+  padding-block: var(--space-lg);
+  background: var(--color-primary);
+  color: var(--color-text);
+}
+.benefits__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+}
+.benefit {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+.benefit__icon {
+  width: 44px;
+  height: 44px;
+  background: rgba(255,255,255,0.25);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--color-text);
+}
+.benefit__icon svg { width: 22px; height: 22px; }
+.benefit__title {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 2px;
+}
+.benefit__text { font-size: var(--font-size-xs); color: var(--color-text); }
+
+/* ── Double banners ──────────────────────────────────── */
+.banners-double {
+  padding-block: var(--space-2xl);
+}
+.banners-double__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+}
+.banner-card {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  aspect-ratio: 16/9;
+  background: var(--color-bg-alt);
+}
+.banner-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 15%;
+  transition: transform var(--transition-slow);
+}
+.banner-card:hover .banner-card__image { transform: scale(1.04); }
+.banner-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(0,0,0,.55) 0%, rgba(0,0,0,.1) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--space-xl);
+}
+.banner-card__tag {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.7);
+  margin-bottom: var(--space-sm);
+}
+.banner-card__title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  font-weight: 700;
+  color: var(--color-white);
+  line-height: 1.2;
+  margin-bottom: var(--space-lg);
+}
+.banner-card__discount {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-white);
+  background: rgba(255,255,255,.15);
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 100px;
+  margin-bottom: var(--space-md);
+}
+
+/* ── Wide offer banner ───────────────────────────────── */
+.banner-offer {
+  position: relative;
+  min-height: 260px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.banner-offer__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.banner-offer__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.5);
+}
+.banner-offer__content {
+  position: relative;
+  text-align: center;
+  color: var(--color-white);
+  padding-block: var(--space-2xl);
+  width: 100%;
+}
+.banner-offer__label {
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.7);
+  margin-bottom: var(--space-sm);
+}
+.banner-offer__title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  margin-bottom: var(--space-lg);
+}
+@media (max-width: 580px) {
+  .banner-offer { min-height: 0; aspect-ratio: 1158 / 556; }
+  .banner-offer__content { padding-block: var(--space-md); }
+}
+
+/* ── 3 promo banners ─────────────────────────────────── */
+.banners-promo {
+  padding-block: var(--space-2xl);
+  background: var(--color-bg-alt);
+}
+.banners-promo__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+.promo-card {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  aspect-ratio: 4/5;
+  background: var(--color-bg);
+  box-shadow: var(--shadow-card);
+}
+.promo-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform var(--transition-slow);
+}
+.promo-card:hover .promo-card__image { transform: scale(1.05); }
+.promo-card__content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.75) 0%, transparent 100%);
+  padding: var(--space-xl) var(--space-lg) var(--space-lg);
+  color: var(--color-white);
+}
+.promo-card__discount {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  background: rgba(255,255,255,.2);
+  padding: 4px 10px;
+  border-radius: 100px;
+  margin-bottom: var(--space-sm);
+  display: inline-block;
+}
+.promo-card__title {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: var(--space-md);
+}
+
+@media (max-width: 1024px) {
+  .benefits__grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .banners-double__grid { grid-template-columns: 1fr; }
+  .banners-promo__grid { grid-template-columns: repeat(2, 1fr); }
+  .benefits__grid { gap: var(--space-md); }
+  .benefit__text { display: none; }
+  .benefit { align-items: center; }
+}
+@media (max-width: 480px) {
+  .banners-promo__grid { grid-template-columns: 1fr; }
+  .benefits__grid { column-gap: var(--space-sm); row-gap: var(--space-md); }
+  .benefit { align-items: flex-start; gap: var(--space-sm); }
+  .benefit__icon { width: 36px; height: 36px; flex-shrink: 0; }
+  .benefit__icon svg { width: 18px; height: 18px; }
+}

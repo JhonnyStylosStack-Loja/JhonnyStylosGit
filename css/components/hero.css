@@ -1,0 +1,274 @@
+/* ── Hero Slider — Estilo Amanda Store ───────────────────── */
+.hero-slider {
+  position: relative;
+  overflow: hidden;
+  cursor: grab;
+  user-select: none;
+  background: var(--color-cream);
+}
+.hero-slider.is-dragging { cursor: grabbing; }
+
+.hero-slider__track {
+  display: flex;
+  will-change: transform;
+  transition: transform 0.55s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.hero-slider__track.is-dragging { transition: none; }
+
+/* ── Slide ───────────────────────────────────────────────── */
+.hero-slide {
+  min-width: 100%;
+  background: linear-gradient(135deg, var(--color-cream) 0%, var(--color-bg-alt) 55%, var(--color-cream) 100%);
+}
+
+.hero-slide__inner {
+  display: flex;
+  align-items: stretch;
+  height: clamp(320px, 42vw, 500px);
+  overflow: hidden;
+}
+
+/* ── Imagens laterais ────────────────────────────────────── */
+.hero-slide__side-img {
+  flex: 0 0 27%;
+  overflow: hidden;
+  position: relative;
+}
+.hero-slide__side-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  pointer-events: none;
+  display: block;
+  transition: transform 0.7s ease;
+}
+.hero-slide.is-active .hero-slide__side-img img {
+  transform: scale(1.04);
+}
+
+/* ── Conteúdo central ────────────────────────────────────── */
+.hero-slide__center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 28px;
+  gap: 10px;
+}
+
+.hero-slide__handle {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-primary-text);
+  letter-spacing: 0.03em;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease 0.10s, transform 0.5s ease 0.10s;
+}
+.hero-slide__handle::after {
+  content: '✓';
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  background: var(--color-primary);
+  color: var(--color-text);
+  border-radius: 50%;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.hero-slide__sub {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  font-weight: 400;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease 0.20s, transform 0.5s ease 0.20s;
+}
+
+.hero-slide__title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4.4vw, 3.8rem);
+  font-weight: 700;
+  line-height: 1.12;
+  color: var(--color-text);
+  margin-bottom: 4px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease 0.30s, transform 0.5s ease 0.30s;
+}
+.hero-slide__title em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--color-primary-text);
+  display: block;
+}
+
+.hero-slide__center .btn {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease 0.42s, transform 0.5s ease 0.42s;
+  margin-top: 4px;
+}
+
+/* Slide ativo — animar entrada */
+.hero-slide.is-active .hero-slide__handle,
+.hero-slide.is-active .hero-slide__sub,
+.hero-slide.is-active .hero-slide__title,
+.hero-slide.is-active .hero-slide__center .btn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Botão Hero ──────────────────────────────────────────── */
+.btn--hero {
+  background: var(--color-primary);
+  color: var(--color-text);
+  border: 2px solid var(--color-primary);
+  border-radius: 100px;
+  padding: 13px 38px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: background var(--transition-base), border-color var(--transition-base), transform 200ms ease;
+}
+.btn--hero:hover {
+  background: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+  transform: translateY(-2px);
+}
+
+/* ── Setas ───────────────────────────────────────────────── */
+.hero-slider__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--color-border-dark);
+  color: var(--color-primary-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.hero-slider__arrow:hover {
+  background: rgba(255,255,255,0.96);
+  transform: translateY(-50%) scale(1.1);
+}
+.hero-slider__arrow--prev { left: 16px; }
+.hero-slider__arrow--next { right: 16px; }
+.hero-slider__arrow svg { width: 20px; height: 20px; pointer-events: none; }
+
+/* ── Dots ────────────────────────────────────────────────── */
+.hero-slider__dots {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+.hero-slider__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+  background: rgba(45,34,38,.25);
+  transition: background 0.25s, width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  cursor: pointer;
+}
+.hero-slider__dot.is-active {
+  background: var(--color-primary-text);
+  width: 24px;
+}
+
+/* ── Barra de progresso ──────────────────────────────────── */
+.hero-slider__progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: var(--color-primary-text);
+  z-index: 10;
+  transition: width linear;
+}
+
+/* ── Slide com banner full-width ─────────────────────────── */
+.hero-slide--banner .hero-slide__inner {
+  position: relative;
+}
+.hero-slide--banner .hero-slide__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+  pointer-events: none;
+  display: block;
+}
+.hero-slide--banner .hero-slide__center {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+/* ── Responsivo ──────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .hero-slide__side-img--left { display: none; }
+  .hero-slide__side-img--right { flex: 0 0 38%; }
+  .hero-slide__inner { height: clamp(260px, 52vw, 420px); }
+  .hero-slide__center { padding: 32px 24px; }
+}
+@media (max-width: 580px) {
+  .hero-slide__side-img { display: none; }
+  .hero-slide__inner { height: auto; }
+  .hero-slide__center { padding: 52px 28px; min-height: 300px; }
+  .hero-slide__title { font-size: clamp(1.9rem, 9vw, 2.8rem); }
+  .hero-slide__handle { font-size: 0.8rem; }
+  .hero-slider__arrow { display: none; }
+
+  /* Banner: imagem inteira (sem corte) com texto sobreposto e reduzido */
+  .hero-slide--banner .hero-slide__inner { height: auto; }
+  .hero-slide--banner .hero-slide__bg {
+    position: static;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1158 / 556;
+    object-fit: cover;
+  }
+  .hero-slide--banner .hero-slide__center {
+    position: absolute;
+    inset: 0;
+    min-height: 0;
+    padding: 10px 18px;
+    gap: 4px;
+  }
+  .hero-slide--banner .hero-slide__handle { font-size: 0.62rem; }
+  .hero-slide--banner .hero-slide__sub { font-size: 0.66rem; }
+  .hero-slide--banner .hero-slide__title {
+    font-size: clamp(1rem, 5.2vw, 1.4rem);
+    line-height: 1.15;
+  }
+  .hero-slide--banner .btn--hero {
+    padding: 7px 18px;
+    font-size: 0.62rem;
+  }
+}

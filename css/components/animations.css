@@ -1,0 +1,92 @@
+/* ── Page transitions ─────────────────────────────────────── */
+@keyframes pageIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes pageOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+@keyframes pageEnterItem {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+body.is-leaving {
+  pointer-events: none;
+  animation: pageOut 0.18s ease-in forwards;
+}
+
+/* ── Top progress bar ─────────────────────────────────────── */
+.page-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(
+    90deg,
+    #7a7a7a 0%,
+    #c8c8c8 25%,
+    #e8e8e8 45%,
+    #d0d0d0 60%,
+    #a0a0a0 80%,
+    #b8b8b8 100%
+  );
+  box-shadow: 0 0 6px rgba(200, 200, 200, 0.6);
+  z-index: 9999;
+  transition: width 0.22s ease, opacity 0.3s ease;
+  pointer-events: none;
+}
+.page-bar.is-running { width: 72%; }
+.page-bar.is-done    { width: 100%; opacity: 0; }
+
+/* ── Scroll reveal ────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity  0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Variante: deslizar da esquerda */
+.reveal--left {
+  transform: translateX(-22px);
+}
+.reveal--left.is-visible { transform: translateX(0); }
+
+/* Variante: deslizar da direita */
+.reveal--right {
+  transform: translateX(22px);
+}
+.reveal--right.is-visible { transform: translateX(0); }
+
+/* Variante: apenas fade (sem movimento) */
+.reveal--fade {
+  transform: none;
+}
+.reveal--fade.is-visible { transform: none; }
+
+/* ── Hover lift nos cards ─────────────────────────────────── */
+.product-card,
+.blog-card,
+.banner-card,
+.promo-card {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.product-card:hover,
+.blog-card:hover,
+.promo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,0,0,.10);
+}
+.banner-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(0,0,0,.14);
+}

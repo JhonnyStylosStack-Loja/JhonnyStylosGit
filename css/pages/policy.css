@@ -1,0 +1,204 @@
+/* =============================================
+   POLICY / INSTITUTIONAL PAGES
+   Shared styles for: privacy, terms, sitemap
+   ============================================= */
+
+/* Page Hero */
+.policy-hero {
+  background: var(--color-bg-dark);
+  padding: 60px 0 50px;
+  text-align: center;
+}
+.policy-hero__tag {
+  display: inline-block;
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--color-text);
+  margin-bottom: 14px;
+}
+.policy-hero__title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.15;
+}
+.policy-hero__subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  margin-top: 12px;
+}
+
+/* Content wrapper */
+.policy-body {
+  padding: 32px 0 48px;
+}
+.policy-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+/* Sticky sidebar */
+.policy-sidebar {
+  position: sticky;
+  top: 24px;
+}
+.policy-sidebar__title {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 16px;
+}
+.policy-sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.policy-sidebar__link {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  border-left: 2px solid transparent;
+  transition: all var(--transition-fast);
+  line-height: 1.4;
+}
+.policy-sidebar__link:hover,
+.policy-sidebar__link.is-active {
+  color: var(--color-text);
+  border-left-color: var(--color-accent);
+  background: var(--color-bg-alt);
+}
+
+/* Article */
+.policy-article h2 {
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 48px 0 14px;
+  padding-top: 8px;
+}
+.policy-article h2:first-child { margin-top: 0; }
+.policy-article h3 {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 28px 0 10px;
+}
+.policy-article p {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  line-height: 1.85;
+  margin-bottom: 14px;
+}
+.policy-article ul,
+.policy-article ol {
+  padding-left: 22px;
+  margin-bottom: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.policy-article li {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  line-height: 1.75;
+}
+.policy-article strong { color: var(--color-text); }
+.policy-article a { color: var(--color-primary-text); text-decoration: underline; }
+.policy-article a:hover { color: var(--color-text); }
+
+.policy-article .policy-note {
+  background: var(--color-bg-alt);
+  border-left: 3px solid var(--color-accent);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 16px 20px;
+  margin: 24px 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+.policy-article .policy-update {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-light);
+  margin-bottom: 36px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Section divider */
+.policy-article .section-divider {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 40px 0;
+}
+
+/* =============================================
+   SITEMAP PAGE
+   ============================================= */
+.sitemap-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 32px;
+  padding: 64px 0 80px;
+}
+.sitemap-group__title {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--color-accent);
+  display: inline-block;
+}
+.sitemap-group__list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.sitemap-group__link {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color var(--transition-fast);
+  line-height: 1.4;
+}
+.sitemap-group__link svg {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+  color: var(--color-primary-mid);
+}
+.sitemap-group__link:hover { color: var(--color-text); }
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+@media (max-width: 860px) {
+  .policy-layout {
+    grid-template-columns: 1fr;
+  }
+  .policy-sidebar {
+    position: static;
+    background: var(--color-bg-alt);
+    border-radius: var(--radius-md);
+    padding: 20px;
+  }
+}
+@media (max-width: 480px) {
+  .policy-hero { padding: 44px 0 36px; }
+  .sitemap-grid { grid-template-columns: 1fr 1fr; }
+}
