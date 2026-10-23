@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     const result = await SupabaseAuth.login(email, password)
     if (result.success) {
+      await Cart.mergeFromCloud()
       Toast.show('Bem-vindo de volta!', 'Login realizado com sucesso.', 'success')
       // Sempre vai pro início — admin ou não. O painel só é acessado pelo botão do header.
       const canAccessCRM = await SupabaseAuth.canAccessCRM()
@@ -62,7 +63,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const result = await SupabaseAuth.signup(email, password, `${firstName} ${lastName}`)
     if (result.success) {
       Toast.show('Conta criada!', result.message, 'success')
-      setTimeout(() => { location.href = 'account.html' }, 1500)
+      document.getElementById('register-form').reset()
+      document.getElementById('login-email').value = email
+      tabBtns[0]?.click()
     } else {
       Toast.show('Erro ao cadastrar', result.error, 'error')
     }

@@ -8,6 +8,7 @@ const Header = {
     this._activeLink()
     this._applyProfile()
     this._applyAdminAccess()
+    this._restoreCloudCart()
   },
   // Botão do painel admin só aparece pra quem está logado como admin de verdade
   async _applyAdminAccess() {
@@ -15,6 +16,16 @@ const Header = {
     if (!btns.length || typeof SupabaseAuth === 'undefined') return
     const canAccessCRM = await SupabaseAuth.canAccessCRM()
     if (canAccessCRM) btns.forEach(btn => btn.classList.add('is-admin-visible'))
+  },
+  async _restoreCloudCart() {
+    if (typeof Cart === 'undefined' || typeof supabaseClient === 'undefined') return
+    const { data: { user } } = await supabaseClient.auth.getUser()
+    if (!user) return
+    const marker = `_cartMerged_${user.id}`
+    if (sessionStorage.getItem(marker)) return
+    await Cart.mergeFromCloud()
+    sessionStorage.setItem(marker, '1')
+    this._cartCount()
   },
   _restoreBottomNavScroll() {
     const nav = document.querySelector('.bottom-nav')

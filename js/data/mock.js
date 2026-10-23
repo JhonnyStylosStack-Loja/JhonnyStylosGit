@@ -82,8 +82,12 @@ const MOCK_BRANDS = ['Vogue', 'Elle', 'Harper\'s', 'Bazaar', 'Marie', 'Glamour']
 /* Cart (localStorage-backed) */
 const Cart = {
   key: 'jhonnystylos_cart',
+  _syncTimer: null,
   get() { try { return JSON.parse(localStorage.getItem(this.key)) || [] } catch { return [] } },
-  save(items) { localStorage.setItem(this.key, JSON.stringify(items)) },
+  save(items) {
+    localStorage.setItem(this.key, JSON.stringify(items))
+    this.queueCloudSync()
+  },
   add(product, qty = 1, size = 'M') {
     const items = this.get()
     const existing = items.find(i => i.id === product.id && i.size === size)
@@ -105,7 +109,99 @@ const Cart = {
   },
   count() { return this.get().reduce((sum, i) => sum + i.qty, 0) },
   total() { return this.get().reduce((sum, i) => sum + (i.price * i.qty), 0) },
-  clear() { localStorage.removeItem(this.key) }
+  clear() {
+    localStorage.removeItem(this.key)
+    this.queueCloudSync()
+  },
+
+  queueCloudSync() {
+    clearTimeout(this._syncTimer)
+    this._syncTimer = setTimeout(() => this.syncToCloud(), 500)
+  },
+
+  async _currentUser() {
+    if (typeof supabaseClient === 'undefined') return null
+    const { data: { user } } = await supabaseClient.auth.getUser()
+    return user
+  },
+
+  async _getOrCreateCloudCart(userId) {
+    const { data, error } = await supabaseClient
+      .from('carts')
+      .upsert({ user_id: userId }, { onConflict: 'user_id' })
+      .select('id')
+      .single()
+    if (error) throw error
+    return data
+  },
+
+  async syncToCloud() {
+    try {
+      const user = await this._currentUser()
+      if (!user) return
+      const cart = await this._getOrCreateCloudCart(user.id)
+      const items = this.get()
+
+      const { error: deleteError } = await supabaseClient
+        .from('cart_items')
+        .delete()
+        .eq('cart_id', cart.id)
+      if (deleteError) throw deleteError
+
+      if (!items.length) return
+      const rows = items.map(item => ({
+        cart_id: cart.id,
+        product_id: String(item.id),
+        product_name: item.name,
+        image_url: item.image || null,
+        size: item.size || 'M',
+        quantity: item.qty,
+        unit_price: item.price
+      }))
+      const { error: insertError } = await supabaseClient.from('cart_items').insert(rows)
+      if (insertError) throw insertError
+    } catch (error) {
+      console.error('Erro ao sincronizar carrinho:', error)
+    }
+  },
+
+  async mergeFromCloud() {
+    try {
+      const user = await this._currentUser()
+      if (!user) return this.get()
+      const cart = await this._getOrCreateCloudCart(user.id)
+      const { data, error } = await supabaseClient
+        .from('cart_items')
+        .select('product_id, product_name, image_url, size, quantity, unit_price')
+        .eq('cart_id', cart.id)
+      if (error) throw error
+
+      const merged = new Map()
+      for (const item of data || []) {
+        const normalized = {
+          id: item.product_id,
+          name: item.product_name,
+          image: item.image_url,
+          size: item.size,
+          qty: item.quantity,
+          price: Number(item.unit_price)
+        }
+        merged.set(`${normalized.id}::${normalized.size}`, normalized)
+      }
+      for (const item of this.get()) {
+        const key = `${item.id}::${item.size || 'M'}`
+        const cloudItem = merged.get(key)
+        merged.set(key, { ...cloudItem, ...item, qty: Math.max(cloudItem?.qty || 0, item.qty || 1) })
+      }
+
+      const items = Array.from(merged.values())
+      this.save(items)
+      return items
+    } catch (error) {
+      console.error('Erro ao recuperar carrinho:', error)
+      return this.get()
+    }
+  }
 }
 
 /* Wishlist */
