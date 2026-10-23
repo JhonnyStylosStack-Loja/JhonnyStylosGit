@@ -235,7 +235,7 @@ Crie o arquivo `.env` (nunca commitar — já está no `.gitignore`):
 
 ```env
 SUPABASE_URL=https://xxxxxxxxxxxx.supabase.co
-SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5...
+SUPABASE_PUBLISHABLE_KEY=adicione-a-chave-publica-do-projeto
 ```
 
 No `js/config/supabase.js`, injetar via build tool ou diretamente:
