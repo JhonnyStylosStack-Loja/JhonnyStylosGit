@@ -5,11 +5,20 @@
   <link rel="icon" type="image/png" href="assets/images/logotipo/ICONE CIRCULAR.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="light only">
+  <script>
+(() => {
+  const cachedSession = (() => { try { return JSON.parse(localStorage.getItem('sb-qjvydpxdesvextfrmyyg-auth-token') || 'null') } catch { return null } })()
+  const photo = cachedSession?.user?.id && localStorage.getItem(`user_profile_photo_${cachedSession.user.id}`)
+  if (typeof photo !== 'string' || !/^data:image\/[a-z0-9.+-]+;base64,[a-z0-9+/]+=*$/i.test(photo)) return
+  document.documentElement.style.setProperty('--cached-profile-photo', `url("${photo}")`)
+  document.documentElement.classList.add('has-cached-profile-photo')
+})()
+</script>
   <title>Jhonny Styles | Moda Feminina</title>
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/global.css">
-  <link rel="stylesheet" href="css/components/header.css?v=20261024-2">
+  <link rel="stylesheet" href="css/components/header.css?v=20261024-3">
   <link rel="stylesheet" href="css/components/hero.css">
   <link rel="stylesheet" href="css/components/product-card.css">
   <link rel="stylesheet" href="css/components/tabs.css">
@@ -559,7 +568,7 @@
 <script src="js/data/mock.js"></script>
 <script src="js/data/storage.js"></script>
 <script src="js/components/toast.js"></script>
-<script src="js/components/header.js?v=20261024-6"></script>
+<script src="js/components/header.js?v=20261024-7"></script>
 <script src="js/components/tabs.js"></script>
 <script src="js/components/countdown.js"></script>
 <script src="js/components/quickview.js"></script>

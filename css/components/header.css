@@ -129,6 +129,30 @@
 }
 .header__action-btn:hover { color: var(--color-primary-text); background: var(--color-bg-alt); }
 .header__action-btn svg { width: 22px; height: 22px; flex-shrink: 0; }
+html.has-cached-profile-photo .header__action-btn[href="account.html"] > svg,
+html.has-cached-profile-photo .bottom-nav__item[href="account.html"] > .bottom-nav__icon { display: none; }
+html.has-cached-profile-photo .header__action-btn[href="account.html"]::before {
+  content: "";
+  display: block;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border: 2px solid var(--color-white);
+  border-radius: 50%;
+  background: var(--cached-profile-photo) center / cover no-repeat;
+  box-shadow: 0 0 0 2px var(--color-border-dark), 0 3px 10px rgba(155,59,72,.16);
+}
+html.has-cached-profile-photo .bottom-nav__item[href="account.html"]::before {
+  content: "";
+  display: block;
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+  border: 1px solid var(--color-white);
+  border-radius: 50%;
+  background: var(--cached-profile-photo) center / cover no-repeat;
+  box-shadow: 0 0 0 1px var(--color-border-dark);
+}
 .user-avatar {
   position: relative;
   width: 36px;

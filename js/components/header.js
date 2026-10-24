@@ -141,11 +141,20 @@ const Header = {
         const img = document.createElement('img')
         img.className = 'user-avatar__photo'
         img.alt = ''
-        img.addEventListener('load', () => avatar.classList.add('has-photo'))
-        img.addEventListener('error', () => img.remove())
+        img.addEventListener('load', () => {
+          avatar.classList.add('has-photo')
+          document.documentElement.classList.remove('has-cached-profile-photo')
+        })
+        img.addEventListener('error', () => {
+          img.remove()
+          document.documentElement.classList.remove('has-cached-profile-photo')
+        })
         avatar.appendChild(img)
         img.src = photo
-        if (img.complete && img.naturalWidth > 0) avatar.classList.add('has-photo')
+        if (img.complete && img.naturalWidth > 0) {
+          avatar.classList.add('has-photo')
+          document.documentElement.classList.remove('has-cached-profile-photo')
+        }
       }
 
       const badge = document.createElement('span')
