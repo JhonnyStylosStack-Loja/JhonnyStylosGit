@@ -489,7 +489,10 @@
 .store-content-edit { position: absolute; top: 16px; right: 16px; width: 34px; height: 34px; border: 1px solid #b9dcf6; border-radius: 8px; background: #f0f8ff; color: #178fdb; cursor: pointer; font-size: 18px; }
 .store-content-map { display:inline-block; margin-top:var(--space-lg); font-size:.8rem; padding:10px 22px; }
 .store-content-contacts { display:grid; gap:12px; text-align:left; }
-.store-content-contacts a { color:var(--color-text); }
+.store-content-contacts > a { color:var(--color-text); text-decoration:none; }
+.store-content-contacts > a:hover { color:var(--color-primary-text); }
+.store-content-contacts .store-card__contact-item { margin-bottom:0; }
+.store-content-contacts .store-card__contact-item > span { width:16px; color:var(--color-primary-text); text-align:center; flex:0 0 16px; }
 .store-content-modal { position:fixed; inset:0; z-index:1200; display:grid; place-items:center; padding:20px; background:rgba(25,34,54,.5); }
 .store-content-modal__panel { width:min(540px,100%); background:#fff; border-radius:20px; padding:24px; box-shadow:0 20px 60px rgba(0,0,0,.25); }
 .store-content-modal header, .store-content-modal footer { display:flex; align-items:center; justify-content:space-between; gap:12px; }
