@@ -113,6 +113,23 @@
   transition: color var(--transition-fast);
 }
 .auth-form__forgot:hover { color: var(--color-primary-text); }
+.auth-form__message {
+  min-height: 20px;
+  margin: 0;
+  font-size: var(--font-size-xs);
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+.auth-form__message.is-error { color: #b42318; }
+.auth-form__message.is-success { color: #067647; }
+.auth-form__back {
+  align-self: center;
+  padding: 4px;
+  color: var(--color-primary-text);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}
+.auth-form__back:hover { text-decoration: underline; }
 .auth-form__row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md); }
 .auth-divider {
   display: flex;

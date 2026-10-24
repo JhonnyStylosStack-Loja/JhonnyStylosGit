@@ -3,13 +3,66 @@ document.addEventListener('DOMContentLoaded', () => {
   // Auth tabs (Login / Register)
   const tabBtns = document.querySelectorAll('.auth-tab-btn')
   const panels  = document.querySelectorAll('.auth-panel-form')
-  tabBtns.forEach((btn, i) => {
-    btn.addEventListener('click', () => {
-      tabBtns.forEach(b => b.classList.remove('is-active'))
-      panels.forEach(p => p.classList.remove('is-active'))
-      btn.classList.add('is-active')
-      panels[i]?.classList.add('is-active')
-    })
+  const loginPanel = document.getElementById('login-panel')
+  const registerPanel = document.getElementById('register-panel')
+  const recoveryPanel = document.getElementById('recovery-panel')
+  const showPanel = (panel, activeTab = -1) => {
+    panels.forEach(item => item.classList.remove('is-active'))
+    tabBtns.forEach(btn => btn.classList.remove('is-active'))
+    panel?.classList.add('is-active')
+    if (activeTab >= 0) tabBtns[activeTab]?.classList.add('is-active')
+  }
+
+  tabBtns[0]?.addEventListener('click', () => showPanel(loginPanel, 0))
+  tabBtns[1]?.addEventListener('click', () => showPanel(registerPanel, 1))
+
+  document.getElementById('forgot-password-link')?.addEventListener('click', event => {
+    event.preventDefault()
+    const loginEmail = document.getElementById('login-email').value.trim()
+    const recoveryEmail = document.getElementById('recovery-email')
+    if (loginEmail) recoveryEmail.value = loginEmail
+    showPanel(recoveryPanel)
+    history.replaceState(null, '', '#recuperar-senha')
+    recoveryEmail.focus()
+  })
+
+  document.getElementById('back-to-login')?.addEventListener('click', () => {
+    showPanel(loginPanel, 0)
+    history.replaceState(null, '', location.pathname + location.search)
+  })
+
+  if (location.hash === '#recuperar-senha') showPanel(recoveryPanel)
+
+  document.getElementById('forgot-password-form')?.addEventListener('submit', async event => {
+    event.preventDefault()
+    const emailInput = document.getElementById('recovery-email')
+    const message = document.getElementById('recovery-message')
+    const button = event.currentTarget.querySelector('button[type="submit"]')
+    const email = emailInput.value.trim()
+    message.className = 'auth-form__message'
+
+    if (!email || !emailInput.checkValidity()) {
+      message.textContent = 'Informe um endereço de e-mail válido.'
+      message.classList.add('is-error')
+      emailInput.focus()
+      return
+    }
+
+    button.disabled = true
+    button.textContent = 'Enviando…'
+    const result = await SupabaseAuth.requestPasswordReset(email)
+    button.disabled = false
+    button.textContent = 'Enviar link de recuperação'
+
+    if (!result.success) {
+      message.textContent = 'Não foi possível enviar agora. Aguarde um momento e tente novamente.'
+      message.classList.add('is-error')
+      return
+    }
+
+    event.currentTarget.reset()
+    message.textContent = 'Se o e-mail estiver cadastrado, o link chegará em instantes.'
+    message.classList.add('is-success')
   })
 
   // Login form
@@ -65,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
       Toast.show('Conta criada!', result.message, 'success')
       document.getElementById('register-form').reset()
       document.getElementById('login-email').value = email
-      tabBtns[0]?.click()
+      showPanel(loginPanel, 0)
     } else {
       Toast.show('Erro ao cadastrar', result.error, 'error')
     }

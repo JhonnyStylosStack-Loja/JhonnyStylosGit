@@ -56,7 +56,7 @@
       </div>
 
       <!-- Login panel -->
-      <div class="auth-panel-form is-active">
+      <div class="auth-panel-form is-active" id="login-panel">
         <h1 class="auth-box__title">Bem-vindo(a) de volta</h1>
         <p class="auth-box__subtitle">Entre com sua conta para continuar comprando.</p>
         <form class="auth-form" id="login-form" novalidate>
@@ -67,7 +67,7 @@
           <div class="auth-form__group">
             <label class="auth-form__label">Senha</label>
             <input type="password" id="login-password" class="form-control" placeholder="••••••••" required>
-            <a href="forgot-password.html" class="auth-form__forgot">Esqueceu sua senha?</a>
+            <a href="#recuperar-senha" class="auth-form__forgot" id="forgot-password-link">Esqueceu sua senha?</a>
           </div>
           <button type="submit" class="btn btn--primary btn--full btn--lg">Entrar</button>
         </form>
@@ -84,8 +84,23 @@
         </div>
       </div>
 
+      <!-- Password recovery panel -->
+      <div class="auth-panel-form" id="recovery-panel">
+        <h1 class="auth-box__title">Recuperar senha</h1>
+        <p class="auth-box__subtitle">Informe o e-mail da sua conta para receber um link seguro.</p>
+        <form class="auth-form" id="forgot-password-form" novalidate>
+          <div class="auth-form__group">
+            <label class="auth-form__label" for="recovery-email">E-mail</label>
+            <input type="email" id="recovery-email" class="form-control" placeholder="seuemail@exemplo.com" autocomplete="email" required>
+          </div>
+          <button type="submit" class="btn btn--primary btn--full btn--lg">Enviar link de recuperação</button>
+          <p class="auth-form__message" id="recovery-message" role="status" aria-live="polite"></p>
+          <button type="button" class="auth-form__back" id="back-to-login">← Voltar para entrar</button>
+        </form>
+      </div>
+
       <!-- Register panel -->
-      <div class="auth-panel-form">
+      <div class="auth-panel-form" id="register-panel">
         <h1 class="auth-box__title">Criar conta</h1>
         <p class="auth-box__subtitle">Cadastre-se e aproveite ofertas exclusivas.</p>
         <form class="auth-form" id="register-form" novalidate>
