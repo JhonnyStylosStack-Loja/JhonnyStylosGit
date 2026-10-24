@@ -110,51 +110,54 @@ const Header = {
     const user = await SupabaseAuth.getCurrentUser()
     if (!user) return
 
-    const profile = await SupabaseAuth.getCurrentUserProfile()
-    const name = profile?.full_name || user.user_metadata?.full_name || user.email || 'Minha conta'
-    const initials = name.split(/\s+/).filter(Boolean).slice(0, 2)
-      .map(part => part[0]).join('').toUpperCase()
-    const photo = localStorage.getItem(`user_profile_photo_${user.id}`)
-      || profile?.avatar_url
-      || (['admin', 'hr'].includes(profile?.role) ? localStorage.getItem('adm_profile_photo') : '')
+    const renderAvatar = (profile = null) => {
+      const name = profile?.full_name || user.user_metadata?.full_name || user.email || 'Minha conta'
+      const initials = name.split(/\s+/).filter(Boolean).slice(0, 2)
+        .map(part => part[0]).join('').toUpperCase()
+      const photo = localStorage.getItem(`user_profile_photo_${user.id}`)
+        || profile?.avatar_url
+        || user.user_metadata?.avatar_url
+        || user.user_metadata?.picture
+        || (['admin', 'hr'].includes(profile?.role) ? localStorage.getItem('adm_profile_photo') : '')
 
-    const createAvatar = (compact = false) => {
-      const avatar = document.createElement('span')
-      avatar.className = `user-avatar${compact ? ' user-avatar--compact' : ''}`
-      avatar.setAttribute('aria-hidden', 'true')
+      const createAvatar = (compact = false) => {
+        const avatar = document.createElement('span')
+        avatar.className = `user-avatar${compact ? ' user-avatar--compact' : ''}`
+        avatar.setAttribute('aria-hidden', 'true')
 
-      const fallback = document.createElement('span')
-      fallback.className = 'user-avatar__initials'
-      fallback.textContent = initials || 'JS'
-      avatar.appendChild(fallback)
+        const fallback = document.createElement('span')
+        fallback.className = 'user-avatar__initials'
+        fallback.textContent = initials || 'JS'
+        avatar.appendChild(fallback)
 
-      if (photo) {
-        const img = document.createElement('img')
-        img.className = 'user-avatar__photo'
-        img.src = photo
-        img.alt = ''
-        img.addEventListener('load', () => avatar.classList.add('has-photo'))
-        img.addEventListener('error', () => img.remove())
-        avatar.appendChild(img)
+        if (photo) {
+          const img = document.createElement('img')
+          img.className = 'user-avatar__photo'
+          img.alt = ''
+          img.addEventListener('load', () => avatar.classList.add('has-photo'))
+          img.addEventListener('error', () => img.remove())
+          avatar.appendChild(img)
+          img.src = photo
+          if (img.complete && img.naturalWidth > 0) avatar.classList.add('has-photo')
+        }
+
+        return avatar
       }
 
-      const badge = document.createElement('span')
-      badge.className = 'user-avatar__badge'
-      badge.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><circle cx="12" cy="8" r="3"/><path d="M6.5 19c.7-3 2.5-4.5 5.5-4.5s4.8 1.5 5.5 4.5"/></svg>'
-      avatar.appendChild(badge)
-      return avatar
+      document.querySelectorAll('a[href="account.html"].header__action-btn').forEach(btn => {
+        btn.querySelector(':scope > .user-avatar, :scope > svg')?.replaceWith(createAvatar())
+        btn.title = `Minha conta — ${name}`
+        btn.setAttribute('aria-label', `Minha conta de ${name}`)
+      })
+
+      document.querySelectorAll('a[href="account.html"].bottom-nav__item').forEach(link => {
+        link.querySelector(':scope > .user-avatar, :scope > .bottom-nav__icon')?.replaceWith(createAvatar(true))
+        link.setAttribute('aria-label', `Minha conta de ${name}`)
+      })
     }
 
-    document.querySelectorAll('a[href="account.html"].header__action-btn').forEach(btn => {
-      btn.querySelector(':scope > .user-avatar, :scope > svg')?.replaceWith(createAvatar())
-      btn.title = `Minha conta — ${name}`
-      btn.setAttribute('aria-label', `Minha conta de ${name}`)
-    })
-
-    document.querySelectorAll('a[href="account.html"].bottom-nav__item').forEach(link => {
-      link.querySelector(':scope > .user-avatar, :scope > .bottom-nav__icon')?.replaceWith(createAvatar(true))
-      link.setAttribute('aria-label', `Minha conta de ${name}`)
-    })
+    renderAvatar()
+    renderAvatar(await SupabaseAuth.getCurrentUserProfile())
   }
 }
 
