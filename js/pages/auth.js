@@ -50,12 +50,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     button.disabled = true
     button.textContent = 'Enviando…'
-    const result = await SupabaseAuth.requestPasswordReset(email)
-    button.disabled = false
-    button.textContent = 'Enviar link de recuperação'
+    let result
+    try {
+      result = await SupabaseAuth.requestPasswordReset(email)
+    } finally {
+      button.disabled = false
+      button.textContent = 'Enviar link de recuperação'
+    }
 
-    if (!result.success) {
-      message.textContent = 'Não foi possível enviar agora. Aguarde um momento e tente novamente.'
+    if (!result?.success) {
+      message.textContent = result?.code === 'over_email_send_rate_limit'
+        ? 'Aguarde cerca de 1 minuto antes de solicitar outro link.'
+        : result?.error || 'Não foi possível enviar agora. Tente novamente.'
       message.classList.add('is-error')
       return
     }

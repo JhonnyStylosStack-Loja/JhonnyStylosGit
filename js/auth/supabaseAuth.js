@@ -43,14 +43,33 @@ const SupabaseAuth = {
   },
 
   async requestPasswordReset(email) {
+    const controller = new AbortController()
+    const timeout = setTimeout(() => controller.abort(), 12000)
     try {
-      const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
-        redirectTo: `${window.location.origin}/set-password.html`
+      const redirectTo = `${window.location.origin}/set-password.html`
+      const response = await fetch(`${SUPABASE_URL}/auth/v1/recover?redirect_to=${encodeURIComponent(redirectTo)}`, {
+        method: 'POST',
+        headers: {
+          apikey: SUPABASE_PUBLISHABLE_KEY,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email }),
+        signal: controller.signal
       })
-      if (error) throw error
+      const payload = await response.json().catch(() => ({}))
+      if (!response.ok) {
+        const error = new Error(payload.msg || 'Não foi possível enviar o e-mail de recuperação.')
+        error.code = payload.error_code
+        throw error
+      }
       return { success: true }
     } catch (error) {
-      return { success: false, error: error.message }
+      if (error.name === 'AbortError') {
+        return { success: false, error: 'A solicitação demorou demais. Verifique sua conexão e tente novamente.', code: 'timeout' }
+      }
+      return { success: false, error: error.message, code: error.code }
+    } finally {
+      clearTimeout(timeout)
     }
   },
 
