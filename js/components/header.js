@@ -168,10 +168,10 @@ const Header = {
     })
   },
   async _applyProfile() {
-    if (typeof SupabaseAuth === 'undefined') return
-
     const storedUser = this._getStoredUser()
     if (storedUser) this._renderProfileAvatar(storedUser)
+
+    if (typeof SupabaseAuth === 'undefined') return
 
     const user = await SupabaseAuth.getCurrentUser()
     if (!user) return
