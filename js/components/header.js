@@ -141,6 +141,11 @@ const Header = {
           if (img.complete && img.naturalWidth > 0) avatar.classList.add('has-photo')
         }
 
+        const badge = document.createElement('span')
+        badge.className = 'user-avatar__badge'
+        badge.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><circle cx="12" cy="8" r="3"/><path d="M6.5 19c.7-3 2.5-4.5 5.5-4.5s4.8 1.5 5.5 4.5"/></svg>'
+        avatar.appendChild(badge)
+
         return avatar
       }
 
