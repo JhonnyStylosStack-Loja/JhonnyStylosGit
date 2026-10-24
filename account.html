@@ -15,7 +15,6 @@
 })()
 </script>
   <title>Minha Conta — Jhonny Styles</title>
-  <script>document.documentElement.classList.add('auth-pending')</script>
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/global.css">
@@ -24,7 +23,6 @@
   <link rel="stylesheet" href="css/components/toast.css">
   <link rel="stylesheet" href="css/components/animations.css">
   <style>
-    html.auth-pending body { visibility: hidden; }
     .account-page { padding-block: var(--space-md); }
     .account-layout { display: grid; grid-template-columns: 260px 1fr; gap: var(--space-2xl); align-items: start; }
     .account-layout > * { min-width: 0; }
@@ -292,10 +290,20 @@
 document.addEventListener('DOMContentLoaded', async () => {
   Toast.init()
 
-  // ── Guard: sem sessão, manda pro login ──────────────────────
-  const user = await SupabaseAuth.getCurrentUser()
+  const { data: { session }, error: sessionError } = await supabaseClient.auth.getSession()
+  if (sessionError) {
+    Toast.show('Não foi possível carregar sua conta.', sessionError.message, 'error')
+    return
+  }
+
+  const user = session?.user
   if (!user) { location.href = 'login.html'; return }
-  const profile = await SupabaseAuth.getCurrentUserProfile()
+  const { data: profile, error: profileError } = await supabaseClient
+    .from('users')
+    .select('*')
+    .eq('id', user.id)
+    .single()
+  if (profileError) Toast.show('Não foi possível carregar os dados do perfil.', profileError.message, 'error')
 
   // ── Perfil: dados reais da conta logada ─────────────────────
   const avatarInput  = document.getElementById('avatar-input')
@@ -306,9 +314,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   const fullName = profile?.full_name || ''
   sidebarName.textContent  = fullName || user.email
   sidebarEmail.textContent = profile?.email || user.email
-
-  // Só revela a página depois que os dados reais já estão na tela (evita flash de conteúdo)
-  document.documentElement.classList.remove('auth-pending')
 
   // Foto (por enquanto local ao navegador, por usuário)
   function applyAvatar(src) {
@@ -367,11 +372,16 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // ── Pedidos reais (vazio até existirem pedidos de verdade) ──
   const ordersEmpty = document.getElementById('orders-empty')
-  const { data: orders } = await supabaseClient
+  const { data: orders, error: ordersError } = await supabaseClient
     .from('orders')
     .select('order_number, total_amount, status, created_at')
     .eq('user_id', user.id)
     .order('created_at', { ascending: false })
+
+  if (ordersError) {
+    Toast.show('Não foi possível carregar seus pedidos.', ordersError.message, 'error')
+    if (ordersEmpty) ordersEmpty.textContent = 'Não foi possível carregar seus pedidos.'
+  }
 
   if (orders && orders.length) {
     ordersEmpty.outerHTML = orders.map(o => `
@@ -382,7 +392,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         <span class="order-status">${o.status}</span>
         <span></span>
       </div>`).join('')
-  } else if (ordersEmpty) {
+  } else if (ordersEmpty && !ordersError) {
     ordersEmpty.textContent = 'Você ainda não fez nenhum pedido.'
   }
 
