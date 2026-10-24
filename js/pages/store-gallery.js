@@ -16,7 +16,17 @@ const StoreGallery = {
   },
   render() {
     const root = document.getElementById('store-gallery-grid')
-    if (!root || !this.images.length) return
+    if (!root) return
+    if (!this.images.length) {
+      if (this.staff) {
+        root.querySelectorAll('.store-gallery__main, .store-gallery__item').forEach(item => {
+          if (item.querySelector('[data-store-gallery-edit]')) return
+          item.insertAdjacentHTML('beforeend', '<button class="store-gallery-edit" data-store-gallery-edit aria-label="Editar imagem">✎</button>')
+        })
+        root.querySelectorAll('[data-store-gallery-edit]').forEach(button => button.addEventListener('click', () => this.open()))
+      }
+      return
+    }
     root.innerHTML = this.images.slice(0, 3).map((item, index) => `
       <div class="${index === 0 ? 'store-gallery__main' : 'store-gallery__item'}">
         <img src="${item.url}" alt="${item.alt || 'Loja Jhonny Styles'}" loading="lazy"

@@ -83,6 +83,7 @@ const Header = {
     document.body.appendChild(fab)
   },
   _cartCount() {
+    if (typeof Cart === 'undefined') return
     const count = Cart.count()
     document.querySelectorAll('.cart-count-badge').forEach(badge => {
       const prev = parseInt(badge.textContent) || 0

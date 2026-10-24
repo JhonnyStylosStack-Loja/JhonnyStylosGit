@@ -1,13 +1,25 @@
 const StoreContent = {
   data: null, staff: false,
-  empty: { hours: {}, address: '', reference: '', maps_url: '', phone: '', whatsapp: '', instagram: '', email: '', how_title: '', how_description: '', how_checklist: [], how_map_label: '', how_directions_url: '', cta_eyebrow: '', cta_title: '', cta_description: '', cta_whatsapp_url: '', cta_shop_url: '' },
+  empty: {
+    hours: { weekday: '9h às 18h', saturday: '9h às 17h', sunday: 'Fechado', holidays: 'Consulte' },
+    address: 'Rua das Flores, 123\nCentro — Sua Cidade, UF\nCEP: 00000-000', reference: 'Próximo ao Shopping Centro', maps_url: 'https://maps.google.com',
+    phone: '(55) 0000-0000', whatsapp: '5500000000000', instagram: '@jhonnystylos', email: 'contato@jhonnystylos.com',
+    how_title: 'Fácil de Encontrar', how_description: 'Nossa loja fica em uma localização privilegiada no centro da cidade, de fácil acesso por diferentes meios de transporte. Venha nos visitar e descobrir pessoalmente nossas coleções exclusivas.',
+    how_checklist: ['A 5 minutos da estação de metrô/ônibus central', 'Estacionamento conveniado nas proximidades', 'Ambiente acessível para cadeirantes', 'Próximo ao Shopping Centro e Praça Principal', 'Atendimento personalizado com consultoras de moda'], how_map_label: 'Jhonny Styles — Rua das Flores, 123', how_directions_url: 'https://maps.google.com',
+    cta_eyebrow: 'Te esperamos!', cta_title: 'Venha Criar Seu Look Perfeito', cta_description: 'Nossa equipe de consultoras está pronta para te ajudar a encontrar as peças ideais para o seu estilo.', cta_whatsapp_url: 'https://wa.me/5500000000000', cta_shop_url: 'shop.html'
+  },
   async init() {
     const user = await SupabaseAuth.getCurrentUser()
     const profile = user ? await SupabaseAuth.getCurrentUserProfile() : null
     this.staff = ['admin', 'hr'].includes(profile?.role)
     const { data, error } = await supabaseClient.from('store_content').select('*').eq('id', true).maybeSingle()
     if (error) console.error('Erro ao carregar informações da loja:', error)
-    this.data = { ...this.empty, ...(data || {}) }
+    const stored = data || {}
+    this.data = { ...this.empty, ...stored, hours: { ...this.empty.hours, ...(stored.hours || {}) } }
+    for (const key of ['address', 'reference', 'maps_url', 'phone', 'whatsapp', 'instagram', 'email', 'how_title', 'how_description', 'how_map_label', 'how_directions_url', 'cta_eyebrow', 'cta_title', 'cta_description', 'cta_whatsapp_url', 'cta_shop_url']) {
+      if (!stored[key]) this.data[key] = this.empty[key]
+    }
+    if (!Array.isArray(stored.how_checklist) || !stored.how_checklist.length) this.data.how_checklist = this.empty.how_checklist
     this.render()
   },
   escape(value) { return String(value || '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' })[char]) },
