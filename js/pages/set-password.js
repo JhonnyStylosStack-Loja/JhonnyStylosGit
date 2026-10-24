@@ -29,8 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
       return
     }
 
-    message.textContent = 'Senha definida com sucesso. Redirecionando para sua conta…'
+    message.textContent = 'Senha redefinida com sucesso. Redirecionando para o início…'
     message.classList.add('success')
-    setTimeout(() => { window.location.href = 'account.html' }, 1500)
+    setTimeout(() => { window.location.replace('index.html') }, 1500)
   })
 })
