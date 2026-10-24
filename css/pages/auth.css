@@ -121,7 +121,14 @@
   color: var(--color-text-muted);
 }
 .auth-form__message.is-error { color: #b42318; }
-.auth-form__message.is-success { color: #067647; }
+.auth-form__message.is-success {
+  padding: 12px 14px;
+  border: 1px solid #a6e1be;
+  border-radius: var(--radius-md);
+  background: #ecfdf3;
+  color: #067647;
+  font-weight: var(--font-weight-medium);
+}
 .auth-form__back {
   align-self: center;
   padding: 4px;

@@ -67,8 +67,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     event.currentTarget.reset()
-    message.textContent = 'Se o e-mail estiver cadastrado, o link chegará em instantes.'
+    message.textContent = 'Pronto! Se este e-mail estiver cadastrado, enviamos o link. Confira sua caixa de entrada e também a pasta de spam.'
     message.classList.add('is-success')
+    button.textContent = 'E-mail enviado ✓'
+    Toast.show(
+      'Confira seu e-mail!',
+      'Enviamos o link de recuperação. Verifique também a pasta de spam.',
+      'success'
+    )
   })
 
   // Login form
