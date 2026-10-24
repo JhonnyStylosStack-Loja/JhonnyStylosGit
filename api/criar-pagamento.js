@@ -9,6 +9,8 @@ module.exports = async function handler(req, res) {
 
   try {
     const { items, payer } = req.body;
+    const siteUrl = (process.env.SITE_URL || req.headers.origin || '').replace(/\/$/, '');
+    if (!siteUrl) return res.status(500).json({ error: 'SITE_URL não configurada para os retornos do pagamento.' });
     const client = new MercadoPagoConfig({ accessToken: process.env.MP_ACCESS_TOKEN });
     const preference = new Preference(client);
     const result = await preference.create({
@@ -21,9 +23,9 @@ module.exports = async function handler(req, res) {
         })),
         payer: { name: payer.name, email: payer.email },
         back_urls: {
-          success: 'https://ecommecerteste.vercel.app/checkout.html?status=success',
-          failure: 'https://ecommecerteste.vercel.app/checkout.html?status=failure',
-          pending: 'https://ecommecerteste.vercel.app/checkout.html?status=pending'
+          success: `${siteUrl}/checkout.html?status=success`,
+          failure: `${siteUrl}/checkout.html?status=failure`,
+          pending: `${siteUrl}/checkout.html?status=pending`
         },
         auto_return: 'approved'
       }

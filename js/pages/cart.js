@@ -1,5 +1,15 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   Toast.init()
+
+  async function removeUnavailableItems() {
+    const items = Cart.get()
+    if (!items.length) return
+    const checks = await Promise.all(items.map(async item => {
+      try { return { item, product: await CMS.getProductById(item.id) } }
+      catch { return { item, product: undefined } }
+    }))
+    checks.filter(({ product }) => product === null).forEach(({ item }) => Cart.remove(item.id, item.size))
+  }
 
   function render() {
     const items   = Cart.get()
@@ -70,5 +80,6 @@ document.addEventListener('DOMContentLoaded', () => {
       })
     })
   }
+  await removeUnavailableItems()
   render()
 })

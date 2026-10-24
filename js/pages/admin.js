@@ -1,129 +1,6 @@
-// ── Mock Data ─────────────────────────────────────────────────────
-const ADMIN_CUSTOMERS = [
-  { id:  1, name: 'Ana Paula Ferreira',  email: 'ana.ferreira@gmail.com',   phone: '(11) 98765-4321', city: 'São Paulo - SP',      total: 847.60,  orders: 5, since: 'Mar/2024', last: '05/06/2026' },
-  { id:  2, name: 'Beatriz Oliveira',    email: 'bea.oliveira@hotmail.com',  phone: '(21) 97654-3210', city: 'Rio de Janeiro - RJ',  total: 429.80,  orders: 3, since: 'Abr/2024', last: '03/06/2026' },
-  { id:  3, name: 'Carla Mendes',        email: 'carla.mendes@gmail.com',    phone: '(31) 96543-2109', city: 'Belo Horizonte - MG', total: 1120.50, orders: 8, since: 'Jan/2024', last: '07/06/2026' },
-  { id:  4, name: 'Daniela Souza',       email: 'dani.souza@yahoo.com',      phone: '(41) 95432-1098', city: 'Curitiba - PR',       total: 299.90,  orders: 2, since: 'Mai/2024', last: '01/06/2026' },
-  { id:  5, name: 'Eliane Costa',        email: 'eliane.costa@outlook.com',  phone: '(51) 94321-0987', city: 'Porto Alegre - RS',   total: 674.70,  orders: 4, since: 'Fev/2024', last: '06/06/2026' },
-  { id:  6, name: 'Fernanda Lima',       email: 'fe.lima@gmail.com',         phone: '(85) 93210-9876', city: 'Fortaleza - CE',      total: 189.90,  orders: 1, since: 'Jun/2024', last: '04/06/2026' },
-  { id:  7, name: 'Gabriela Alves',      email: 'gabi.alves@gmail.com',      phone: '(71) 92109-8765', city: 'Salvador - BA',       total: 959.60,  orders: 6, since: 'Jan/2024', last: '02/06/2026' },
-  { id:  8, name: 'Helena Rocha',        email: 'helena.rocha@email.com',    phone: '(62) 91098-7654', city: 'Goiânia - GO',        total: 339.80,  orders: 2, since: 'Abr/2024', last: '31/05/2026' },
-  { id:  9, name: 'Isabela Martins',     email: 'isa.martins@gmail.com',     phone: '(92) 90987-6543', city: 'Manaus - AM',         total: 229.90,  orders: 1, since: 'Mai/2024', last: '30/05/2026' },
-  { id: 10, name: 'Juliana Pereira',     email: 'juli.pereira@hotmail.com',  phone: '(81) 89876-5432', city: 'Recife - PE',         total: 789.50,  orders: 5, since: 'Fev/2024', last: '08/06/2026' },
-  { id: 11, name: 'Karen Santos',        email: 'karen.santos@gmail.com',    phone: '(48) 88765-4321', city: 'Florianópolis - SC',  total: 499.70,  orders: 3, since: 'Mar/2024', last: '29/05/2026' },
-  { id: 12, name: 'Larissa Cardoso',     email: 'lari.cardoso@yahoo.com',    phone: '(11) 87654-3210', city: 'Campinas - SP',       total: 1340.80, orders: 9, since: 'Dez/2023', last: '07/06/2026' },
-  { id: 13, name: 'Mariana Ribeiro',     email: 'mari.ribeiro@gmail.com',    phone: '(21) 86543-2109', city: 'Niterói - RJ',        total: 259.90,  orders: 2, since: 'Jun/2024', last: '28/05/2026' },
-  { id: 14, name: 'Natália Gomes',       email: 'nati.gomes@email.com',      phone: '(31) 85432-1098', city: 'Uberlândia - MG',     total: 614.80,  orders: 4, since: 'Mar/2024', last: '05/06/2026' },
-  { id: 15, name: 'Priscila Torres',     email: 'pri.torres@gmail.com',      phone: '(11) 84321-0987', city: 'São Paulo - SP',      total: 389.80,  orders: 2, since: 'Abr/2024', last: '04/06/2026' },
-]
+// ── Dados operacionais ────────────────────────────────────────────
+const ADMIN_STAFF = []
 
-const ADMIN_ORDERS = [
-  { id: 'JS0052', customer: 'Carla Mendes',         item: 'Vestido Rodado Festa',      qty: 1, total: 229.90, status: 'enviado',      date: '07/06/2026', payment: 'PIX'    },
-  { id: 'JS0051', customer: 'Juliana Pereira',       item: 'Conjunto Premium',          qty: 1, total: 199.90, status: 'processando',  date: '07/06/2026', payment: 'Cartão' },
-  { id: 'JS0050', customer: 'Larissa Cardoso',       item: 'Vestido Midi Florido',      qty: 2, total: 339.80, status: 'entregue',     date: '06/06/2026', payment: 'PIX'    },
-  { id: 'JS0049', customer: 'Eliane Costa',          item: 'Blusa Social Feminina',     qty: 1, total:  89.90, status: 'entregue',     date: '06/06/2026', payment: 'PIX'    },
-  { id: 'JS0048', customer: 'Ana Paula Ferreira',    item: 'Calça Alfaiataria Premium', qty: 1, total: 119.90, status: 'entregue',     date: '05/06/2026', payment: 'Boleto' },
-  { id: 'JS0047', customer: 'Natália Gomes',         item: 'Vestido Longo Decote',      qty: 1, total: 189.90, status: 'entregue',     date: '05/06/2026', payment: 'Cartão' },
-  { id: 'JS0046', customer: 'Fernanda Lima',         item: 'Vestido Longo Decote',      qty: 1, total: 189.90, status: 'entregue',     date: '04/06/2026', payment: 'PIX'    },
-  { id: 'JS0045', customer: 'Priscila Torres',       item: 'Conjunto Elegante',         qty: 1, total: 159.90, status: 'entregue',     date: '04/06/2026', payment: 'PIX'    },
-  { id: 'JS0044', customer: 'Beatriz Oliveira',      item: 'Short Elegante',            qty: 2, total: 159.80, status: 'entregue',     date: '03/06/2026', payment: 'Cartão' },
-  { id: 'JS0043', customer: 'Gabriela Alves',        item: 'Blusa Cropped Exclusiva',   qty: 1, total:  74.90, status: 'entregue',     date: '02/06/2026', payment: 'PIX'    },
-  { id: 'JS0042', customer: 'Helena Rocha',          item: 'Look Social Moderno',       qty: 1, total: 134.90, status: 'entregue',     date: '01/06/2026', payment: 'PIX'    },
-  { id: 'JS0041', customer: 'Daniela Souza',         item: 'Calça Pantalona',           qty: 1, total: 109.90, status: 'entregue',     date: '31/05/2026', payment: 'Boleto' },
-  { id: 'JS0040', customer: 'Karen Santos',          item: 'Saia Midi Social',          qty: 1, total:  99.90, status: 'cancelado',    date: '30/05/2026', payment: 'PIX'    },
-  { id: 'JS0039', customer: 'Isabela Martins',       item: 'Vestido Rodado Festa',      qty: 1, total: 229.90, status: 'entregue',     date: '30/05/2026', payment: 'Cartão' },
-  { id: 'JS0038', customer: 'Mariana Ribeiro',       item: 'Conjunto Elegante',         qty: 1, total: 159.90, status: 'entregue',     date: '29/05/2026', payment: 'PIX'    },
-  { id: 'JS0037', customer: 'Larissa Cardoso',       item: 'Vestido Midi Florido',      qty: 1, total: 169.90, status: 'entregue',     date: '28/05/2026', payment: 'Cartão' },
-  { id: 'JS0036', customer: 'Ana Paula Ferreira',    item: 'Conjunto Premium',          qty: 1, total: 199.90, status: 'pendente',     date: '08/06/2026', payment: 'Boleto' },
-  { id: 'JS0035', customer: 'Juliana Pereira',       item: 'Blusa Social Feminina',     qty: 2, total: 179.80, status: 'pendente',     date: '08/06/2026', payment: 'PIX'    },
-  { id: 'JS0034', customer: 'Gabriela Alves',        item: 'Vestido Longo Decote',      qty: 1, total: 189.90, status: 'enviado',      date: '06/06/2026', payment: 'Cartão' },
-  { id: 'JS0033', customer: 'Eliane Costa',          item: 'Calça Alfaiataria Premium', qty: 2, total: 239.80, status: 'enviado',      date: '05/06/2026', payment: 'PIX'    },
-]
-
-const ADMIN_SUPPLIERS = [
-  { id: 1, name: 'Moda Brasil Atacado',  contact: 'Carlos Silva',   phone: '(11) 3456-7890', email: 'contato@modabrasil.com.br',   categories: 'Vestidos, Saias',   terms: '30 dias', status: 'ativo'   },
-  { id: 2, name: 'Fashion SP Indústria', contact: 'Roberta Pinto',  phone: '(11) 2345-6789', email: 'vendas@fashionsp.com.br',     categories: 'Conjuntos, Blusas', terms: '45 dias', status: 'ativo'   },
-  { id: 3, name: 'Elegance Co.',         contact: 'Paulo Monteiro', phone: '(41) 3321-4567', email: 'comercial@elegance.com.br',   categories: 'Calças, Shorts',    terms: '30 dias', status: 'ativo'   },
-  { id: 4, name: 'Top Modas Ltda.',      contact: 'Sandra Rocha',   phone: '(21) 3210-9876', email: 'sandra@topmodas.com.br',      categories: 'Blusas, Tops',      terms: '15 dias', status: 'ativo'   },
-  { id: 5, name: 'Chic Atacarejo',       contact: 'Marcos Lima',    phone: '(85) 3109-8765', email: 'marcos@chicatac.com.br',      categories: 'Looks, Vestidos',   terms: '30 dias', status: 'inativo' },
-  { id: 6, name: 'Trend Factory',        contact: 'Luciana Vaz',    phone: '(31) 3098-7654', email: 'luciana@trendfactory.com.br', categories: 'Conjuntos',         terms: '60 dias', status: 'ativo'   },
-]
-
-const ADMIN_STAFF = [
-  { id: 1, name: 'Jhonny Lima',      role: 'Administrador', email: 'jhonny@jhonnystylos.com', phone: '(11) 99999-0001', since: 'Jan/2022', status: 'ativo' },
-  { id: 2, name: 'Shelly Lopes',     role: 'Administradora',email: 'shelly@jhonnystylos.com', phone: '(11) 99999-0002', since: 'Fev/2022', status: 'ativo' },
-  { id: 3, name: 'Marcia Souza',     role: 'Vendedora',     email: 'marcia@jhonnystylos.com', phone: '(11) 99999-0003', since: 'Mar/2023', status: 'ativo' },
-  { id: 4, name: 'Tatiane Ferreira', role: 'Atendimento',   email: 'tati@jhonnystylos.com',   phone: '(11) 99999-0004', since: 'Jun/2023', status: 'ativo' },
-  { id: 5, name: 'Renata Borges',    role: 'Estoque',       email: 'renata@jhonnystylos.com', phone: '(11) 99999-0005', since: 'Set/2023', status: 'ativo' },
-  { id: 6, name: 'Paulo Almeida',    role: 'Entregador',    email: 'paulo@jhonnystylos.com',  phone: '(11) 99999-0006', since: 'Jan/2024', status: 'ativo' },
-]
-
-const ADMIN_PAYMENTS = [
-  { id: 'PAY052', order: 'JS0052', customer: 'Carla Mendes',       amount: 229.90, method: 'PIX',    status: 'aprovado',  date: '07/06/2026' },
-  { id: 'PAY051', order: 'JS0051', customer: 'Juliana Pereira',    amount: 199.90, method: 'Cartão', status: 'aprovado',  date: '07/06/2026' },
-  { id: 'PAY050', order: 'JS0050', customer: 'Larissa Cardoso',    amount: 339.80, method: 'PIX',    status: 'aprovado',  date: '06/06/2026' },
-  { id: 'PAY049', order: 'JS0049', customer: 'Eliane Costa',       amount:  89.90, method: 'PIX',    status: 'aprovado',  date: '06/06/2026' },
-  { id: 'PAY048', order: 'JS0048', customer: 'Ana P. Ferreira',    amount: 119.90, method: 'Boleto', status: 'aprovado',  date: '05/06/2026' },
-  { id: 'PAY047', order: 'JS0047', customer: 'Natália Gomes',      amount: 189.90, method: 'Cartão', status: 'aprovado',  date: '05/06/2026' },
-  { id: 'PAY046', order: 'JS0046', customer: 'Fernanda Lima',      amount: 189.90, method: 'PIX',    status: 'aprovado',  date: '04/06/2026' },
-  { id: 'PAY045', order: 'JS0045', customer: 'Priscila Torres',    amount: 159.90, method: 'PIX',    status: 'aprovado',  date: '04/06/2026' },
-  { id: 'PAY044', order: 'JS0044', customer: 'Beatriz Oliveira',   amount: 159.80, method: 'Cartão', status: 'aprovado',  date: '03/06/2026' },
-  { id: 'PAY043', order: 'JS0043', customer: 'Gabriela Alves',     amount:  74.90, method: 'PIX',    status: 'aprovado',  date: '02/06/2026' },
-  { id: 'PAY040', order: 'JS0040', customer: 'Karen Santos',       amount:  99.90, method: 'PIX',    status: 'cancelado', date: '30/05/2026' },
-  { id: 'PAY036', order: 'JS0036', customer: 'Ana P. Ferreira',    amount: 199.90, method: 'Boleto', status: 'pendente',  date: '08/06/2026' },
-  { id: 'PAY035', order: 'JS0035', customer: 'Juliana Pereira',    amount: 179.80, method: 'PIX',    status: 'pendente',  date: '08/06/2026' },
-]
-
-const STOCK_QTYS = [45, 12, 28, 3, 67, 34, 8, 52, 19, 71, 23, 15]
-const STOCK_SUPS = ['Moda Brasil Atacado', 'Fashion SP Indústria', 'Elegance Co.', 'Top Modas Ltda.', 'Trend Factory', 'Fashion SP Indústria']
-const ADMIN_STOCK = (typeof MOCK_PRODUCTS !== 'undefined' ? MOCK_PRODUCTS : []).map((p, i) => ({
-  ...p,
-  stock: STOCK_QTYS[i] ?? 20,
-  min_stock: 10,
-  supplier: STOCK_SUPS[i % STOCK_SUPS.length],
-  cost: +(p.price * 0.45).toFixed(2),
-}))
-
-const PERIOD_DATA = {
-  semana: {
-    receita: 3240.50, pedidos: 18, clientes_novos: 7, ticket_medio: 180.03,
-    var_receita: 12.4, var_pedidos: 8.2, var_clientes: 16.7,
-    despesas: 890.00, lucro: 2350.50,
-    chart_labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
-    chart_receita: [380, 420, 510, 290, 680, 590, 370],
-    spark_receita: [320, 380, 420, 290, 510, 590, 370],
-    spark_pedidos: [2, 3, 3, 2, 4, 4, 1],
-    spark_clientes: [1, 1, 2, 0, 1, 2, 1],
-    pix_pct: 58, cartao_pct: 32, boleto_pct: 10,
-    receita_prev: 2879.00, pedidos_prev: 17,
-  },
-  mes: {
-    receita: 14820.70, pedidos: 87, clientes_novos: 34, ticket_medio: 170.35,
-    var_receita: 18.7, var_pedidos: 15.3, var_clientes: 22.1,
-    despesas: 4200.00, lucro: 10620.70,
-    chart_labels: ['Sem 1', 'Sem 2', 'Sem 3', 'Sem 4'],
-    chart_receita: [3200, 4100, 3890, 3630],
-    spark_receita: [3200, 4100, 3890, 3630],
-    spark_pedidos: [19, 25, 22, 21],
-    spark_clientes: [8, 10, 9, 7],
-    pix_pct: 55, cartao_pct: 35, boleto_pct: 10,
-    receita_prev: 12479.00, pedidos_prev: 76,
-  },
-  ano: {
-    receita: 187340.20, pedidos: 1043, clientes_novos: 412, ticket_medio: 179.62,
-    var_receita: 24.1, var_pedidos: 19.8, var_clientes: 31.5,
-    despesas: 54200.00, lucro: 133140.20,
-    chart_labels: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],
-    chart_receita: [12400,14200,15800,13900,16200,17800,15400,18200,16900,19400,17600,9540],
-    spark_receita: [12400,14200,15800,13900,16200,17800,15400,18200,16900,19400,17600,9540],
-    spark_pedidos: [72,84,91,80,95,103,88,106,97,114,103,10],
-    spark_clientes: [22,28,35,31,40,48,38,52,44,58,45,12],
-    pix_pct: 52, cartao_pct: 38, boleto_pct: 10,
-    receita_prev: 150960.00, pedidos_prev: 870,
-  },
-}
-
-// ── Helpers ───────────────────────────────────────────────────────
 function fmt(v) { return v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
 
 function trend(v) {
@@ -388,22 +265,25 @@ function renderRingChart(pct, color, label, sublabel = '', size = 96) {
 }
 
 // ── Section: Dashboard ────────────────────────────────────────────
-function renderDashboard(period) {
-  const d = PERIOD_DATA[period]
-  const products = typeof MOCK_PRODUCTS !== 'undefined' ? MOCK_PRODUCTS : []
-  const lowStock = ADMIN_STOCK.filter(s => s.stock <= s.min_stock)
-  const statusCounts = ADMIN_ORDERS.reduce((acc, o) => { acc[o.status] = (acc[o.status] || 0) + 1; return acc }, {})
-  const topProducts = [...products].sort((a, b) => b.reviews - a.reviews).slice(0, 4)
+async function renderDashboard(period) {
+  const metrics = await CMS.getDashboardMetrics(period)
+  const products = metrics.products
+  const lowStock = metrics.lowStock
+  const statusCounts = metrics.statusCounts
+  const orderCount = metrics.orders.length
+  const topProducts = products
   const donutSegments = [
-    { label: 'Entregue',     value: statusCounts.entregue    || 0, color: '#16a34a' },
-    { label: 'Enviado',      value: statusCounts.enviado      || 0, color: '#2563eb' },
-    { label: 'Processando',  value: statusCounts.processando  || 0, color: '#d97706' },
-    { label: 'Pendente',     value: statusCounts.pendente     || 0, color: '#9b3b48' },
-    { label: 'Cancelado',    value: statusCounts.cancelado    || 0, color: '#9ca3af' },
+    { label: 'Entregue',     value: statusCounts.delivered  || 0, color: '#16a34a' },
+    { label: 'Enviado',      value: statusCounts.shipped    || 0, color: '#2563eb' },
+    { label: 'Pago',         value: statusCounts.paid       || 0, color: '#7c3aed' },
+    { label: 'Processando',  value: statusCounts.processing || 0, color: '#d97706' },
+    { label: 'Pendente',     value: statusCounts.pending    || 0, color: '#9b3b48' },
+    { label: 'Cancelado',    value: statusCounts.cancelled  || 0, color: '#9ca3af' },
+    { label: 'Estornado',    value: statusCounts.refunded   || 0, color: '#64748b' },
   ]
-  const entregaTaxa = Math.round(((statusCounts.entregue || 0) / ADMIN_ORDERS.length) * 100)
-  const cancelTaxa  = Math.round(((statusCounts.cancelado || 0) / ADMIN_ORDERS.length) * 100)
-  const stockOk = Math.round(((ADMIN_STOCK.length - lowStock.length) / ADMIN_STOCK.length) * 100)
+  const entregaTaxa = orderCount ? Math.round(((statusCounts.delivered || 0) / orderCount) * 100) : 0
+  const cancelTaxa = orderCount ? Math.round(((statusCounts.cancelled || 0) / orderCount) * 100) : 0
+  const stockOk = metrics.activeStock ? Math.round(((metrics.activeStock - lowStock) / metrics.activeStock) * 100) : 0
 
   return `
   <div class="adm-kpi-grid">
@@ -411,35 +291,32 @@ function renderDashboard(period) {
       <div class="adm-kpi__icon adm-kpi__icon--1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
       <div class="adm-kpi__body">
         <p class="adm-kpi__label">Receita Total</p>
-        <p class="adm-kpi__value">${fmt(d.receita)}</p>
-        <p class="adm-kpi__sub">${trend(d.var_receita)} vs anterior</p>
+        <p class="adm-kpi__value">${fmt(metrics.revenue)}</p>
+        <p class="adm-kpi__sub">Pagamentos aprovados no período</p>
       </div>
-      <div class="adm-kpi__spark">${renderSparkline(d.spark_receita, '#e8798c')}</div>
     </div>
     <div class="adm-kpi">
       <div class="adm-kpi__icon adm-kpi__icon--2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
       <div class="adm-kpi__body">
         <p class="adm-kpi__label">Pedidos</p>
-        <p class="adm-kpi__value">${d.pedidos}</p>
-        <p class="adm-kpi__sub">${trend(d.var_pedidos)} vs anterior</p>
+        <p class="adm-kpi__value">${orderCount}</p>
+        <p class="adm-kpi__sub">Criados no período selecionado</p>
       </div>
-      <div class="adm-kpi__spark">${renderSparkline(d.spark_pedidos, '#e8798c')}</div>
     </div>
     <div class="adm-kpi">
       <div class="adm-kpi__icon adm-kpi__icon--3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
       <div class="adm-kpi__body">
         <p class="adm-kpi__label">Clientes Novos</p>
-        <p class="adm-kpi__value">${d.clientes_novos}</p>
-        <p class="adm-kpi__sub">${trend(d.var_clientes)} vs anterior</p>
+        <p class="adm-kpi__value">${metrics.newCustomers}</p>
+        <p class="adm-kpi__sub">Cadastros de clientes no período</p>
       </div>
-      <div class="adm-kpi__spark">${renderSparkline(d.spark_clientes, '#3b82f6')}</div>
     </div>
     <div class="adm-kpi">
-      <div class="adm-kpi__icon adm-kpi__icon--${lowStock.length > 0 ? 'warn' : '4'}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+      <div class="adm-kpi__icon adm-kpi__icon--${lowStock > 0 ? 'warn' : '4'}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
       <div class="adm-kpi__body">
         <p class="adm-kpi__label">Estoque Crítico</p>
-        <p class="adm-kpi__value">${lowStock.length} itens</p>
-        <p class="adm-kpi__sub${lowStock.length > 0 ? ' adm-kpi__sub--warn' : ''}">${lowStock.length > 0 ? '⚠️ Reposição necessária' : '✓ Estoque saudável'}</p>
+        <p class="adm-kpi__value">${lowStock} variantes</p>
+        <p class="adm-kpi__sub${lowStock > 0 ? ' adm-kpi__sub--warn' : ''}">${lowStock > 0 ? '⚠️ Reposição necessária (até 5 un.)' : 'Nenhuma variante com estoque baixo'}</p>
       </div>
     </div>
   </div>
@@ -448,19 +325,19 @@ function renderDashboard(period) {
     <div class="adm-card">
       <div class="adm-card__header">
         <h3 class="adm-card__title">Receita — Evolução do Período</h3>
-        <span class="adm-card__subtitle">${fmt(d.receita)} total</span>
+        <span class="adm-card__subtitle">${fmt(metrics.revenue)} total</span>
       </div>
-      <div class="adm-chart-wrap">${renderAreaChart(d.chart_receita, d.chart_labels, '#e8798c', 'dash')}</div>
+      <div class="adm-chart-wrap">${orderCount ? '<div class="cms-empty">A evolução da receita será exibida após a consolidação das vendas.</div>' : '<div class="cms-empty">Ainda não há vendas no período selecionado.</div>'}</div>
     </div>
     <div class="adm-card">
       <div class="adm-card__header"><h3 class="adm-card__title">Status dos Pedidos</h3></div>
-      ${renderDonutChart(donutSegments, 130, ADMIN_ORDERS.length.toString())}
+      ${orderCount ? renderDonutChart(donutSegments, 130, orderCount.toString()) : '<div class="cms-empty">Ainda não há pedidos no período selecionado.</div>'}
     </div>
   </div>
 
   <div class="adm-row">
     <div class="adm-card">
-      <div class="adm-card__header"><h3 class="adm-card__title">Top Produtos</h3></div>
+      <div class="adm-card__header"><h3 class="adm-card__title">Produtos ativos recentes</h3></div>
       <div class="adm-top-products">
         ${topProducts.map((p, i) => `
           <div class="adm-top-product">
@@ -480,556 +357,87 @@ function renderDashboard(period) {
     <div class="adm-card">
       <div class="adm-card__header"><h3 class="adm-card__title">Indicadores de Desempenho</h3></div>
       <div class="adm-ring-group">
-        ${renderRingChart(entregaTaxa, '#16a34a', 'Entregas', 'taxa de sucesso')}
-        ${renderRingChart(stockOk, '#2563eb', 'Estoque OK', 'produtos normais')}
-        ${renderRingChart(100 - cancelTaxa, '#e8798c', 'Retenção', 'pedidos válidos')}
+        ${renderRingChart(entregaTaxa, '#16a34a', 'Entregas', orderCount ? 'taxa de sucesso' : 'sem pedidos')}
+        ${renderRingChart(stockOk, '#2563eb', 'Estoque OK', metrics.activeStock ? 'variantes normais' : 'sem variantes')}
+        ${renderRingChart(orderCount ? 100 - cancelTaxa : 0, '#e8798c', 'Retenção', orderCount ? 'pedidos válidos' : 'sem pedidos')}
       </div>
     </div>
   </div>`
 }
 
 // ── Section: Vendas ───────────────────────────────────────────────
-function renderVendas(period) {
-  const d = PERIOD_DATA[period]
-  const products = typeof MOCK_PRODUCTS !== 'undefined' ? MOCK_PRODUCTS : []
-  const catTotals = {}
-  ADMIN_ORDERS.forEach(o => {
-    const p = products.find(x => x.name === o.item)
-    if (p) catTotals[p.category] = (catTotals[p.category] || 0) + o.total
-  })
-  const catEntries = Object.entries(catTotals).sort((a, b) => b[1] - a[1])
-  const catMax = Math.max(...catEntries.map(([, v]) => v)) || 1
-  const donutColors = ['#ffbdc6','#e8798c', '#3b82f6', '#16a34a', '#d97706', '#9b3b48']
-  const catSegments = catEntries.map(([cat, val], i) => ({ label: cat, value: Math.round(val), color: donutColors[i % donutColors.length] }))
-
-  return `
-  <div class="adm-kpi-grid">
-    <div class="adm-kpi">
-      <div class="adm-kpi__icon adm-kpi__icon--1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
-      <div class="adm-kpi__body"><p class="adm-kpi__label">Receita</p><p class="adm-kpi__value">${fmt(d.receita)}</p><p class="adm-kpi__sub">${trend(d.var_receita)} vs anterior</p></div>
-      <div class="adm-kpi__spark">${renderSparkline(d.spark_receita, '#e8798c')}</div>
-    </div>
-    <div class="adm-kpi">
-      <div class="adm-kpi__icon adm-kpi__icon--2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
-      <div class="adm-kpi__body"><p class="adm-kpi__label">Pedidos</p><p class="adm-kpi__value">${d.pedidos}</p><p class="adm-kpi__sub">${trend(d.var_pedidos)} vs anterior</p></div>
-      <div class="adm-kpi__spark">${renderSparkline(d.spark_pedidos, '#e8798c')}</div>
-    </div>
-    <div class="adm-kpi">
-      <div class="adm-kpi__icon adm-kpi__icon--3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-      <div class="adm-kpi__body"><p class="adm-kpi__label">Ticket Médio</p><p class="adm-kpi__value">${fmt(d.ticket_medio)}</p><p class="adm-kpi__sub">por pedido</p></div>
-    </div>
-    <div class="adm-kpi">
-      <div class="adm-kpi__icon adm-kpi__icon--4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-      <div class="adm-kpi__body"><p class="adm-kpi__label">Clientes Novos</p><p class="adm-kpi__value">${d.clientes_novos}</p><p class="adm-kpi__sub">${trend(d.var_clientes)} vs anterior</p></div>
-      <div class="adm-kpi__spark">${renderSparkline(d.spark_clientes, '#3b82f6')}</div>
-    </div>
-  </div>
-
-  <div class="adm-compare-grid">
-    ${[['Receita', fmt(d.receita), fmt(d.receita_prev)], ['Pedidos', d.pedidos, d.pedidos_prev],
-       ['Ticket Médio', fmt(d.ticket_medio), '—'], ['Clientes Novos', d.clientes_novos, '—']].map(([l, now, prev]) => `
-      <div class="adm-compare-card">
-        <p class="adm-compare-card__label">${l}</p>
-        <p class="adm-compare-card__now">${now}</p>
-        <p class="adm-compare-card__prev">Anterior: ${prev}</p>
-      </div>`).join('')}
-  </div>
-
-  <div class="adm-row">
-    <div class="adm-card">
-      <div class="adm-card__header"><h3 class="adm-card__title">Evolução de Vendas</h3></div>
-      <div class="adm-chart-wrap">${renderAreaChart(d.chart_receita, d.chart_labels, '#e8798c', 'vend')}</div>
-    </div>
-    <div class="adm-card">
-      <div class="adm-card__header"><h3 class="adm-card__title">Distribuição por Categoria</h3></div>
-      ${renderDonutChart(catSegments, 130)}
-    </div>
-  </div>
-
-  <div class="adm-card">
-    <div class="adm-card__header"><h3 class="adm-card__title">Performance por Produto</h3></div>
-    <table class="adm-table">
-      <thead><tr><th>Produto</th><th>Categoria</th><th>Preço</th><th>Avaliação</th><th>Popularidade</th><th>Promoção</th></tr></thead>
-      <tbody>
-        ${[...products].sort((a, b) => b.reviews - a.reviews).map(p => {
-          const pct = Math.round((p.reviews / 60) * 100)
-          return `<tr>
-            <td>${p.name}</td>
-            <td><span class="adm-cat-tag">${p.category}</span></td>
-            <td class="adm-mono">${fmt(p.price)}</td>
-            <td>★ ${p.rating} (${p.reviews})</td>
-            <td><div class="adm-stock-cell"><div class="adm-stock-bar-track"><div class="adm-stock-bar-fill" style="width:${pct}%;background:#ffbdc6"></div></div><span class="adm-stock-num">${p.reviews}</span></div></td>
-            <td>${p.isSale ? badge('ativo') : '—'}</td>
-          </tr>`
-        }).join('')}
-      </tbody>
-    </table>
-  </div>`
+function renderNoData(message) {
+  return `<div class="adm-card cms-empty">${message}</div>`
 }
 
-// ── Section: Financeiro ───────────────────────────────────────────
-function renderFinanceiro(period) {
-  const d = PERIOD_DATA[period]
-  const margem = ((d.lucro / d.receita) * 100).toFixed(1)
-  const despArr = d.chart_receita.map(v => Math.round(v * 0.27))
-
-  return `
-  <div class="adm-kpi-grid">
-    <div class="adm-kpi">
-      <div class="adm-kpi__icon adm-kpi__icon--1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
-      <div class="adm-kpi__body"><p class="adm-kpi__label">Receita</p><p class="adm-kpi__value">${fmt(d.receita)}</p><p class="adm-kpi__sub">${trend(d.var_receita)} vs anterior</p></div>
-      <div class="adm-kpi__spark">${renderSparkline(d.spark_receita, '#e8798c')}</div>
-    </div>
-    <div class="adm-kpi">
-      <div class="adm-kpi__icon adm-kpi__icon--warn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg></div>
-      <div class="adm-kpi__body"><p class="adm-kpi__label">Despesas</p><p class="adm-kpi__value">${fmt(d.despesas)}</p><p class="adm-kpi__sub">estoque + operação</p></div>
-    </div>
-    <div class="adm-kpi">
-      <div class="adm-kpi__icon adm-kpi__icon--2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-      <div class="adm-kpi__body"><p class="adm-kpi__label">Lucro Líquido</p><p class="adm-kpi__value">${fmt(d.lucro)}</p><p class="adm-kpi__sub">margem de ${margem}%</p></div>
-    </div>
-    <div class="adm-kpi">
-      <div class="adm-kpi__icon adm-kpi__icon--3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
-      <div class="adm-kpi__body"><p class="adm-kpi__label">Ticket Médio</p><p class="adm-kpi__value">${fmt(d.ticket_medio)}</p><p class="adm-kpi__sub">por pedido</p></div>
-    </div>
-  </div>
-
-  <div class="adm-card">
-    <div class="adm-card__header">
-      <h3 class="adm-card__title">Receita vs Despesas</h3>
-      <div style="display:flex;gap:16px;font-size:.75rem;align-items:center">
-        <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:3px;background:#ffbdc6;border-radius:2px;display:inline-block"></span>Receita</span>
-        <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:3px;background:#d97706;border-radius:2px;display:inline-block;border-top:2px dashed #d97706"></span>Despesas</span>
-      </div>
-    </div>
-    <div class="adm-chart-wrap">${renderDualAreaChart(d.chart_receita, despArr, d.chart_labels)}</div>
-  </div>
-
-  <div class="adm-row adm-row--thirds">
-    <div class="adm-card" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px">
-      <h3 class="adm-card__title" style="align-self:flex-start">Margem de Lucro</h3>
-      ${renderRingChart(Math.round(+margem), '#16a34a', 'Margem líquida', `${fmt(d.lucro)}`, 110)}
-    </div>
-    <div class="adm-card">
-      <div class="adm-card__header"><h3 class="adm-card__title">Métodos de Pagamento</h3></div>
-      ${renderDonutChart([
-        { label: 'PIX',    value: d.pix_pct,    color: '#00c4b4' },
-        { label: 'Cartão', value: d.cartao_pct, color: '#ffbdc6' },
-        { label: 'Boleto', value: d.boleto_pct, color: '#d97706' },
-      ], 120)}
-    </div>
-    <div class="adm-card">
-      <div class="adm-card__header"><h3 class="adm-card__title">Resumo</h3></div>
-      <div class="adm-fin-summary">
-        <div class="adm-fin-row"><span>Receita Bruta</span><strong>${fmt(d.receita)}</strong></div>
-        <div class="adm-fin-row"><span>(−) Despesas</span><strong class="adm-red">(${fmt(d.despesas)})</strong></div>
-        <div class="adm-fin-row adm-fin-row--total"><span>Lucro Líquido</span><strong class="adm-green">${fmt(d.lucro)}</strong></div>
-      </div>
-      <div class="adm-pay-methods" style="margin-top:20px">
-        ${[['PIX','pix',d.pix_pct],['Cartão','cartao',d.cartao_pct],['Boleto','boleto',d.boleto_pct]].map(([l,k,v]) => `
-        <div class="adm-pay-method">
-          <div class="adm-pay-method__label"><span class="adm-pay-dot adm-pay-dot--${k}"></span>${l}</div>
-          <div class="adm-pay-bar-track"><div class="adm-pay-bar-fill adm-pay-bar-fill--${k}" style="width:${v}%"></div></div>
-          <span class="adm-pay-pct">${v}%</span>
-        </div>`).join('')}
-      </div>
-    </div>
-  </div>`
+function orderStatusLabel(status) {
+  return ({
+    pending: 'Pendente', paid: 'Pago', processing: 'Processando',
+    shipped: 'Enviado', delivered: 'Entregue', cancelled: 'Cancelado', refunded: 'Estornado'
+  })[status] || status || 'Sem status'
 }
 
-// ── Section: Estoque ──────────────────────────────────────────────
-function renderEstoque() {
-  const low = ADMIN_STOCK.filter(s => s.stock <= s.min_stock)
-  const total = ADMIN_STOCK.reduce((a, s) => a + s.stock, 0)
-  const val   = ADMIN_STOCK.reduce((a, s) => a + s.stock * s.cost, 0)
-  const catTot = {}
-  ADMIN_STOCK.forEach(s => { catTot[s.category] = (catTot[s.category] || 0) + s.stock })
-  const catArr = Object.entries(catTot).sort((a, b) => b[1] - a[1])
-  const catMax = Math.max(...catArr.map(([,v]) => v)) || 1
-  const catColors = ['#ffbdc6','#e8798c','#3b82f6','#16a34a','#d97706','#9b3b48']
-
+async function renderVendasReal(period) {
+  const metrics = await CMS.getDashboardMetrics(period)
+  const paidOrders = metrics.orders.filter(order => order.payment_status === 'approved')
+  const ticket = paidOrders.length ? metrics.revenue / paidOrders.length : 0
   return `
-  <div class="adm-kpi-grid">
-    <div class="adm-kpi">
-      <div class="adm-kpi__icon adm-kpi__icon--1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
-      <div class="adm-kpi__body"><p class="adm-kpi__label">Total em Estoque</p><p class="adm-kpi__value">${total} unid.</p><p class="adm-kpi__sub">${ADMIN_STOCK.length} produtos</p></div>
+    <div class="adm-kpi-grid">
+      <div class="adm-kpi"><div class="adm-kpi__body"><p class="adm-kpi__label">Receita aprovada</p><p class="adm-kpi__value">${fmt(metrics.revenue)}</p><p class="adm-kpi__sub">No período selecionado</p></div></div>
+      <div class="adm-kpi"><div class="adm-kpi__body"><p class="adm-kpi__label">Pedidos</p><p class="adm-kpi__value">${metrics.orders.length}</p><p class="adm-kpi__sub">No período selecionado</p></div></div>
+      <div class="adm-kpi"><div class="adm-kpi__body"><p class="adm-kpi__label">Ticket médio</p><p class="adm-kpi__value">${fmt(ticket)}</p><p class="adm-kpi__sub">Somente pagamentos aprovados</p></div></div>
+      <div class="adm-kpi"><div class="adm-kpi__body"><p class="adm-kpi__label">Clientes novos</p><p class="adm-kpi__value">${metrics.newCustomers}</p><p class="adm-kpi__sub">No período selecionado</p></div></div>
     </div>
-    <div class="adm-kpi">
-      <div class="adm-kpi__icon adm-kpi__icon--2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-      <div class="adm-kpi__body"><p class="adm-kpi__label">Valor em Estoque</p><p class="adm-kpi__value">${fmt(val)}</p><p class="adm-kpi__sub">a preço de custo</p></div>
-    </div>
-    <div class="adm-kpi">
-      <div class="adm-kpi__icon adm-kpi__icon--${low.length > 0 ? 'warn' : '4'}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
-      <div class="adm-kpi__body"><p class="adm-kpi__label">Crítico</p><p class="adm-kpi__value">${low.length} itens</p><p class="adm-kpi__sub${low.length > 0 ? ' adm-kpi__sub--warn' : ''}">abaixo de 10 unid.</p></div>
-    </div>
-    <div class="adm-kpi">
-      <div class="adm-kpi__icon adm-kpi__icon--3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
-      <div class="adm-kpi__body"><p class="adm-kpi__label">Fornecedores Ativos</p><p class="adm-kpi__value">${ADMIN_SUPPLIERS.filter(s => s.status === 'ativo').length}</p><p class="adm-kpi__sub">de ${ADMIN_SUPPLIERS.length} cadastrados</p></div>
-    </div>
-  </div>
-
-  <div class="adm-row">
-    <div class="adm-card">
-      <div class="adm-card__header"><h3 class="adm-card__title">Estoque por Categoria</h3></div>
-      <div class="adm-hbar-list">
-        ${catArr.map(([cat, qtd], i) => `
-          <div class="adm-hbar-item">
-            <span class="adm-hbar-label">${cat}</span>
-            <div class="adm-hbar-track"><div class="adm-hbar-fill" style="width:${Math.round((qtd/catMax)*100)}%;background:${catColors[i % catColors.length]}"></div></div>
-            <span class="adm-hbar-val">${qtd} un.</span>
-          </div>`).join('')}
-      </div>
-    </div>
-    <div class="adm-card">
-      <div class="adm-card__header"><h3 class="adm-card__title">Distribuição de Categorias</h3></div>
-      ${renderDonutChart(catArr.map(([cat, qtd], i) => ({ label: cat, value: qtd, color: catColors[i % catColors.length] })), 130, total.toString())}
-    </div>
-  </div>
-
-  <div class="adm-card">
-    <div class="adm-card__header"><h3 class="adm-card__title">Inventário Detalhado</h3></div>
-    <table class="adm-table">
-      <thead><tr><th>Produto</th><th>Categoria</th><th>Nível</th><th>Custo</th><th>Valor Total</th><th>Fornecedor</th><th>Status</th></tr></thead>
-      <tbody>
-        ${ADMIN_STOCK.map(s => {
-          const pct = Math.min(100, Math.round((s.stock / 80) * 100))
-          const color = s.stock <= s.min_stock ? '#dc2626' : s.stock <= s.min_stock * 2 ? '#d97706' : '#16a34a'
-          const stLabel = s.stock <= s.min_stock ? 'cancelado' : s.stock <= s.min_stock * 2 ? 'processando' : 'ativo'
-          const stText  = s.stock <= s.min_stock ? 'Crítico' : s.stock <= s.min_stock * 2 ? 'Baixo' : 'Normal'
-          return `<tr class="${s.stock <= s.min_stock ? 'adm-row--warn' : ''}">
-            <td>${s.name}</td>
-            <td><span class="adm-cat-tag">${s.category}</span></td>
-            <td><div class="adm-stock-cell"><div class="adm-stock-bar-track"><div class="adm-stock-bar-fill" style="width:${pct}%;background:${color}"></div></div><span class="adm-stock-num${s.stock <= s.min_stock ? ' adm-red' : ''}">${s.stock}</span></div></td>
-            <td class="adm-mono">${fmt(s.cost)}</td>
-            <td class="adm-mono">${fmt(s.stock * s.cost)}</td>
-            <td class="adm-muted">${s.supplier}</td>
-            <td><span class="adm-badge adm-badge--${stLabel}">${stText}</span></td>
-          </tr>`
-        }).join('')}
-      </tbody>
-    </table>
-  </div>`
+    ${metrics.orders.length ? '<div class="adm-card"><div class="adm-card__header"><h3 class="adm-card__title">Resumo de vendas</h3></div><p class="adm-muted">Os gráficos serão mostrados quando houver histórico suficiente de vendas reais.</p></div>' : renderNoData('Ainda não há vendas reais para o período selecionado.')}
+  `
 }
 
-// ── Section: Pedidos ──────────────────────────────────────────────
-function renderPedidos() {
-  const statusCounts = ADMIN_ORDERS.reduce((acc, o) => { acc[o.status] = (acc[o.status] || 0) + 1; return acc }, {})
-  const statusConfig = [
-    { key: 'todos',       label: 'Total',        count: ADMIN_ORDERS.length, color: '#6b5a5f' },
-    { key: 'pendente',    label: 'Pendente',      count: statusCounts.pendente    || 0, color: '#9b3b48' },
-    { key: 'processando', label: 'Processando',   count: statusCounts.processando || 0, color: '#d97706' },
-    { key: 'enviado',     label: 'Enviado',       count: statusCounts.enviado     || 0, color: '#2563eb' },
-    { key: 'entregue',    label: 'Entregue',      count: statusCounts.entregue    || 0, color: '#16a34a' },
-    { key: 'cancelado',   label: 'Cancelado',     count: statusCounts.cancelado   || 0, color: '#6b7280' },
-  ]
-  const totalVal = ADMIN_ORDERS.reduce((a, o) => a + o.total, 0)
-  const avgVal   = totalVal / ADMIN_ORDERS.length
-
-  return `
-  <div class="adm-status-strip">
-    ${statusConfig.map(s => `
-      <div class="adm-status-pill" data-filter="${s.key === 'todos' ? 'all' : s.key}" id="spill-${s.key}">
-        <span class="adm-status-pill__count" style="color:${s.color}">${s.count}</span>
-        <span class="adm-status-pill__label">${s.label}</span>
-      </div>`).join('')}
-  </div>
-
-  <div class="adm-row">
-    <div class="adm-card">
-      <div class="adm-card__header"><h3 class="adm-card__title">Distribuição de Status</h3></div>
-      ${renderDonutChart(statusConfig.slice(1).map(s => ({ label: s.label, value: s.count, color: s.color })), 130, ADMIN_ORDERS.length.toString())}
-    </div>
-    <div class="adm-card">
-      <div class="adm-card__header"><h3 class="adm-card__title">Resumo Financeiro</h3></div>
-      <div class="adm-fin-summary">
-        <div class="adm-fin-row"><span>Total de Pedidos</span><strong>${ADMIN_ORDERS.length}</strong></div>
-        <div class="adm-fin-row"><span>Valor Total</span><strong>${fmt(totalVal)}</strong></div>
-        <div class="adm-fin-row"><span>Ticket Médio</span><strong>${fmt(avgVal)}</strong></div>
-        <div class="adm-fin-row"><span>Maior Pedido</span><strong>${fmt(Math.max(...ADMIN_ORDERS.map(o => o.total)))}</strong></div>
-        <div class="adm-fin-row adm-fin-row--total"><span>Taxa de Entrega</span><strong class="adm-green">${Math.round(((statusCounts.entregue||0)/ADMIN_ORDERS.length)*100)}%</strong></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="adm-card">
-    <div class="adm-card__header">
-      <h3 class="adm-card__title">Lista de Pedidos</h3>
-      <div class="adm-filter-pills" id="order-filter">
-        <button class="adm-filter-pill is-active" data-filter="all">Todos</button>
-        <button class="adm-filter-pill" data-filter="pendente">Pendente</button>
-        <button class="adm-filter-pill" data-filter="processando">Processando</button>
-        <button class="adm-filter-pill" data-filter="enviado">Enviado</button>
-        <button class="adm-filter-pill" data-filter="entregue">Entregue</button>
-        <button class="adm-filter-pill" data-filter="cancelado">Cancelado</button>
-      </div>
-    </div>
-    <table class="adm-table" id="orders-table">
-      <thead><tr><th>Pedido</th><th>Cliente</th><th>Produto</th><th>Qtd</th><th>Total</th><th>Pagamento</th><th>Data</th><th>Status</th></tr></thead>
-      <tbody>
-        ${ADMIN_ORDERS.map(o => `
-          <tr data-status="${o.status}">
-            <td class="adm-mono">${o.id}</td><td>${o.customer}</td><td>${o.item}</td>
-            <td class="adm-mono">${o.qty}</td><td class="adm-mono">${fmt(o.total)}</td>
-            <td>${o.payment}</td><td>${o.date}</td><td>${badge(o.status)}</td>
-          </tr>`).join('')}
-      </tbody>
-    </table>
-  </div>`
+async function renderPedidosReal() {
+  const { orders } = await CMS.getAdminOperations()
+  if (!orders.length) return renderNoData('Nenhum pedido real foi registrado até o momento.')
+  return `<div class="adm-card"><div class="adm-card__header"><h3 class="adm-card__title">Pedidos recentes</h3></div>
+    <table class="adm-table"><thead><tr><th>Pedido</th><th>Data</th><th>Valor</th><th>Pagamento</th><th>Status</th></tr></thead>
+    <tbody>${orders.map(order => `<tr><td class="adm-mono">${_cmsEscape(order.order_number || String(order.id).slice(0, 8))}</td><td>${new Date(order.created_at).toLocaleDateString('pt-BR')}</td><td class="adm-mono">${fmt(Number(order.total_amount || 0))}</td><td>${_cmsEscape(order.payment_status || 'Pendente')}</td><td>${badge(orderStatusLabel(order.status))}</td></tr>`).join('')}</tbody></table></div>`
 }
 
-// ── Section: Pagamentos ───────────────────────────────────────────
-function renderPagamentos() {
-  const aprov = ADMIN_PAYMENTS.filter(p => p.status === 'aprovado')
-  const pend  = ADMIN_PAYMENTS.filter(p => p.status === 'pendente')
-  const canc  = ADMIN_PAYMENTS.filter(p => p.status === 'cancelado')
-  const aprovRate = Math.round((aprov.length / ADMIN_PAYMENTS.length) * 100)
-  const byMethod  = ADMIN_PAYMENTS.reduce((acc, p) => { acc[p.method] = (acc[p.method] || 0) + p.amount; return acc }, {})
-
-  return `
-  <div class="adm-kpi-grid adm-kpi-grid--3">
-    <div class="adm-kpi">
-      <div class="adm-kpi__icon adm-kpi__icon--4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
-      <div class="adm-kpi__body"><p class="adm-kpi__label">Aprovados</p><p class="adm-kpi__value">${fmt(aprov.reduce((a,p) => a + p.amount, 0))}</p><p class="adm-kpi__sub">${aprov.length} transações</p></div>
-    </div>
-    <div class="adm-kpi">
-      <div class="adm-kpi__icon adm-kpi__icon--warn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
-      <div class="adm-kpi__body"><p class="adm-kpi__label">Pendentes</p><p class="adm-kpi__value">${fmt(pend.reduce((a,p) => a + p.amount, 0))}</p><p class="adm-kpi__sub">${pend.length} aguardando</p></div>
-    </div>
-    <div class="adm-kpi">
-      <div class="adm-kpi__icon adm-kpi__icon--danger"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></div>
-      <div class="adm-kpi__body"><p class="adm-kpi__label">Cancelados</p><p class="adm-kpi__value">${fmt(canc.reduce((a,p) => a + p.amount, 0))}</p><p class="adm-kpi__sub">${canc.length} estornados</p></div>
-    </div>
+async function renderPagamentosReal() {
+  const { orders } = await CMS.getAdminOperations()
+  const approved = orders.filter(order => order.payment_status === 'approved')
+  const pending = orders.filter(order => order.payment_status === 'pending')
+  const cancelled = orders.filter(order => ['cancelled', 'rejected', 'refunded'].includes(order.payment_status))
+  const sum = list => list.reduce((total, order) => total + Number(order.total_amount || 0), 0)
+  return `<div class="adm-kpi-grid">
+    <div class="adm-kpi"><div class="adm-kpi__body"><p class="adm-kpi__label">Aprovados</p><p class="adm-kpi__value">${fmt(sum(approved))}</p><p class="adm-kpi__sub">${approved.length} pagamento(s)</p></div></div>
+    <div class="adm-kpi"><div class="adm-kpi__body"><p class="adm-kpi__label">Pendentes</p><p class="adm-kpi__value">${fmt(sum(pending))}</p><p class="adm-kpi__sub">${pending.length} pagamento(s)</p></div></div>
+    <div class="adm-kpi"><div class="adm-kpi__body"><p class="adm-kpi__label">Cancelados / estornados</p><p class="adm-kpi__value">${fmt(sum(cancelled))}</p><p class="adm-kpi__sub">${cancelled.length} pagamento(s)</p></div></div>
   </div>
-
-  <div class="adm-row adm-row--thirds">
-    <div class="adm-card" style="display:flex;flex-direction:column;align-items:center;gap:12px">
-      <h3 class="adm-card__title" style="align-self:flex-start">Taxa de Aprovação</h3>
-      ${renderRingChart(aprovRate, '#16a34a', 'Aprovados', `${aprov.length} de ${ADMIN_PAYMENTS.length}`, 110)}
-    </div>
-    <div class="adm-card">
-      <div class="adm-card__header"><h3 class="adm-card__title">Por Método</h3></div>
-      ${renderDonutChart([
-        { label: 'PIX',    value: Math.round(Object.entries(byMethod).find(([k]) => k === 'PIX')?.[1] || 0),    color: '#00c4b4' },
-        { label: 'Cartão', value: Math.round(Object.entries(byMethod).find(([k]) => k === 'Cartão')?.[1] || 0), color: '#9b3b48' },
-        { label: 'Boleto', value: Math.round(Object.entries(byMethod).find(([k]) => k === 'Boleto')?.[1] || 0), color: '#d97706' },
-      ], 120)}
-    </div>
-    <div class="adm-card">
-      <div class="adm-card__header"><h3 class="adm-card__title">Receita por Método</h3></div>
-      <div class="adm-hbar-list">
-        ${Object.entries(byMethod).sort((a,b) => b[1]-a[1]).map(([m, v]) => {
-          const mx = Math.max(...Object.values(byMethod))
-          const colors = { PIX: '#00c4b4', Cartão: '#ffbdc6', Boleto: '#d97706' }
-          return `<div class="adm-hbar-item">
-            <span class="adm-hbar-label">${m}</span>
-            <div class="adm-hbar-track"><div class="adm-hbar-fill" style="width:${Math.round((v/mx)*100)}%;background:${colors[m]||'#ffbdc6'}"></div></div>
-            <span class="adm-hbar-val">${fmt(v)}</span>
-          </div>`}).join('')}
-      </div>
-    </div>
-  </div>
-
-  <div class="adm-card">
-    <div class="adm-card__header"><h3 class="adm-card__title">Histórico de Pagamentos</h3></div>
-    <table class="adm-table">
-      <thead><tr><th>ID</th><th>Pedido</th><th>Cliente</th><th>Valor</th><th>Método</th><th>Data</th><th>Status</th></tr></thead>
-      <tbody>
-        ${ADMIN_PAYMENTS.map(p => `<tr>
-          <td class="adm-mono adm-muted">${p.id}</td><td class="adm-mono">${p.order}</td><td>${p.customer}</td>
-          <td class="adm-mono">${fmt(p.amount)}</td><td>${p.method}</td><td>${p.date}</td><td>${badge(p.status)}</td>
-        </tr>`).join('')}
-      </tbody>
-    </table>
-  </div>`
+  ${orders.length ? '<div class="adm-card"><p class="adm-muted">Os valores acima são calculados a partir dos pedidos reais.</p></div>' : renderNoData('Nenhum pagamento real foi registrado até o momento.')}`
 }
 
-// ── Section: Fornecedores ─────────────────────────────────────────
-function renderFornecedores() {
-  const ativos   = ADMIN_SUPPLIERS.filter(s => s.status === 'ativo').length
-  const inativos = ADMIN_SUPPLIERS.length - ativos
-  const allCats  = [...new Set(ADMIN_SUPPLIERS.flatMap(s => s.categories.split(', ').map(c => c.trim())))]
-
-  return `
-  <div class="adm-kpi-grid adm-kpi-grid--3">
-    <div class="adm-kpi">
-      <div class="adm-kpi__icon adm-kpi__icon--1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
-      <div class="adm-kpi__body"><p class="adm-kpi__label">Total</p><p class="adm-kpi__value">${ADMIN_SUPPLIERS.length}</p><p class="adm-kpi__sub">fornecedores cadastrados</p></div>
-    </div>
-    <div class="adm-kpi">
-      <div class="adm-kpi__icon adm-kpi__icon--4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
-      <div class="adm-kpi__body"><p class="adm-kpi__label">Ativos</p><p class="adm-kpi__value">${ativos}</p><p class="adm-kpi__sub">${inativos} inativo(s)</p></div>
-    </div>
-    <div class="adm-kpi">
-      <div class="adm-kpi__icon adm-kpi__icon--3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></div>
-      <div class="adm-kpi__body"><p class="adm-kpi__label">Categorias</p><p class="adm-kpi__value">${allCats.length}</p><p class="adm-kpi__sub">categorias cobertas</p></div>
-    </div>
+async function renderClientesReal() {
+  const { orders, customers } = await CMS.getAdminOperations()
+  const customersById = new Map(customers.map(customer => [customer.id, customer]))
+  const totalsByCustomer = orders.reduce((totals, order) => {
+    const current = totals.get(order.user_id) || { orders: 0, total: 0 }
+    current.orders++
+    if (order.payment_status === 'approved') current.total += Number(order.total_amount || 0)
+    totals.set(order.user_id, current)
+    return totals
+  }, new Map())
+  const totalRevenue = [...totalsByCustomer.values()].reduce((total, item) => total + item.total, 0)
+  const rows = customers.map(customer => ({ customer, ...(totalsByCustomer.get(customer.id) || { orders: 0, total: 0 }) }))
+  return `<div class="adm-kpi-grid adm-kpi-grid--3">
+    <div class="adm-kpi"><div class="adm-kpi__body"><p class="adm-kpi__label">Clientes cadastrados</p><p class="adm-kpi__value">${customers.length}</p><p class="adm-kpi__sub">Clientes reais na base</p></div></div>
+    <div class="adm-kpi"><div class="adm-kpi__body"><p class="adm-kpi__label">Receita aprovada</p><p class="adm-kpi__value">${fmt(totalRevenue)}</p><p class="adm-kpi__sub">Somente pedidos aprovados</p></div></div>
+    <div class="adm-kpi"><div class="adm-kpi__body"><p class="adm-kpi__label">Pedidos</p><p class="adm-kpi__value">${orders.length}</p><p class="adm-kpi__sub">Registrados na base</p></div></div>
   </div>
-
-  <div class="adm-row">
-    <div class="adm-card">
-      <div class="adm-card__header"><h3 class="adm-card__title">Cobertura por Categoria</h3></div>
-      <div class="adm-hbar-list">
-        ${allCats.map((cat, i) => {
-          const colors = ['#ffbdc6','#e8798c','#3b82f6','#16a34a','#d97706','#9b3b48','#8b5cf6']
-          return `<div class="adm-hbar-item">
-            <span class="adm-hbar-label">${cat}</span>
-            <div class="adm-hbar-track"><div class="adm-hbar-fill" style="width:100%;background:${colors[i % colors.length]}"></div></div>
-            <span class="adm-hbar-val">Ativo</span>
-          </div>`}).join('')}
-      </div>
-    </div>
-    <div class="adm-card">
-      <div class="adm-card__header"><h3 class="adm-card__title">Status dos Fornecedores</h3></div>
-      ${renderDonutChart([
-        { label: 'Ativos',   value: ativos,   color: '#16a34a' },
-        { label: 'Inativos', value: inativos, color: '#9ca3af' },
-      ], 120, ADMIN_SUPPLIERS.length.toString())}
-    </div>
-  </div>
-
-  <div class="adm-suppliers-grid">
-    ${ADMIN_SUPPLIERS.map(s => `
-      <div class="adm-supplier-card">
-        <div class="adm-supplier-card__header">
-          <div class="adm-supplier-avatar">${s.name.charAt(0)}</div>
-          <div style="flex:1"><h4 class="adm-supplier-card__name">${s.name}</h4><p class="adm-supplier-card__contact">${s.contact}</p></div>
-          ${badge(s.status)}
-        </div>
-        <div class="adm-supplier-card__body">
-          <div class="adm-supplier-info"><span>Categorias</span><strong>${s.categories}</strong></div>
-          <div class="adm-supplier-info"><span>Telefone</span><strong>${s.phone}</strong></div>
-          <div class="adm-supplier-info"><span>E-mail</span><strong style="font-size:.7rem">${s.email}</strong></div>
-          <div class="adm-supplier-info"><span>Prazo</span><strong>${s.terms}</strong></div>
-        </div>
-      </div>`).join('')}
-  </div>`
+  ${rows.length ? `<div class="adm-card"><div class="adm-card__header"><h3 class="adm-card__title">Base de clientes</h3></div><table class="adm-table"><thead><tr><th>Nome</th><th>E-mail</th><th>Pedidos</th><th>Total aprovado</th><th>Cadastro</th></tr></thead><tbody>${rows.map(row => `<tr><td>${_cmsEscape(row.customer.full_name || 'Sem nome')}</td><td class="adm-muted">${_cmsEscape(row.customer.email || '')}</td><td>${row.orders}</td><td>${fmt(row.total)}</td><td>${new Date(row.customer.created_at).toLocaleDateString('pt-BR')}</td></tr>`).join('')}</tbody></table></div>` : renderNoData('Nenhum cliente real foi cadastrado até o momento.')}`
 }
 
-// ── Section: Colaboradores ────────────────────────────────────────
-function renderColaboradores() {
-  const roles = ADMIN_STAFF.reduce((acc, s) => { acc[s.role] = (acc[s.role] || 0) + 1; return acc }, {})
-  const roleColors = ['#ffbdc6','#e8798c','#3b82f6','#16a34a','#d97706','#9b3b48']
-  const roleSegments = Object.entries(roles).map(([r, c], i) => ({ label: r, value: c, color: roleColors[i % roleColors.length] }))
-
-  return `
-  <div class="adm-kpi-grid adm-kpi-grid--3">
-    <div class="adm-kpi">
-      <div class="adm-kpi__icon adm-kpi__icon--1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-      <div class="adm-kpi__body"><p class="adm-kpi__label">Colaboradores</p><p class="adm-kpi__value">${ADMIN_STAFF.length}</p><p class="adm-kpi__sub">equipe ativa</p></div>
-    </div>
-    <div class="adm-kpi">
-      <div class="adm-kpi__icon adm-kpi__icon--2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></div>
-      <div class="adm-kpi__body"><p class="adm-kpi__label">Cargos</p><p class="adm-kpi__value">${Object.keys(roles).length}</p><p class="adm-kpi__sub">diferentes funções</p></div>
-    </div>
-    <div class="adm-kpi">
-      <div class="adm-kpi__icon adm-kpi__icon--4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
-      <div class="adm-kpi__body"><p class="adm-kpi__label">Ativos</p><p class="adm-kpi__value">${ADMIN_STAFF.filter(s => s.status === 'ativo').length}</p><p class="adm-kpi__sub">todos em atividade</p></div>
-    </div>
-  </div>
-
-  <div class="adm-row">
-    <div class="adm-card">
-      <div class="adm-card__header"><h3 class="adm-card__title">Distribuição por Cargo</h3></div>
-      ${renderDonutChart(roleSegments, 130, ADMIN_STAFF.length.toString())}
-    </div>
-    <div class="adm-card">
-      <div class="adm-card__header"><h3 class="adm-card__title">Cargos</h3></div>
-      <div class="adm-hbar-list">
-        ${Object.entries(roles).map(([role, count], i) => `
-          <div class="adm-hbar-item">
-            <span class="adm-hbar-label">${role}</span>
-            <div class="adm-hbar-track"><div class="adm-hbar-fill" style="width:${Math.round((count/ADMIN_STAFF.length)*100)}%;background:${roleColors[i%roleColors.length]}"></div></div>
-            <span class="adm-hbar-val">${count}</span>
-          </div>`).join('')}
-      </div>
-    </div>
-  </div>
-
-  <div class="adm-staff-grid">
-    ${ADMIN_STAFF.map(s => {
-      const initials = s.name.split(' ').map(n => n[0]).slice(0, 2).join('')
-      return `<div class="adm-staff-card">
-        <div class="adm-staff-avatar">${initials}</div>
-        <h4 class="adm-staff-card__name">${s.name}</h4>
-        <p class="adm-staff-card__role">${s.role}</p>
-        ${badge(s.status)}
-        <div class="adm-staff-card__details">
-          <div class="adm-staff-info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>${s.email}</div>
-          <div class="adm-staff-info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>${s.phone}</div>
-          <div class="adm-staff-info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Desde ${s.since}</div>
-        </div>
-      </div>`}).join('')}
-  </div>`
-}
-
-// ── Section: Clientes ─────────────────────────────────────────────
-function renderClientes() {
-  const total  = ADMIN_CUSTOMERS.reduce((a, c) => a + c.total, 0)
-  const orders = ADMIN_CUSTOMERS.reduce((a, c) => a + c.orders, 0)
-  const top6   = [...ADMIN_CUSTOMERS].sort((a, b) => b.total - a.total).slice(0, 6)
-  const states = ADMIN_CUSTOMERS.reduce((acc, c) => { const st = c.city.split(' - ')[1]; acc[st] = (acc[st]||0)+1; return acc }, {})
-  const stateArr = Object.entries(states).sort((a,b) => b[1]-a[1]).slice(0, 6)
-  const stateMax = Math.max(...stateArr.map(([,v]) => v)) || 1
-
-  return `
-  <div class="adm-kpi-grid adm-kpi-grid--3">
-    <div class="adm-kpi">
-      <div class="adm-kpi__icon adm-kpi__icon--1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-      <div class="adm-kpi__body"><p class="adm-kpi__label">Total de Clientes</p><p class="adm-kpi__value">${ADMIN_CUSTOMERS.length}</p><p class="adm-kpi__sub">na base cadastrada</p></div>
-    </div>
-    <div class="adm-kpi">
-      <div class="adm-kpi__icon adm-kpi__icon--2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-      <div class="adm-kpi__body"><p class="adm-kpi__label">Receita Total</p><p class="adm-kpi__value">${fmt(total)}</p><p class="adm-kpi__sub">lifetime value acumulado</p></div>
-    </div>
-    <div class="adm-kpi">
-      <div class="adm-kpi__icon adm-kpi__icon--3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
-      <div class="adm-kpi__body"><p class="adm-kpi__label">Total de Pedidos</p><p class="adm-kpi__value">${orders}</p><p class="adm-kpi__sub">média ${(orders/ADMIN_CUSTOMERS.length).toFixed(1)} por cliente</p></div>
-    </div>
-  </div>
-
-  <div class="adm-row">
-    <div class="adm-card">
-      <div class="adm-card__header"><h3 class="adm-card__title">Top 6 Clientes por Valor</h3></div>
-      <div class="adm-chart-wrap">${renderBarChart(top6.map(c => c.total), top6.map(c => c.name.split(' ')[0]))}</div>
-    </div>
-    <div class="adm-card">
-      <div class="adm-card__header"><h3 class="adm-card__title">Clientes por Estado</h3></div>
-      <div class="adm-hbar-list">
-        ${stateArr.map(([st, cnt]) => `
-          <div class="adm-hbar-item">
-            <span class="adm-hbar-label">${st}</span>
-            <div class="adm-hbar-track"><div class="adm-hbar-fill" style="width:${Math.round((cnt/stateMax)*100)}%"></div></div>
-            <span class="adm-hbar-val">${cnt}</span>
-          </div>`).join('')}
-      </div>
-    </div>
-  </div>
-
-  <div class="adm-card">
-    <div class="adm-card__header"><h3 class="adm-card__title">Base de Clientes</h3></div>
-    <table class="adm-table">
-      <thead><tr><th>Nome</th><th>E-mail</th><th>Cidade</th><th>Pedidos</th><th>Total Gasto</th><th>Desde</th><th>Último Pedido</th></tr></thead>
-      <tbody>
-        ${[...ADMIN_CUSTOMERS].sort((a, b) => b.total - a.total).map(c => `
-          <tr>
-            <td><strong>${c.name}</strong></td>
-            <td class="adm-muted">${c.email}</td>
-            <td>${c.city}</td>
-            <td class="adm-mono">${c.orders}</td>
-            <td class="adm-mono"><strong>${fmt(c.total)}</strong></td>
-            <td>${c.since}</td>
-            <td>${c.last}</td>
-          </tr>`).join('')}
-      </tbody>
-    </table>
-  </div>`
-}
-
-// ── Section: Perfil ───────────────────────────────────────────────
 function renderPerfil() {
   const profile = JSON.parse(localStorage.getItem('adm_profile') || '{}')
-  const name  = profile.name  || 'Shelly Lopes'
-  const role  = profile.role  || 'Administradora'
+  const name  = profile.name  || document.querySelector('.adm-sidebar__user-name')?.textContent || 'Usuário'
+  const role  = profile.role  || document.querySelector('.adm-sidebar__user-role')?.textContent || 'Administrador(a)'
   const theme = profile.theme || 'rosa'
   const initials = name.split(' ').map(n => n[0]).slice(0, 2).join('')
   const MONTHS_LONG  = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro']
@@ -1395,14 +803,14 @@ async function renderSection(section, period) {
 
   const renderers = {
     dashboard: () => renderDashboard(period),
-    vendas: () => renderVendas(period),
-    financeiro: () => renderFinanceiro(period),
-    estoque: renderEstoque,
-    pedidos: renderPedidos,
-    pagamentos: renderPagamentos,
-    fornecedores: renderFornecedores,
-    colaboradores: renderColaboradores,
-    clientes: renderClientes,
+    vendas: () => renderVendasReal(period),
+    financeiro: () => renderNoData('Financeiro será disponibilizado quando a conciliação estiver configurada.'),
+    estoque: () => renderNoData('Estoque será disponibilizado quando o controle operacional estiver configurado.'),
+    pedidos: renderPedidosReal,
+    pagamentos: renderPagamentosReal,
+    fornecedores: () => renderNoData('Fornecedores será disponibilizado quando o cadastro estiver configurado.'),
+    colaboradores: () => renderNoData('Colaboradores será disponibilizado quando a gestão de equipe estiver configurada.'),
+    clientes: renderClientesReal,
     perfil: renderPerfil,
     'cms-produtos':  renderCmsProdutos,
     'cms-blog':      renderCmsBlog,
@@ -1415,7 +823,13 @@ async function renderSection(section, period) {
   content.classList.remove('adm-anim')
   void content.offsetWidth
   _cjsDestroyAll()
-  content.innerHTML = await (renderers[section] || (() => ''))()
+  try {
+    content.innerHTML = await (renderers[section] || (() => ''))()
+  } catch (error) {
+    console.error(`Erro ao abrir a seção ${section}:`, error)
+    content.innerHTML = `<div class="adm-card cms-error-state" role="alert">${_cmsEscape(error.message || 'Não foi possível carregar esta seção.')}</div>`
+    return
+  }
   content.classList.add('adm-anim')
   initPendingCharts()
 
@@ -1481,7 +895,7 @@ function initSearch() {
 document.addEventListener('DOMContentLoaded', async () => {
   const user = await SupabaseAuth.getCurrentUser()
   const profile = user ? await SupabaseAuth.getCurrentUserProfile() : null
-  const canAccessCRM = ['admin', 'hr'].includes(profile?.role) || profile?.is_admin === true
+  const canAccessCRM = ['admin', 'hr'].includes(profile?.role)
 
   if (!user || !canAccessCRM) {
     window.location.replace('login.html')
@@ -1575,39 +989,70 @@ function _cmsCloseModal(id) {
 }
 
 // ── Produtos ──────────────────────────────────────────────────────
+let _cmsProdPage = 0
+let _cmsProdFilters = { search: '', category: '', status: '' }
+let _cmsProdImageList = []
+let _cmsEditingProduct = null
+const CMS_PRODUCTS_PAGE_SIZE = 25
+
+function _cmsEscape(value) {
+  return String(value ?? '').replace(/[&<>"']/g, char => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'
+  })[char])
+}
+
 async function renderCmsProdutos() {
-  const products = await CMS.getProducts()
-  const cats = await CMS.getCategories()
+  const [{ products, count }, categories] = await Promise.all([
+    CMS.getAdminProducts({ ..._cmsProdFilters, page: _cmsProdPage, pageSize: CMS_PRODUCTS_PAGE_SIZE }),
+    CMS.getProductCategories()
+  ])
   const collections = await CMS.getCollections()
   const collectionsHtml = collections.map(c => `
     <span class="cms-badge" style="display:inline-flex;align-items:center;gap:.4rem;padding:4px 10px;border:1px solid var(--color-border);border-radius:100px;margin:0 .4rem .4rem 0">
       <button type="button" class="cms-star-btn" data-star="${c.id}" title="Marcar como destaque na home" style="background:none;border:none;cursor:pointer;font-size:1rem;color:${c.is_featured ? 'var(--color-primary-mid)' : '#ccc'}">★</button>
-      ${c.name}
+      ${_cmsEscape(c.name)}
       <button type="button" class="cms-icon-btn" data-del-col="${c.id}" title="Excluir coleção" style="background:none;border:none;cursor:pointer">✕</button>
     </span>`).join('') || '<span style="color:var(--color-muted);font-size:.85rem">Nenhuma coleção ainda.</span>'
 
   const rows = products.map(p => `
-    <tr data-id="${p.id}" data-cat="${p.category}" data-name="${(p.name||'').toLowerCase()}">
-      <td>${p.image ? `<img class="cms-table__thumb" src="${p.image}" alt="${p.name}" onerror="this.style.display='none'">` : '<div class="cms-table__thumb" style="background:#f5f5f5"></div>'}</td>
-      <td><strong>${p.name}</strong></td>
-      <td>${p.category}</td>
+    <tr data-id="${p.id}">
+      <td>${p.image ? `<img class="cms-table__thumb" src="${_cmsEscape(p.image)}" alt="${_cmsEscape(p.name)}" loading="lazy">` : '<div class="cms-table__thumb" style="background:#f5f5f5"></div>'}</td>
+      <td><strong>${_cmsEscape(p.name)}</strong><br><small class="cms-table__sub">SKU: ${_cmsEscape(p.sku || '—')}</small></td>
+      <td>${_cmsEscape(p.category || '—')}</td>
       <td>R$&nbsp;${Number(p.price).toFixed(2).replace('.',',')}${p.comparePrice ? `<br><small style="text-decoration:line-through;color:var(--color-muted)">R$&nbsp;${Number(p.comparePrice).toFixed(2).replace('.',',')}</small>` : ''}</td>
-      <td>${p.isNew ? '<span class="cms-badge cms-badge--new">Novo</span> ' : ''}${p.isSale ? '<span class="cms-badge cms-badge--sale">Promo</span>' : ''}</td>
+      <td><span class="cms-badge cms-badge--${p.status === 'active' ? 'new' : 'draft'}">${p.status === 'active' ? 'Publicado' : p.status === 'archived' ? 'Arquivado' : 'Rascunho'}</span></td>
       <td>
         <button class="cms-icon-btn" data-edit="${p.id}" title="Editar">✏️</button>
+        <button class="cms-icon-btn" data-publish="${p.id}" title="${p.status === 'active' ? 'Despublicar' : 'Publicar'}">${p.status === 'active' ? '⏸' : '▶'}</button>
         <button class="cms-icon-btn cms-icon-btn--danger" data-del="${p.id}" title="Excluir">🗑</button>
       </td>
     </tr>`).join('')
 
   return `
     <div class="cms-toolbar">
-      <input class="cms-search" id="cms-prod-search" placeholder="Buscar produto…">
+      <input class="cms-search" id="cms-prod-search" value="${_cmsEscape(_cmsProdFilters.search)}" placeholder="Buscar por nome ou SKU…">
       <select class="cms-filter-select cms-cat-select" id="cms-prod-cat-filter">
-        <option value="">Todas categorias</option>
-        ${cats.map(c => `<option>${c}</option>`).join('')}
-        <option value="__new__">+ Nova categoria</option>
+        <option value="">Todas as categorias</option>
+        ${categories.map(c => `<option value="${_cmsEscape(c.name)}" ${_cmsProdFilters.category === c.name ? 'selected' : ''}>${_cmsEscape(c.name)}</option>`).join('')}
+      </select>
+      <select class="cms-filter-select" id="cms-prod-status-filter">
+        <option value="">Todos os status</option>
+        <option value="active" ${_cmsProdFilters.status === 'active' ? 'selected' : ''}>Publicado</option>
+        <option value="draft" ${_cmsProdFilters.status === 'draft' ? 'selected' : ''}>Rascunho</option>
+        <option value="archived" ${_cmsProdFilters.status === 'archived' ? 'selected' : ''}>Arquivado</option>
       </select>
       <button class="cms-btn cms-btn--primary" id="cms-prod-new">+ Novo Produto</button>
+    </div>
+    <div class="cms-prod-category-add">
+      <input class="cms-input" id="cms-category-name" placeholder="Nome da nova categoria">
+      <button class="cms-btn cms-btn--outline cms-btn--sm" id="cms-category-add">Adicionar categoria</button>
+    </div>
+    <div class="cms-product-categories" id="cms-product-categories">
+      ${categories.map(c => `
+        <span class="cms-category-chip">${_cmsEscape(c.name)}
+          <button type="button" data-category-edit="${_cmsEscape(c.id)}" data-category-name="${_cmsEscape(c.name)}" title="Renomear ${_cmsEscape(c.name)}">✏️</button>
+          <button type="button" data-category-delete="${_cmsEscape(c.id)}" data-category-name="${_cmsEscape(c.name)}" title="Excluir ${_cmsEscape(c.name)}">✕</button>
+        </span>`).join('') || '<span class="cms-hint">Nenhuma categoria criada.</span>'}
     </div>
     <div class="adm-card" style="margin-bottom:1rem">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.75rem;flex-wrap:wrap;gap:.5rem">
@@ -1621,224 +1066,495 @@ async function renderCmsProdutos() {
     </div>
     <div class="adm-card" style="padding:0;overflow:auto">
       <table class="cms-table" id="cms-prod-table">
-        <thead><tr><th>Foto</th><th>Nome</th><th>Categoria</th><th>Preço</th><th>Tags</th><th>Ações</th></tr></thead>
-        <tbody>${rows || '<tr><td colspan="6" class="cms-empty">Nenhum produto cadastrado.</td></tr>'}</tbody>
+        <thead><tr><th>Foto</th><th>Produto / SKU</th><th>Categoria</th><th>Preço</th><th>Status</th><th>Ações</th></tr></thead>
+        <tbody>${rows || '<tr><td colspan="6" class="cms-empty">Nenhum produto encontrado.</td></tr>'}</tbody>
       </table>
     </div>
+    <div class="cms-prod-pagination">
+      <span>${count ? `${_cmsProdPage * CMS_PRODUCTS_PAGE_SIZE + 1}–${Math.min((_cmsProdPage + 1) * CMS_PRODUCTS_PAGE_SIZE, count)} de ${count} produtos` : '0 produtos'}</span>
+      <div>
+        <button class="cms-btn cms-btn--outline cms-btn--sm" id="cms-prod-prev" ${_cmsProdPage === 0 ? 'disabled' : ''}>Anterior</button>
+        <button class="cms-btn cms-btn--outline cms-btn--sm" id="cms-prod-next" ${(_cmsProdPage + 1) * CMS_PRODUCTS_PAGE_SIZE >= count ? 'disabled' : ''}>Próxima</button>
+      </div>
+    </div>
     <div class="cms-modal-overlay" id="cms-prod-overlay" style="display:none">
-      <div class="cms-modal" style="max-width:600px">
+      <div class="cms-modal cms-product-modal">
         <div class="cms-modal__header">
-          <span id="cms-prod-modal-title">Novo Produto</span>
-          <button class="cms-modal__close" id="cms-prod-close">✕</button>
+          <div><h2 class="cms-modal__title" id="cms-prod-modal-title">Novo Produto</h2><p class="cms-hint">Cadastre os dados comerciais e variantes da peça.</p></div>
+          <button class="cms-modal__close" id="cms-prod-close" type="button" aria-label="Fechar">✕</button>
         </div>
-        <div class="cms-modal__body">
+        <div class="cms-modal__body cms-product-modal__body">
           <form class="cms-form" id="cms-prod-form">
             <input type="hidden" id="cms-prod-id">
-            <div class="cms-field cms-field--full">
-              <label class="cms-label">Nome do produto *</label>
-              <input class="cms-input" id="cms-prod-name" type="text" required placeholder="Ex.: Vestido Longo Floral">
-            </div>
-            <div class="cms-form-row">
-              <div class="cms-field">
-                <label class="cms-label">Categoria *</label>
-                <select class="cms-select cms-cat-select" id="cms-prod-cat">
-                  ${cats.map(c => `<option>${c}</option>`).join('')}
-                  <option value="__new__">+ Nova categoria</option>
-                </select>
-              </div>
-              <div class="cms-field">
-                <label class="cms-label">Preço (R$) *</label>
-                <input class="cms-input" id="cms-prod-price" type="number" min="0" step="0.01" required>
-              </div>
-              <div class="cms-field">
-                <label class="cms-label">Preço original (R$)</label>
-                <input class="cms-input" id="cms-prod-compare" type="number" min="0" step="0.01" placeholder="Opcional">
-              </div>
-            </div>
-            <div class="cms-field cms-field--full">
-              <label class="cms-label">Coleções</label>
-              <div id="cms-prod-collections" style="display:flex;flex-wrap:wrap;gap:.5rem 1rem">
-                ${collections.map(c => `
-                  <label style="display:flex;align-items:center;gap:.4rem;cursor:pointer;font-size:var(--font-size-sm)">
-                    <input type="checkbox" data-col-check="${c.id}" style="accent-color:var(--color-primary);width:16px;height:16px">
-                    ${c.name}
-                  </label>`).join('') || '<span style="color:var(--color-muted);font-size:.85rem">Nenhuma coleção cadastrada ainda.</span>'}
-              </div>
-            </div>
-            <div class="cms-form-row" style="gap:2rem">
-              <label class="cms-label" style="display:flex;align-items:center;gap:.5rem;cursor:pointer">
-                <input type="checkbox" id="cms-prod-isnew" style="accent-color:var(--color-primary);width:16px;height:16px">
-                Marcar como NOVO
-              </label>
-              <label class="cms-label" style="display:flex;align-items:center;gap:.5rem;cursor:pointer">
-                <input type="checkbox" id="cms-prod-issale" style="accent-color:var(--color-primary);width:16px;height:16px">
-                Marcar como PROMOÇÃO
-              </label>
-            </div>
-            <div class="cms-field cms-field--full">
-              <label class="cms-label">Foto do produto</label>
-              <div class="cms-img-picker">
-                <div class="cms-img-preview cms-img-preview--empty" id="cms-prod-img-preview"><span>Clique ou arraste uma foto</span></div>
-                <div class="cms-img-actions">
-                  <label class="cms-btn cms-btn--outline cms-btn--sm" style="cursor:pointer">
-                    Escolher arquivo<input type="file" id="cms-prod-file" accept="image/*" style="display:none">
-                  </label>
-                  <span style="color:var(--color-muted);font-size:.8rem">ou</span>
-                  <input class="cms-img-url-input" id="cms-prod-url" type="url" placeholder="Cole a URL da imagem">
+            <section class="cms-product-section">
+              <h3>Informações do produto</h3>
+              <div class="cms-form-row">
+                <div class="cms-field cms-field--full">
+                  <label class="cms-label" for="cms-prod-name">Nome do produto *</label>
+                  <input class="cms-input" id="cms-prod-name" type="text" required maxlength="160" placeholder="Ex.: Vestido Longo Floral">
+                </div>
+                <div class="cms-field">
+                  <label class="cms-label" for="cms-prod-sku">SKU principal</label>
+                  <input class="cms-input" id="cms-prod-sku" type="text" maxlength="80" placeholder="Ex.: VES-001">
+                </div>
+                <div class="cms-field">
+                  <label class="cms-label" for="cms-prod-slug">Slug da página</label>
+                  <input class="cms-input" id="cms-prod-slug" type="text" maxlength="180" placeholder="gerado pelo nome se vazio">
+                </div>
+                <div class="cms-field">
+                  <label class="cms-label" for="cms-prod-cat">Categoria *</label>
+                  <select class="cms-select" id="cms-prod-cat" required>
+                    <option value="">Selecione a categoria</option>
+                    ${categories.map(c => `<option value="${_cmsEscape(c.id)}">${_cmsEscape(c.name)}</option>`).join('')}
+                  </select>
+                </div>
+                <div class="cms-field">
+                  <label class="cms-label" for="cms-prod-brand">Marca</label>
+                  <input class="cms-input" id="cms-prod-brand" type="text" maxlength="100" placeholder="Opcional">
+                </div>
+                <div class="cms-field cms-field--full">
+                  <label class="cms-label" for="cms-prod-description">Descrição</label>
+                  <textarea class="cms-textarea" id="cms-prod-description" rows="4" maxlength="5000" placeholder="Detalhes, material e caimento"></textarea>
                 </div>
               </div>
-              <input type="hidden" id="cms-prod-img">
-            </div>
+            </section>
+            <section class="cms-product-section">
+              <h3>Preços e publicação</h3>
+              <div class="cms-form-row">
+                <div class="cms-field">
+                  <label class="cms-label" for="cms-prod-price">Preço de venda (R$) *</label>
+                  <input class="cms-input" id="cms-prod-price" type="number" min="0.01" step="0.01" required>
+                </div>
+                <div class="cms-field">
+                  <label class="cms-label" for="cms-prod-compare">Preço original (R$)</label>
+                  <input class="cms-input" id="cms-prod-compare" type="number" min="0.01" step="0.01" placeholder="Opcional">
+                </div>
+                <div class="cms-field">
+                  <label class="cms-label" for="cms-prod-status">Status</label>
+                  <select class="cms-select" id="cms-prod-status">
+                    <option value="draft">Rascunho</option>
+                    <option value="active">Publicado</option>
+                    <option value="archived">Arquivado</option>
+                  </select>
+                </div>
+                <div class="cms-field">
+                  <label class="cms-label">Destaques</label>
+                  <div class="cms-check-row">
+                    <label><input type="checkbox" id="cms-prod-isnew"> Novo</label>
+                    <label><input type="checkbox" id="cms-prod-issale"> Promoção</label>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section class="cms-product-section">
+              <div class="cms-product-section__heading">
+                <div><h3>Fotos do produto</h3><p class="cms-hint">Até 12 fotos, no máximo 10 MB cada. A primeira será a imagem principal.</p></div>
+                <label class="cms-btn cms-btn--outline cms-btn--sm">
+                  Adicionar fotos
+                  <input type="file" id="cms-prod-file" accept="image/jpeg,image/png,image/webp" multiple hidden>
+                </label>
+              </div>
+              <div class="cms-dropzone" id="cms-prod-dropzone" tabindex="0">
+                Arraste fotos para cá ou use “Adicionar fotos”
+              </div>
+              <div class="cms-prod-images" id="cms-prod-images"></div>
+              <div class="cms-upload-progress" id="cms-prod-upload-progress" role="progressbar" aria-label="Envio de imagens" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <span></span>
+              </div>
+              <p class="cms-hint" id="cms-prod-upload-status" aria-live="polite"></p>
+            </section>
+            <section class="cms-product-section">
+              <div class="cms-product-section__heading">
+                <div><h3>Tamanhos, cores e estoque</h3><p class="cms-hint">Cada combinação tem SKU e quantidade próprios.</p></div>
+                <button class="cms-btn cms-btn--outline cms-btn--sm" id="cms-prod-add-variant" type="button">+ Variante</button>
+              </div>
+              <div class="cms-variants-head"><span>SKU *</span><span>Cor</span><span>Tamanho</span><span>Preço (opcional)</span><span>Estoque</span><span></span></div>
+              <div class="cms-variants-list" id="cms-prod-variants"></div>
+            </section>
+            <section class="cms-product-section">
+              <h3>Coleções</h3>
+              <div id="cms-prod-collections" class="cms-check-row">
+                ${collections.map(c => `
+                  <label><input type="checkbox" data-col-check="${_cmsEscape(c.id)}"> ${_cmsEscape(c.name)}</label>`).join('') || '<span class="cms-hint">Nenhuma coleção cadastrada ainda.</span>'}
+              </div>
+            </section>
           </form>
         </div>
         <div class="cms-modal__footer">
-          <button class="cms-btn cms-btn--outline" id="cms-prod-cancel">Cancelar</button>
-          <button class="cms-btn cms-btn--primary" id="cms-prod-save">Salvar produto</button>
+          <button class="cms-btn cms-btn--outline" id="cms-prod-cancel" type="button">Cancelar</button>
+          <button class="cms-btn cms-btn--primary" id="cms-prod-save" type="button">Salvar produto</button>
         </div>
       </div>
     </div>`
 }
 
-function bindCmsProdutos() {
-  const search = document.getElementById('cms-prod-search')
-  const catFilter = document.getElementById('cms-prod-cat-filter')
-  function filterTable() {
-    const q = (search?.value || '').toLowerCase()
-    const cat = catFilter?.value || ''
-    document.querySelectorAll('#cms-prod-table tbody tr[data-id]').forEach(row => {
-      row.style.display = (!q || row.dataset.name.includes(q)) && (!cat || row.dataset.cat === cat) ? '' : 'none'
+function _cmsRenderProductImages() {
+  const container = document.getElementById('cms-prod-images')
+  if (!container) return
+  container.innerHTML = _cmsProdImageList.map((image, index) => `
+    <article class="cms-prod-image">
+      <img src="${_cmsEscape(image.previewUrl || image.image || '')}" alt="${_cmsEscape(image.alt || `Foto ${index + 1}`)}">
+      <span class="cms-prod-image__primary">${index === 0 ? 'Principal' : `Foto ${index + 1}`}</span>
+      <div class="cms-prod-image__actions">
+        <button type="button" class="cms-icon-btn" data-image-up="${index}" title="Mover para a esquerda" ${index === 0 ? 'disabled' : ''}>←</button>
+        <button type="button" class="cms-icon-btn" data-image-down="${index}" title="Mover para a direita" ${index === _cmsProdImageList.length - 1 ? 'disabled' : ''}>→</button>
+        <button type="button" class="cms-icon-btn cms-icon-btn--danger" data-image-remove="${index}" title="Remover foto">✕</button>
+      </div>
+    </article>`).join('')
+}
+
+function _cmsVariantRow(variant = {}) {
+  return `<div class="cms-variant-row">
+    <input class="cms-input" data-variant-field="sku" required maxlength="80" placeholder="SKU único" value="${_cmsEscape(variant.sku || '')}">
+    <input class="cms-input" data-variant-field="color" maxlength="60" placeholder="Cor" value="${_cmsEscape(variant.color || '')}">
+    <input class="cms-input" data-variant-field="size" maxlength="40" placeholder="Tamanho" value="${_cmsEscape(variant.size || '')}">
+    <input class="cms-input" data-variant-field="price" type="number" min="0.01" step="0.01" placeholder="Usar preço base" value="${variant.price ?? ''}">
+    <input class="cms-input" data-variant-field="stock" type="number" min="0" step="1" required value="${variant.stock ?? 0}">
+    <button type="button" class="cms-icon-btn cms-icon-btn--danger" data-variant-remove title="Remover variante">✕</button>
+  </div>`
+}
+
+function _cmsRenderVariants(variants = []) {
+  const container = document.getElementById('cms-prod-variants')
+  if (container) container.innerHTML = variants.map(_cmsVariantRow).join('')
+}
+
+function _cmsRevokePendingPreviews() {
+  _cmsProdImageList.forEach(image => {
+    if (image.previewUrl && image.file) URL.revokeObjectURL(image.previewUrl)
+  })
+}
+
+function _cmsAddProductFiles(files) {
+  const status = document.getElementById('cms-prod-upload-status')
+  const allowed = ['image/jpeg', 'image/png', 'image/webp']
+  for (const file of files) {
+    if (_cmsProdImageList.length >= 12) {
+      status.textContent = 'Limite de 12 imagens por produto.'
+      break
+    }
+    if (!allowed.includes(file.type) || file.size > 10 * 1024 * 1024) {
+      status.textContent = `${file.name}: use JPG, PNG ou WebP com até 10 MB.`
+      continue
+    }
+    _cmsProdImageList.push({
+      file,
+      previewUrl: URL.createObjectURL(file),
+      alt: document.getElementById('cms-prod-name').value.trim()
     })
   }
-  search?.addEventListener('input', filterTable)
-  catFilter?.addEventListener('change', filterTable)
+  _cmsRenderProductImages()
+}
 
-  document.querySelectorAll('.cms-cat-select').forEach(sel => {
-    sel.addEventListener('change', async () => {
-      if (sel.value !== '__new__') return
-      const name = prompt('Nome da nova categoria:')?.trim()
-      if (!name) { sel.value = sel.id === 'cms-prod-cat-filter' ? '' : ((await CMS.getCategories())[0] || ''); return }
-      await CMS.addCategory(name)
-      document.querySelectorAll('.cms-cat-select').forEach(s => {
-        const opt = document.createElement('option')
-        opt.value = name
-        opt.textContent = name
-        s.insertBefore(opt, s.querySelector('option[value="__new__"]'))
-        s.value = name
-      })
-    })
+function _cmsProdOpenModal(p, productCollections = [], variants = []) {
+  _cmsRevokePendingPreviews()
+  _cmsEditingProduct = p
+  _cmsProdImageList = (p?.images || []).filter(image => image.storage_path).map(image => ({
+    id: image.id,
+    storage_path: image.storage_path,
+    image: image.image,
+    alt: image.alt || p.name
+  }))
+  document.getElementById('cms-prod-modal-title').textContent = p ? 'Editar produto' : 'Novo produto'
+  document.getElementById('cms-prod-id').value = p?.id ?? ''
+  document.getElementById('cms-prod-name').value = p?.name ?? ''
+  document.getElementById('cms-prod-sku').value = p?.sku ?? ''
+  document.getElementById('cms-prod-slug').value = p?.slug ?? ''
+  document.getElementById('cms-prod-description').value = p?.description ?? ''
+  document.getElementById('cms-prod-cat').value = p?.categoryId ?? ''
+  document.getElementById('cms-prod-brand').value = p?.brand ?? ''
+  document.getElementById('cms-prod-price').value = p?.price ?? ''
+  document.getElementById('cms-prod-compare').value = p?.comparePrice ?? ''
+  document.getElementById('cms-prod-status').value = p?.status ?? 'draft'
+  document.getElementById('cms-prod-isnew').checked = p?.isNew ?? false
+  document.getElementById('cms-prod-issale').checked = p?.isSale ?? false
+  document.getElementById('cms-prod-upload-status').textContent = ''
+  document.getElementById('cms-prod-file').value = ''
+  document.querySelectorAll('#cms-prod-collections input[data-col-check]').forEach(chk => {
+    chk.checked = productCollections.includes(chk.dataset.colCheck)
+  })
+  _cmsRenderProductImages()
+  _cmsRenderVariants(variants)
+  _cmsOpenModal('cms-prod-overlay')
+}
+
+function bindCmsProdutos() {
+  const search = document.getElementById('cms-prod-search')
+  const applySearch = () => {
+      _cmsProdFilters.search = search.value.trim()
+      _cmsProdPage = 0
+      navigate('cms-produtos')
+  }
+  search?.addEventListener('keydown', e => {
+    if (e.key === 'Enter') { e.preventDefault(); applySearch() }
+  })
+  search?.addEventListener('change', applySearch)
+  document.getElementById('cms-prod-cat-filter')?.addEventListener('change', e => {
+    _cmsProdFilters.category = e.currentTarget.value
+    _cmsProdPage = 0
+    navigate('cms-produtos')
+  })
+  document.getElementById('cms-prod-status-filter')?.addEventListener('change', e => {
+    _cmsProdFilters.status = e.currentTarget.value
+    _cmsProdPage = 0
+    navigate('cms-produtos')
+  })
+  document.getElementById('cms-prod-prev')?.addEventListener('click', () => {
+    if (_cmsProdPage > 0) { _cmsProdPage--; navigate('cms-produtos') }
+  })
+  document.getElementById('cms-prod-next')?.addEventListener('click', () => {
+    _cmsProdPage++
+    navigate('cms-produtos')
+  })
+  document.getElementById('cms-category-add')?.addEventListener('click', async () => {
+    const input = document.getElementById('cms-category-name')
+    const name = input.value.trim()
+    if (!name) { input.focus(); return }
+    try {
+      await CMS.createProductCategory(name)
+      showToast('Categoria adicionada.')
+      navigate('cms-produtos')
+    } catch (error) {
+      console.error(error)
+      showToast(error.message)
+    }
+  })
+  document.getElementById('cms-category-name')?.addEventListener('keydown', e => {
+    if (e.key === 'Enter') { e.preventDefault(); document.getElementById('cms-category-add').click() }
+  })
+  document.getElementById('cms-product-categories')?.addEventListener('click', async e => {
+    const edit = e.target.closest('[data-category-edit]')
+    const remove = e.target.closest('[data-category-delete]')
+    try {
+      if (edit) {
+        const name = prompt('Novo nome da categoria:', edit.dataset.categoryName)?.trim()
+        if (!name || name === edit.dataset.categoryName) return
+        await CMS.renameProductCategory(edit.dataset.categoryEdit, name)
+        showToast('Categoria renomeada.')
+        navigate('cms-produtos')
+      }
+      if (remove && confirm(`Excluir a categoria "${remove.dataset.categoryName}"? Produtos vinculados precisam ser reatribuídos primeiro.`)) {
+        await CMS.deleteProductCategory(remove.dataset.categoryDelete)
+        showToast('Categoria excluída.')
+        navigate('cms-produtos')
+      }
+    } catch (error) { console.error(error); showToast(error.message) }
   })
 
   document.getElementById('cms-prod-new')?.addEventListener('click', () => _cmsProdOpenModal(null))
-
   document.getElementById('cms-add-collection')?.addEventListener('click', async () => {
     const input = document.getElementById('cms-new-collection')
     const name = input?.value.trim()
     if (!name) return
-    await CMS.addCollection(name)
-    navigate('cms-produtos')
+    try { await CMS.addCollection(name); navigate('cms-produtos') }
+    catch (error) { console.error(error); showToast(error.message) }
   })
   document.getElementById('cms-new-collection')?.addEventListener('keydown', e => {
     if (e.key === 'Enter') { e.preventDefault(); document.getElementById('cms-add-collection')?.click() }
   })
   document.getElementById('cms-collections-list')?.addEventListener('click', async e => {
     const starBtn = e.target.closest('[data-star]')
-    const delBtn  = e.target.closest('[data-del-col]')
-    if (starBtn) {
-      await CMS.setFeaturedCollection(starBtn.dataset.star)
-      navigate('cms-produtos')
-    }
-    if (delBtn && confirm('Excluir esta coleção? Ela será removida de todos os produtos.')) {
-      await CMS.deleteCollection(delBtn.dataset.delCol)
-      navigate('cms-produtos')
-    }
+    const delBtn = e.target.closest('[data-del-col]')
+    try {
+      if (starBtn) {
+        await CMS.setFeaturedCollection(starBtn.dataset.star)
+        navigate('cms-produtos')
+      }
+      if (delBtn && confirm('Excluir esta coleção? Ela será removida de todos os produtos.')) {
+        await CMS.deleteCollection(delBtn.dataset.delCol)
+        navigate('cms-produtos')
+      }
+    } catch (error) { console.error(error); showToast(error.message) }
   })
 
   document.getElementById('cms-prod-table')?.addEventListener('click', async e => {
     const editBtn = e.target.closest('[data-edit]')
-    const delBtn  = e.target.closest('[data-del]')
-    if (editBtn) {
-      const products = await CMS.getProducts()
-      const p = products.find(x => x.id === editBtn.dataset.edit)
-      if (p) {
-        const productCollections = await CMS.getProductCollections(p.id)
-        _cmsProdOpenModal(p, productCollections)
+    const delBtn = e.target.closest('[data-del]')
+    const publishBtn = e.target.closest('[data-publish]')
+    try {
+      if (editBtn) {
+        const result = await CMS.getAdminProducts({
+          ..._cmsProdFilters, page: _cmsProdPage, pageSize: CMS_PRODUCTS_PAGE_SIZE
+        })
+        const product = result.products.find(item => item.id === editBtn.dataset.edit)
+        if (!product) throw new Error('Produto não encontrado. Atualize a lista e tente novamente.')
+        const [productCollections, variants] = await Promise.all([
+          CMS.getProductCollections(product.id),
+          CMS.getProductVariants(product.id)
+        ])
+        _cmsProdOpenModal(product, productCollections, variants)
       }
-    }
-    if (delBtn && confirm('Excluir este produto? Esta ação não pode ser desfeita.')) {
-      await CMS.deleteProduct(delBtn.dataset.del)
-      navigate('cms-produtos')
-    }
+      if (publishBtn) {
+        const result = await CMS.getAdminProducts({
+          ..._cmsProdFilters, page: _cmsProdPage, pageSize: CMS_PRODUCTS_PAGE_SIZE
+        })
+        const product = result.products.find(item => item.id === publishBtn.dataset.publish)
+        if (!product) throw new Error('Produto não encontrado. Atualize a lista e tente novamente.')
+        await CMS.updateProductStatus(product.id, product.status === 'active' ? 'draft' : 'active')
+        showToast(product.status === 'active' ? 'Produto despublicado.' : 'Produto publicado.')
+        navigate('cms-produtos')
+      }
+      if (delBtn && confirm('Excluir este produto e suas imagens? Esta ação não pode ser desfeita.')) {
+        await CMS.deleteProduct(delBtn.dataset.del)
+        showToast('Produto excluído.')
+        navigate('cms-produtos')
+      }
+    } catch (error) { console.error(error); showToast(error.message) }
   })
 
-  document.getElementById('cms-prod-close')?.addEventListener('click',  () => _cmsCloseModal('cms-prod-overlay'))
-  document.getElementById('cms-prod-cancel')?.addEventListener('click', () => _cmsCloseModal('cms-prod-overlay'))
-  document.getElementById('cms-prod-overlay')?.addEventListener('click', e => { if (e.target === e.currentTarget) _cmsCloseModal('cms-prod-overlay') })
-
-  document.getElementById('cms-prod-file')?.addEventListener('change', async e => {
-    const file = e.target.files?.[0]
-    if (!file) return
-    const resized = await CMS.resizeImage(await CMS.fileToDataUrl(file))
-    _cmsProdSetImg(resized)
-  })
-  document.getElementById('cms-prod-url')?.addEventListener('blur', e => {
-    const url = e.target.value.trim()
-    if (url) _cmsProdSetImg(url)
-  })
-
-  document.getElementById('cms-prod-save')?.addEventListener('click', async () => {
-    if (!document.getElementById('cms-prod-form').reportValidity()) return
-    const idVal = document.getElementById('cms-prod-id').value
-    const name  = document.getElementById('cms-prod-name').value.trim()
-    const productId = await CMS.upsertProduct({
-      id:           idVal || null,
-      name,
-      slug:         name.toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,''),
-      category:     document.getElementById('cms-prod-cat').value,
-      price:        parseFloat(document.getElementById('cms-prod-price').value) || 0,
-      comparePrice: parseFloat(document.getElementById('cms-prod-compare').value) || null,
-      isNew:        document.getElementById('cms-prod-isnew').checked,
-      isSale:       document.getElementById('cms-prod-issale').checked,
-      image:        document.getElementById('cms-prod-img').value || '',
-      rating:       4.5,
-      reviews:      0,
-    })
-    if (productId) {
-      const selectedCollections = Array.from(document.querySelectorAll('#cms-prod-collections input[data-col-check]:checked')).map(i => i.dataset.colCheck)
-      await CMS.setProductCollections(productId, selectedCollections)
-    }
+  const closeModal = () => {
+    _cmsRevokePendingPreviews()
+    _cmsProdImageList = []
     _cmsCloseModal('cms-prod-overlay')
-    navigate('cms-produtos')
-  })
-}
-
-function _cmsProdOpenModal(p, productCollections = []) {
-  document.getElementById('cms-prod-modal-title').textContent = p ? 'Editar Produto' : 'Novo Produto'
-  document.getElementById('cms-prod-id').value      = p?.id ?? ''
-  document.getElementById('cms-prod-name').value    = p?.name ?? ''
-  document.getElementById('cms-prod-cat').value     = p?.category ?? 'Vestidos'
-  document.getElementById('cms-prod-price').value   = p?.price ?? ''
-  document.getElementById('cms-prod-compare').value = p?.comparePrice ?? ''
-  document.getElementById('cms-prod-isnew').checked  = p?.isNew ?? false
-  document.getElementById('cms-prod-issale').checked = p?.isSale ?? false
-  document.getElementById('cms-prod-url').value = ''
-  document.querySelectorAll('#cms-prod-collections input[data-col-check]').forEach(chk => {
-    chk.checked = productCollections.includes(chk.dataset.colCheck)
-  })
-  _cmsProdSetImg(p?.image ?? '')
-  _cmsOpenModal('cms-prod-overlay')
-}
-
-function _cmsProdSetImg(src) {
-  document.getElementById('cms-prod-img').value = src
-  const preview = document.getElementById('cms-prod-img-preview')
-  if (!preview) return
-  if (src) {
-    preview.innerHTML = `<img src="${src}" style="width:100%;height:100%;object-fit:cover;border-radius:6px" onerror="this.parentElement.innerHTML='<span>Imagem inválida</span>'">`
-    preview.classList.remove('cms-img-preview--empty')
-  } else {
-    preview.innerHTML = '<span>Clique ou arraste uma foto</span>'
-    preview.classList.add('cms-img-preview--empty')
   }
+  document.getElementById('cms-prod-close')?.addEventListener('click', closeModal)
+  document.getElementById('cms-prod-cancel')?.addEventListener('click', closeModal)
+  document.getElementById('cms-prod-overlay')?.addEventListener('click', e => {
+    if (e.target === e.currentTarget) closeModal()
+  })
+
+  const fileInput = document.getElementById('cms-prod-file')
+  const dropzone = document.getElementById('cms-prod-dropzone')
+  fileInput?.addEventListener('change', () => {
+    _cmsAddProductFiles(Array.from(fileInput.files || []))
+    fileInput.value = ''
+  })
+  dropzone?.addEventListener('dragover', e => { e.preventDefault(); dropzone.classList.add('is-dragging') })
+  dropzone?.addEventListener('dragleave', () => dropzone.classList.remove('is-dragging'))
+  dropzone?.addEventListener('drop', e => {
+    e.preventDefault()
+    dropzone.classList.remove('is-dragging')
+    _cmsAddProductFiles(Array.from(e.dataTransfer.files || []))
+  })
+  document.getElementById('cms-prod-images')?.addEventListener('click', e => {
+    const up = e.target.closest('[data-image-up]')
+    const down = e.target.closest('[data-image-down]')
+    const remove = e.target.closest('[data-image-remove]')
+    const index = Number(up?.dataset.imageUp ?? down?.dataset.imageDown ?? remove?.dataset.imageRemove)
+    if (up && index > 0) [_cmsProdImageList[index - 1], _cmsProdImageList[index]] = [_cmsProdImageList[index], _cmsProdImageList[index - 1]]
+    if (down && index < _cmsProdImageList.length - 1) [_cmsProdImageList[index + 1], _cmsProdImageList[index]] = [_cmsProdImageList[index], _cmsProdImageList[index + 1]]
+    if (remove) {
+      const [removed] = _cmsProdImageList.splice(index, 1)
+      if (removed.file) URL.revokeObjectURL(removed.previewUrl)
+    }
+    _cmsRenderProductImages()
+  })
+  document.getElementById('cms-prod-add-variant')?.addEventListener('click', () => {
+    document.getElementById('cms-prod-variants').insertAdjacentHTML('beforeend', _cmsVariantRow())
+  })
+  document.getElementById('cms-prod-variants')?.addEventListener('click', e => {
+    if (e.target.closest('[data-variant-remove]')) e.target.closest('.cms-variant-row').remove()
+  })
+
+  document.getElementById('cms-prod-save')?.addEventListener('click', async e => {
+    const form = document.getElementById('cms-prod-form')
+    if (!form.reportValidity()) return
+    const button = e.currentTarget
+    const status = document.getElementById('cms-prod-upload-status')
+    const name = document.getElementById('cms-prod-name').value.trim()
+    const price = Number(document.getElementById('cms-prod-price').value)
+    const comparePrice = Number(document.getElementById('cms-prod-compare').value) || null
+    const targetStatus = document.getElementById('cms-prod-status').value
+    const isSale = document.getElementById('cms-prod-issale').checked
+    if (comparePrice !== null && comparePrice <= price) {
+      showToast('O preço original precisa ser maior que o preço de venda.')
+      document.getElementById('cms-prod-compare').focus()
+      return
+    }
+    if (isSale && comparePrice === null) {
+      showToast('Informe o preço original para marcar o produto como promoção.')
+      document.getElementById('cms-prod-compare').focus()
+      return
+    }
+    if (targetStatus === 'active' && !_cmsProdImageList.length) {
+      showToast('Adicione pelo menos uma foto antes de publicar.')
+      return
+    }
+    const variants = Array.from(document.querySelectorAll('#cms-prod-variants .cms-variant-row')).map(row => ({
+      sku: row.querySelector('[data-variant-field="sku"]').value.trim(),
+      color: row.querySelector('[data-variant-field="color"]').value.trim(),
+      size: row.querySelector('[data-variant-field="size"]').value.trim(),
+      price: Number(row.querySelector('[data-variant-field="price"]').value) || null,
+      stock: Number(row.querySelector('[data-variant-field="stock"]').value),
+      is_active: true
+    }))
+    const skuSet = new Set()
+    for (const variant of variants) {
+      const normalizedSku = variant.sku.toLowerCase()
+      if (!variant.sku || skuSet.has(normalizedSku)) {
+        showToast('Preencha cada SKU de variante com um valor único.')
+        return
+      }
+      if (!Number.isInteger(variant.stock) || variant.stock < 0) {
+        showToast(`Estoque inválido para a variante ${variant.sku}.`)
+        return
+      }
+      skuSet.add(normalizedSku)
+    }
+    button.disabled = true
+    button.textContent = 'Salvando…'
+    let productId = null
+    try {
+      productId = await CMS.upsertProduct({
+        id: document.getElementById('cms-prod-id').value || null,
+        name,
+        sku: document.getElementById('cms-prod-sku').value.trim(),
+        slug: document.getElementById('cms-prod-slug').value.trim() || name,
+        description: document.getElementById('cms-prod-description').value.trim(),
+        categoryId: document.getElementById('cms-prod-cat').value || null,
+        category: document.getElementById('cms-prod-cat').selectedOptions[0]?.textContent || '',
+        brand: document.getElementById('cms-prod-brand').value.trim(),
+        price,
+        comparePrice,
+        status: _cmsEditingProduct?.status || 'draft',
+        isNew: document.getElementById('cms-prod-isnew').checked,
+        isSale,
+        rating: _cmsEditingProduct?.rating || 0,
+        reviews: _cmsEditingProduct?.reviews || 0
+      })
+      const pendingCount = _cmsProdImageList.filter(image => image.file).length
+      const progress = document.getElementById('cms-prod-upload-progress')
+      const progressFill = progress.querySelector('span')
+      progressFill.style.width = '0%'
+      progress.setAttribute('aria-valuenow', '0')
+      progress.classList.toggle('is-active', pendingCount > 0)
+      status.textContent = pendingCount ? `Enviando 0 de ${pendingCount} imagens…` : 'Salvando imagens…'
+      await CMS.saveProductImages(productId, _cmsProdImageList.map(image => ({ ...image, alt: image.alt || name })),
+        (completed, total) => {
+          const percent = Math.round((completed / total) * 100)
+          progressFill.style.width = `${percent}%`
+          progress.setAttribute('aria-valuenow', String(percent))
+          status.textContent = `Enviando ${completed} de ${total} imagens…`
+        })
+      await CMS.saveProductVariants(productId, variants)
+      const selectedCollections = Array.from(document.querySelectorAll('#cms-prod-collections input[data-col-check]:checked'))
+        .map(input => input.dataset.colCheck)
+      await CMS.setProductCollections(productId, selectedCollections)
+      if (targetStatus !== (_cmsEditingProduct?.status || 'draft')) {
+        await CMS.updateProductStatus(productId, targetStatus)
+      }
+      _cmsRevokePendingPreviews()
+      showToast(targetStatus === 'active' ? 'Produto publicado com sucesso.' : 'Produto salvo com sucesso.')
+      closeModal()
+      navigate('cms-produtos')
+    } catch (error) {
+      console.error('Erro ao salvar o produto:', error)
+      let message = error.message
+      if (!_cmsEditingProduct && productId) {
+        try {
+          await CMS.deleteProduct(productId)
+        } catch (cleanupError) {
+          console.error('Falha ao remover o cadastro incompleto:', cleanupError)
+          message += ` O rascunho incompleto permaneceu no sistema: ${cleanupError.message}`
+        }
+      }
+      status.textContent = message
+      showToast(message)
+    } finally {
+      button.disabled = false
+      button.textContent = 'Salvar produto'
+    }
+  })
 }
 
 // ── Blog ──────────────────────────────────────────────────────────
@@ -1918,6 +1634,17 @@ async function renderCmsBlog() {
                 </div>
               </div>
               <input type="hidden" id="cms-blog-img">
+              <div class="cms-blog-crop" id="cms-blog-crop" hidden>
+                <label>Zoom <input id="cms-blog-crop-zoom" type="range" min="1" max="3" step=".05" value="1"></label>
+                <label>Horizontal <input id="cms-blog-crop-x" type="range" min="0" max="100" value="50"></label>
+                <label>Vertical <input id="cms-blog-crop-y" type="range" min="0" max="100" value="50"></label>
+              </div>
+            </div>
+            <div class="cms-field cms-field--full">
+              <label class="cms-label">Imagens adicionais do post</label>
+              <div id="cms-blog-gallery-preview" class="cms-gallery"></div>
+              <label class="cms-btn cms-btn--outline cms-btn--sm" style="cursor:pointer">Adicionar imagens<input type="file" id="cms-blog-gallery-file" accept="image/*" multiple style="display:none"></label>
+              <input type="hidden" id="cms-blog-gallery">
             </div>
           </form>
         </div>
@@ -1968,6 +1695,16 @@ function bindCmsBlog() {
     const url = e.target.value.trim()
     if (url) _cmsBlogSetImg(url)
   })
+  document.querySelectorAll('#cms-blog-crop input').forEach(input => input.addEventListener('input', _cmsBlogUpdateCropPreview))
+  document.getElementById('cms-blog-gallery-file')?.addEventListener('change', async e => {
+    const current = JSON.parse(document.getElementById('cms-blog-gallery').value || '[]')
+    for (const file of Array.from(e.target.files || [])) current.push(await CMS.resizeImage(await CMS.fileToDataUrl(file), 1600, 1200))
+    _cmsBlogSetGallery(current)
+  })
+  document.getElementById('cms-blog-gallery-preview')?.addEventListener('click', e => {
+    const button = e.target.closest('[data-gallery-remove]'); if (!button) return
+    const gallery = JSON.parse(document.getElementById('cms-blog-gallery').value || '[]'); gallery.splice(Number(button.dataset.galleryRemove), 1); _cmsBlogSetGallery(gallery)
+  })
 
   document.getElementById('cms-blog-save')?.addEventListener('click', async () => {
     if (!document.getElementById('cms-blog-form').reportValidity()) return
@@ -1983,6 +1720,10 @@ function bindCmsBlog() {
       excerpt:  document.getElementById('cms-blog-excerpt').value.trim(),
       content:  document.getElementById('cms-blog-content').value,
       image:    document.getElementById('cms-blog-img').value || '',
+      coverCropX: Number(document.getElementById('cms-blog-crop-x').value),
+      coverCropY: Number(document.getElementById('cms-blog-crop-y').value),
+      coverCropZoom: Number(document.getElementById('cms-blog-crop-zoom').value),
+      gallery: JSON.parse(document.getElementById('cms-blog-gallery').value || '[]'),
     })
     _cmsCloseModal('cms-blog-overlay')
     navigate('cms-blog')
@@ -2000,6 +1741,11 @@ function _cmsBlogOpenModal(p) {
   document.getElementById('cms-blog-content').value = p?.content ?? ''
   document.getElementById('cms-blog-url').value = ''
   _cmsBlogSetImg(p?.image ?? '')
+  document.getElementById('cms-blog-crop-x').value = p?.coverCropX ?? 50
+  document.getElementById('cms-blog-crop-y').value = p?.coverCropY ?? 50
+  document.getElementById('cms-blog-crop-zoom').value = p?.coverCropZoom ?? 1
+  _cmsBlogSetGallery(p?.gallery || [])
+  _cmsBlogUpdateCropPreview()
   _cmsOpenModal('cms-blog-overlay')
 }
 
@@ -2010,15 +1756,28 @@ function _cmsBlogSetImg(src) {
   if (src) {
     preview.innerHTML = `<img src="${src}" style="width:100%;height:100%;object-fit:cover;border-radius:6px">`
     preview.classList.remove('cms-img-preview--empty')
+    document.getElementById('cms-blog-crop').hidden = false
   } else {
     preview.innerHTML = '<span>Clique ou arraste uma foto</span>'
     preview.classList.add('cms-img-preview--empty')
   }
 }
+function _cmsBlogUpdateCropPreview() {
+  const image = document.querySelector('#cms-blog-img-preview img'); if (!image) return
+  image.style.objectPosition = `${document.getElementById('cms-blog-crop-x').value}% ${document.getElementById('cms-blog-crop-y').value}%`
+  image.style.transform = `scale(${document.getElementById('cms-blog-crop-zoom').value})`
+}
+function _cmsBlogSetGallery(gallery) {
+  document.getElementById('cms-blog-gallery').value = JSON.stringify(gallery)
+  const root = document.getElementById('cms-blog-gallery-preview'); if (!root) return
+  root.innerHTML = gallery.map((src, index) => `<div class="cms-gallery__item"><img src="${src}" alt=""><button type="button" class="cms-gallery__del" data-gallery-remove="${index}">✕</button></div>`).join('')
+}
 
 // ── Loja Física ───────────────────────────────────────────────────
-function renderCmsLojaFisica() {
-  const data = CMS.getLojaFisica()
+async function renderCmsLojaFisica() {
+  let remote = {}
+  try { remote = await CMS.getStoreContent() } catch (error) { console.error('Erro ao carregar dados da loja:', error) }
+  const data = { ...CMS.getLojaFisica(), ...remote }
   const galleryItems = (data.gallery || []).map((src, i) => `
     <div class="cms-gallery__item" data-idx="${i}">
       <img src="${src}" alt="Foto ${i+1}" onerror="this.style.display='none'">
@@ -2096,7 +1855,7 @@ function bindCmsLojaFisica() {
     navigate('cms-loja')
   })
 
-  document.getElementById('cms-loja-save')?.addEventListener('click', () => {
+  document.getElementById('cms-loja-save')?.addEventListener('click', async () => {
     const data = {
       ...CMS.getLojaFisica(),
       about:    document.getElementById('cms-loja-about').value,
@@ -2108,8 +1867,14 @@ function bindCmsLojaFisica() {
     }
     CMS.saveLojaFisica(data)
     const btn = document.getElementById('cms-loja-save')
-    btn.textContent = 'Salvo!'
     btn.disabled = true
+    try {
+      await CMS.saveStoreContent(data)
+      btn.textContent = 'Salvo!'
+    } catch (error) {
+      Toast.show('Não foi possível salvar no site.', error.message, 'error')
+      btn.textContent = 'Tentar novamente'
+    }
     setTimeout(() => { btn.textContent = 'Salvar alterações'; btn.disabled = false }, 2000)
   })
 }

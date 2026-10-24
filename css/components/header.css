@@ -190,7 +190,7 @@ html.has-cached-profile-photo .bottom-nav__item[href="account.html"]::before {
   bottom: -2px;
   width: 15px;
   height: 15px;
-  display: flex;
+  display: none !important;
   align-items: center;
   justify-content: center;
   border: 2px solid var(--color-white);

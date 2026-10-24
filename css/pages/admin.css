@@ -1002,6 +1002,7 @@ text.adm-chart-lbl {
 }
 
 .adm-nav__item.is-hidden { display: none; }
+.adm-nav__item[data-disabled="true"] { display: none !important; }
 
 /* Topbar notif bell */
 .adm-topbar__notif {
@@ -1870,4 +1871,65 @@ text.adm-chart-lbl {
   .cms-modal { border-radius: 12px; }
   .cms-search input { width: 140px; }
   .cms-banner-grid { grid-template-columns: 1fr; }
+}
+
+.cms-error-state { color: var(--adm-red); border-left: 4px solid var(--adm-red); }
+.cms-prod-category-add, .cms-prod-pagination, .cms-product-section__heading {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+}
+.cms-prod-category-add { margin: -8px 0 18px; justify-content: flex-start; }
+.cms-prod-category-add .cms-input { max-width: 280px; }
+.cms-product-categories { display: flex; flex-wrap: wrap; gap: 8px; margin: -8px 0 18px; }
+.cms-category-chip {
+  display: inline-flex; align-items: center; gap: 7px; padding: 5px 8px 5px 11px;
+  border: 1px solid var(--adm-border); border-radius: 24px; background: #fff;
+  color: var(--adm-text); font-size: .79rem;
+}
+.cms-category-chip button { border: 0; background: transparent; cursor: pointer; color: var(--adm-muted); padding: 2px; }
+.cms-category-chip button:hover { color: var(--adm-primary-text); }
+.cms-prod-pagination { padding: 14px 4px; color: var(--adm-muted); font-size: .82rem; }
+.cms-prod-pagination > div { display: flex; gap: 8px; }
+.cms-prod-pagination button:disabled { opacity: .45; cursor: not-allowed; }
+.cms-product-modal { max-width: 900px; }
+.cms-product-modal__body { max-height: 75vh; overflow-y: auto; }
+.cms-product-section { border-bottom: 1px solid var(--adm-border); padding-bottom: 20px; }
+.cms-product-section:last-child { border-bottom: 0; padding-bottom: 0; }
+.cms-product-section h3 { font-size: .92rem; margin-bottom: 12px; }
+.cms-product-section__heading { margin-bottom: 12px; }
+.cms-check-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.cms-check-row label { display: inline-flex; align-items: center; gap: 6px; font-size: .84rem; cursor: pointer; }
+.cms-check-row input { accent-color: var(--adm-primary-text); }
+.cms-dropzone {
+  border: 1.5px dashed var(--adm-border); border-radius: 10px; padding: 18px;
+  text-align: center; color: var(--adm-muted); font-size: .82rem; cursor: pointer;
+  background: var(--adm-bg); transition: border-color .15s, background .15s;
+}
+.cms-dropzone.is-dragging { border-color: var(--adm-primary-text); background: var(--adm-primary-light); }
+.cms-upload-progress { display: none; height: 7px; margin-top: 10px; overflow: hidden; border-radius: 8px; background: var(--adm-bg); }
+.cms-upload-progress.is-active { display: block; }
+.cms-upload-progress span { display: block; width: 0; height: 100%; background: var(--adm-primary-text); transition: width .2s ease; }
+.cms-prod-images { display: grid; grid-template-columns: repeat(auto-fill, minmax(125px, 1fr)); gap: 10px; margin-top: 12px; }
+.cms-prod-image { position: relative; min-width: 0; border: 1px solid var(--adm-border); border-radius: 10px; overflow: hidden; background: var(--adm-bg); }
+.cms-prod-image > img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; }
+.cms-prod-image__primary {
+  position: absolute; top: 7px; left: 7px; padding: 3px 7px; border-radius: 20px;
+  background: var(--adm-primary-text); color: #fff; font-size: .65rem; font-weight: 600;
+}
+.cms-prod-image__actions { display: flex; justify-content: center; gap: 5px; padding: 6px; }
+.cms-prod-image__actions .cms-icon-btn { width: 28px; height: 28px; }
+.cms-variants-head, .cms-variant-row {
+  display: grid; grid-template-columns: 1.1fr 1fr .8fr 1fr .7fr 34px; gap: 8px; align-items: center;
+}
+.cms-variants-head { padding: 0 3px 6px; color: var(--adm-muted); font-size: .69rem; font-weight: 600; }
+.cms-variant-row { margin-bottom: 8px; }
+.cms-variant-row .cms-input { min-width: 0; width: 100%; }
+
+@media (max-width: 768px) {
+  .cms-product-modal__body { max-height: 68vh; padding: 16px; }
+  .cms-variants-head { display: none; }
+  .cms-variant-row { grid-template-columns: 1fr 1fr 34px; }
+  .cms-variant-row .cms-input:nth-child(1),
+  .cms-variant-row .cms-input:nth-child(4) { grid-column: span 2; }
+  .cms-prod-category-add { align-items: stretch; }
+  .cms-prod-category-add .cms-input { width: 100%; min-width: 0; }
 }

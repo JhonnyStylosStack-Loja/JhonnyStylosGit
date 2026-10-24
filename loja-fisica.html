@@ -193,7 +193,7 @@
         <p style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--color-primary-text);margin-bottom:8px">Um espaço feito para você</p>
         <h2 class="section__title">Conheça Nossa <em style="font-style:italic;font-weight:400;color:var(--color-primary-text)">Loja</em></h2>
       </div>
-      <div class="store-gallery__grid">
+      <div class="store-gallery__grid" id="store-gallery-grid">
         <!-- Foto principal -->
         <div class="store-gallery__main">
           <img src="assets/images/lojafisica/02.png"
@@ -219,7 +219,7 @@
   <!-- ④ INFO CARDS ────────────────────────────────────────── -->
   <section class="section store-cards">
     <div class="container">
-      <div class="store-cards__grid">
+      <div class="store-cards__grid" id="store-content-cards" hidden>
 
         <!-- Card: Horário -->
         <div class="store-card">
@@ -298,7 +298,7 @@
   <!-- ⑤ COMO CHEGAR ──────────────────────────────────────── -->
   <section class="section store-how">
     <div class="container">
-      <div class="store-how__layout">
+      <div class="store-how__layout" id="store-how-content" hidden>
         <div class="store-how__text">
           <p class="store-how__eyebrow">Localização</p>
           <h2 class="store-how__title">Fácil de <em>Encontrar</em></h2>
@@ -357,7 +357,7 @@
   </section>
 
   <!-- ⑥ CTA FINAL ─────────────────────────────────────────── -->
-  <section class="store-cta">
+  <section class="store-cta" id="store-cta-content" hidden>
     <div class="container">
       <p class="store-cta__eyebrow">Te esperamos!</p>
       <h2 class="store-cta__title">Venha Criar Seu Look <em>Perfeito</em></h2>
@@ -486,9 +486,10 @@
 <script src="js/utils/formatter.js"></script>
 <script src="js/utils/debounce.js"></script>
 <script src="js/utils/animations.js"></script>
-<script src="js/data/mock.js"></script>
 <script src="js/components/toast.js"></script>
-<script src="js/components/header.js?v=20261024-7"></script>
+<script src="js/components/header.js?v=20261024-8"></script>
+<script src="js/pages/store-gallery.js"></script>
+<script src="js/pages/store-content.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     if (typeof Toast !== 'undefined') Toast.init()

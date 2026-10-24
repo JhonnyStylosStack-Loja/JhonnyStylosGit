@@ -124,13 +124,22 @@
             <p style="color:var(--color-text-muted);font-size:var(--font-size-sm)">Carregando…</p>
           </div>
         </div>
+        <div class="filter-block">
+          <div class="filter-block__head"><span class="filter-block__title">Tamanhos</span></div>
+          <div class="filter-block__body" id="shop-size-filters"></div>
+        </div>
+        <div class="filter-block">
+          <div class="filter-block__head"><span class="filter-block__title">Cores</span></div>
+          <div class="filter-block__body" id="shop-color-filters"></div>
+        </div>
       </aside>
 
       <!-- MAIN -->
       <main class="shop-main">
         <div class="shop-toolbar">
-          <span id="shop-count" class="shop-toolbar__count">Exibindo 12 de 12 produtos</span>
+          <span id="shop-count" class="shop-toolbar__count" aria-live="polite">Carregando catálogo…</span>
           <div class="shop-toolbar__right">
+            <input class="shop-sort" id="shop-search" type="search" placeholder="Buscar produtos" aria-label="Buscar produtos">
             <select class="shop-sort" id="shop-sort">
               <option value="default">Ordenação padrão</option>
               <option value="price-asc">Preço: Menor ao Maior</option>
@@ -227,10 +236,10 @@
 <script src="js/utils/formatter.js"></script>
 <script src="js/utils/debounce.js"></script>
 <script src="js/utils/animations.js"></script>
-<script src="js/data/mock.js"></script>
 <script src="js/data/storage.js"></script>
+<script src="js/data/commerce.js"></script>
 <script src="js/components/toast.js"></script>
-<script src="js/components/header.js?v=20261024-7"></script>
+<script src="js/components/header.js?v=20261024-8"></script>
 <script src="js/pages/shop.js"></script>
 
 <!-- BOTTOM NAV -->

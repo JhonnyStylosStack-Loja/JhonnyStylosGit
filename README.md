@@ -254,6 +254,39 @@ export const supabase = createClient(
 
 ---
 
+## 🧺 Produtos no CRM
+
+O módulo de produtos fica no CRM existente (`admin.html` → **Produtos**) e usa
+os perfis `admin` e `hr` da tabela `public.users`. Não crie um segundo login nem
+atribua funções privilegiadas pelo cadastro público.
+
+Antes de usar o módulo em um projeto Supabase:
+
+1. Aplique as migrations em ordem (`supabase db push`, após vincular a pasta ao
+   projeto correto) ou execute os arquivos da pasta `supabase/migrations` no
+   SQL Editor. A migration `20261024160000_product_management.sql` é aditiva;
+   não apaga produtos nem tabelas existentes.
+2. Confirme que o usuário administrador/RH já possui `users.role = 'admin'` ou
+   `users.role = 'hr'`. A atribuição deve ser feita por um operador confiável no
+   painel Supabase, nunca por campos do formulário de cadastro.
+3. Abra **Produtos** no CRM para criar categorias e produtos. Preencha preço,
+   categoria e SKU de cada variante; adicione fotos e estoque por cor/tamanho.
+   Use **Rascunho** para guardar sem exibir na loja ou **Publicado** para
+   disponibilizar o produto.
+
+As imagens são convertidas para WebP no navegador e guardadas no bucket privado
+`product-images`; o banco armazena apenas seus caminhos. Fotos podem ser
+selecionadas em lote, arrastadas para a área de envio, ordenadas pelas setas e
+removidas antes de salvar. É possível enviar até 12 imagens por produto, com
+limite de 10 MB por arquivo.
+
+RLS restringe escrita de produtos, categorias, imagens, variantes e arquivos
+do Storage a perfis `admin`/`hr`. Visitantes consultam produtos publicados e as
+imagens associadas a eles. Links de imagem são assinados e renovados ao carregar
+as páginas.
+
+---
+
 ## 🖼️ Seções da Homepage (wireframe de referência)
 
 | # | Seção | Arquivo responsável |

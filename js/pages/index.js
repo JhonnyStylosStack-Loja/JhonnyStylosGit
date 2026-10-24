@@ -143,12 +143,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     })
   }
 
-  const MOCK_PRODUCTS = await CMS.getProducts()
-  const MOCK_BLOG_POSTS = await CMS.getBlogPosts()
-  if (!MOCK_PRODUCTS.length) return
+  const products = await CMS.getProducts()
+  const blogPosts = await CMS.getBlogPosts()
+  if (!products.length) return
 
   // ── New Arrivals section ────────────────────────────────
-  const newArrivals = MOCK_PRODUCTS.filter(p => p.isNew)
+  const newArrivals = products.filter(p => p.isNew)
   const naFeatured  = newArrivals.length ? newArrivals.reduce((a, b) => a.rating >= b.rating ? a : b) : null
   const naFeatureEl = document.getElementById('na-feature')
   const naGridEl    = document.getElementById('na-grid')
@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       ? newArrivals.filter(p => p.id !== naFeatured?.id)
       : newArrivals.filter(p => p.category === filter && p.id !== naFeatured?.id)
     naGridEl.innerHTML = pool.slice(0, 4).map(renderProductCard).join('')
-    bindCardEvents(naGridEl, MOCK_PRODUCTS)
+    bindCardEvents(naGridEl, products)
   }
   renderNewGrid('all')
 
@@ -175,32 +175,32 @@ document.addEventListener('DOMContentLoaded', async () => {
   })
 
   // ── Legacy data (bestSellers / saleItems for other sections) ──
-  const bestSellers = MOCK_PRODUCTS.slice(4, 8)
-  const saleItems   = MOCK_PRODUCTS.filter(p => p.isSale)
+  const bestSellers = products.slice(4, 8)
+  const saleItems   = products.filter(p => p.isSale)
 
   // Mini lists
   const miniOffer   = document.getElementById('mini-offer')
   const miniNew     = document.getElementById('mini-new')
   const miniBest    = document.getElementById('mini-best')
-  if (miniOffer) miniOffer.innerHTML = MOCK_PRODUCTS.filter(p => p.isSale).slice(0, 4).map(renderMiniItem).join('')
-  if (miniNew)   miniNew.innerHTML   = MOCK_PRODUCTS.filter(p => p.isNew).slice(0, 4).map(renderMiniItem).join('')
-  if (miniBest)  miniBest.innerHTML  = MOCK_PRODUCTS.slice(0, 4).map(renderMiniItem).join('')
+  if (miniOffer) miniOffer.innerHTML = products.filter(p => p.isSale).slice(0, 4).map(renderMiniItem).join('')
+  if (miniNew)   miniNew.innerHTML   = products.filter(p => p.isNew).slice(0, 4).map(renderMiniItem).join('')
+  if (miniBest)  miniBest.innerHTML  = products.slice(0, 4).map(renderMiniItem).join('')
 
   // Daily deals grids
   const dealsGrid = document.getElementById('deals-grid')
   const dealsNew  = document.getElementById('deals-new')
   const dealsSale = document.getElementById('deals-sale')
-  if (dealsGrid) dealsGrid.innerHTML = MOCK_PRODUCTS.slice(0, 4).map(renderProductCard).join('')
-  if (dealsNew)  dealsNew.innerHTML  = MOCK_PRODUCTS.filter(p => p.isNew).slice(0, 4).map(renderProductCard).join('')
-  if (dealsSale) dealsSale.innerHTML = MOCK_PRODUCTS.filter(p => p.isSale).slice(0, 4).map(renderProductCard).join('')
+  if (dealsGrid) dealsGrid.innerHTML = products.slice(0, 4).map(renderProductCard).join('')
+  if (dealsNew)  dealsNew.innerHTML  = products.filter(p => p.isNew).slice(0, 4).map(renderProductCard).join('')
+  if (dealsSale) dealsSale.innerHTML = products.filter(p => p.isSale).slice(0, 4).map(renderProductCard).join('')
 
-  // Latest blog posts (always in sync with MOCK_BLOG_POSTS)
+  // Últimos posts publicados
   const blogLatestGrid = document.getElementById('blog-latest-grid')
   if (blogLatestGrid) {
-    blogLatestGrid.innerHTML = MOCK_BLOG_POSTS.slice(0, 3).map(renderLatestBlogCard).join('')
+    blogLatestGrid.innerHTML = blogPosts.slice(0, 3).map(renderLatestBlogCard).join('')
   }
 
-  if (dealsGrid) bindCardEvents(dealsGrid, MOCK_PRODUCTS)
-  if (dealsNew)  bindCardEvents(dealsNew, MOCK_PRODUCTS)
-  if (dealsSale) bindCardEvents(dealsSale, MOCK_PRODUCTS)
+  if (dealsGrid) bindCardEvents(dealsGrid, products)
+  if (dealsNew)  bindCardEvents(dealsNew, products)
+  if (dealsSale) bindCardEvents(dealsSale, products)
 })

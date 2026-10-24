@@ -52,26 +52,22 @@
 <div class="page-header"><div class="container"><div class="page-header__inner"><div><h1 class="page-header__title" style="font-size:1.4rem">Detalhe do Produto</h1><nav class="breadcrumb"><a href="index.html">Início</a><span class="breadcrumb__sep">/</span><a href="shop.html">Loja</a><span class="breadcrumb__sep">/</span><span>Produto</span></nav></div></div></div></div>
 
 <div class="container">
-  <div class="product-page">
+  <div class="product-page" hidden>
     <div class="product-layout">
 
       <!-- GALLERY -->
       <div class="product-gallery">
         <div class="product-gallery__main">
-          <img src="IMAGEM ILUSTRATIV/PRODUTOS.png" alt="Product image">
+          <img src="data:," alt="">
         </div>
         <div class="product-gallery__thumbs">
-          <div class="product-gallery__thumb is-active"><img src="IMAGEM ILUSTRATIV/PRODUTOS.png" alt="Thumb 1"></div>
-          <div class="product-gallery__thumb"><img src="IMAGEM ILUSTRATIV/PRODUTOS.png" alt="Thumb 2"></div>
-          <div class="product-gallery__thumb"><img src="IMAGEM ILUSTRATIV/PRODUTOS.png" alt="Thumb 3"></div>
-          <div class="product-gallery__thumb"><img src="IMAGEM ILUSTRATIV/PRODUTOS.png" alt="Thumb 4"></div>
         </div>
       </div>
 
       <!-- INFO -->
       <div class="product-info">
         <p class="product-info__category">Categoria</p>
-        <h1 class="product-info__name">Lorem Ipsum Nome do Produto</h1>
+        <h1 class="product-info__name">Carregando produto…</h1>
         <div class="product-info__meta">
           <div class="product-info__rating">
             <div class="stars">
@@ -84,13 +80,13 @@
             <span class="product-info__rating-text">(24 avaliações)</span>
           </div>
           <span class="badge badge--new">Novo</span>
-          <span style="font-size:var(--font-size-sm);color:var(--color-text-muted)">Em estoque</span>
+          <span class="product-info__availability" style="font-size:var(--font-size-sm);color:var(--color-text-muted)">Em estoque</span>
         </div>
         <div class="product-info__pricing">
-          <span class="product-info__price">R$129,00</span>
-          <span class="product-info__compare">R$179,00</span>
+          <span class="product-info__price"></span>
+          <span class="product-info__compare"></span>
         </div>
-        <p class="product-info__desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+        <p class="product-info__desc"></p>
 
         <div class="product-info__option">
           <span class="product-info__option-label">Tamanho <span>— Guia de tamanhos</span></span>
@@ -132,18 +128,10 @@
         <button class="detail-tab-btn">Avaliações (24)</button>
       </div>
       <div class="detail-panel is-active">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto.</p>
       </div>
       <div class="detail-panel">
-        <p><strong>Material:</strong> Lorem ipsum consectetur 80%, Adipiscing 20%</p>
-        <p><strong>Modelagem:</strong> Dolor sit amet corte regular</p>
-        <p><strong>Cuidados:</strong> Lavar à máquina com água fria, não alvejar</p>
-        <p><strong>Origem:</strong> Fabricado no Brasil</p>
       </div>
       <div class="detail-panel">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem avaliações ainda — seja o primeiro a avaliar este produto.</p>
       </div>
     </div>
 
@@ -233,11 +221,11 @@
 <script src="js/utils/formatter.js"></script>
 <script src="js/utils/debounce.js"></script>
 <script src="js/utils/animations.js"></script>
-<script src="js/data/mock.js"></script>
 <script src="js/data/storage.js"></script>
+<script src="js/data/commerce.js"></script>
 <script src="js/components/toast.js"></script>
-<script src="js/components/header.js?v=20261024-7"></script>
-<script src="js/pages/product.js"></script>
+<script src="js/components/header.js?v=20261024-8"></script>
+<script src="js/pages/product.js?v=20261024-1"></script>
 
 <!-- BOTTOM NAV -->
 <nav class="bottom-nav">

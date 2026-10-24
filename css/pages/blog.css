@@ -190,3 +190,6 @@
   .post-layout { grid-template-columns: 1fr; }
   .post-sidebar { display: none; }
 }
+.post-media-gallery { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-top:32px; }
+.post-media-gallery img { width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:12px; }
+@media (max-width:600px) { .post-media-gallery { grid-template-columns:1fr; } }

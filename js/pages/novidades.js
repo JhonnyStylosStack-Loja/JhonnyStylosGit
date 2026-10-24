@@ -1,6 +1,56 @@
 /* novidades.js — Página de Novidades */
 
 let allProducts = []
+const ILLUSTRATIVE_ASSETS = [
+  'IMAGEM%20ILUSTRATIV/PRODUTOS.png',
+  'IMAGEM%20ILUSTRATIV/BANNERS.png',
+  'IMAGEM%20ILUSTRATIV/BANNERS%20BLOGS.png',
+  'IMAGEM%20ILUSTRATIV/BACKGROUNDS.png'
+]
+
+function renderIllustrativeLayout() {
+  const spotlight = document.getElementById('nov-spotlight-card')
+  const mosaic = document.getElementById('nov-mosaic-grid')
+  const grid = document.getElementById('nov-all-grid')
+
+  if (spotlight) {
+    spotlight.innerHTML = `
+      <div class="nov-spotlight__img-wrap">
+        <img src="${ILLUSTRATIVE_ASSETS[0]}" alt="Imagem ilustrativa da seção de novidades" class="nov-spotlight__img" loading="eager">
+        <div class="nov-spotlight__badges"><span class="badge-destaque">Imagem ilustrativa</span></div>
+      </div>
+      <div class="nov-spotlight__info">
+        <p class="nov-spotlight__cat">Em preparação</p>
+        <h2 class="nov-spotlight__name">A próxima seleção chega em breve</h2>
+        <p class="nov-spotlight__desc">Esta é uma prévia visual da página. As novidades reais aparecem aqui automaticamente assim que forem cadastradas e publicadas no catálogo.</p>
+        <div class="nov-spotlight__actions"><a href="shop.html" class="btn btn--primary">Ver catálogo</a></div>
+      </div>`
+  }
+
+  if (mosaic) {
+    mosaic.innerHTML = ILLUSTRATIVE_ASSETS.map((image, index) => `
+      <article class="mos-card mos-card--illustrative">
+        <img src="${image}" alt="Imagem ilustrativa ${index + 1} da seção de novidades" class="mos-card__img" loading="lazy">
+        <div class="mos-card__overlay"></div>
+        <div class="mos-card__body">
+          <p class="mos-card__cat">Prévia visual</p>
+          <p class="mos-card__name">Novidades em preparação</p>
+        </div>
+      </article>`).join('')
+  }
+
+  if (grid) {
+    grid.innerHTML = `
+      <div class="nov-empty nov-empty--illustrated">
+        <img src="${ILLUSTRATIVE_ASSETS[2]}" alt="Imagem ilustrativa do catálogo de novidades" loading="lazy">
+        <div>
+          <h3>Ainda não há novidades publicadas</h3>
+          <p>Quando os produtos forem publicados no CRM, eles serão exibidos nesta área.</p>
+          <a href="shop.html" class="btn btn--outline">Ir para o catálogo</a>
+        </div>
+      </div>`
+  }
+}
 
 function renderSpotlight(SPOTLIGHT) {
   const el = document.getElementById('nov-spotlight-card')
@@ -207,9 +257,22 @@ function initControls() {
 // ── Init ──────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', async () => {
   Toast.init()
-  allProducts = await CMS.getProducts()
-  if (!allProducts.length) return
-  const SPOTLIGHT = allProducts.find(p => p.isNew && p.isSale) || allProducts[0]
+  try {
+    allProducts = await CMS.getProducts() || []
+  } catch (error) {
+    console.error('Não foi possível carregar as novidades:', error)
+    allProducts = []
+  }
+
+  const newProducts = allProducts.filter(product => product.isNew)
+  if (!newProducts.length) {
+    renderIllustrativeLayout()
+    startCountdown()
+    return
+  }
+
+  allProducts = newProducts
+  const SPOTLIGHT = newProducts.find(p => p.isSale) || newProducts[0]
   renderSpotlight(SPOTLIGHT)
   renderMosaic()
   startCountdown()
