@@ -3,6 +3,20 @@
  * Padrão de objeto global, igual ao CMS em js/data/storage.js (sem import/export).
  */
 const SupabaseAuth = {
+  _getErrorMessage(error) {
+    const messages = {
+      invalid_credentials: 'E-mail ou senha incorretos.',
+      email_not_confirmed: 'Confirme seu e-mail antes de entrar.',
+      user_not_found: 'Não encontramos uma conta com esse e-mail.',
+      too_many_requests: 'Muitas tentativas. Aguarde um pouco e tente novamente.',
+      over_request_rate_limit: 'Muitas tentativas. Aguarde um pouco e tente novamente.'
+    }
+    const code = error?.code || error?.error_code
+    if (code && messages[code]) return messages[code]
+    if (error?.status === 429) return messages.too_many_requests
+    if (/invalid login credentials/i.test(error?.message || '')) return messages.invalid_credentials
+    return error?.message || 'Não foi possível entrar. Tente novamente.'
+  },
   async signup(email, password, fullName) {
     try {
       const { data, error } = await supabaseClient.auth.signUp({
@@ -28,7 +42,7 @@ const SupabaseAuth = {
       if (error) throw error
       return { success: true, user: data.user, session: data.session }
     } catch (error) {
-      return { success: false, error: error.message }
+      return { success: false, error: this._getErrorMessage(error) }
     }
   },
 
