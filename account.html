@@ -333,6 +333,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     reader.onload = e => {
       applyAvatar(e.target.result)
       localStorage.setItem(photoKey, e.target.result)
+      Header?._applyProfile?.()
       Toast.show('Foto de perfil atualizada!', '', 'success')
     }
     reader.readAsDataURL(file)
@@ -351,6 +352,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (error) { Toast.show('Erro ao salvar', error.message, 'error'); return }
 
     sidebarName.textContent = newFullName || sidebarName.textContent
+    Header?._applyProfile?.()
     Toast.show('Perfil atualizado!', '', 'success')
   })
 

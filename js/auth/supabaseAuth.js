@@ -8,7 +8,12 @@ const SupabaseAuth = {
       const { data, error } = await supabaseClient.auth.signUp({
         email,
         password,
-        options: { data: { full_name: fullName } }
+        options: {
+          // Metadata is only profile data. Authorization is assigned by the
+          // database trigger and always starts as `customer`.
+          data: { full_name: fullName },
+          emailRedirectTo: `${window.location.origin}/login.html?confirmed=1`
+        }
       })
       if (error) throw error
       return { success: true, user: data.user, message: 'Cadastro realizado! Confirme seu email.' }
@@ -22,6 +27,28 @@ const SupabaseAuth = {
       const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password })
       if (error) throw error
       return { success: true, user: data.user, session: data.session }
+    } catch (error) {
+      return { success: false, error: error.message }
+    }
+  },
+
+  async updatePassword(password) {
+    try {
+      const { error } = await supabaseClient.auth.updateUser({ password })
+      if (error) throw error
+      return { success: true }
+    } catch (error) {
+      return { success: false, error: error.message }
+    }
+  },
+
+  async requestPasswordReset(email) {
+    try {
+      const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
+        redirectTo: `${window.location.origin}/set-password.html`
+      })
+      if (error) throw error
+      return { success: true }
     } catch (error) {
       return { success: false, error: error.message }
     }
@@ -63,7 +90,7 @@ const SupabaseAuth = {
   async canAccessCRM() {
     try {
       const profile = await this.getCurrentUserProfile()
-      return ['admin', 'hr'].includes(profile?.role) || profile?.is_admin === true
+      return ['admin', 'hr'].includes(profile?.role)
     } catch {
       return false
     }
