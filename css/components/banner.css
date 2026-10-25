@@ -206,6 +206,10 @@
     height: calc(100% + 16px);
     margin-top: -16px;
   }
+  .banners-promo .promo-card:nth-child(-n+2) .promo-card__image {
+    transform: scale(1.08);
+    transform-origin: center 25%;
+  }
 }
 .promo-card__content {
   position: absolute;
