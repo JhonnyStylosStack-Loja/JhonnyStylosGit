@@ -8,7 +8,7 @@ const Header = {
     this._activeLink()
     this._applyProfile()
     this._applyAdminAccess()
-    this._restoreCloudCart()
+    this._cloudCartPromise = this._restoreCloudCart()
     this._search()
   },
   // Botão do painel admin só aparece pra quem está logado como admin de verdade

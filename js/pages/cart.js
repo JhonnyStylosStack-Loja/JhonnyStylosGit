@@ -2,13 +2,20 @@ document.addEventListener('DOMContentLoaded', async () => {
   Toast.init()
 
   async function removeUnavailableItems() {
+    // Aguarda o carrinho da conta ser restaurado antes de validar. Sem isso,
+    // um item antigo da nuvem pode reaparecer logo depois de ser removido.
+    await Header._cloudCartPromise
     const items = Cart.get()
     if (!items.length) return
-    const checks = await Promise.all(items.map(async item => {
-      try { return { item, product: await CMS.getProductById(item.id) } }
-      catch { return { item, product: undefined } }
-    }))
-    checks.filter(({ product }) => product === null).forEach(({ item }) => Cart.remove(item.id, item.size))
+    try {
+      const activeProducts = await CMS.getProducts({ pageSize: 1000 })
+      const activeIds = new Set(activeProducts.map(product => String(product.id)))
+      const availableItems = items.filter(item => activeIds.has(String(item.id)))
+      if (availableItems.length !== items.length) Cart.save(availableItems)
+    } catch (error) {
+      // Uma falha de rede não deve apagar um carrinho válido.
+      console.error('Não foi possível validar o carrinho:', error)
+    }
   }
 
   function render() {
