@@ -105,6 +105,28 @@
   color: var(--color-text);
 }
 
+@media (min-width: 1025px) {
+  .banners-double .banner-card {
+    aspect-ratio: auto;
+    overflow: visible;
+    background: transparent;
+  }
+  .banners-double .banner-card__image {
+    display: block;
+    height: 360px;
+    object-position: center 22%;
+    border-radius: var(--radius-md);
+  }
+  .banners-double .banner-card:hover .banner-card__image { transform: none; }
+  .banners-double .banner-card__overlay {
+    position: static;
+    background: transparent;
+    align-items: flex-start;
+    padding: 24px 0 0;
+  }
+  .banners-double .banner-card__title { margin-bottom: 12px; }
+}
+
 /* ── Wide offer banner ───────────────────────────────── */
 .banner-offer {
   position: relative;
