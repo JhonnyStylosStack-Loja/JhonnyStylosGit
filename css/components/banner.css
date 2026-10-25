@@ -145,7 +145,11 @@
 .banner-offer__overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,.5);
+  background: linear-gradient(90deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,.22) 40%,
+    rgba(255,255,255,.22) 60%,
+    rgba(255,255,255,0) 100%);
 }
 @media (min-width: 1025px) {
   .banner-offer__bg { object-position: center 5%; }
@@ -153,7 +157,7 @@
 .banner-offer__content {
   position: relative;
   text-align: center;
-  color: var(--color-white);
+  color: var(--color-text);
   padding-block: var(--space-2xl);
   width: 100%;
 }
@@ -161,8 +165,13 @@
   font-size: var(--font-size-xs);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(255,255,255,.7);
+  color: var(--color-primary-text);
   margin-bottom: var(--space-sm);
+}
+.banner-offer .btn--outline-white {
+  color: var(--color-text);
+  border-color: rgba(61, 46, 50, .72);
+  background: rgba(255,255,255,.74);
 }
 .banner-offer__title {
   font-family: var(--font-heading);
