@@ -122,6 +122,8 @@
   grid-template-columns: repeat(4, 1fr);
   gap: var(--space-md);
 }
+.daily-deals--empty .daily-deals__body { display: none; }
+.daily-deals--empty { padding-bottom: var(--space-xl); }
 
 @media (max-width: 1200px) {
   .daily-deals__grid { grid-template-columns: repeat(3, 1fr); }

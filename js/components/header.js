@@ -63,6 +63,13 @@ const Header = {
     const closeBtn   = document.querySelector('.nav__mobile-close')
     if (!hamburger || !mobileNav) return
 
+    // Keep the drawer focused on real pages. Product categories belong to the
+    // catalogue filters, not to the main mobile navigation.
+    const categoryLabels = new Set(['vestidos', 'conjuntos', 'blusas', 'calças', 'shorts', 'saias'])
+    mobileNav.querySelectorAll('.nav__mobile-link').forEach(link => {
+      if (categoryLabels.has(link.textContent.trim().toLocaleLowerCase('pt-BR'))) link.closest('li')?.remove()
+    })
+
     // The desktop navigation is hidden on small screens, so expose its trigger
     // inside the header where it remains visible and easy to reach.
     const mobileTrigger = hamburger.cloneNode(true)

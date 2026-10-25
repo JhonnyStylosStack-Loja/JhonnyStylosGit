@@ -1,0 +1,296 @@
+/* Home mobile — direção visual de e-commerce, sem alterar o hero. */
+.home-showcase-head { display: none; }
+
+@media (max-width: 768px) {
+  body { background: #fafafa; }
+  main > section:not(.hero-slider) { overflow: hidden; }
+
+  .home-showcase-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+  .home-showcase-head__eyebrow {
+    margin-bottom: 3px;
+    color: var(--color-primary-text);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  .home-showcase-head__title {
+    font-family: var(--font-heading);
+    font-size: 1.45rem;
+    line-height: 1.1;
+  }
+  .home-showcase-head__link {
+    flex-shrink: 0;
+    min-height: 38px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 13px;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    background: #fff;
+    color: var(--color-primary-text);
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  /* Benefícios em uma faixa compacta logo após o hero. */
+  .benefits {
+    padding-block: 14px;
+    background: #fff;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .benefits__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    overflow: visible;
+    padding-bottom: 0;
+  }
+  .benefit {
+    min-width: 0;
+    min-height: 72px;
+    padding: 10px;
+    gap: 9px;
+    align-items: center;
+    justify-content: flex-start;
+    border: 1px solid #f0dadd;
+    border-radius: 14px;
+    background: #fffafa;
+  }
+  .benefit__icon { width: 34px; height: 34px; background: #ffe8eb; }
+  .benefit__icon svg { width: 17px; height: 17px; }
+  .benefit > div:last-child { min-width: 0; }
+  .benefit__title {
+    min-height: 30px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-size: 11px;
+    line-height: 1.35;
+  }
+
+  /* Promoções principais em carrossel visual. */
+  .banners-double { padding-block: 24px; }
+  .banners-double__grid {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    padding: 0 max(16px, calc((100vw - var(--container-max)) / 2)) 6px;
+    margin-inline: calc(var(--container-pad) * -1);
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  .banners-double__grid::-webkit-scrollbar { display: none; }
+  .banner-card {
+    flex: 0 0 min(84vw, 360px);
+    aspect-ratio: 1.22 / 1;
+    border: 1px solid #f0e3e5;
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(55,34,40,.07);
+    scroll-snap-align: center;
+  }
+
+  /* Cabeçalhos de vitrine. */
+  .new-arrivals,
+  .daily-deals,
+  .blog-latest { padding-block: 28px; }
+  .new-arrivals { background: #fff; }
+  .new-arrivals__header { gap: 16px; margin-bottom: 18px; }
+  .new-arrivals__eyebrow { margin-bottom: 4px; font-size: 9px; }
+  .new-arrivals__title { font-size: 1.65rem; }
+  .new-arrivals__controls { width: 100%; gap: 12px; }
+  .new-arrivals__pills {
+    width: calc(100vw - 32px);
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 3px;
+    scrollbar-width: none;
+  }
+  .new-arrivals__pills::-webkit-scrollbar { display: none; }
+  .na-pill { min-height: 38px; padding: 7px 17px; background: #fff; }
+  .new-arrivals__controls .section__link {
+    min-height: 38px;
+    padding: 7px 15px;
+    border: 1px solid var(--color-border-dark);
+    border-radius: 999px;
+    color: var(--color-primary-text);
+  }
+
+  /* Produtos como cards de catálogo roláveis, padrão de app de compras. */
+  .new-arrivals__feature { display: none; }
+  .new-arrivals__body { display: block; }
+  .new-arrivals__grid,
+  .daily-deals__grid {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    margin-inline: -16px;
+    padding: 2px 16px 12px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  .new-arrivals__grid::-webkit-scrollbar,
+  .daily-deals__grid::-webkit-scrollbar { display: none; }
+  .new-arrivals__grid .product-card,
+  .daily-deals__grid .product-card {
+    flex: 0 0 min(46vw, 190px);
+    border: 1px solid #efe4e6;
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 6px 18px rgba(55,34,40,.055);
+    scroll-snap-align: start;
+    overflow: hidden;
+  }
+  .new-arrivals__grid .product-card__image-wrap,
+  .daily-deals__grid .product-card__image-wrap { border-radius: 0; }
+  .new-arrivals__grid .product-card__body,
+  .daily-deals__grid .product-card__body { padding: 11px; }
+
+  /* Banner editorial entre vitrines. */
+  .banner-offer {
+    width: calc(100% - 32px);
+    margin: 4px 16px;
+    aspect-ratio: 1.45 / 1;
+    border: 1px solid #eadcdf;
+    border-radius: 20px;
+    box-shadow: 0 10px 28px rgba(55,34,40,.08);
+  }
+  .banner-offer__overlay {
+    background: linear-gradient(90deg, rgba(255,255,255,.76), rgba(255,255,255,.16));
+  }
+  .banner-offer__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 22px;
+    text-align: center;
+  }
+  .banner-offer__label { color: var(--color-primary-text); font-weight: 700; }
+  .banner-offer__title {
+    width: 100%;
+    max-width: none;
+    margin-bottom: 18px;
+    color: var(--color-text);
+    font-size: clamp(1.6rem, 8vw, 2rem);
+    line-height: 1.05;
+    white-space: nowrap;
+  }
+  .banner-offer .btn { align-self: center; min-height: 42px; border-color: var(--color-primary); background: #fff; color: var(--color-text); }
+
+  /* Listas de destaque: cards claros, com leitura rápida. */
+  .mini-lists { padding-block: 28px; background: #f7f5f5; }
+  .mini-lists__grid {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    margin-inline: -16px;
+    padding: 2px 16px 10px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  .mini-lists__grid::-webkit-scrollbar { display: none; }
+  .mini-list {
+    flex: 0 0 min(86vw, 350px);
+    padding: 16px;
+    border: 1px solid #ebdfe1;
+    border-radius: 18px;
+    background: #fff;
+    box-shadow: 0 6px 18px rgba(55,34,40,.045);
+    scroll-snap-align: center;
+  }
+
+  /* Coleções editoriais em cards horizontais. */
+  .banners-promo { padding-block: 28px; background: #fff; }
+  .banners-promo__grid {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    margin-inline: -16px;
+    padding: 0 16px 10px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  .banners-promo__grid::-webkit-scrollbar { display: none; }
+  .promo-card {
+    flex: 0 0 min(72vw, 290px);
+    aspect-ratio: 4 / 5;
+    border-radius: 20px;
+    scroll-snap-align: center;
+  }
+  .promo-card__image {
+    position: absolute;
+    top: -8px;
+    left: 0;
+    width: 100%;
+    height: calc(100% + 8px);
+    transform: none;
+  }
+  .promo-card:hover .promo-card__image { transform: scale(1.05); }
+
+  /* Ofertas e abas mais compactas. */
+  .daily-deals { background: #f8f6f6; }
+  .daily-deals__header { gap: 16px; margin-bottom: 20px; }
+  .daily-deals__title { font-size: 1.7rem; }
+  .countdown { width: 100%; flex-wrap: nowrap; justify-content: space-between; }
+  .countdown__unit { min-width: 0; flex: 1; }
+  .countdown__value { width: 100%; min-width: 0; border-radius: 10px; }
+  .countdown__sep { padding-inline: 1px; }
+  .tabs__nav {
+    flex-wrap: nowrap;
+    gap: 4px;
+    overflow-x: auto;
+    margin-bottom: 18px;
+    scrollbar-width: none;
+  }
+  .tabs__nav::-webkit-scrollbar { display: none; }
+  .tabs__btn { flex: 1 0 auto; padding: 10px 14px; font-size: 12px; }
+
+  /* Selos da marca como uma faixa de confiança. */
+  .brands { padding-block: 24px; background: #fff; border-block: 1px solid #f0e4e6; }
+  .brands__title { margin-bottom: 16px; font-size: 11px; letter-spacing: .12em; }
+  .brands__grid {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 3px;
+    scrollbar-width: none;
+  }
+  .brands__grid::-webkit-scrollbar { display: none; }
+  .brand-logo {
+    flex: 0 0 auto;
+    padding: 9px 13px;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    background: #fffafa;
+    font-size: 11px;
+  }
+
+  /* Blog também vira uma vitrine rolável. */
+  .blog-latest { background: #fafafa; }
+  .blog-latest__grid {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    margin-inline: -16px;
+    padding: 0 16px 10px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  .blog-latest__grid::-webkit-scrollbar { display: none; }
+  .blog-latest__grid .blog-card {
+    flex: 0 0 min(84vw, 340px);
+    border-radius: 18px;
+    scroll-snap-align: center;
+    overflow: hidden;
+  }
+}
+

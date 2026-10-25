@@ -218,6 +218,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const blogLatestGrid = document.getElementById('blog-latest-grid')
   if (blogLatestGrid) {
     blogLatestGrid.innerHTML = blogPosts.slice(0, 3).map(renderLatestBlogCard).join('')
+    if (!blogPosts.length) document.querySelector('.blog-latest')?.setAttribute('hidden', '')
   }
 
   if (dealsGrid) bindCardEvents(dealsGrid, products)

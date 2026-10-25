@@ -394,8 +394,8 @@ body.menu-open { overflow: hidden; }
 @media (max-width: 1024px) {
   .nav__hamburger--header {
     display: flex;
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 40px;
     align-items: center;
     justify-content: center;
     margin: 0;
@@ -403,6 +403,7 @@ body.menu-open { overflow: hidden; }
     border-radius: 50%;
     background: var(--color-bg-alt);
   }
+  .nav__hamburger--header span { width: 20px; }
   .nav__mobile {
     display: block;
     width: min(88vw, 380px);
@@ -470,10 +471,9 @@ body.menu-open { overflow: hidden; }
   padding: 0 3px;
 }
 
-@media (max-width: 1024px) {
-  .bottom-nav { display: flex; overflow: hidden; scroll-snap-type: none; }
+@media (max-width: 767px) {
+  .bottom-nav { display: flex; }
   body        { padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px)); }
-  .bottom-nav__item { flex: 1 1 0; min-width: 0; padding-inline: 2px; }
 }
 @media (max-width: 768px) {
   .header__search {
@@ -495,20 +495,18 @@ body.menu-open { overflow: hidden; }
   }
   .header__actions { gap: 2px; }
   .header__action-btn { width: 40px; height: 40px; justify-content: center; padding: 8px; }
-  .header__actions > a[href="account.html"],
-  .header__actions > a[href="wishlist.html"] { display: none; }
+  .header__actions > a[href="account.html"] { display: flex; order: 1; }
+  .header__actions > a[href="cart.html"] { order: 2; }
+  .header__actions > .nav__hamburger--header { order: 3; }
+  .header__actions > a[href="wishlist.html"],
+  .header__actions > .header__action-btn--admin { display: none !important; }
   .header__search-input { min-height: 44px; background: #fff; }
-  .header__search-btn { width: 40px; height: 40px; justify-content: center; right: 2px; }
-  .bottom-nav__label { max-width: 100%; font-size: 9px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .bottom-nav__icon { width: 22px; height: 22px; }
-  .bottom-nav__item.is-active::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 24%;
-    right: 24%;
-    height: 3px;
-    border-radius: 0 0 4px 4px;
-    background: var(--color-primary-text);
+  .header__search-btn {
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    right: 2px;
   }
+  .header__search-btn svg { width: 18px; height: 18px; }
 }

@@ -662,6 +662,57 @@
   .store-how__map-img { height: 300px; }
 }
 @media (max-width: 640px) {
+  .store-hero {
+    min-height: 0;
+    display: block;
+    padding: 16px 0 24px;
+    background: var(--color-bg);
+  }
+  .store-hero__bg {
+    position: relative;
+    inset: auto;
+    width: calc(100% - 32px);
+    height: 260px;
+    margin: 0 auto;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    box-shadow: 0 10px 28px rgba(45,34,38,.1);
+  }
+  .store-hero__bg img { object-position: center 30%; }
+  .store-hero__overlay { display: none; }
+  .store-hero > .container { position: relative; }
+  .store-hero__content {
+    max-width: none;
+    padding: 22px 0 0;
+  }
+  .store-hero__tag {
+    margin-bottom: 16px;
+    border-color: var(--color-border);
+    background: #fff4f6;
+    color: var(--color-primary-text);
+  }
+  .store-hero__tag::before { background: var(--color-primary-text); }
+  .store-hero__title { color: var(--color-text); }
+  .store-hero__title em { color: var(--color-primary-text); }
+  .store-hero__sub { margin-bottom: 20px; color: var(--color-text-muted); }
+  .store-hero__address {
+    width: 100%;
+    margin-bottom: 20px;
+    border-color: var(--color-border);
+    background: rgba(255,255,255,.8);
+    color: var(--color-text);
+  }
+  .store-hero__address svg { color: var(--color-primary-text); }
+  .store-hero__btns { gap: 10px; }
+  .store-hero__btns .btn {
+    width: 100%;
+    min-height: 44px;
+    border-color: var(--color-primary) !important;
+    background: #fff !important;
+    color: var(--color-text) !important;
+  }
+  .store-hero__btns .btn--hero { background: var(--color-primary) !important; }
   .store-info-bar__grid { grid-template-columns: 1fr 1fr; gap: var(--space-md); }
   .store-info-item { padding-inline:4px; }
   .store-info-item + .store-info-item { border-left:0; }
@@ -672,6 +723,8 @@
     grid-template-rows: 280px 180px 180px;
   }
   .store-gallery__main { grid-row: span 1; }
+  .store-gallery { padding-bottom: 14px; }
+  .store-cards { padding-top: 14px; }
   .store-hero__btns { flex-direction: column; }
   .store-content-modal { align-items:end; padding:0; }
   .store-content-modal__panel { width:100%; max-height:calc(100vh - 8px); max-height:calc(100dvh - 8px); border-radius:18px 18px 0 0; }

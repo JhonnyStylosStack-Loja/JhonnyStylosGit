@@ -219,10 +219,10 @@
   }
   .banner-card__image {
     object-position: center 18%;
-    transform: translateX(12%) scale(1.03);
+    transform: translateX(22%) scale(1.03);
     transform-origin: center;
   }
-  .banner-card:hover .banner-card__image { transform: translateX(12%) scale(1.06); }
+  .banner-card:hover .banner-card__image { transform: translateX(22%) scale(1.06); }
   .banner-card__overlay {
     align-items: flex-start;
     justify-content: flex-end;

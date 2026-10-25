@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       total = result.total
       if (grid) grid.innerHTML = result.products.length ? result.products.map(card).join('') : '<p class="shop-empty">Nenhum produto encontrado.</p>'
       const start = total ? (page - 1) * PAGE_SIZE + 1 : 0, end = (page - 1) * PAGE_SIZE + result.products.length
-      if (count) count.textContent = total ? `Exibindo ${start}–${end} de ${total} produtos` : 'Nenhum produto encontrado'
+      if (count) count.textContent = total ? `Exibindo ${start}–${end} de ${total} produtos` : ''
       pagination()
     } catch (error) {
       if (grid) grid.innerHTML = `<p class="shop-empty">${error.message}</p>`

@@ -604,3 +604,56 @@
 .nov-empty__content{position:relative}.nov-edit-btn--empty-content{position:absolute;right:0;top:0}.nov-empty__media>.nov-edit-actions{top:14px;right:14px}
 @media(max-width:1024px){.nov-countdown{padding:40px}.nov-countdown::after{left:30px}.nov-empty__media{min-width:230px}.nov-empty__content{padding:22px 30px}}
 @media(max-width:768px){.nov-countdown{min-height:0;margin-top:36px;padding:32px 22px;border-radius:20px}.nov-countdown::after{display:none}.nov-countdown__timer{width:100%;overflow-x:auto;justify-content:flex-start}.nov-countdown__unit{flex:1;min-width:64px}.nov-all{padding-top:36px}.nov-all__head{align-items:flex-start}.nov-sort-wrap{width:100%;justify-content:space-between}.nov-sort-select{flex:1;min-width:0}.nov-empty--illustrated{flex-direction:column;padding:12px;text-align:left}.nov-empty__media{width:100%;min-width:0;height:230px}.nov-empty--illustrated .nov-empty__media img{min-height:230px}.nov-empty__content{padding:24px 12px 18px}.nov-empty--illustrated .btn{width:100%}}
+
+/* Hero mobile com conteúdo separado da fotografia. */
+@media (max-width: 768px) {
+  /* No mobile, mantem o rosto das modelos dentro do enquadramento dos cards. */
+  .nov-mosaic .mos-card__img,
+  .nov-spotlight__img {
+    object-position: center 10% !important;
+    transform-origin: center 10%;
+  }
+  .nov-mosaic__grid .mos-card:first-child .mos-card__img {
+    object-position: center 4% !important;
+    transform-origin: center 4%;
+  }
+
+  .nov-page-header {
+    min-height: 0;
+    display: block;
+    padding: 16px 0 24px;
+    background: var(--color-bg);
+  }
+  .nov-page-header__media {
+    position: relative;
+    inset: auto;
+    width: calc(100% - 32px);
+    height: 260px;
+    margin: 0 auto;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    background: var(--color-bg-alt);
+    box-shadow: 0 10px 28px rgba(45,34,38,.1);
+  }
+  .nov-page-header__shade { display: none; }
+  .nov-page-header__inner {
+    width: calc(100% - 32px);
+    margin: 0 auto;
+    padding: 22px 0 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  .nov-page-header__eyebrow { color: var(--color-primary-text); }
+  .nov-page-header__eyebrow::after { background: var(--color-primary-text); }
+  .nov-page-header__title,
+  .nov-page-header__sub,
+  .nov-page-header__breadcrumb,
+  .nov-page-header__breadcrumb a { color: var(--color-text); }
+  .nov-page-header__sub { margin-bottom: 20px; color: var(--color-text-muted); }
+  .nov-page-header__breadcrumb .sep { color: var(--color-primary-text); }
+}

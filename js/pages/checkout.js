@@ -19,6 +19,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const items = Cart.get()
 
+  if (items.length === 0) {
+    const layout = document.querySelector('.checkout-layout')
+    if (layout) {
+      layout.classList.add('checkout-layout--empty')
+      layout.innerHTML = `
+        <div class="checkout-empty">
+          <span class="checkout-empty__icon" aria-hidden="true">♡</span>
+          <h2>Seu carrinho está vazio</h2>
+          <p>Adicione seus produtos antes de seguir para o pagamento.</p>
+          <a href="shop.html" class="btn btn--primary">Ir para a Loja</a>
+        </div>`
+    }
+    return
+  }
+
   // Render order items
   const orderItems = document.getElementById('order-items')
   if (orderItems) {
