@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const collections = await CMS.getCollections()
   const facets = await CMS.getCatalogFacets()
   const params = new URLSearchParams(location.search)
+  const initialSearch = params.get('q')?.trim() || ''
   const values = selector => Array.from(document.querySelectorAll(`${selector}:checked`)).map(el => el.value)
   const options = (id, list) => {
     const el = document.getElementById(id)
@@ -21,6 +22,25 @@ document.addEventListener('DOMContentLoaded', async () => {
   const ratingEl = document.getElementById('shop-rating-filters')
   if (ratingEl) ratingEl.innerHTML = [5, 4, 3].map(n => `<label class="filter-option"><input type="checkbox" value="${n}"> ${n}${n === 5 ? '' : '+'} Estrelas</label>`).join('')
   const min = document.getElementById('price-min'), max = document.getElementById('price-max'), slider = document.getElementById('price-slider')
+  const searchInput = document.getElementById('shop-search')
+  if (searchInput && initialSearch) searchInput.value = initialSearch
+  const sidebar = document.querySelector('.shop-sidebar')
+  const toolbar = document.querySelector('.shop-toolbar')
+  if (sidebar && toolbar) {
+    const filterButton = document.createElement('button')
+    filterButton.type = 'button'
+    filterButton.className = 'shop-filter-toggle'
+    filterButton.setAttribute('aria-expanded', 'false')
+    filterButton.innerHTML = `${UIIcons.svg('filter')}<span>Filtros</span>`
+    toolbar.prepend(filterButton)
+    filterButton.addEventListener('click', () => {
+      const isOpen = sidebar.classList.toggle('is-open')
+      filterButton.classList.toggle('is-active', isOpen)
+      filterButton.setAttribute('aria-expanded', String(isOpen))
+      filterButton.querySelector('span').textContent = isOpen ? 'Fechar filtros' : 'Filtros'
+      if (isOpen) sidebar.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    })
+  }
   if (min && max && slider) { min.max = max.max = slider.max = facets.maxPrice; min.value = facets.minPrice; max.value = slider.value = facets.maxPrice }
 
   function filters() {

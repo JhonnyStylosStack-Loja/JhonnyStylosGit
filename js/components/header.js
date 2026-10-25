@@ -9,6 +9,7 @@ const Header = {
     this._applyProfile()
     this._applyAdminAccess()
     this._restoreCloudCart()
+    this._search()
   },
   // Botão do painel admin só aparece pra quem está logado como admin de verdade
   async _applyAdminAccess() {
@@ -56,16 +57,57 @@ const Header = {
     window.addEventListener('scroll', onScroll, { passive: true })
   },
   _mobileMenu() {
-    const hamburger = document.querySelector('.nav__hamburger')
+    let hamburger = document.querySelector('.nav__hamburger')
     const mobileNav  = document.querySelector('.nav__mobile')
     const overlay    = document.querySelector('.nav__overlay')
     const closeBtn   = document.querySelector('.nav__mobile-close')
-    if (!hamburger) return
-    const open  = () => { hamburger.classList.add('is-open'); mobileNav.classList.add('is-open'); overlay.classList.add('is-visible'); document.body.style.overflow = 'hidden' }
-    const close = () => { hamburger.classList.remove('is-open'); mobileNav.classList.remove('is-open'); overlay.classList.remove('is-visible'); document.body.style.overflow = '' }
+    if (!hamburger || !mobileNav) return
+
+    // The desktop navigation is hidden on small screens, so expose its trigger
+    // inside the header where it remains visible and easy to reach.
+    const mobileTrigger = hamburger.cloneNode(true)
+    mobileTrigger.classList.add('nav__hamburger--header')
+    mobileTrigger.setAttribute('aria-controls', 'mobile-navigation')
+    mobileTrigger.setAttribute('aria-expanded', 'false')
+    mobileNav.id = 'mobile-navigation'
+    document.querySelector('.header__actions')?.prepend(mobileTrigger)
+    hamburger = mobileTrigger
+
+    const open  = () => {
+      hamburger.classList.add('is-open')
+      hamburger.setAttribute('aria-expanded', 'true')
+      mobileNav.classList.add('is-open')
+      mobileNav.setAttribute('aria-hidden', 'false')
+      overlay?.classList.add('is-visible')
+      document.body.classList.add('menu-open')
+      closeBtn?.focus()
+    }
+    const close = () => {
+      hamburger.classList.remove('is-open')
+      hamburger.setAttribute('aria-expanded', 'false')
+      mobileNav.classList.remove('is-open')
+      mobileNav.setAttribute('aria-hidden', 'true')
+      overlay?.classList.remove('is-visible')
+      document.body.classList.remove('menu-open')
+    }
     hamburger.addEventListener('click', open)
     closeBtn?.addEventListener('click', close)
     overlay?.addEventListener('click', close)
+    mobileNav.querySelectorAll('a').forEach(link => link.addEventListener('click', close))
+    document.addEventListener('keydown', event => { if (event.key === 'Escape') close() })
+  },
+  _search() {
+    document.querySelectorAll('.header__search').forEach(search => {
+      const input = search.querySelector('.header__search-input')
+      const button = search.querySelector('.header__search-btn')
+      if (!input || !button) return
+      const submit = () => {
+        const query = input.value.trim()
+        location.href = `shop.html${query ? `?q=${encodeURIComponent(query)}` : ''}`
+      }
+      button.addEventListener('click', submit)
+      input.addEventListener('keydown', event => { if (event.key === 'Enter') submit() })
+    })
   },
   _injectFab() {
     if (document.querySelector('.fab-cart')) return

@@ -135,6 +135,9 @@
   .daily-deals__grid { grid-template-columns: repeat(2, 1fr); }
   .countdown { flex-wrap: wrap; gap: var(--space-xs); }
   .countdown__value { font-size: var(--font-size-lg); min-width: 44px; padding: 6px 8px; }
+  .daily-deals--empty { padding-bottom: 16px; }
+  .daily-deals--empty .tabs__nav { margin-bottom: 0; }
+  .daily-deals--empty .tabs__panel { display: none; }
 }
 @media (max-width: 480px) {
   .daily-deals__grid { grid-template-columns: 1fr; }

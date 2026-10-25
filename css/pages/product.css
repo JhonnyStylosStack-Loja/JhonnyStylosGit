@@ -229,6 +229,11 @@
 @media (max-width: 768px) {
   .product-layout { grid-template-columns: 1fr; }
   .related-grid { grid-template-columns: repeat(2, 1fr); }
+  .product-layout { gap: 24px; }
+  .product-gallery__main { border-radius: 14px; overflow: hidden; }
+  .product-info__title { font-size: clamp(1.65rem, 7vw, 2.15rem); line-height: 1.15; }
+  .product-info__cart { position: sticky; bottom: calc(72px + env(safe-area-inset-bottom)); z-index: 20; padding: 10px; margin-inline: -10px; border: 1px solid var(--color-border); border-radius: 14px; background: rgba(255,255,255,.96); box-shadow: 0 8px 30px rgba(45,34,38,.15); backdrop-filter: blur(10px); }
+  .size-btn, .qty-btn { min-width: 44px; min-height: 44px; }
 }
 @media (max-width: 480px) {
   .product-info__cart { flex-wrap: wrap; }

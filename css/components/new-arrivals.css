@@ -4,6 +4,8 @@
 .new-arrivals {
   background: var(--color-bg);
 }
+.new-arrivals--empty .new-arrivals__body { display: none; }
+.new-arrivals--empty .new-arrivals__header { margin-bottom: 0; }
 
 .new-arrivals__header {
   display: flex;
@@ -212,4 +214,5 @@
   .na-feature-img-wrap img { aspect-ratio: 4 / 3; height: auto; }
   .new-arrivals__grid { grid-template-columns: repeat(2, 1fr); }
   .new-arrivals__pills { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; }
+  .new-arrivals--empty { padding-bottom: 16px; }
 }

@@ -145,10 +145,16 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const products = await CMS.getProducts()
   const blogPosts = await CMS.getBlogPosts()
-  if (!products.length) return
+  if (!products.length) {
+    document.querySelector('.new-arrivals')?.classList.add('new-arrivals--empty')
+    document.querySelector('.daily-deals')?.classList.add('daily-deals--empty')
+    document.querySelector('.mini-lists')?.setAttribute('hidden', '')
+    return
+  }
 
   // ── New Arrivals section ────────────────────────────────
-  const newArrivals = products.filter(p => p.isNew)
+  const taggedNewArrivals = products.filter(p => p.isNew)
+  const newArrivals = taggedNewArrivals.length ? taggedNewArrivals : products
   const naFeatured  = newArrivals.length ? newArrivals.reduce((a, b) => a.rating >= b.rating ? a : b) : null
   const naFeatureEl = document.getElementById('na-feature')
   const naGridEl    = document.getElementById('na-grid')
@@ -175,16 +181,30 @@ document.addEventListener('DOMContentLoaded', async () => {
   })
 
   // ── Legacy data (bestSellers / saleItems for other sections) ──
-  const bestSellers = products.slice(4, 8)
-  const saleItems   = products.filter(p => p.isSale)
-
-  // Mini lists
+  // Mini lists: always provide useful content, even when promotional tags
+  // have not been configured in the catalogue yet.
   const miniOffer   = document.getElementById('mini-offer')
   const miniNew     = document.getElementById('mini-new')
   const miniBest    = document.getElementById('mini-best')
-  if (miniOffer) miniOffer.innerHTML = products.filter(p => p.isSale).slice(0, 4).map(renderMiniItem).join('')
-  if (miniNew)   miniNew.innerHTML   = products.filter(p => p.isNew).slice(0, 4).map(renderMiniItem).join('')
-  if (miniBest)  miniBest.innerHTML  = products.slice(0, 4).map(renderMiniItem).join('')
+  const byDiscount = [...products].sort((a, b) => {
+    const discountA = a.comparePrice > a.price ? (a.comparePrice - a.price) / a.comparePrice : 0
+    const discountB = b.comparePrice > b.price ? (b.comparePrice - b.price) / b.comparePrice : 0
+    return discountB - discountA
+  })
+  const offerProducts = products.filter(p => p.isSale || p.comparePrice > p.price)
+  const newProducts = products.filter(p => p.isNew)
+  const bestProducts = [...products].sort((a, b) =>
+    (Number(b.reviews) - Number(a.reviews)) || (Number(b.rating) - Number(a.rating))
+  )
+  const fillMiniList = (element, preferred, fallback) => {
+    if (!element) return
+    const selected = (preferred.length ? preferred : fallback).slice(0, 4)
+    element.innerHTML = selected.map(renderMiniItem).join('')
+  }
+  fillMiniList(miniOffer, offerProducts, byDiscount)
+  fillMiniList(miniNew, newProducts, products)
+  fillMiniList(miniBest, bestProducts, products)
+  document.querySelector('.mini-lists')?.removeAttribute('hidden')
 
   // Daily deals grids
   const dealsGrid = document.getElementById('deals-grid')

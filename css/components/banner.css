@@ -61,7 +61,7 @@
 .banner-card__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right, rgba(0,0,0,.55) 0%, rgba(0,0,0,.1) 100%);
+  background: linear-gradient(to right, rgba(255,255,255,.95) 0%, rgba(255,255,255,.7) 42%, rgba(255,255,255,.08) 82%);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -72,26 +72,37 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(255,255,255,.7);
+  color: var(--color-primary-text);
   margin-bottom: var(--space-sm);
 }
 .banner-card__title {
   font-family: var(--font-heading);
   font-size: clamp(1.4rem, 2.5vw, 2rem);
   font-weight: 700;
-  color: var(--color-white);
+  color: var(--color-text);
   line-height: 1.2;
   margin-bottom: var(--space-lg);
 }
 .banner-card__discount {
   font-size: var(--font-size-xs);
   font-weight: 600;
-  color: var(--color-white);
-  background: rgba(255,255,255,.15);
+  color: var(--color-text);
+  background: rgba(255,255,255,.82);
+  border: 1px solid rgba(255,189,198,.72);
   display: inline-block;
   padding: 4px 10px;
   border-radius: 100px;
   margin-bottom: var(--space-md);
+}
+.banner-card .btn--outline-white {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+  color: var(--color-text);
+}
+.banner-card .btn--outline-white:hover {
+  border-color: var(--color-primary-hover);
+  background: var(--color-primary-hover);
+  color: var(--color-text);
 }
 
 /* ── Wide offer banner ───────────────────────────────── */
@@ -199,6 +210,55 @@
   .benefits__grid { gap: var(--space-md); }
   .benefit__text { display: none; }
   .benefit { align-items: center; }
+
+  .banners-double { padding-block: 32px; }
+  .banners-double__grid { gap: 16px; }
+  .banner-card {
+    aspect-ratio: 4 / 3;
+    border-radius: 18px;
+  }
+  .banner-card__image {
+    object-position: center 18%;
+    transform: translateX(12%) scale(1.03);
+    transform-origin: center;
+  }
+  .banner-card:hover .banner-card__image { transform: translateX(12%) scale(1.06); }
+  .banner-card__overlay {
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 22px;
+    background: linear-gradient(90deg, rgba(255,255,255,.96) 0%, rgba(255,255,255,.82) 38%, rgba(255,255,255,.28) 68%, transparent 88%);
+  }
+  .banner-card__tag {
+    margin-bottom: 6px;
+    font-size: 10px;
+    color: var(--color-primary-text);
+  }
+  .banner-card__title {
+    max-width: 62%;
+    margin-bottom: 10px;
+    font-size: clamp(1.45rem, 7vw, 1.8rem);
+    color: var(--color-text);
+    text-shadow: 0 1px 0 rgba(255,255,255,.7);
+  }
+  .banner-card__discount {
+    align-self: flex-start;
+    width: auto;
+    margin-bottom: 12px;
+    padding: 5px 10px;
+    color: var(--color-text);
+    background: rgba(255,255,255,.82);
+    border: 1px solid rgba(255,189,198,.72);
+    backdrop-filter: blur(6px);
+  }
+  .banner-card .btn {
+    width: auto;
+    min-height: 40px;
+    padding: 8px 18px;
+    border-color: var(--color-primary);
+    background: var(--color-primary);
+    color: var(--color-text);
+  }
 }
 @media (max-width: 480px) {
   .banners-promo__grid { grid-template-columns: 1fr; }
@@ -206,4 +266,6 @@
   .benefit { align-items: flex-start; gap: var(--space-sm); }
   .benefit__icon { width: 36px; height: 36px; flex-shrink: 0; }
   .benefit__icon svg { width: 18px; height: 18px; }
+  .banner-card { aspect-ratio: 1.22 / 1; }
+  .banner-card__overlay { padding: 20px; }
 }

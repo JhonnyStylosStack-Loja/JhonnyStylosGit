@@ -323,6 +323,29 @@ body {
 
 /* Hide on cart page — not needed there */
 body.page-cart .fab-cart { display: none; }
+
+/* Shared mobile UX */
+@media (max-width: 768px) {
+  :root {
+    --container-pad: 16px;
+    --space-2xl: 44px;
+    --space-xl: 28px;
+  }
+  .section { padding-block: 36px; }
+  .section__header { align-items: flex-end; gap: 12px; margin-bottom: 20px; }
+  .section__title { font-size: clamp(1.55rem, 7vw, 2rem); line-height: 1.12; }
+  .section__link { min-height: 44px; padding: 8px 0; }
+  .page-header__title { font-size: 1.7rem; line-height: 1.15; }
+  .btn { min-height: 46px; padding-inline: 22px; }
+  .form-control, select { min-height: 44px; font-size: 16px; }
+  button, a, input, select { touch-action: manipulation; }
+  .footer { padding-bottom: 28px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
 @media (max-width: 480px) {
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
 }

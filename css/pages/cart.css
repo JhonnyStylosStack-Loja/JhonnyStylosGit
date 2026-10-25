@@ -148,4 +148,8 @@
   .cart-table-head { display: none; }
   .cart-item { grid-template-columns: 1fr; gap: var(--space-sm); }
   .cart-summary { position: static; }
+  .cart-list { display: grid; gap: 12px; }
+  .cart-item { position: relative; padding: 14px; border: 1px solid var(--color-border); border-radius: 14px; }
+  .cart-item__remove { position: absolute; top: 10px; right: 10px; width: 44px; height: 44px; }
+  .cart-summary { border-radius: 16px; }
 }
