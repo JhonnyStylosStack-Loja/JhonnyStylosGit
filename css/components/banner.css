@@ -122,7 +122,7 @@
     position: static;
     background: transparent;
     align-items: flex-start;
-    padding: 24px 0 0;
+    padding: 24px 28px 28px;
   }
   .banners-double .banner-card__title { margin-bottom: 12px; }
 }
