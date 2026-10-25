@@ -107,9 +107,11 @@ const SupabaseAuth = {
     }
   },
 
-  async getCurrentUserProfile() {
+  async getCurrentUserProfile(currentUser = null) {
     try {
-      const user = await this.getCurrentUser()
+      // Reuse a user already verified by signInWithPassword when available.
+      // Calling getUser() again would add an unnecessary Auth round trip.
+      const user = currentUser || await this.getCurrentUser()
       if (!user) return null
       const { data, error } = await supabaseClient.from('users').select('*').eq('id', user.id).single()
       if (error) throw error
@@ -120,9 +122,9 @@ const SupabaseAuth = {
     }
   },
 
-  async canAccessCRM() {
+  async canAccessCRM(currentUser = null) {
     try {
-      const profile = await this.getCurrentUserProfile()
+      const profile = await this.getCurrentUserProfile(currentUser)
       return ['admin', 'hr'].includes(profile?.role)
     } catch {
       return false

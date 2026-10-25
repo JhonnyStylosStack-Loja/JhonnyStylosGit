@@ -80,21 +80,32 @@ document.addEventListener('DOMContentLoaded', () => {
   // Login form
   document.getElementById('login-form')?.addEventListener('submit', async e => {
     e.preventDefault()
+    const button = e.currentTarget.querySelector('button[type="submit"]')
     const email = document.getElementById('login-email').value.trim()
     const password = document.getElementById('login-password').value
     if (!email || !password) {
       Toast.show('Ops!', 'Preencha e-mail e senha.', 'error')
       return
     }
-    const result = await SupabaseAuth.login(email, password)
-    if (result.success) {
-      await Cart.mergeFromCloud()
-      Toast.show('Bem-vindo de volta!', 'Login realizado com sucesso.', 'success')
-      // Sempre vai pro início — admin ou não. O painel só é acessado pelo botão do header.
-      const canAccessCRM = await SupabaseAuth.canAccessCRM()
-      setTimeout(() => { location.href = canAccessCRM ? 'admin.html' : 'index.html' }, 1500)
-    } else {
-      Toast.show('Erro ao entrar', result.error, 'error')
+    button.disabled = true
+    button.textContent = 'Entrando…'
+
+    try {
+      const result = await SupabaseAuth.login(email, password)
+      if (!result.success) {
+        Toast.show('Erro ao entrar', result.error, 'error')
+        return
+      }
+
+      // signInWithPassword already returned a verified user. Reusing it avoids
+      // a second Auth request; the destination page restores the cloud cart.
+      const canAccessCRM = await SupabaseAuth.canAccessCRM(result.user)
+      location.replace(canAccessCRM ? 'admin.html' : 'index.html')
+    } finally {
+      // Navigation normally unloads this page. Restore the button if it does
+      // not (for example, when authentication fails).
+      button.disabled = false
+      button.textContent = 'Entrar'
     }
   })
 
