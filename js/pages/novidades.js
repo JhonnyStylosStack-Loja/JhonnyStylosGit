@@ -2,54 +2,30 @@
 
 let allProducts = []
 const ILLUSTRATIVE_ASSETS = [
-  'IMAGEM%20ILUSTRATIV/PRODUTOS.png',
-  'IMAGEM%20ILUSTRATIV/BANNERS.png',
-  'IMAGEM%20ILUSTRATIV/BANNERS%20BLOGS.png',
-  'IMAGEM%20ILUSTRATIV/BACKGROUNDS.png'
+  'assets/images/roupas/717249195_18138506848550228_5973150353313444939_n.jpg',
+  'assets/images/roupas/672350601_18133246030550228_6238487994570565479_n.jpg',
+  'assets/images/roupas/611774660_18123418903550228_8019439332005677215_n.jpg',
+  'assets/images/roupas/640145856_18127728499550228_8066820905867045664_n.jpg'
 ]
 
 function renderIllustrativeLayout() {
-  const spotlight = document.getElementById('nov-spotlight-card')
-  const mosaic = document.getElementById('nov-mosaic-grid')
   const grid = document.getElementById('nov-all-grid')
-
-  if (spotlight) {
-    spotlight.innerHTML = `
-      <div class="nov-spotlight__img-wrap">
-        <img src="${ILLUSTRATIVE_ASSETS[0]}" alt="Imagem ilustrativa da seção de novidades" class="nov-spotlight__img" loading="eager">
-        <div class="nov-spotlight__badges"><span class="badge-destaque">Imagem ilustrativa</span></div>
-      </div>
-      <div class="nov-spotlight__info">
-        <p class="nov-spotlight__cat">Em preparação</p>
-        <h2 class="nov-spotlight__name">A próxima seleção chega em breve</h2>
-        <p class="nov-spotlight__desc">Esta é uma prévia visual da página. As novidades reais aparecem aqui automaticamente assim que forem cadastradas e publicadas no catálogo.</p>
-        <div class="nov-spotlight__actions"><a href="shop.html" class="btn btn--primary">Ver catálogo</a></div>
-      </div>`
-  }
-
-  if (mosaic) {
-    mosaic.innerHTML = ILLUSTRATIVE_ASSETS.map((image, index) => `
-      <article class="mos-card mos-card--illustrative">
-        <img src="${image}" alt="Imagem ilustrativa ${index + 1} da seção de novidades" class="mos-card__img" loading="lazy">
-        <div class="mos-card__overlay"></div>
-        <div class="mos-card__body">
-          <p class="mos-card__cat">Prévia visual</p>
-          <p class="mos-card__name">Novidades em preparação</p>
-        </div>
-      </article>`).join('')
-  }
+  const empty = typeof NovidadesContent !== 'undefined' ? NovidadesContent.data?.products : null
 
   if (grid) {
     grid.innerHTML = `
       <div class="nov-empty nov-empty--illustrated">
-        <img src="${ILLUSTRATIVE_ASSETS[2]}" alt="Imagem ilustrativa do catálogo de novidades" loading="lazy">
-        <div>
-          <h3>Ainda não há novidades publicadas</h3>
-          <p>Quando os produtos forem publicados no CRM, eles serão exibidos nesta área.</p>
-          <a href="shop.html" class="btn btn--outline">Ir para o catálogo</a>
+        <div class="nov-empty__media"><img src="${empty?.image || ILLUSTRATIVE_ASSETS[2]}" alt="Imagem ilustrativa do catálogo de novidades" loading="lazy" style="object-position:${empty?.cropX ?? 50}% ${empty?.cropY ?? 25}%;transform:scale(${empty?.zoom ?? 1})"><span>Em breve</span>${typeof NovidadesContent !== 'undefined' && NovidadesContent.staff ? `<span class="nov-edit-actions"><button class="nov-edit-btn" data-edit-image="productsEmpty" aria-label="Ajustar imagem" title="Ajustar imagem">${UIIcons.svg('image')}</button></span>` : ''}</div>
+        <div class="nov-empty__content">
+          <span class="nov-empty__eyebrow">${empty?.emptyEyebrow || 'Próximo lançamento'}</span>
+          <h3>${empty?.emptyTitle || 'Seleção de novidades em preparação'}</h3>
+          <p>${empty?.emptyDescription || 'Cadastre produtos como novidade no CRM para preencher esta vitrine automaticamente.'}</p>
+          <a href="${empty?.emptyLink || 'shop.html'}" class="btn btn--outline">${empty?.emptyButton || 'Ir para o catálogo'} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></a>
+          ${typeof NovidadesContent !== 'undefined' && NovidadesContent.staff ? `<button class="nov-edit-btn nov-edit-btn--empty-content" data-edit-text="productsEmpty" aria-label="Editar conteúdo">${UIIcons.svg('edit')}</button>` : ''}
         </div>
       </div>`
   }
+  if (typeof NovidadesContent !== 'undefined') NovidadesContent.bind()
 }
 
 function renderSpotlight(SPOTLIGHT) {
@@ -141,9 +117,12 @@ function renderMosaic() {
 // ── Countdown semanal ─────────────────────────────────────────
 function startCountdown() {
   const now = new Date()
-  const nextSunday = new Date(now)
-  nextSunday.setDate(now.getDate() + (7 - now.getDay()))
-  nextSunday.setHours(23, 59, 59, 0)
+  const configuredTarget = typeof NovidadesContent !== 'undefined' ? NovidadesContent.data?.countdown?.target : ''
+  const nextSunday = configuredTarget ? new Date(configuredTarget) : new Date(now)
+  if (!configuredTarget) {
+    nextSunday.setDate(now.getDate() + (7 - now.getDay()))
+    nextSunday.setHours(23, 59, 59, 0)
+  }
 
   function tick() {
     const diff = nextSunday - new Date()
@@ -257,6 +236,7 @@ function initControls() {
 // ── Init ──────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', async () => {
   Toast.init()
+  if (typeof NovidadesContent !== 'undefined' && NovidadesContent.ready) await NovidadesContent.ready
   try {
     allProducts = await CMS.getProducts() || []
   } catch (error) {
@@ -272,9 +252,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   allProducts = newProducts
-  const SPOTLIGHT = newProducts.find(p => p.isSale) || newProducts[0]
-  renderSpotlight(SPOTLIGHT)
-  renderMosaic()
   startCountdown()
   renderGrid()
   initControls()

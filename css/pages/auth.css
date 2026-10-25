@@ -131,11 +131,15 @@
 }
 .auth-form__back {
   align-self: center;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   padding: 4px;
   color: var(--color-primary-text);
   font-size: var(--font-size-sm);
   font-weight: 600;
 }
+.auth-form__back svg { width: 16px; height: 16px; }
 .auth-form__back:hover { text-decoration: underline; }
 .auth-form__row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md); }
 .auth-divider {

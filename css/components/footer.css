@@ -38,21 +38,28 @@
 }
 .footer__social {
   display: flex;
-  gap: var(--space-sm);
+  gap: 9px;
 }
 .footer__social-link {
-  width: 36px;
-  height: 36px;
-  background: rgba(255,255,255,.55);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-text);
-  transition: all var(--transition-fast);
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(155,59,72,.14);
+  border-radius: 12px;
+  background: rgba(255,255,255,.68);
+  display: grid;
+  place-items: center;
+  color: var(--color-primary-text);
+  box-shadow: 0 6px 16px rgba(155,59,72,.08);
+  transition: color var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
 }
-.footer__social-link:hover { background: var(--color-white); color: var(--color-text); }
-.footer__social-link svg { width: 16px; height: 16px; }
+.footer__social-link:hover {
+  border-color: var(--color-primary-text);
+  background: var(--color-primary-text);
+  color: #fff;
+  box-shadow: 0 9px 22px rgba(155,59,72,.22);
+  transform: translateY(-2px);
+}
+.footer__social-link svg { width: 17px; height: 17px; }
 
 /* Links */
 .footer__links { display: flex; flex-direction: column; gap: 10px; }
@@ -70,20 +77,23 @@
 .footer__contact { display: flex; flex-direction: column; gap: var(--space-md); }
 .footer__contact-item {
   display: flex;
-  align-items: flex-start;
-  gap: 10px;
+  align-items: center;
+  gap: 11px;
   font-size: var(--font-size-sm);
   color: var(--color-text);
 }
 .footer__contact-item svg {
-  width: 14px;
-  height: 14px;
-  flex-shrink: 0;
-  color: var(--color-text);
-  background: rgba(255,255,255,.55);
-  border-radius: 50%;
-  padding: 5px;
-  box-sizing: content-box;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  box-sizing: border-box;
+  padding: 7px;
+  border: 1px solid rgba(155,59,72,.14);
+  border-radius: 9px;
+  background: rgba(255,255,255,.68);
+  color: var(--color-primary-text);
+  stroke-width: 1.8;
+  box-shadow: 0 5px 14px rgba(155,59,72,.07);
 }
 
 /* Newsletter */

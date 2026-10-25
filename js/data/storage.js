@@ -61,7 +61,7 @@ function mapPostFromDB(row) {
     category: row.category,
     excerpt: row.excerpt || '',
     date: row.created_at ? row.created_at.slice(0, 10) : '',
-    author: 'Jhonny Styles',
+    author: row.author || 'Jhonny Styles',
     image: row.image_url,
     coverCropX: Number(row.cover_crop_x) || 50,
     coverCropY: Number(row.cover_crop_y) || 50,
@@ -72,19 +72,22 @@ function mapPostFromDB(row) {
   }
 }
 function mapPostToDB(post) {
-  return {
+  const payload = {
     title: post.title,
-    slug: post.slug || post.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, ''),
+    slug: post.slug || _productSlug(post.title),
     content: post.content,
     excerpt: post.excerpt || '',
     category: post.category,
     image_url: post.image,
+    author: post.author || 'Jhonny Styles',
     cover_crop_x: post.coverCropX ?? 50,
     cover_crop_y: post.coverCropY ?? 50,
     cover_crop_zoom: post.coverCropZoom ?? 1,
     gallery: post.gallery || [],
     is_published: true
   }
+  if (post.date) payload.created_at = new Date(`${post.date}T12:00:00Z`).toISOString()
+  return payload
 }
 
 const CMS = {
@@ -456,10 +459,16 @@ const CMS = {
     const payload = mapPostToDB(post)
     if (post.id) {
       const { error } = await supabaseClient.from('blog_posts').update(payload).eq('id', post.id)
-      if (error) console.error('Erro ao atualizar post:', error)
+      if (error) {
+        console.error('Erro ao atualizar post:', error)
+        throw new Error(`Não foi possível atualizar o post: ${error.message}`)
+      }
     } else {
       const { error } = await supabaseClient.from('blog_posts').insert(payload)
-      if (error) console.error('Erro ao criar post:', error)
+      if (error) {
+        console.error('Erro ao criar post:', error)
+        throw new Error(`Não foi possível criar o post: ${error.message}`)
+      }
     }
   },
 

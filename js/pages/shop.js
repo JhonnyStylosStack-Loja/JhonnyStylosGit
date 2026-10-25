@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const nav = document.getElementById('shop-pagination'), pages = Math.max(1, Math.ceil(total / PAGE_SIZE))
     if (!nav) return
     const first = Math.max(1, page - 2), last = Math.min(pages, page + 2)
-    nav.innerHTML = `<button class="pagination__btn" data-page="prev" ${page === 1 ? 'disabled' : ''}>‹</button>${Array.from({ length: last - first + 1 }, (_, i) => { const n = first + i; return `<button class="pagination__btn${n === page ? ' is-active' : ''}" data-page="${n}">${n}</button>` }).join('')}<button class="pagination__btn" data-page="next" ${page === pages ? 'disabled' : ''}>›</button>`
+    nav.innerHTML = `<button class="pagination__btn" data-page="prev" aria-label="Página anterior" ${page === 1 ? 'disabled' : ''}>${UIIcons.svg('arrowLeft')}</button>${Array.from({ length: last - first + 1 }, (_, i) => { const n = first + i; return `<button class="pagination__btn${n === page ? ' is-active' : ''}" data-page="${n}">${n}</button>` }).join('')}<button class="pagination__btn" data-page="next" aria-label="Próxima página" ${page === pages ? 'disabled' : ''}>${UIIcons.svg('arrowRight')}</button>`
     nav.querySelectorAll('button').forEach(b => b.addEventListener('click', () => { page = b.dataset.page === 'prev' ? page - 1 : b.dataset.page === 'next' ? page + 1 : Number(b.dataset.page); load(); document.getElementById('shop-grid')?.scrollIntoView({ behavior: 'smooth', block: 'start' }) }))
   }
   async function load() {

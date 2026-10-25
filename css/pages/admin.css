@@ -401,6 +401,7 @@
 
 .adm-trend--up { color: var(--adm-green); background: var(--adm-green-bg); }
 .adm-trend--down { color: var(--adm-red); background: var(--adm-red-bg); }
+.adm-trend svg { width:12px; height:12px; }
 
 /* ── Row layout ────────────────────────────────────────────────── */
 .adm-row {
@@ -1338,6 +1339,7 @@ text.adm-chart-lbl {
   transition: background .14s, color .14s;
 }
 .adm-cal__yr-btn:hover { background: var(--adm-primary-light); color: var(--adm-primary-text); }
+.adm-cal__yr-btn svg { width:15px; height:15px; }
 
 .adm-cal__month-grid {
   display: grid; grid-template-columns: repeat(3, 1fr);
@@ -1664,6 +1666,7 @@ text.adm-chart-lbl {
 .cms-icon-btn:hover { border-color: var(--adm-primary); color: var(--adm-primary-text); background: var(--adm-primary-light); }
 .cms-icon-btn--danger:hover { border-color: var(--adm-red); color: var(--adm-red); background: #fee2e2; }
 .cms-icon-btn svg { width: 14px; height: 14px; }
+.cms-banner-card__label svg { width:13px; height:13px; vertical-align:-2px; }
 
 /* Toggle switch inline */
 .cms-toggle { display: flex; align-items: center; gap: 6px; cursor: pointer; }

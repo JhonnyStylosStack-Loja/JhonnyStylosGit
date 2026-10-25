@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
     event.currentTarget.reset()
     message.textContent = 'Pronto! Se este e-mail estiver cadastrado, enviamos o link. Confira sua caixa de entrada e também a pasta de spam.'
     message.classList.add('is-success')
-    button.textContent = 'E-mail enviado ✓'
+    button.textContent = 'E-mail enviado'
     Toast.show(
       'Confira seu e-mail!',
       'Enviamos o link de recuperação. Verifique também a pasta de spam.',

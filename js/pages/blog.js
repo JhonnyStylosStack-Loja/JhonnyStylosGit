@@ -7,7 +7,7 @@ function renderBlogCard(post) {
   return `
   <article class="blog-card">
     <a href="blog-post.html?id=${post.id}" class="blog-card__image-wrap" style="display:block;text-decoration:none">
-      <img class="blog-card__image" src="${post.image}" alt="${post.title}" loading="lazy">
+      <img class="blog-card__image" src="${post.image}" alt="${post.title}" loading="lazy" style="object-position:${post.coverCropX}% ${post.coverCropY}%;transform:scale(${post.coverCropZoom})">
     </a>
     <div class="blog-card__body">
       <div class="blog-card__meta">
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const grid    = document.getElementById('blog-grid')
   const filters = document.querySelectorAll('.blog-filter')
   let active    = 'Todos'
-  const allPosts = await CMS.getBlogPosts()
+  let allPosts = await CMS.getBlogPosts()
 
   function render(category) {
     const posts = category === 'Todos'
@@ -52,4 +52,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   })
 
   render(active)
+  document.addEventListener('blog-post-saved', async () => {
+    allPosts = await CMS.getBlogPosts()
+    render(active)
+  })
 })

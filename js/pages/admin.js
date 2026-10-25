@@ -5,7 +5,7 @@ function fmt(v) { return v.toLocaleString('pt-BR', { style: 'currency', currency
 
 function trend(v) {
   const cls = v >= 0 ? 'up' : 'down'
-  return `<span class="adm-trend adm-trend--${cls}">${v >= 0 ? '↑' : '↓'} ${Math.abs(v).toFixed(1)}%</span>`
+  return `<span class="adm-trend adm-trend--${cls}">${UIIcons.svg(v >= 0 ? 'arrowUp' : 'arrowDown')} ${Math.abs(v).toFixed(1)}%</span>`
 }
 
 function badge(status) {
@@ -773,6 +773,9 @@ function initQuickActions() {
   function closeModal() { modalEl?.classList.remove('is-open') }
   modalClose?.addEventListener('click', closeModal)
   modalBdrop?.addEventListener('click', closeModal)
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && modalEl?.classList.contains('is-open')) closeModal()
+  })
 }
 
 // ── Navigation ────────────────────────────────────────────────────
@@ -1011,7 +1014,7 @@ async function renderCmsProdutos() {
     <span class="cms-badge" style="display:inline-flex;align-items:center;gap:.4rem;padding:4px 10px;border:1px solid var(--color-border);border-radius:100px;margin:0 .4rem .4rem 0">
       <button type="button" class="cms-star-btn" data-star="${c.id}" title="Marcar como destaque na home" style="background:none;border:none;cursor:pointer;font-size:1rem;color:${c.is_featured ? 'var(--color-primary-mid)' : '#ccc'}">★</button>
       ${_cmsEscape(c.name)}
-      <button type="button" class="cms-icon-btn" data-del-col="${c.id}" title="Excluir coleção" style="background:none;border:none;cursor:pointer">✕</button>
+      <button type="button" class="cms-icon-btn" data-del-col="${c.id}" title="Excluir coleção" style="background:none;border:none;cursor:pointer">${UIIcons.svg('trash')}</button>
     </span>`).join('') || '<span style="color:var(--color-muted);font-size:.85rem">Nenhuma coleção ainda.</span>'
 
   const rows = products.map(p => `
@@ -1051,7 +1054,7 @@ async function renderCmsProdutos() {
       ${categories.map(c => `
         <span class="cms-category-chip">${_cmsEscape(c.name)}
           <button type="button" data-category-edit="${_cmsEscape(c.id)}" data-category-name="${_cmsEscape(c.name)}" title="Renomear ${_cmsEscape(c.name)}">✏️</button>
-          <button type="button" data-category-delete="${_cmsEscape(c.id)}" data-category-name="${_cmsEscape(c.name)}" title="Excluir ${_cmsEscape(c.name)}">✕</button>
+          <button type="button" data-category-delete="${_cmsEscape(c.id)}" data-category-name="${_cmsEscape(c.name)}" title="Excluir ${_cmsEscape(c.name)}">${UIIcons.svg('x')}</button>
         </span>`).join('') || '<span class="cms-hint">Nenhuma categoria criada.</span>'}
     </div>
     <div class="adm-card" style="margin-bottom:1rem">
@@ -1081,7 +1084,7 @@ async function renderCmsProdutos() {
       <div class="cms-modal cms-product-modal">
         <div class="cms-modal__header">
           <div><h2 class="cms-modal__title" id="cms-prod-modal-title">Novo Produto</h2><p class="cms-hint">Cadastre os dados comerciais e variantes da peça.</p></div>
-          <button class="cms-modal__close" id="cms-prod-close" type="button" aria-label="Fechar">✕</button>
+          <button class="cms-modal__close" id="cms-prod-close" type="button" aria-label="Fechar">${UIIcons.svg('x')}</button>
         </div>
         <div class="cms-modal__body cms-product-modal__body">
           <form class="cms-form" id="cms-prod-form">
@@ -1196,9 +1199,9 @@ function _cmsRenderProductImages() {
       <img src="${_cmsEscape(image.previewUrl || image.image || '')}" alt="${_cmsEscape(image.alt || `Foto ${index + 1}`)}">
       <span class="cms-prod-image__primary">${index === 0 ? 'Principal' : `Foto ${index + 1}`}</span>
       <div class="cms-prod-image__actions">
-        <button type="button" class="cms-icon-btn" data-image-up="${index}" title="Mover para a esquerda" ${index === 0 ? 'disabled' : ''}>←</button>
-        <button type="button" class="cms-icon-btn" data-image-down="${index}" title="Mover para a direita" ${index === _cmsProdImageList.length - 1 ? 'disabled' : ''}>→</button>
-        <button type="button" class="cms-icon-btn cms-icon-btn--danger" data-image-remove="${index}" title="Remover foto">✕</button>
+        <button type="button" class="cms-icon-btn" data-image-up="${index}" title="Mover para a esquerda" ${index === 0 ? 'disabled' : ''}>${UIIcons.svg('arrowLeft')}</button>
+        <button type="button" class="cms-icon-btn" data-image-down="${index}" title="Mover para a direita" ${index === _cmsProdImageList.length - 1 ? 'disabled' : ''}>${UIIcons.svg('arrowRight')}</button>
+        <button type="button" class="cms-icon-btn cms-icon-btn--danger" data-image-remove="${index}" title="Remover foto">${UIIcons.svg('trash')}</button>
       </div>
     </article>`).join('')
 }
@@ -1210,7 +1213,7 @@ function _cmsVariantRow(variant = {}) {
     <input class="cms-input" data-variant-field="size" maxlength="40" placeholder="Tamanho" value="${_cmsEscape(variant.size || '')}">
     <input class="cms-input" data-variant-field="price" type="number" min="0.01" step="0.01" placeholder="Usar preço base" value="${variant.price ?? ''}">
     <input class="cms-input" data-variant-field="stock" type="number" min="0" step="1" required value="${variant.stock ?? 0}">
-    <button type="button" class="cms-icon-btn cms-icon-btn--danger" data-variant-remove title="Remover variante">✕</button>
+    <button type="button" class="cms-icon-btn cms-icon-btn--danger" data-variant-remove title="Remover variante">${UIIcons.svg('trash')}</button>
   </div>`
 }
 
@@ -1588,7 +1591,7 @@ async function renderCmsBlog() {
       <div class="cms-modal" style="max-width:640px">
         <div class="cms-modal__header">
           <span id="cms-blog-modal-title">Novo Post</span>
-          <button class="cms-modal__close" id="cms-blog-close">✕</button>
+          <button class="cms-modal__close" id="cms-blog-close">${UIIcons.svg('x')}</button>
         </div>
         <div class="cms-modal__body" style="max-height:68vh;overflow-y:auto">
           <form class="cms-form" id="cms-blog-form">
@@ -1770,7 +1773,7 @@ function _cmsBlogUpdateCropPreview() {
 function _cmsBlogSetGallery(gallery) {
   document.getElementById('cms-blog-gallery').value = JSON.stringify(gallery)
   const root = document.getElementById('cms-blog-gallery-preview'); if (!root) return
-  root.innerHTML = gallery.map((src, index) => `<div class="cms-gallery__item"><img src="${src}" alt=""><button type="button" class="cms-gallery__del" data-gallery-remove="${index}">✕</button></div>`).join('')
+  root.innerHTML = gallery.map((src, index) => `<div class="cms-gallery__item"><img src="${src}" alt=""><button type="button" class="cms-gallery__del" data-gallery-remove="${index}">${UIIcons.svg('trash')}</button></div>`).join('')
 }
 
 // ── Loja Física ───────────────────────────────────────────────────
@@ -1781,7 +1784,7 @@ async function renderCmsLojaFisica() {
   const galleryItems = (data.gallery || []).map((src, i) => `
     <div class="cms-gallery__item" data-idx="${i}">
       <img src="${src}" alt="Foto ${i+1}" onerror="this.style.display='none'">
-      <button class="cms-gallery__del" data-idx="${i}" title="Remover">✕</button>
+      <button class="cms-gallery__del" data-idx="${i}" title="Remover">${UIIcons.svg('trash')}</button>
     </div>`).join('')
 
   return `
@@ -2002,7 +2005,7 @@ function renderCmsBanners() {
         </div>
       </div>
       <div class="cms-banner-card__footer">
-        <span class="cms-banner-card__label">${b.btnText || 'Ver Coleção'} → ${b.link || ''}</span>
+        <span class="cms-banner-card__label">${b.btnText || 'Ver Coleção'} ${UIIcons.svg('arrowRight')} ${b.link || ''}</span>
         <div class="cms-banner-card__actions">
           <button class="cms-icon-btn" data-edit="${b.id}" title="Editar">✏️</button>
           <button class="cms-icon-btn cms-icon-btn--danger" data-del="${b.id}" title="Excluir">🗑</button>
@@ -2024,7 +2027,7 @@ function renderCmsBanners() {
       <div class="cms-modal" style="max-width:600px">
         <div class="cms-modal__header">
           <span id="cms-banner-modal-title">Novo Banner</span>
-          <button class="cms-modal__close" id="cms-banner-close">✕</button>
+          <button class="cms-modal__close" id="cms-banner-close">${UIIcons.svg('x')}</button>
         </div>
         <div class="cms-modal__body">
           <form class="cms-form" id="cms-banner-form">
