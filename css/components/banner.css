@@ -148,7 +148,7 @@
   background: rgba(0,0,0,.5);
 }
 @media (min-width: 1025px) {
-  .banner-offer__bg { object-position: center top; }
+  .banner-offer__bg { object-position: center 5%; }
 }
 .banner-offer__content {
   position: relative;
