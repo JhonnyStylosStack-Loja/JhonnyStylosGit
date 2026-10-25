@@ -97,10 +97,8 @@ document.addEventListener('DOMContentLoaded', () => {
         return
       }
 
-      // signInWithPassword already returned a verified user. Reusing it avoids
-      // a second Auth request; the destination page restores the cloud cart.
-      const canAccessCRM = await SupabaseAuth.canAccessCRM(result.user)
-      location.replace(canAccessCRM ? 'admin.html' : 'index.html')
+      // Every user starts on the storefront after a successful login.
+      location.replace('index.html')
     } finally {
       // Navigation normally unloads this page. Restore the button if it does
       // not (for example, when authentication fails).
