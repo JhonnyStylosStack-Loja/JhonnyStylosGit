@@ -201,6 +201,12 @@
   transition: transform var(--transition-slow);
 }
 .promo-card:hover .promo-card__image { transform: scale(1.05); }
+@media (min-width: 1025px) {
+  .banners-promo .promo-card__image {
+    height: calc(100% + 16px);
+    margin-top: -16px;
+  }
+}
 .promo-card__content {
   position: absolute;
   bottom: 0;
