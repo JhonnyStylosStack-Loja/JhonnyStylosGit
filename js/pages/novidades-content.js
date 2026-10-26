@@ -1,19 +1,29 @@
+const NOVIDADES_LOCAL_IMAGES = [
+  'assets/images/IMAGENS%20SITE/Novidades/Eleg%C3%A2ncia%20Branca%20no%20Espelho.png?v=20261026-1',
+  'assets/images/IMAGENS%20SITE/Novidades/Eleg%C3%A2ncia%20dourada%20em%20vestido%20floral.png?v=20261026-1',
+  'assets/images/IMAGENS%20SITE/Novidades/leveza%20em%20tons%20naturais/01.webp?v=20261026-2',
+  'assets/images/IMAGENS%20SITE/Novidades/Retrato%20elegante%20em%20vestido%20rosa%20pastel.png?v=20261026-1',
+  'assets/images/IMAGENS%20SITE/Novidades/Selfie%20elegante%20em%20vestido%20azul%20lavanda.png?v=20261026-1',
+  'assets/images/IMAGENS%20SITE/Novidades/produ%C3%A7%C3%B5es%20para%20todos%20os%20momentos/01.webp?v=20261026-2',
+  'assets/images/IMAGENS%20SITE/Novidades/Selfie%20elegante%20em%20vestido%20de%20tweed%20preto.png?v=20261026-1',
+  'assets/images/IMAGENS%20SITE/Novidades/Selfie%20elegante%20em%20vestido%20rosa%20floral.png?v=20261026-1'
+]
+
 const NovidadesContent = {
   staff: false,
   data: null,
   defaults: {
-    hero: { eyebrow: 'Nova coleção', title: 'Novidades', accent: 'em Alta', subtitle: 'Uma curadoria fresca de peças femininas para renovar seus looks.', image: 'assets/images/roupas/717249195_18138506848550228_5973150353313444939_n.jpg', cropX: 50, cropY: 35, zoom: 1 },
+    hero: { eyebrow: 'Nova coleção', title: 'Novidades', accent: 'em Alta', subtitle: 'Uma curadoria fresca de peças femininas para renovar seus looks.', image: NOVIDADES_LOCAL_IMAGES[0], cropX: 50, cropY: 35, zoom: 1 },
     categories: ['Todos', 'Vestidos', 'Conjuntos', 'Blusas', 'Calças', 'Looks', 'Shorts', 'Saias'],
-    spotlight: { label: 'Destaque da Semana', eyebrow: 'Escolha da curadoria', title: 'Elegância que acompanha você', description: 'Modelagens femininas, tecidos confortáveis e detalhes que transformam qualquer produção.', button: 'Conhecer a coleção', link: 'shop.html', image: 'assets/images/roupas/672350601_18133246030550228_6238487994570565479_n.jpg', cropX: 50, cropY: 25, zoom: 1 },
+    spotlight: { label: 'Destaque da Semana', eyebrow: 'Escolha da curadoria', title: 'Elegância que acompanha você', description: 'Modelagens femininas, tecidos confortáveis e detalhes que transformam qualquer produção.', button: 'Conhecer a coleção', link: 'shop.html', image: NOVIDADES_LOCAL_IMAGES[1], cropX: 50, cropY: 25, zoom: 1 },
     editorial: {
       label: 'Editorial — Peças que Chegaram',
       cards: [
-        { eyebrow: 'Novo drop', title: 'Leveza em tons naturais', link: 'shop.html', image: 'assets/images/roupas/669751611_18132869941550228_8766216536007574101_n.jpg', cropX: 50, cropY: 28, zoom: 1 },
-        { eyebrow: 'Essenciais', title: 'Conjuntos versáteis', link: 'shop.html', image: 'assets/images/roupas/661360880_18132584527550228_8380790774553928034_n.jpg', cropX: 50, cropY: 30, zoom: 1 },
-        { eyebrow: 'Favoritos', title: 'Detalhes que encantam', link: 'shop.html', image: 'assets/images/roupas/659087011_18132595411550228_5594839873839737808_n.jpg', cropX: 50, cropY: 30, zoom: 1 },
-        { eyebrow: 'Coleção', title: 'Produções para todos os momentos', link: 'shop.html', image: 'assets/images/roupas/640145856_18127728499550228_8066820905867045664_n.jpg', cropX: 50, cropY: 28, zoom: 1 },
-        { eyebrow: 'Em alta', title: 'Silhuetas contemporâneas', link: 'shop.html', image: 'assets/images/roupas/636821417_18127353193550228_3736310066042731541_n.jpg', cropX: 50, cropY: 30, zoom: 1 },
-        { eyebrow: 'Inspiração', title: 'Seu próximo look favorito', link: 'shop.html', image: 'assets/images/roupas/627966202_18126319933550228_2017830461251108621_n.jpg', cropX: 50, cropY: 28, zoom: 1 }
+        { eyebrow: 'Novo drop', title: 'Leveza em tons naturais', link: 'shop.html', image: NOVIDADES_LOCAL_IMAGES[2], cropX: 50, cropY: 28, zoom: 1 },
+        { eyebrow: 'Essenciais', title: 'Conjuntos versáteis', link: 'shop.html', image: NOVIDADES_LOCAL_IMAGES[3], cropX: 50, cropY: 30, zoom: 1 },
+        { eyebrow: 'Favoritos', title: 'Detalhes que encantam', link: 'shop.html', image: NOVIDADES_LOCAL_IMAGES[4], cropX: 50, cropY: 30, zoom: 1 },
+        { eyebrow: 'Em alta', title: 'Silhuetas contemporâneas', link: 'shop.html', image: NOVIDADES_LOCAL_IMAGES[6], cropX: 50, cropY: 30, zoom: 1 },
+        { eyebrow: 'Inspiração', title: 'Seu próximo look favorito', link: 'shop.html', image: NOVIDADES_LOCAL_IMAGES[7], cropX: 50, cropY: 28, zoom: 1 }
       ]
     },
     countdown: { eyebrow: 'Drop Semanal', title: 'Novas peças toda semana!', subtitle: 'Acompanhe os lançamentos e encontre seu novo look favorito.', target: '' },
@@ -24,9 +34,16 @@ const NovidadesContent = {
   merge(remote = {}) {
     return {
       ...this.defaults, ...remote,
-      hero: { ...this.defaults.hero, ...(remote.hero || {}) },
-      spotlight: { ...this.defaults.spotlight, ...(remote.spotlight || {}) },
-      editorial: { ...this.defaults.editorial, ...(remote.editorial || {}), cards: remote.editorial?.cards?.length ? remote.editorial.cards : this.defaults.editorial.cards },
+      hero: { ...this.defaults.hero, ...(remote.hero || {}), image: NOVIDADES_LOCAL_IMAGES[0] },
+      spotlight: { ...this.defaults.spotlight, ...(remote.spotlight || {}), image: NOVIDADES_LOCAL_IMAGES[1] },
+      editorial: {
+        ...this.defaults.editorial,
+        ...(remote.editorial || {}),
+        cards: (remote.editorial?.cards?.length ? remote.editorial.cards : this.defaults.editorial.cards)
+          .filter(card => card.title !== 'Produções para todos os momentos')
+          .slice(0, 5)
+          .map((card, index) => ({ ...card, image: NOVIDADES_LOCAL_IMAGES[[2, 3, 4, 6, 7][index]] }))
+      },
       countdown: { ...this.defaults.countdown, ...(remote.countdown || {}) },
       products: { ...this.defaults.products, ...(remote.products || {}) }
     }
@@ -69,7 +86,7 @@ const NovidadesContent = {
     const d = this.data
     const hero = document.querySelector('.nov-page-header')
     if (hero) {
-      hero.innerHTML = `<div class="nov-page-header__media"><img src="${this.escape(d.hero.image)}" alt="" fetchpriority="high" style="object-position:${d.hero.cropX}% ${d.hero.cropY}%;transform:scale(${d.hero.zoom})"></div><div class="nov-page-header__shade"></div><div class="nov-page-header__inner"><p class="nov-page-header__eyebrow">${this.escape(d.hero.eyebrow)}</p><h1 class="nov-page-header__title">${this.escape(d.hero.title)}</h1><p class="nov-page-header__sub">${this.escape(d.hero.subtitle)}</p><nav class="nov-page-header__breadcrumb" aria-label="Breadcrumb"><a href="index.html">Início</a><span class="sep">/</span><span>Novidades</span></nav>${this.editButtons('hero')}</div>`
+      hero.innerHTML = `<div class="nov-page-header__media"><div class="nov-page-header__photo nov-page-header__photo--main"><img src="${this.escape(d.hero.image)}" alt="Nova coleção Jhonny Styles" fetchpriority="high" style="object-position:${d.hero.cropX}% ${d.hero.cropY}%;transform:scale(${d.hero.zoom})"></div><div class="nov-page-header__photo"><img src="${NOVIDADES_LOCAL_IMAGES[3]}" alt="Look da nova coleção"></div></div><div class="nov-page-header__shade"></div><div class="nov-page-header__inner"><p class="nov-page-header__eyebrow">${this.escape(d.hero.eyebrow)}</p><h1 class="nov-page-header__title">${this.escape(d.hero.title)}</h1><p class="nov-page-header__sub">${this.escape(d.hero.subtitle)}</p><nav class="nov-page-header__breadcrumb" aria-label="Breadcrumb"><a href="index.html">Início</a><span class="sep">/</span><span>Novidades</span></nav>${this.editButtons('hero')}</div>`
     }
     const cats = document.querySelector('.nov-cats__inner')
     if (cats) cats.innerHTML = d.categories.map((cat, index) => `<button class="nov-cat-btn ${index === 0 ? 'is-active' : ''}" data-cat="${index === 0 ? 'all' : this.escape(cat)}">${this.escape(cat)}</button>`).join('') + this.textButton('categories')

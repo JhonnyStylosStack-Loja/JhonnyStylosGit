@@ -66,6 +66,39 @@ function renderProductCard(p) {
   </article>`
 }
 
+const ILLUSTRATIVE_DEALS = [
+  { name: 'Vestido Midi Elegance', category: 'Vestidos', price: 149.90, comparePrice: 189.90, image: 'assets/images/roupas/717249195_18138506848550228_5973150353313444939_n.jpg' },
+  { name: 'Conjunto Alfaiataria Rosé', category: 'Conjuntos', price: 169.90, comparePrice: 219.90, image: 'assets/images/IMAGENS%20SITE/Novidades/Selfie%20elegante%20em%20vestido%20azul%20lavanda.png?v=20261026-1' },
+  { name: 'Blusa Feminina Premium', category: 'Blusas', price: 89.90, comparePrice: 119.90, image: 'assets/images/roupas/672350601_18133246030550228_6238487994570565479_n.jpg' },
+  { name: 'Saia Midi Romântica', category: 'Saias', price: 129.90, comparePrice: 159.90, image: 'assets/images/IMAGENS%20SITE/Novidades/Selfie%20elegante%20em%20vestido%20de%20tweed%20preto.png?v=20261026-1' }
+]
+
+function renderIllustrativeDealCard(product) {
+  const salePct = Math.round((1 - product.price / product.comparePrice) * 100)
+  return `
+  <article class="product-card product-card--illustrative">
+    <div class="product-card__image-wrap">
+      <a href="shop.html"><img src="${product.image}" alt="${product.name}" loading="lazy"></a>
+      <div class="product-card__badges">
+        <span class="badge badge--sale">-${salePct}%</span>
+      </div>
+      <div class="product-card__quickadd"><a href="shop.html">Ver na Loja</a></div>
+    </div>
+    <div class="product-card__body">
+      <p class="product-card__category">${product.category}</p>
+      <a href="shop.html" class="product-card__name">${product.name}</a>
+      <div class="product-card__rating">
+        <div class="stars">${renderStars(5)}</div>
+        <span class="product-card__rating-count">Novidade</span>
+      </div>
+      <div class="product-card__pricing">
+        <span class="product-card__price">${Formatter.price(product.price)}</span>
+        <span class="product-card__compare">${Formatter.price(product.comparePrice)}</span>
+      </div>
+    </div>
+  </article>`
+}
+
 function renderFeaturedNew(p) {
   const salePct = p.comparePrice ? Math.round((1 - p.price / p.comparePrice) * 100) : 0
   return `
@@ -147,7 +180,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   const blogPosts = await CMS.getBlogPosts()
   if (!products.length) {
     document.querySelector('.new-arrivals')?.classList.add('new-arrivals--empty')
-    document.querySelector('.daily-deals')?.classList.add('daily-deals--empty')
+    const illustrativeMarkup = ILLUSTRATIVE_DEALS.map(renderIllustrativeDealCard).join('')
+    const illustrativeNewMarkup = [...ILLUSTRATIVE_DEALS].reverse().map(renderIllustrativeDealCard).join('')
+    document.getElementById('deals-grid')?.insertAdjacentHTML('beforeend', illustrativeMarkup)
+    document.getElementById('deals-new')?.insertAdjacentHTML('beforeend', illustrativeNewMarkup)
+    document.getElementById('deals-sale')?.insertAdjacentHTML('beforeend', illustrativeMarkup)
     document.querySelector('.mini-lists')?.setAttribute('hidden', '')
     return
   }

@@ -108,6 +108,10 @@
 .product-card:hover .product-card__quickadd {
   transform: translateY(0);
 }
+.product-card__quickadd a {
+  display: block;
+  color: inherit;
+}
 
 /* Body */
 .product-card__body {
@@ -152,6 +156,40 @@
   font-size: var(--font-size-xs);
   color: var(--color-text-light);
   text-decoration: line-through;
+}
+
+/* Cards demonstrativos das ofertas: conteúdo alinhado e alturas consistentes. */
+.product-card--illustrative {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.product-card--illustrative .product-card__image-wrap { flex: 0 0 auto; }
+.product-card--illustrative .product-card__image-wrap img {
+  transform: translateY(-4%) scale(1.08);
+  transform-origin: center top;
+}
+.product-card--illustrative:hover .product-card__image-wrap img {
+  transform: translateY(-4%) scale(1.12);
+}
+.product-card--illustrative .product-card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 154px;
+}
+.product-card--illustrative .product-card__name {
+  min-height: 40px;
+  line-height: 1.45;
+}
+.product-card--illustrative .product-card__rating {
+  min-height: 18px;
+  flex-wrap: nowrap;
+}
+.product-card--illustrative .product-card__pricing {
+  margin-top: auto;
+  flex-wrap: wrap;
+  row-gap: 2px;
 }
 
 /* Skeleton */

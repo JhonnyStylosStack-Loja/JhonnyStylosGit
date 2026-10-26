@@ -240,19 +240,35 @@
   .daily-deals { background: #f8f6f6; }
   .daily-deals__header { gap: 16px; margin-bottom: 20px; }
   .daily-deals__title { font-size: 1.7rem; }
+  .daily-deals__body,
+  .daily-deals__tabs,
+  .daily-deals__tabs > .tabs {
+    width: 100%;
+    min-width: 0;
+  }
+  .daily-deals__tabs { overflow: hidden; }
   .countdown { width: 100%; flex-wrap: nowrap; justify-content: space-between; }
   .countdown__unit { min-width: 0; flex: 1; }
   .countdown__value { width: 100%; min-width: 0; border-radius: 10px; }
   .countdown__sep { padding-inline: 1px; }
   .tabs__nav {
-    flex-wrap: nowrap;
-    gap: 4px;
-    overflow-x: auto;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 100%;
+    max-width: 100%;
+    gap: 0;
+    overflow: hidden;
     margin-bottom: 18px;
-    scrollbar-width: none;
   }
-  .tabs__nav::-webkit-scrollbar { display: none; }
-  .tabs__btn { flex: 1 0 auto; padding: 10px 14px; font-size: 12px; }
+  .tabs__btn {
+    width: 100%;
+    min-width: 0;
+    padding: 10px 4px;
+    overflow: hidden;
+    font-size: 11px;
+    text-align: center;
+    text-overflow: ellipsis;
+  }
 
   /* Selos da marca como uma faixa de confiança. */
   .brands { padding-block: 24px; background: #fff; border-block: 1px solid #f0e4e6; }

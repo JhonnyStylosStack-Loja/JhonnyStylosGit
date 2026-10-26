@@ -71,9 +71,12 @@
   display: grid;
   grid-template-columns: 280px 1fr;
   gap: var(--space-xl);
-  align-items: start;
+  align-items: stretch;
 }
 .daily-deals__featured {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   overflow: hidden;
@@ -86,6 +89,9 @@
   object-position: top center;
 }
 .daily-deals__featured-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
   padding: var(--space-md);
 }
 .daily-deals__featured-name {
@@ -114,16 +120,33 @@
 .daily-deals__featured-sold {
   font-size: var(--font-size-xs);
   color: var(--color-text-muted);
+  margin-top: auto;
 }
 
-.daily-deals__tabs { }
+.daily-deals__tabs,
+.daily-deals__tabs > .tabs { height: 100%; }
+.daily-deals__tabs > .tabs {
+  display: flex;
+  flex-direction: column;
+}
+.daily-deals__tabs .tabs__panel.is-active { flex: 1; }
 .daily-deals__grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: var(--space-md);
+  align-items: stretch;
+  height: 100%;
 }
+.daily-deals__grid .product-card { height: 100%; }
 .daily-deals--empty .daily-deals__body { display: none; }
 .daily-deals--empty { padding-bottom: var(--space-xl); }
+
+/* Mantém a oferta em destaque visível quando o catálogo ainda está vazio. */
+.daily-deals--catalog-empty .daily-deals__body {
+  grid-template-columns: minmax(260px, 360px);
+}
+.daily-deals--catalog-empty .daily-deals__featured { display: block; }
+.daily-deals--catalog-empty .daily-deals__tabs { display: none; }
 
 @media (max-width: 1200px) {
   .daily-deals__grid { grid-template-columns: repeat(3, 1fr); }
@@ -143,4 +166,5 @@
 }
 @media (max-width: 480px) {
   .daily-deals__grid { grid-template-columns: 1fr; }
+  .daily-deals--catalog-empty .daily-deals__body { grid-template-columns: 1fr; }
 }

@@ -255,7 +255,7 @@
   gap: 16px;
 }
 .nov-mosaic__grid .mos-card:nth-child(1) { grid-column: span 2; }
-.nov-mosaic__grid .mos-card:nth-child(4) { grid-column: span 2; }
+.nov-mosaic__grid .mos-card:nth-child(4) { grid-column: auto; }
 
 .mos-card {
   position: relative;
@@ -316,8 +316,7 @@
   margin-bottom: 8px;
   text-shadow: 0 2px 14px rgba(0,0,0,.4);
 }
-.nov-mosaic__grid .mos-card:nth-child(1) .mos-card__name,
-.nov-mosaic__grid .mos-card:nth-child(4) .mos-card__name { font-size: 1.55rem; }
+.nov-mosaic__grid .mos-card:nth-child(1) .mos-card__name { font-size: 1.55rem; }
 .mos-card__price-row {
   display: flex;
   align-items: center;
@@ -544,10 +543,10 @@
   .nov-spotlight__info { padding: 32px 24px; }
   .nov-mosaic__grid {
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(4, 220px);
+    grid-template-rows: repeat(3, 220px);
   }
-  .nov-mosaic__grid .mos-card:nth-child(1),
-  .nov-mosaic__grid .mos-card:nth-child(4) { grid-column: span 2; }
+  .nov-mosaic__grid .mos-card:nth-child(1) { grid-column: span 2; }
+  .nov-mosaic__grid .mos-card:nth-child(4) { grid-column: auto; }
   .nov-grid { grid-template-columns: repeat(2, 1fr); }
   .nov-countdown { padding: 32px 24px; gap: 24px; }
   .nov-countdown__unit { min-width: 58px; padding: 10px 12px; }
@@ -557,7 +556,7 @@
   .nov-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .nov-mosaic__grid {
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(6, 200px);
+    grid-template-rows: repeat(5, 200px);
   }
   .nov-mosaic__grid .mos-card:nth-child(1),
   .nov-mosaic__grid .mos-card:nth-child(4) { grid-column: 1; }
@@ -656,4 +655,89 @@
   .nov-page-header__breadcrumb a { color: var(--color-text); }
   .nov-page-header__sub { margin-bottom: 20px; color: var(--color-text-muted); }
   .nov-page-header__breadcrumb .sep { color: var(--color-primary-text); }
+}
+
+/* Hero desktop claro, com a fotografia contida em um box discreto. */
+@media (min-width: 769px) {
+  .nov-page-header {
+    min-height: 0;
+    grid-template-columns: minmax(300px, 380px) minmax(0, 1fr);
+    justify-content: stretch;
+    align-items: center;
+    gap: clamp(36px, 6vw, 78px);
+    padding-block: 52px;
+    padding-inline: max(var(--container-pad), calc((100% - var(--container-max)) / 2 + var(--container-pad)));
+    background: linear-gradient(135deg, #fff 0%, var(--color-cream) 100%);
+    color: var(--color-text);
+  }
+  .nov-page-header__media {
+    position: relative;
+    inset: auto;
+    grid-column: 2;
+    grid-row: 1;
+    width: 100%;
+    height: 320px;
+    display: grid;
+    grid-template-columns: minmax(0, 1.55fr) minmax(220px, 1fr);
+    gap: 16px;
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+  .nov-page-header__photo {
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    background: var(--color-bg-alt);
+    box-shadow: 0 12px 30px rgba(69, 43, 49, .1);
+  }
+  .nov-page-header__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 8% !important;
+    transform: scale(1) !important;
+  }
+  .nov-page-header__shade { display: none; }
+  .nov-page-header__inner {
+    grid-column: 1;
+    grid-row: 1;
+    width: auto;
+    text-align: left;
+  }
+  .nov-page-header__eyebrow { color: var(--color-primary-text); }
+  .nov-page-header__eyebrow::after { background: var(--color-primary-text); }
+  .nov-page-header__title,
+  .nov-page-header__breadcrumb,
+  .nov-page-header__breadcrumb a { color: var(--color-text); }
+  .nov-page-header__sub {
+    max-width: 520px;
+    margin: 0 0 24px;
+    color: var(--color-text-muted);
+  }
+  .nov-page-header__breadcrumb .sep { color: var(--color-primary-text); }
+}
+
+@media (max-width: 768px) {
+  .nov-page-header__media {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(110px, 1fr);
+    gap: 8px;
+    padding: 8px;
+  }
+  .nov-page-header__photo {
+    min-width: 0;
+    overflow: hidden;
+    border-radius: 13px;
+    background: var(--color-bg-alt);
+  }
+  .nov-page-header__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 8% !important;
+    transform: scale(1) !important;
+  }
 }
