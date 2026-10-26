@@ -67,10 +67,10 @@ function renderProductCard(p) {
 }
 
 const ILLUSTRATIVE_DEALS = [
-  { name: 'Vestido Midi Elegance', category: 'Vestidos', price: 149.90, comparePrice: 189.90, image: 'assets/images/roupas/717249195_18138506848550228_5973150353313444939_n.jpg' },
-  { name: 'Conjunto Alfaiataria Rosé', category: 'Conjuntos', price: 169.90, comparePrice: 219.90, image: 'assets/images/IMAGENS%20SITE/Novidades/Selfie%20elegante%20em%20vestido%20azul%20lavanda.png?v=20261026-1' },
-  { name: 'Blusa Feminina Premium', category: 'Blusas', price: 89.90, comparePrice: 119.90, image: 'assets/images/roupas/672350601_18133246030550228_6238487994570565479_n.jpg' },
-  { name: 'Saia Midi Romântica', category: 'Saias', price: 129.90, comparePrice: 159.90, image: 'assets/images/IMAGENS%20SITE/Novidades/Selfie%20elegante%20em%20vestido%20de%20tweed%20preto.png?v=20261026-1' }
+  { name: 'Vestido Midi Elegance', category: 'Vestidos', price: 149.90, comparePrice: 189.90, image: 'assets/images/roupas/717249195_18138506848550228_5973150353313444939_n.webp' },
+  { name: 'Conjunto Alfaiataria Rosé', category: 'Conjuntos', price: 169.90, comparePrice: 219.90, image: 'assets/images/IMAGENS%20SITE/Novidades/Selfie%20elegante%20em%20vestido%20azul%20lavanda.webp?v=20261026-1' },
+  { name: 'Blusa Feminina Premium', category: 'Blusas', price: 89.90, comparePrice: 119.90, image: 'assets/images/roupas/672350601_18133246030550228_6238487994570565479_n.webp' },
+  { name: 'Saia Midi Romântica', category: 'Saias', price: 129.90, comparePrice: 159.90, image: 'assets/images/IMAGENS%20SITE/Novidades/Selfie%20elegante%20em%20vestido%20de%20tweed%20preto.webp?v=20261026-1' }
 ]
 
 function renderIllustrativeDealCard(product) {

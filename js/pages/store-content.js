@@ -1,5 +1,5 @@
 const StoreContent = {
-  data: null, staff: false, howImageUrl: 'assets/images/lojafisica/01.png',
+  data: null, staff: false, howImageUrl: 'assets/images/lojafisica/01.webp',
   icons: {
     clock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>',
     mapPin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>',
@@ -13,7 +13,7 @@ const StoreContent = {
   empty: {
     hero_tag: 'Nossa Loja Física', hero_title: 'Venha Nos', hero_title_emphasis: 'Visitar',
     hero_description: 'Uma experiência de moda que vai além do online. Experimente, sinta o tecido e se apaixone pelas peças em pessoa.',
-    hero_address: 'Rua das Flores, 123 — Centro, Sua Cidade', hero_image_url: 'assets/images/lojafisica/01.png', hero_crop_x: 50, hero_crop_y: 50, hero_crop_zoom: 1,
+    hero_address: 'Rua das Flores, 123 — Centro, Sua Cidade', hero_image_url: 'assets/images/lojafisica/01.webp', hero_crop_x: 50, hero_crop_y: 50, hero_crop_zoom: 1,
     hero_whatsapp_url: 'https://wa.me/5500000000000', hero_whatsapp_label: 'Falar no WhatsApp',
     hero_shop_url: 'shop.html', hero_shop_label: 'Ver Produtos Online',
     hours: { weekday: '9h às 18h', saturday: '9h às 17h', sunday: 'Fechado', holidays: 'Consulte' },
@@ -57,13 +57,13 @@ const StoreContent = {
   async refreshHowImage() {
     const path = this.data?.how_image_path
     if (!path) {
-      this.howImageUrl = 'assets/images/lojafisica/01.png'
+      this.howImageUrl = 'assets/images/lojafisica/01.webp'
       return
     }
     const { data, error } = await supabaseClient.storage.from('store-gallery').createSignedUrl(path, 3600)
     if (error) {
       console.error('Erro ao carregar a foto de como chegar:', error)
-      this.howImageUrl = 'assets/images/lojafisica/01.png'
+      this.howImageUrl = 'assets/images/lojafisica/01.webp'
       return
     }
     this.howImageUrl = data.signedUrl

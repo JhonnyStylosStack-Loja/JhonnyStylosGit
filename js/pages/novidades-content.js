@@ -1,12 +1,12 @@
 const NOVIDADES_LOCAL_IMAGES = [
-  'assets/images/IMAGENS%20SITE/Novidades/Eleg%C3%A2ncia%20Branca%20no%20Espelho.png?v=20261026-1',
-  'assets/images/IMAGENS%20SITE/Novidades/Eleg%C3%A2ncia%20dourada%20em%20vestido%20floral.png?v=20261026-1',
+  'assets/images/IMAGENS%20SITE/Novidades/Eleg%C3%A2ncia%20Branca%20no%20Espelho.webp?v=20261026-1',
+  'assets/images/IMAGENS%20SITE/Novidades/Eleg%C3%A2ncia%20dourada%20em%20vestido%20floral.webp?v=20261026-1',
   'assets/images/IMAGENS%20SITE/Novidades/leveza%20em%20tons%20naturais/01.webp?v=20261026-2',
-  'assets/images/IMAGENS%20SITE/Novidades/Retrato%20elegante%20em%20vestido%20rosa%20pastel.png?v=20261026-1',
-  'assets/images/IMAGENS%20SITE/Novidades/Selfie%20elegante%20em%20vestido%20azul%20lavanda.png?v=20261026-1',
+  'assets/images/IMAGENS%20SITE/Novidades/Retrato%20elegante%20em%20vestido%20rosa%20pastel.webp?v=20261026-1',
+  'assets/images/IMAGENS%20SITE/Novidades/Selfie%20elegante%20em%20vestido%20azul%20lavanda.webp?v=20261026-1',
   'assets/images/IMAGENS%20SITE/Novidades/produ%C3%A7%C3%B5es%20para%20todos%20os%20momentos/01.webp?v=20261026-2',
-  'assets/images/IMAGENS%20SITE/Novidades/Selfie%20elegante%20em%20vestido%20de%20tweed%20preto.png?v=20261026-1',
-  'assets/images/IMAGENS%20SITE/Novidades/Selfie%20elegante%20em%20vestido%20rosa%20floral.png?v=20261026-1'
+  'assets/images/IMAGENS%20SITE/Novidades/Selfie%20elegante%20em%20vestido%20de%20tweed%20preto.webp?v=20261026-1',
+  'assets/images/IMAGENS%20SITE/Novidades/Selfie%20elegante%20em%20vestido%20rosa%20floral.webp?v=20261026-1'
 ]
 
 const NovidadesContent = {
@@ -27,7 +27,7 @@ const NovidadesContent = {
       ]
     },
     countdown: { eyebrow: 'Drop Semanal', title: 'Novas peças toda semana!', subtitle: 'Acompanhe os lançamentos e encontre seu novo look favorito.', target: '' },
-    products: { title: 'Todos os', accent: 'Novos', emptyEyebrow: 'Próximo lançamento', emptyTitle: 'Seleção de novidades em preparação', emptyDescription: 'Cadastre produtos como novidade no CRM para preencher esta vitrine automaticamente.', emptyButton: 'Ir para o catálogo', emptyLink: 'shop.html', image: 'assets/images/roupas/611774660_18123418903550228_8019439332005677215_n.jpg', cropX: 50, cropY: 25, zoom: 1 }
+    products: { title: 'Todos os', accent: 'Novos', emptyEyebrow: 'Próximo lançamento', emptyTitle: 'Seleção de novidades em preparação', emptyDescription: 'Cadastre produtos como novidade no CRM para preencher esta vitrine automaticamente.', emptyButton: 'Ir para o catálogo', emptyLink: 'shop.html', image: 'assets/images/roupas/611774660_18123418903550228_8019439332005677215_n.webp', cropX: 50, cropY: 25, zoom: 1 }
   },
 
   escape(value = '') { const el = document.createElement('div'); el.textContent = value; return el.innerHTML },
