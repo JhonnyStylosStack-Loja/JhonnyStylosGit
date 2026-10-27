@@ -24,6 +24,12 @@ function renderIllustrativeLayout() {
           ${typeof NovidadesContent !== 'undefined' && NovidadesContent.staff ? `<button class="nov-edit-btn nov-edit-btn--empty-content" data-edit-text="productsEmpty" aria-label="Editar conteúdo">${UIIcons.svg('edit')}</button>` : ''}
         </div>
       </div>`
+    const image = grid.querySelector('.nov-empty__media img')
+    if (image && image.getAttribute('src') !== ILLUSTRATIVE_ASSETS[2]) {
+      image.addEventListener('error', () => {
+        image.src = ILLUSTRATIVE_ASSETS[2]
+      }, { once: true })
+    }
   }
   if (typeof NovidadesContent !== 'undefined') NovidadesContent.bind()
 }
