@@ -13,7 +13,7 @@ function productPage(page) {
   const cards = Array.from({length: 4}, (_, slot) => {
     const number = index * 4 + slot + 1;
 
-    return `<article class="catalog-item"><img src="${productPlaceholder}" alt="Espaço reservado para a imagem da peça ${String(number).padStart(3, '0')}" loading="lazy" decoding="async"><div class="catalog-item__copy"><h2>Peça ${String(number).padStart(3, '0')}</h2><p>${category}</p></div></article>`;
+    return `<article class="catalog-item"><img src="${productPlaceholder}" alt="Espaço reservado para a imagem da peça ${String(number).padStart(3, '0')}" loading="lazy" decoding="async"><div class="catalog-item__copy"><div class="catalog-item__title-row"><h2>Peça ${String(number).padStart(3, '0')}</h2><span class="catalog-item__price" aria-label="Preço ilustrativo">R$ 0,00</span></div><p>${category}</p></div></article>`;
   }).join('');
   const background = ((index % 3) + 1).toString().padStart(2, '0');
   return `<section class="catalog-page catalog-products" id="pagina-${page}" style="--page-background:url('${assetRoot}Background Paginas/Back${background}.png')" aria-label="Página ${page}, ${category}"><div class="catalog-page__body"><div class="catalog-products__heading"><h1>${category}</h1><p>Elegância e estilo<br>em cada detalhe.</p></div><div class="catalog-grid">${cards}</div></div>${footer(page)}</section>`;
@@ -83,26 +83,30 @@ document.getElementById('catalog-back-to-cover').addEventListener('click', () =>
 /* Rolagem de roda com desaceleração curta; toque mantém o comportamento nativo. */
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 let wheelTarget = window.scrollY;
+let wheelPosition = window.scrollY;
 let wheelFrame = 0;
 function stopWheelMotion() {
   if (wheelFrame) cancelAnimationFrame(wheelFrame);
   wheelFrame = 0;
   wheelTarget = window.scrollY;
+  wheelPosition = window.scrollY;
 }
 function animateWheel() {
-  const distance = wheelTarget - window.scrollY;
-  if (Math.abs(distance) < 0.8) {
-    window.scrollTo({top: wheelTarget, behavior: 'instant'});
+  const distance = wheelTarget - wheelPosition;
+  if (Math.abs(distance) < 0.35) {
+    wheelPosition = wheelTarget;
+    window.scrollTo({top: wheelPosition, behavior: 'instant'});
     wheelFrame = 0;
     return;
   }
-  window.scrollTo({top: window.scrollY + distance * 0.16, behavior: 'instant'});
+  wheelPosition += distance * (Math.abs(distance) > 120 ? 0.26 : 0.09);
+  window.scrollTo({top: wheelPosition, behavior: 'instant'});
   wheelFrame = requestAnimationFrame(animateWheel);
 }
 window.addEventListener('wheel', event => {
   if (reducedMotion.matches || event.ctrlKey || event.metaKey || event.shiftKey || event.target.closest('input, select, textarea')) return;
   event.preventDefault();
-  if (!wheelFrame) wheelTarget = window.scrollY;
+  if (!wheelFrame) wheelTarget = wheelPosition = window.scrollY;
   const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
   const delta = event.deltaMode === WheelEvent.DOM_DELTA_LINE ? event.deltaY * 16 : event.deltaMode === WheelEvent.DOM_DELTA_PAGE ? event.deltaY * window.innerHeight : event.deltaY;
   wheelTarget = Math.max(0, Math.min(maxScroll, wheelTarget + delta));

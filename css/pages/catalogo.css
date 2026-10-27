@@ -131,3 +131,12 @@ body{background:#f8ebea}
 }
 .catalog-bottom-nav{border-radius:14px}
 .catalog-bottom-nav button{border-radius:10px}
+/* O índice precisa caber antes do rodapé na página 3:4 do celular. */
+@media(max-width:600px){
+  .catalog-index__links{margin-top:5%}
+  .catalog-index__links a{padding:1.2% 0;font-size:clamp(.9rem,3.4vw,1.1rem);line-height:1.2}
+}
+.catalog-item__title-row{display:flex;align-items:baseline;justify-content:space-between;gap:6px}
+.catalog-products .catalog-item__title-row h2{margin:0;white-space:nowrap}
+.catalog-products .catalog-item__title-row .catalog-item__price{display:inline;margin:0;color:#a52f45;font-size:clamp(.72rem,1.3vw,.9rem);font-weight:700;white-space:nowrap}
+@media(max-width:600px){.catalog-products .catalog-item__title-row .catalog-item__price{font-size:clamp(.56rem,2.35vw,.72rem)}}
