@@ -140,3 +140,5 @@ body{background:#f8ebea}
 .catalog-products .catalog-item__title-row h2{margin:0;white-space:nowrap}
 .catalog-products .catalog-item__title-row .catalog-item__price{display:inline;margin:0;color:#a52f45;font-size:clamp(.72rem,1.3vw,.9rem);font-weight:700;white-space:nowrap}
 @media(max-width:600px){.catalog-products .catalog-item__title-row .catalog-item__price{font-size:clamp(.56rem,2.35vw,.72rem)}}
+.catalog-products .catalog-item__title-row .catalog-item__price{font-size:clamp(.86rem,1.55vw,1.05rem)}
+@media(max-width:600px){.catalog-products .catalog-item__title-row .catalog-item__price{font-size:clamp(.68rem,2.7vw,.82rem)}}
