@@ -1,0 +1,133 @@
+﻿body{background:#eed1cf;color:#751919}.catalog-header{position:sticky;top:0;z-index:2;min-height:68px;padding:10px max(20px,calc((100vw - 1100px)/2));display:flex;align-items:center;justify-content:space-between;background:#fff9f8eF;backdrop-filter:blur(12px);border-bottom:1px solid #edc4c4;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase}.catalog-header img{display:block;width:160px;max-height:45px;object-fit:contain}.catalog-shell{max-width:1100px;margin:auto;padding:25px 20px 80px}.catalog-toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;color:#874d4d;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase}.catalog-toolbar label{display:flex;align-items:center;gap:12px}.catalog-toolbar select{padding:7px 12px;background:#fff9f8;border:1px solid #dbaaaa;color:#751919}.catalog-pages{display:grid;justify-items:center;gap:28px}.catalog-page{width:min(100%,720px);aspect-ratio:3/4;position:relative;overflow:hidden;background:#fff5f3;box-shadow:0 15px 34px #803d3d40;scroll-margin-top:90px}.catalog-cover{background:#fff0ee url('../../Catálogo Jhonny Styles/Imagem da Capa Catálogo.png') center/cover no-repeat}.catalog-cover__content{position:absolute;inset:5% auto 4% 6%;width:45%;display:flex;flex-direction:column;align-items:flex-start}.catalog-cover__logo{width:54%;height:10%;object-fit:contain;object-position:left center;margin-left:8%}.catalog-cover__rule{width:24%;height:1px;background:#e88d9c;margin:3% 0 6% 28%}.catalog-cover h1,.catalog-index h1,.catalog-back h1{font-family:Georgia,serif;font-style:italic;font-weight:400;line-height:.98;letter-spacing:-.055em}.catalog-cover h1{font-size:clamp(2.5rem,5.3vw,4.9rem);margin:0 0 5%}.catalog-cover p,.catalog-cover small,.catalog-eyebrow{font-size:clamp(.55rem,1vw,.8rem);letter-spacing:.38em;line-height:1.8;text-transform:uppercase;color:#c94965}.catalog-cover nav{display:grid;gap:clamp(8px,1.5vw,18px);margin-top:10%;font-size:clamp(.58rem,1vw,.78rem);letter-spacing:.2em;text-transform:uppercase}.catalog-cover nav a{color:#a84156;text-decoration:none}.catalog-cover nav a:before{content:'◇';font-size:1.5em;margin-right:14px;color:#ee6a8a}.catalog-cover small{margin-top:auto;border-top:1px solid #e7a0a9;padding-top:5%;color:#a95767}.catalog-index,.catalog-products{background:#fff3f1 var(--page-background) center/cover no-repeat}.catalog-page__body{height:93%;padding:6%}.catalog-index h1{font-size:clamp(2.6rem,5vw,4.7rem);margin:7% 0 5%}.catalog-index__intro{max-width:32ch;font-size:clamp(.8rem,1.4vw,1rem);line-height:1.7;color:#714f4f}.catalog-index__links{margin-top:9%;border-top:1px solid #e5a5ac}.catalog-index__links a{display:grid;grid-template-columns:2.5em 1fr auto;gap:15px;padding:3% 0;border-bottom:1px solid #e5a5ac;color:#751919;text-decoration:none;font-family:Georgia,serif;font-size:clamp(1rem,2vw,1.6rem)}.catalog-index__links span{font-family:Arial,sans-serif;font-size:.65em;letter-spacing:.15em;color:#c96976}.catalog-products__heading{display:flex;align-items:center;gap:5%;min-height:9%;margin-bottom:4%}.catalog-products__heading h1{font-family:Georgia,serif;font-size:clamp(1.8rem,4vw,3.3rem);font-weight:400;text-transform:uppercase;white-space:nowrap;margin:0}.catalog-products__heading:after{content:'';height:1px;background:#e7a2a9;flex:1}.catalog-products__heading p{order:3;font-size:clamp(.43rem,.85vw,.65rem);letter-spacing:.25em;text-transform:uppercase;line-height:1.5;margin:0}.catalog-grid{height:84%;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:3%}.catalog-item{min-height:0;display:flex;flex-direction:column;overflow:hidden;border:1px solid #eedddd;border-radius:8px;background:#fffafa}.catalog-item img{width:100%;height:75%;object-fit:cover;object-position:top center}.catalog-item__copy{padding:3% 5%;color:#352b2b}.catalog-item h2{font-size:clamp(.7rem,1.4vw,1rem);margin:0 0 3px}.catalog-item p{font-size:clamp(.6rem,1vw,.78rem);color:#896e6e;margin:0}.catalog-item span{display:block;margin-top:4px;font-size:clamp(.55rem,.95vw,.76rem);font-weight:700;color:#cb3c56}.catalog-page__footer{position:absolute;bottom:0;left:6%;right:6%;height:7%;display:flex;align-items:center;justify-content:space-between;border-top:1px solid #e9a9b0;font-size:clamp(.45rem,.8vw,.64rem);letter-spacing:.25em;text-transform:uppercase}.catalog-page__footer span:last-child{font-size:1.5em;letter-spacing:0}.catalog-back{display:flex;align-items:center;justify-content:center;text-align:center;background:#fff0ee url('../../Catálogo Jhonny Styles/Background Paginas/Back02.png') center/cover no-repeat}.catalog-back>div{max-width:70%}.catalog-back img{width:45%;margin-bottom:15%}.catalog-back h1{font-size:clamp(2.3rem,5vw,4.5rem)}.catalog-back p{line-height:1.6}.catalog-back a{display:inline-block;margin-top:8%;color:#af344a}.catalog-back .catalog-page__footer{text-align:left}@media(max-width:600px){.catalog-shell{padding:14px 9px 40px}.catalog-pages{gap:18px}.catalog-header{min-height:58px}.catalog-header img{width:120px}.catalog-header span{font-size:.6rem}.catalog-cover h1{font-size:clamp(1.7rem,8vw,3rem)}.catalog-cover nav{gap:5px}.catalog-cover nav a:before{margin-right:6px}.catalog-products__heading h1{font-size:clamp(1.25rem,6vw,2rem)}.catalog-products__heading p{letter-spacing:.1em}.catalog-item img{height:70%}.catalog-item__copy{padding:2% 4%}}
+/* As páginas de produtos são mais altas para acomodar quatro retratos 3:4. */
+.catalog-products{aspect-ratio:3/5.25}
+.catalog-products .catalog-page__body{height:94%;padding:5% 6% 2%}
+.catalog-products__heading{min-height:7%;margin-bottom:3%}
+.catalog-products .catalog-grid{height:88%;gap:2.5% 3%}
+.catalog-products .catalog-item{min-height:0}
+.catalog-products .catalog-item img{display:block;width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;object-position:center top;flex:none}
+.catalog-products .catalog-item__copy{flex:1;display:flex;flex-direction:column;justify-content:center;padding:2% 5%}
+.catalog-products .catalog-item__copy span{margin-top:2px}
+.catalog-products .catalog-page__footer{height:5%}
+@media(max-width:600px){
+  .catalog-products{aspect-ratio:3/5.7}
+  .catalog-products .catalog-page__body{height:95%}
+  .catalog-products .catalog-grid{height:89%;gap:2% 3%}
+  .catalog-products .catalog-item__copy{padding:1% 4%}
+  .catalog-products .catalog-item h2{font-size:clamp(.55rem,2.1vw,.75rem);margin:0}
+  .catalog-products .catalog-item p,.catalog-products .catalog-item span{font-size:clamp(.48rem,1.7vw,.65rem);line-height:1.15}
+}
+/* Clareamento editorial: 30% de branco sobre os fundos rosados. */
+body{background:#f3dfdd}
+.catalog-cover{background-image:linear-gradient(#ffffff4d,#ffffff4d),url('../../Catálogo Jhonny Styles/Imagem da Capa Catálogo.png')}
+.catalog-index{background-image:linear-gradient(#ffffff4d,#ffffff4d),url('../../Catálogo Jhonny Styles/Background Paginas/Back01.png')}
+.catalog-products{background-image:linear-gradient(#ffffff4d,#ffffff4d),var(--page-background)}
+.catalog-back{background-image:linear-gradient(#ffffff4d,#ffffff4d),url('../../Catálogo Jhonny Styles/Background Paginas/Back02.png')}
+.catalog-bottom-nav{position:fixed;z-index:10;left:50%;bottom:max(18px,env(safe-area-inset-bottom));transform:translateX(-50%);display:flex;align-items:center;gap:8px;padding:7px;border:1px solid #e8c7c7;border-radius:999px;background:#fffdfbed;box-shadow:0 10px 28px #71383830;backdrop-filter:blur(14px)}
+.catalog-bottom-nav button{min-width:126px;padding:10px 17px;border:0;border-radius:999px;background:#7b1b24;color:#fff;font:600 .83rem var(--font-body);cursor:pointer;white-space:nowrap}
+.catalog-bottom-nav button:hover:not(:disabled){background:#a93244}
+.catalog-bottom-nav button:disabled{opacity:.38;cursor:not-allowed}
+.catalog-bottom-nav button:focus-visible{outline:3px solid #e86c83;outline-offset:3px}
+@media(max-width:600px){.catalog-bottom-nav{bottom:max(12px,env(safe-area-inset-bottom));gap:5px;padding:5px}.catalog-bottom-nav button{min-width:110px;padding:10px 12px;font-size:.76rem}}
+/* A capa preserva as cores originais da imagem enviada. */
+.catalog-cover{background-image:url('../../Catálogo Jhonny Styles/Imagem da Capa Catálogo.png')}
+/* Páginas internas mais claras; capa permanece original. */
+body{background:#f8ebea}
+.catalog-index{background-image:linear-gradient(#ffffff73,#ffffff73),url('../../Catálogo Jhonny Styles/Background Paginas/Back01.png')}
+.catalog-products{background-image:linear-gradient(#ffffff73,#ffffff73),var(--page-background)}
+.catalog-back{background-image:linear-gradient(#ffffff73,#ffffff73),url('../../Catálogo Jhonny Styles/Background Paginas/Back02.png')}
+.catalog-bottom-nav{gap:4px;padding:5px;border-color:#ead9d9;background:#fffdfbf2;box-shadow:0 5px 16px #7138381a}
+.catalog-bottom-nav button{min-width:94px;padding:8px 12px;background:transparent;color:#8a4a50;font-size:.76rem;font-weight:600}
+.catalog-bottom-nav button:hover:not(:disabled){background:#f8eded;color:#74212d}
+.catalog-bottom-nav button:disabled{opacity:.3}
+@media(max-width:600px){.catalog-bottom-nav button{min-width:86px;padding:8px 10px;font-size:.72rem}}
+.catalog-bottom-nav__jump{display:flex;align-items:center;justify-content:center;gap:2px;min-width:57px;padding:0 5px;border-left:1px solid #ead9d9;border-right:1px solid #ead9d9;color:#9a7779;font-size:.74rem;white-space:nowrap}
+.catalog-bottom-nav__jump input{width:24px;padding:5px 0;border:0;outline:0;background:transparent;color:#74212d;font:700 .78rem var(--font-body);text-align:right;appearance:textfield;-moz-appearance:textfield}
+.catalog-bottom-nav__jump input::-webkit-inner-spin-button,.catalog-bottom-nav__jump input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+.catalog-bottom-nav__jump:focus-within{border-radius:5px;outline:2px solid #c47b86;outline-offset:2px}
+/* Informações de cada peça com leitura mais confortável. */
+.catalog-products .catalog-item h2{font-size:clamp(.9rem,1.7vw,1.16rem);line-height:1.2;margin:0 0 4px}
+.catalog-products .catalog-item p{font-size:clamp(.75rem,1.25vw,.9rem);line-height:1.25}
+.catalog-products .catalog-item span{font-size:clamp(.72rem,1.2vw,.88rem);line-height:1.2;margin-top:5px}
+@media(max-width:600px){
+  .catalog-products .catalog-item h2{font-size:clamp(.68rem,2.8vw,.86rem);line-height:1.15;margin-bottom:2px}
+  .catalog-products .catalog-item p{font-size:clamp(.59rem,2.2vw,.72rem);line-height:1.15}
+  .catalog-products .catalog-item span{font-size:clamp(.57rem,2.15vw,.7rem);line-height:1.15;margin-top:2px}
+}
+@media(max-width:600px){
+  .catalog-products .catalog-item h2{font-size:clamp(.78rem,3vw,.95rem)}
+  .catalog-products .catalog-item p{font-size:clamp(.68rem,2.6vw,.8rem)}
+  .catalog-products .catalog-item span{font-size:clamp(.65rem,2.5vw,.78rem)}
+}
+.catalog-products .catalog-item__copy{padding-left:9%;padding-right:6%}
+@media(max-width:600px){.catalog-products .catalog-item__copy{padding-left:9%;padding-right:5%}}
+/* Logotipo da capa maior e com contraste sobre o fundo rosa. */
+.catalog-cover__logo{width:94%;height:15%;margin-left:0;mix-blend-mode:multiply;filter:brightness(.8) saturate(1.5) contrast(1.2)}
+.catalog-cover__rule{margin:2% 0 5% 28%}
+@media(max-width:600px){.catalog-cover__logo{width:96%;height:14%}}
+.catalog-cover__logo{transform:scale(1.25);transform-origin:left center}
+@media(max-width:600px){.catalog-cover__logo{transform:scale(1.5)}}
+/* Navegação compacta inspirada na referência enviada. */
+.catalog-bottom-nav{gap:0;padding:3px 5px;border:0;border-radius:4px;background:#4b1922;box-shadow:0 5px 15px #32121930;backdrop-filter:none}
+.catalog-bottom-nav button{min-width:36px;width:36px;height:32px;padding:0;border-radius:3px;background:transparent;color:#fff;font:400 1.65rem/1 Georgia,serif}
+.catalog-bottom-nav button span{display:none}
+.catalog-bottom-nav button:hover:not(:disabled){background:#ffffff20;color:#fff}
+.catalog-bottom-nav button:disabled{opacity:.35}
+.catalog-bottom-nav__jump{min-width:55px;padding:0 4px;border:0;color:#fff;font-size:.81rem;font-weight:700}
+.catalog-bottom-nav__jump input{width:21px;color:#fff;font-size:.81rem;font-weight:700}
+.catalog-bottom-nav__jump:focus-within{outline-color:#fff}
+@media(max-width:600px){.catalog-bottom-nav button{min-width:34px;width:34px;height:30px;padding:0;font-size:1.55rem}}
+/* Mais respiro entre o logotipo e o conteúdo da capa. */
+.catalog-cover__content{inset:7% auto 4% 6%}
+.catalog-cover__rule{margin:5% 0 12% 28%}
+@media(max-width:600px){.catalog-cover nav{gap:3px;line-height:1.2}}
+/* Cor da navegação conforme a referência da marca. */
+.catalog-bottom-nav{background:#ffc7cd;box-shadow:0 5px 15px #8f4c5626}
+.catalog-bottom-nav button,.catalog-bottom-nav__jump,.catalog-bottom-nav__jump input{color:#6b1e2b}
+.catalog-bottom-nav button:hover:not(:disabled){background:#ffffff78;color:#6b1e2b}
+.catalog-bottom-nav__jump:focus-within{outline-color:#8b3342}
+/* O logotipo fica fixo; o conteúdo abaixo ganha mais espaço. */
+.catalog-cover__rule{margin:10% 0 18% 28%}
+@media(max-width:600px){.catalog-cover nav{gap:1px;line-height:1.1}}
+.catalog-bottom-nav{background:#fffaf9;border:1px solid #f1e4e3;box-shadow:0 5px 15px #7138381a}
+.catalog-bottom-nav button:hover:not(:disabled){background:#f8eeee}
+/* Alinhamento óptico das setas e do contador. */
+.catalog-bottom-nav{align-items:center;min-height:38px}
+.catalog-bottom-nav button{display:flex;align-items:center;justify-content:center;height:30px;font-family:Arial,sans-serif;font-size:1.45rem;line-height:1;padding-bottom:3px}
+.catalog-bottom-nav__jump{height:30px;display:flex;align-items:center;justify-content:center;line-height:1}
+.catalog-bottom-nav__jump input{height:30px;line-height:30px;padding:0;text-align:right}
+@media(max-width:600px){.catalog-bottom-nav button{height:30px;font-size:1.4rem}}
+.catalog-bottom-nav button,.catalog-bottom-nav__jump{transform:translateY(2px)}
+.catalog-shell{padding-top:20px}
+.catalog-page{scroll-margin-top:20px}
+.catalog-copyright{padding:12px 16px;text-align:center;color:#9b7d80;font-size:.7rem;letter-spacing:.04em;background:#fffaf9}
+.catalog-shell{padding-top:18px}
+.catalog-floating-action{position:fixed;z-index:10;bottom:max(18px,env(safe-area-inset-bottom));display:flex;align-items:center;justify-content:center;width:42px;height:42px;border:1px solid #ead9d9;border-radius:50%;box-shadow:0 5px 15px #71383820;cursor:pointer}
+.catalog-floating-action--top{left:20px;background:#fffaf9;color:#6b1e2b}
+.catalog-floating-action--whatsapp{right:20px;background:#25d366;border-color:#25d366;color:#fff}
+.catalog-floating-action svg{width:22px;height:22px}
+.catalog-floating-action--top svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.catalog-floating-action--whatsapp svg{fill:currentColor}
+.catalog-floating-action:hover{transform:translateY(-2px)}
+.catalog-floating-action:focus-visible{outline:3px solid #9a4b5d;outline-offset:3px}
+@media(max-width:600px){.catalog-floating-action{bottom:max(12px,env(safe-area-inset-bottom));width:38px;height:38px}.catalog-floating-action--top{left:12px}.catalog-floating-action--whatsapp{right:12px}}
+.catalog-floating-action{width:52px;height:52px}
+.catalog-floating-action svg{width:28px;height:28px}
+@media(max-width:600px){.catalog-floating-action{width:48px;height:48px}.catalog-floating-action svg{width:26px;height:26px}}
+/* Controles inferiores maiores, preservando espaço entre eles no celular. */
+.catalog-floating-action{width:62px;height:62px}
+.catalog-floating-action svg{width:32px;height:32px}
+.catalog-bottom-nav{min-height:48px;padding:4px 7px}
+.catalog-bottom-nav button{min-width:45px;width:45px;height:38px;font-size:1.8rem}
+.catalog-bottom-nav__jump{min-width:66px;height:38px;font-size:.92rem}
+.catalog-bottom-nav__jump input{width:26px;height:38px;line-height:38px;font-size:.92rem}
+@media(max-width:600px){
+  .catalog-floating-action{width:56px;height:56px}
+  .catalog-floating-action svg{width:30px;height:30px}
+  .catalog-bottom-nav{min-height:46px;padding:4px 5px}
+  .catalog-bottom-nav button{min-width:40px;width:40px;height:36px;font-size:1.65rem}
+  .catalog-bottom-nav__jump{min-width:62px;height:36px;font-size:.86rem}
+  .catalog-bottom-nav__jump input{width:24px;height:36px;line-height:36px;font-size:.86rem}
+}
+.catalog-bottom-nav{border-radius:14px}
+.catalog-bottom-nav button{border-radius:10px}
