@@ -4,7 +4,13 @@
   <meta charset="UTF-8">
   <link rel="icon" type="image/webp" href="assets/images/logotipo/ICONE CIRCULAR.webp">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="color-scheme" content="light only">
+  <meta name="color-scheme" content="only light">
+  <meta name="theme-color" content="#ffffff">
+  <!-- Keep the canvas light before external stylesheets load. -->
+  <style>
+    html { color-scheme: light; color-scheme: only light; background: #ffffff; color: #2d2226; }
+    body { background-color: #ffffff; }
+  </style>
   <script>
 (() => {
   const cachedSession = (() => { try { return JSON.parse(localStorage.getItem('sb-qjvydpxdesvextfrmyyg-auth-token') || 'null') } catch { return null } })()
@@ -16,8 +22,8 @@
 </script>
   <title>Blog — Jhonny Styles</title>
   <link rel="stylesheet" href="css/reset.css?v=20261024-9">
-  <link rel="stylesheet" href="css/variables.css?v=20261024-9">
-  <link rel="stylesheet" href="css/global.css?v=20261024-9">
+  <link rel="stylesheet" href="css/variables.css?v=20261026-light-1">
+  <link rel="stylesheet" href="css/global.css?v=20261026-light-1">
   <link rel="stylesheet" href="css/components/header.css?v=20261025-16">
   <link rel="stylesheet" href="css/components/footer.css?v=20261025-11">
   <link rel="stylesheet" href="css/components/toast.css?v=20261024-9">

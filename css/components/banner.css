@@ -36,6 +36,7 @@
 
 /* ── Double banners ──────────────────────────────────── */
 .banners-double {
+  background-color: #ffffff;
   padding-block: var(--space-2xl);
 }
 .banners-double__grid {
@@ -129,6 +130,7 @@
 
 /* ── Wide offer banner ───────────────────────────────── */
 .banner-offer {
+  background-color: #ffffff;
   position: relative;
   min-height: 260px;
   overflow: hidden;

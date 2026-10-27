@@ -2,7 +2,6 @@
 .home-showcase-head { display: none; }
 
 @media (max-width: 768px) {
-  body { background: #fafafa; }
   main > section:not(.hero-slider) { overflow: hidden; }
 
   .home-showcase-head {

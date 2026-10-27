@@ -4,7 +4,13 @@
   <script>document.documentElement.classList.add('auth-pending')</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="color-scheme" content="light only">
+  <meta name="color-scheme" content="only light">
+  <meta name="theme-color" content="#ffffff">
+  <!-- Keep the canvas light before external stylesheets load. -->
+  <style>
+    html { color-scheme: light; color-scheme: only light; background: #ffffff; color: #2d2226; }
+    body { background-color: #ffffff; }
+  </style>
   <title>Painel Admin — Jhonny Styles</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

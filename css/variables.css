@@ -1,5 +1,7 @@
 :root {
-  color-scheme: light only;
+  /* The storefront intentionally supports a light palette only. */
+  color-scheme: light;
+  color-scheme: only light;
 
   /* ── Paleta Jhonny Stylos (identidade visual da cliente) ─
      Só existem 3 cores na ID: #f8f8f8 · #ffbdc6 · #ffd0d3.
