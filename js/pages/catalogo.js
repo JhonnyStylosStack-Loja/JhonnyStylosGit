@@ -21,12 +21,46 @@ function productPage(page) {
     const controls = product.images.length > 1 ? `<button class="catalog-item__arrow catalog-item__arrow--previous" type="button" data-direction="-1" aria-label="Foto anterior de ${product.name}">‹</button><button class="catalog-item__arrow catalog-item__arrow--next" type="button" data-direction="1" aria-label="Próxima foto de ${product.name}">›</button><span class="catalog-item__image-count" aria-live="polite">1/${product.images.length}</span>` : '';
     const slides = product.images.map((image, imageIndex) => `<img src="${assetRoot}${image}" alt="${product.name}, foto ${imageIndex + 1} de ${product.images.length}" loading="lazy" decoding="async">`).join('');
     const track = product.images.length > 1 ? `<div class="catalog-item__track"><img src="${assetRoot}${product.images.at(-1)}" alt="" aria-hidden="true" loading="lazy" decoding="async">${slides}<img src="${assetRoot}${product.images[0]}" alt="" aria-hidden="true" loading="lazy" decoding="async"></div>` : `<div class="catalog-item__track catalog-item__track--single">${slides}</div>`;
-    return `<article class="catalog-item"><div class="catalog-item__media" data-product="${productIndex}" data-image="0">${track}${controls}</div><div class="catalog-item__copy"><h2>${product.name} <span class="catalog-item__title-icon" aria-hidden="true">${product.icon}</span></h2><p>${product.size}</p><span>Atacado: ${product.wholesale}</span><span>Varejo: ${product.retail}</span></div></article>`;
+    return `<article class="catalog-item"><div class="catalog-item__media" data-product="${productIndex}" data-image="0" role="button" tabindex="0" aria-label="Ampliar fotos de ${product.name}">${track}${controls}</div><div class="catalog-item__copy"><h2>${product.name} <span class="catalog-item__title-icon" aria-hidden="true">${product.icon}</span></h2><p>${product.size}</p><span>Atacado: ${product.wholesale}</span><span>Varejo: ${product.retail}</span></div></article>`;
   }).join('');
   const background = ((index % 3) + 1).toString().padStart(2, '0');
   return `<section class="catalog-page catalog-products" id="pagina-${page}" style="--page-background:url('${assetRoot}Background Paginas/Back${background}.png')" aria-label="Página ${page}, Vestidos"><div class="catalog-page__body"><div class="catalog-products__heading"><h1>Vestidos</h1><p>Elegância e estilo<br>em cada detalhe.</p></div><div class="catalog-grid">${cards}</div></div>${footer(page)}</section>`;
 }
 pages.innerHTML = cover + index + Array.from({length: products.length}, (_, i) => productPage(i + 3)).join('');
+document.body.insertAdjacentHTML('beforeend', `<div class="catalog-lightbox" id="catalog-lightbox" role="dialog" aria-modal="true" aria-labelledby="catalog-lightbox-title" hidden><button class="catalog-lightbox__close" type="button" aria-label="Fechar imagem ampliada">×</button><div class="catalog-lightbox__dialog"><div class="catalog-lightbox__stage"></div><div class="catalog-lightbox__caption"><h2 id="catalog-lightbox-title"></h2><p></p></div></div></div>`);
+const lightbox = document.getElementById('catalog-lightbox');
+const lightboxStage = lightbox.querySelector('.catalog-lightbox__stage');
+let lightboxTrigger = null;
+let lightboxCloseTimer = 0;
+function openLightbox(sourceMedia) {
+  clearTimeout(lightboxCloseTimer);
+  lightboxTrigger = sourceMedia;
+  const product = products[Number(sourceMedia.dataset.product)];
+  const media = sourceMedia.cloneNode(true);
+  media.classList.add('catalog-lightbox__media');
+  media.removeAttribute('role');
+  media.removeAttribute('tabindex');
+  media.removeAttribute('aria-label');
+  media.dataset.animating = 'false';
+  media.querySelector('.catalog-item__track').style.transform = product.images.length > 1 ? `translate3d(-${(Number(media.dataset.image) + 1) * 100}%,0,0)` : 'none';
+  lightboxStage.replaceChildren(media);
+  lightbox.querySelector('h2').textContent = `${product.name} ${product.icon}`;
+  lightbox.querySelector('.catalog-lightbox__caption p').textContent = `${product.size} · Atacado: ${product.wholesale} · Varejo: ${product.retail}`;
+  lightbox.hidden = false;
+  document.body.classList.add('catalog-lightbox-open');
+  requestAnimationFrame(() => lightbox.classList.add('is-open'));
+  lightbox.querySelector('.catalog-lightbox__close').focus({preventScroll:true});
+}
+function closeLightbox() {
+  if (lightbox.hidden) return;
+  lightbox.classList.remove('is-open');
+  document.body.classList.remove('catalog-lightbox-open');
+  lightboxCloseTimer = window.setTimeout(() => {
+    lightbox.hidden = true;
+    lightboxStage.replaceChildren();
+  }, 220);
+  lightboxTrigger?.focus?.({preventScroll:true});
+}
 function moveProductImage(media, direction) {
   const product = products[Number(media.dataset.product)];
   if (product.images.length < 2 || media.dataset.animating === 'true') return;
@@ -48,30 +82,43 @@ function moveProductImage(media, direction) {
     media.dataset.animating = 'false';
   }, {once:true});
 }
-pages.addEventListener('click', event => {
+let suppressMediaClick = false;
+document.addEventListener('click', event => {
   const arrow = event.target.closest('.catalog-item__arrow');
-  if (!arrow) return;
-  moveProductImage(arrow.closest('.catalog-item__media'), Number(arrow.dataset.direction));
+  if (arrow) {
+    moveProductImage(arrow.closest('.catalog-item__media'), Number(arrow.dataset.direction));
+    return;
+  }
+  if (event.target.closest('.catalog-lightbox__close') || event.target === lightbox) {
+    closeLightbox();
+    return;
+  }
+  const media = event.target.closest('.catalog-products .catalog-item__media');
+  if (media && !suppressMediaClick) openLightbox(media);
+  suppressMediaClick = false;
 });
 let draggedMedia = null;
 let dragStartX = 0;
 let dragDistance = 0;
-pages.addEventListener('pointerdown', event => {
+document.addEventListener('pointerdown', event => {
   const media = event.target.closest('.catalog-item__media');
-  if (!media || event.target.closest('.catalog-item__arrow') || products[Number(media.dataset.product)].images.length < 2) return;
+  if (!media || event.target.closest('.catalog-item__arrow')) return;
+  dragDistance = 0;
+  suppressMediaClick = false;
+  if (products[Number(media.dataset.product)].images.length < 2) return;
   draggedMedia = media;
   dragStartX = event.clientX;
-  dragDistance = 0;
   media.classList.add('is-dragging');
   media.setPointerCapture(event.pointerId);
 });
-pages.addEventListener('pointermove', event => {
+document.addEventListener('pointermove', event => {
   if (!draggedMedia) return;
   dragDistance = event.clientX - dragStartX;
+  if (Math.abs(dragDistance) > 6) suppressMediaClick = true;
   const imageIndex = Number(draggedMedia.dataset.image);
   draggedMedia.querySelector('.catalog-item__track').style.transform = `translate3d(calc(-${(imageIndex + 1) * 100}% + ${dragDistance}px),0,0)`;
 });
-pages.addEventListener('pointerup', event => {
+document.addEventListener('pointerup', event => {
   if (!draggedMedia) return;
   const media = draggedMedia;
   media.classList.remove('is-dragging');
@@ -82,15 +129,31 @@ pages.addEventListener('pointerup', event => {
     media.querySelector('.catalog-item__track').style.transform = `translate3d(-${(Number(media.dataset.image) + 1) * 100}%,0,0)`;
   }
 });
-pages.addEventListener('pointercancel', () => {
+document.addEventListener('pointercancel', () => {
   if (draggedMedia) {
     draggedMedia.classList.remove('is-dragging');
     draggedMedia.querySelector('.catalog-item__track').style.transform = `translate3d(-${(Number(draggedMedia.dataset.image) + 1) * 100}%,0,0)`;
   }
   draggedMedia = null;
 });
-pages.addEventListener('dragstart', event => {
+document.addEventListener('dragstart', event => {
   if (event.target.closest('.catalog-item__media')) event.preventDefault();
+});
+document.addEventListener('keydown', event => {
+  if (lightbox.hidden) {
+    const media = event.target.closest?.('.catalog-products .catalog-item__media');
+    if (media && (event.key === 'Enter' || event.key === ' ')) {
+      event.preventDefault();
+      openLightbox(media);
+    }
+    return;
+  }
+  if (event.key === 'Escape') closeLightbox();
+  if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+    event.preventDefault();
+    const media = lightbox.querySelector('.catalog-item__media');
+    if (media) moveProductImage(media, event.key === 'ArrowLeft' ? -1 : 1);
+  }
 });
 select.innerHTML = Array.from({length: totalPages}, (_, i) => `<option value="pagina-${i + 1}">${String(i + 1).padStart(2, '0')}</option>`).join('');
 select.addEventListener('change', () => document.getElementById(select.value).scrollIntoView({behavior:'smooth'}));
@@ -176,7 +239,7 @@ function animateWheel() {
   wheelFrame = requestAnimationFrame(animateWheel);
 }
 window.addEventListener('wheel', event => {
-  if (reducedMotion.matches || event.ctrlKey || event.metaKey || event.shiftKey || event.target.closest('input, select, textarea')) return;
+  if (!lightbox.hidden || reducedMotion.matches || event.ctrlKey || event.metaKey || event.shiftKey || event.target.closest('input, select, textarea')) return;
   event.preventDefault();
   if (!wheelFrame) wheelTarget = wheelPosition = window.scrollY;
   const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
