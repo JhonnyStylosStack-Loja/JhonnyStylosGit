@@ -1,25 +1,97 @@
 const assetRoot = new URL('Catálogo Jhonny Styles/', document.baseURI).href;
-const productPlaceholder = 'Catálogo Jhonny Styles/PLACAHOLDER/PLACEHOLTER CATALOGO.png';
-const categories = ['Vestidos', 'Conjuntos', 'Blusas & Tops', 'Calças & Saias', 'Shorts'];
-const totalPages = 50;
+const totalPages = 9;
 const pages = document.getElementById('catalog-pages');
 const select = document.getElementById('catalog-select');
+const products = [
+  {icon:'✨💖', name:'Vestido de Festa em Tule Trabalhado', size:'Veste do 38 ao 42', wholesale:'R$ 110,00', retail:'R$ 135,00', images:['Itens/Categorias/01/%2301/Adjust_proportions,_faithful_image._47fc5d77_2K.jpg','Itens/Categorias/01/%2301/Recreate_image_from_new_angle_fb473cd6_2K.jpg']},
+  {icon:'🌸✨', name:'Vestido em Tule Bordado', size:'Veste do 36 ao 42', wholesale:'R$ 90,00', retail:'R$ 125,00', images:['Itens/Categorias/01/%2302/Adjust_proportion,_faithful_image._005d01ea_2K.jpg','Itens/Categorias/01/%2302/Recreate_image_from_new_angle_9d4ceaca_2K.jpg']},
+  {icon:'✨💕', name:'Vestido em Alfaiataria com Cinto', size:'Veste do 38 ao 42', wholesale:'Consulte', retail:'R$ 125,00', images:['Itens/Categorias/01/%2303/Adjust_proportions,_faithful_image._5226ce27_2K.jpg','Itens/Categorias/01/%2303/Recreating_image_from_new_angle_405d1b2f_2K.jpg']},
+  {icon:'🌸', name:'Vestido em Renda Forrado', size:'Tamanho único · Veste até o 42', wholesale:'R$ 90,00', retail:'R$ 126,00', images:['Itens/Categorias/01/%2304/Adjust_proportions,_faithful_image._61aaa233_2K.jpg','Itens/Categorias/01/%2304/Requesting_image_recreation_from…_aebdf0ca_2K.jpg']},
+  {icon:'✨💕', name:'Vestido em Alfaiataria com Cinto', size:'Tamanho único · Veste do 38 ao 42', wholesale:'R$ 90,00', retail:'R$ 124,90', images:['Itens/Categorias/01/%2305/Adjust_proportions,_faithful_image._8ad278de_2K.jpg','Itens/Categorias/01/%2305/Translate_image_request_into_Eng…_b67a63f1_2K.jpg']},
+  {icon:'🌸✨', name:'Vestido Longo em Cambraia Bordada', size:'Veste até o 44', wholesale:'R$ 120,00', retail:'R$ 145,00', images:['Itens/Categorias/01/%2306/Vase_with_flowers_against_wall_dffe61f6_2K%20copiar.jpg','Itens/Categorias/01/%2306/Recreate_dress_model_image_6bbba825_2K.jpg','Itens/Categorias/01/%2306/Recreate_dress_on_mannequin_5fe59037_2K.jpg']},
+  {icon:'🌸✨', name:'Vestido Midi em Tule Estampado', size:'Veste do 38 ao 42', wholesale:'R$ 85,00', retail:'R$ 125,00', images:['Itens/Categorias/01/%2307/Adjust_proportion,_faithful_image._c48f94ea_2K.jpg','Itens/Categorias/01/%2307/Adjust_proportions,_faithful_image._f4dfaf60_2K.jpg','Itens/Categorias/01/%2307/Recreate_image_from_new_angle_7c4d420c_2K.jpg']}
+];
 const footer = page => `<footer class="catalog-page__footer"><span>Jhonny Styles　|　Catálogo de produtos atacado</span><span>${String(page).padStart(2, '0')}</span></footer>`;
-const cover = `<section class="catalog-page catalog-cover" id="pagina-1" aria-label="Capa"><div class="catalog-cover__content"><img class="catalog-cover__logo" src="assets/images/logotipo/LOGO-MENU.webp" alt="Jhonny Styles"><div class="catalog-cover__rule"></div><h1>Catálogo<br>de Produtos<br>Atacado</h1><p>Elegância e estilo<br>em cada detalhe</p><nav aria-label="Categorias"><a href="#pagina-3">Vestidos</a><a href="#pagina-12">Conjuntos</a><a href="#pagina-21">Blusas & Tops</a><a href="#pagina-30">Calças & Saias</a><a href="#pagina-39">Shorts</a></nav><small>Moda feminina<br>atacado e varejo<br>físico e online</small></div></section>`;
-const index = `<section class="catalog-page catalog-index" id="pagina-2" aria-label="Índice"><div class="catalog-page__body"><p class="catalog-eyebrow">Jhonny Styles · Moda feminina</p><h1>Encontre o seu estilo</h1><p class="catalog-index__intro">Explore as peças por categoria. As fotos desta edição são ilustrativas; confirme modelos e disponibilidade antes de fazer seu pedido.</p><div class="catalog-index__links">${categories.map((name, i) => `<a href="#pagina-${3 + i * 9}"><span>0${i + 1}</span>${name}<span>↗</span></a>`).join('')}</div></div>${footer(2)}</section>`;
+const cover = `<section class="catalog-page catalog-cover" id="pagina-1" aria-label="Capa"><div class="catalog-cover__content"><img class="catalog-cover__logo" src="assets/images/logotipo/LOGO-MENU.webp" alt="Jhonny Styles"><div class="catalog-cover__rule"></div><h1>Catálogo<br>de Produtos<br>Atacado</h1><p>Elegância e estilo<br>em cada detalhe</p><nav aria-label="Categorias"><a href="#pagina-3">Vestidos</a></nav><small>Moda feminina<br>atacado e varejo<br>físico e online</small></div></section>`;
+const index = `<section class="catalog-page catalog-index" id="pagina-2" aria-label="Índice"><div class="catalog-page__body"><p class="catalog-eyebrow">Jhonny Styles · Moda feminina</p><h1>Encontre o seu estilo</h1><p class="catalog-index__intro">Explore as peças por categoria. Confirme modelos e disponibilidade antes de fazer seu pedido.</p><div class="catalog-index__links"><a href="#pagina-3"><span>01</span>Vestidos<span>↗</span></a></div></div>${footer(2)}</section>`;
 function productPage(page) {
   const index = page - 3;
-  const category = categories[Math.min(4, Math.floor(index / 9))];
-  const cards = Array.from({length: 4}, (_, slot) => {
-    const number = index * 4 + slot + 1;
-
-    return `<article class="catalog-item"><img src="${productPlaceholder}" alt="Espaço reservado para a imagem da peça ${String(number).padStart(3, '0')}" loading="lazy" decoding="async"><div class="catalog-item__copy"><div class="catalog-item__title-row"><h2>Peça ${String(number).padStart(3, '0')}</h2><span class="catalog-item__price" aria-label="Preço ilustrativo">R$ 0,00</span></div><p>${category}</p></div></article>`;
+  const cards = products.slice(index, index + 1).map(product => {
+    const productIndex = index;
+    const controls = product.images.length > 1 ? `<button class="catalog-item__arrow catalog-item__arrow--previous" type="button" data-direction="-1" aria-label="Foto anterior de ${product.name}">‹</button><button class="catalog-item__arrow catalog-item__arrow--next" type="button" data-direction="1" aria-label="Próxima foto de ${product.name}">›</button><span class="catalog-item__image-count" aria-live="polite">1/${product.images.length}</span>` : '';
+    const slides = product.images.map((image, imageIndex) => `<img src="${assetRoot}${image}" alt="${product.name}, foto ${imageIndex + 1} de ${product.images.length}" loading="lazy" decoding="async">`).join('');
+    const track = product.images.length > 1 ? `<div class="catalog-item__track"><img src="${assetRoot}${product.images.at(-1)}" alt="" aria-hidden="true" loading="lazy" decoding="async">${slides}<img src="${assetRoot}${product.images[0]}" alt="" aria-hidden="true" loading="lazy" decoding="async"></div>` : `<div class="catalog-item__track catalog-item__track--single">${slides}</div>`;
+    return `<article class="catalog-item"><div class="catalog-item__media" data-product="${productIndex}" data-image="0">${track}${controls}</div><div class="catalog-item__copy"><h2>${product.name} <span class="catalog-item__title-icon" aria-hidden="true">${product.icon}</span></h2><p>${product.size}</p><span>Atacado: ${product.wholesale}</span><span>Varejo: ${product.retail}</span></div></article>`;
   }).join('');
   const background = ((index % 3) + 1).toString().padStart(2, '0');
-  return `<section class="catalog-page catalog-products" id="pagina-${page}" style="--page-background:url('${assetRoot}Background Paginas/Back${background}.png')" aria-label="Página ${page}, ${category}"><div class="catalog-page__body"><div class="catalog-products__heading"><h1>${category}</h1><p>Elegância e estilo<br>em cada detalhe.</p></div><div class="catalog-grid">${cards}</div></div>${footer(page)}</section>`;
+  return `<section class="catalog-page catalog-products" id="pagina-${page}" style="--page-background:url('${assetRoot}Background Paginas/Back${background}.png')" aria-label="Página ${page}, Vestidos"><div class="catalog-page__body"><div class="catalog-products__heading"><h1>Vestidos</h1><p>Elegância e estilo<br>em cada detalhe.</p></div><div class="catalog-grid">${cards}</div></div>${footer(page)}</section>`;
 }
-const back = `<section class="catalog-page catalog-back" id="pagina-50" aria-label="Contracapa"><div><img src="assets/images/logotipo/LOGO-MENU.webp" alt="Jhonny Styles"><h1>Obrigada por explorar nossa coleção.</h1><p>Entre em contato para consultar modelos, preços e disponibilidade.</p><a href="index.html">Voltar à loja ↗</a></div>${footer(50)}</section>`;
-pages.innerHTML = cover + index + Array.from({length: 47}, (_, i) => productPage(i + 3)).join('') + back;
+pages.innerHTML = cover + index + Array.from({length: products.length}, (_, i) => productPage(i + 3)).join('');
+function moveProductImage(media, direction) {
+  const product = products[Number(media.dataset.product)];
+  if (product.images.length < 2 || media.dataset.animating === 'true') return;
+  const track = media.querySelector('.catalog-item__track');
+  const currentIndex = Number(media.dataset.image);
+  const visualIndex = currentIndex + direction;
+  const imageIndex = (visualIndex + product.images.length) % product.images.length;
+  media.dataset.image = imageIndex;
+  media.dataset.animating = 'true';
+  track.style.transform = `translate3d(-${(visualIndex + 1) * 100}%,0,0)`;
+  media.querySelector('.catalog-item__image-count').textContent = `${imageIndex + 1}/${product.images.length}`;
+  track.addEventListener('transitionend', () => {
+    if (visualIndex < 0 || visualIndex >= product.images.length) {
+      track.classList.add('is-resetting');
+      track.style.transform = `translate3d(-${(imageIndex + 1) * 100}%,0,0)`;
+      track.getBoundingClientRect();
+      track.classList.remove('is-resetting');
+    }
+    media.dataset.animating = 'false';
+  }, {once:true});
+}
+pages.addEventListener('click', event => {
+  const arrow = event.target.closest('.catalog-item__arrow');
+  if (!arrow) return;
+  moveProductImage(arrow.closest('.catalog-item__media'), Number(arrow.dataset.direction));
+});
+let draggedMedia = null;
+let dragStartX = 0;
+let dragDistance = 0;
+pages.addEventListener('pointerdown', event => {
+  const media = event.target.closest('.catalog-item__media');
+  if (!media || event.target.closest('.catalog-item__arrow') || products[Number(media.dataset.product)].images.length < 2) return;
+  draggedMedia = media;
+  dragStartX = event.clientX;
+  dragDistance = 0;
+  media.classList.add('is-dragging');
+  media.setPointerCapture(event.pointerId);
+});
+pages.addEventListener('pointermove', event => {
+  if (!draggedMedia) return;
+  dragDistance = event.clientX - dragStartX;
+  const imageIndex = Number(draggedMedia.dataset.image);
+  draggedMedia.querySelector('.catalog-item__track').style.transform = `translate3d(calc(-${(imageIndex + 1) * 100}% + ${dragDistance}px),0,0)`;
+});
+pages.addEventListener('pointerup', event => {
+  if (!draggedMedia) return;
+  const media = draggedMedia;
+  media.classList.remove('is-dragging');
+  draggedMedia = null;
+  if (Math.abs(dragDistance) >= Math.min(70, media.clientWidth * .18)) {
+    moveProductImage(media, dragDistance < 0 ? 1 : -1);
+  } else {
+    media.querySelector('.catalog-item__track').style.transform = `translate3d(-${(Number(media.dataset.image) + 1) * 100}%,0,0)`;
+  }
+});
+pages.addEventListener('pointercancel', () => {
+  if (draggedMedia) {
+    draggedMedia.classList.remove('is-dragging');
+    draggedMedia.querySelector('.catalog-item__track').style.transform = `translate3d(-${(Number(draggedMedia.dataset.image) + 1) * 100}%,0,0)`;
+  }
+  draggedMedia = null;
+});
+pages.addEventListener('dragstart', event => {
+  if (event.target.closest('.catalog-item__media')) event.preventDefault();
+});
 select.innerHTML = Array.from({length: totalPages}, (_, i) => `<option value="pagina-${i + 1}">${String(i + 1).padStart(2, '0')}</option>`).join('');
 select.addEventListener('change', () => document.getElementById(select.value).scrollIntoView({behavior:'smooth'}));
 const observer = new IntersectionObserver(entries => {
