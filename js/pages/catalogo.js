@@ -1,5 +1,5 @@
 const assetRoot = new URL('Catálogo Jhonny Styles/', document.baseURI).href;
-const totalPages = 9;
+const totalPages = 6;
 const pages = document.getElementById('catalog-pages');
 const select = document.getElementById('catalog-select');
 const products = [
@@ -16,17 +16,19 @@ const cover = `<section class="catalog-page catalog-cover" id="pagina-1" aria-la
 const index = `<section class="catalog-page catalog-index" id="pagina-2" aria-label="Índice"><div class="catalog-page__body"><p class="catalog-eyebrow">Jhonny Styles · Moda feminina</p><h1>Encontre o seu estilo</h1><p class="catalog-index__intro">Explore as peças por categoria. Confirme modelos e disponibilidade antes de fazer seu pedido.</p><div class="catalog-index__links"><a href="#pagina-3"><span>01</span>Vestidos<span>↗</span></a></div></div>${footer(2)}</section>`;
 function productPage(page) {
   const index = page - 3;
-  const cards = products.slice(index, index + 1).map(product => {
-    const productIndex = index;
-    const controls = product.images.length > 1 ? `<button class="catalog-item__arrow catalog-item__arrow--previous" type="button" data-direction="-1" aria-label="Foto anterior de ${product.name}">‹</button><button class="catalog-item__arrow catalog-item__arrow--next" type="button" data-direction="1" aria-label="Próxima foto de ${product.name}">›</button><span class="catalog-item__image-count" aria-live="polite">1/${product.images.length}</span>` : '';
+  const pageProducts = products.slice(index * 2, index * 2 + 2);
+  const cards = pageProducts.map((product, slot) => {
+    const productIndex = index * 2 + slot;
+    const controls = product.images.length > 1 ? `<button class="catalog-item__arrow catalog-item__arrow--previous" type="button" data-direction="-1" aria-label="Foto anterior de ${product.name}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 4.5-7.5 7.5 7.5 7.5"/></svg></button><button class="catalog-item__arrow catalog-item__arrow--next" type="button" data-direction="1" aria-label="Próxima foto de ${product.name}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 4.5 7.5 7.5L9 19.5"/></svg></button><span class="catalog-item__image-count" aria-live="polite">1/${product.images.length}</span>` : '';
     const slides = product.images.map((image, imageIndex) => `<img src="${assetRoot}${image}" alt="${product.name}, foto ${imageIndex + 1} de ${product.images.length}" loading="lazy" decoding="async">`).join('');
     const track = product.images.length > 1 ? `<div class="catalog-item__track"><img src="${assetRoot}${product.images.at(-1)}" alt="" aria-hidden="true" loading="lazy" decoding="async">${slides}<img src="${assetRoot}${product.images[0]}" alt="" aria-hidden="true" loading="lazy" decoding="async"></div>` : `<div class="catalog-item__track catalog-item__track--single">${slides}</div>`;
     return `<article class="catalog-item"><div class="catalog-item__media" data-product="${productIndex}" data-image="0" role="button" tabindex="0" aria-label="Ampliar fotos de ${product.name}">${track}${controls}</div><div class="catalog-item__copy"><h2>${product.name} <span class="catalog-item__title-icon" aria-hidden="true">${product.icon}</span></h2><p>${product.size}</p><span>Atacado: ${product.wholesale}</span><span>Varejo: ${product.retail}</span></div></article>`;
   }).join('');
   const background = ((index % 3) + 1).toString().padStart(2, '0');
-  return `<section class="catalog-page catalog-products" id="pagina-${page}" style="--page-background:url('${assetRoot}Background Paginas/Back${background}.png')" aria-label="Página ${page}, Vestidos"><div class="catalog-page__body"><div class="catalog-products__heading"><h1>Vestidos</h1><p>Elegância e estilo<br>em cada detalhe.</p></div><div class="catalog-grid">${cards}</div></div>${footer(page)}</section>`;
+  const gridClass = pageProducts.length === 1 ? 'catalog-grid catalog-grid--single' : 'catalog-grid';
+  return `<section class="catalog-page catalog-products" id="pagina-${page}" style="--page-background:url('${assetRoot}Background Paginas/Back${background}.png')" aria-label="Página ${page}, Vestidos"><div class="catalog-page__body"><div class="catalog-products__heading"><h1>Vestidos</h1><p>Elegância e estilo<br>em cada detalhe.</p></div><div class="${gridClass}">${cards}</div></div>${footer(page)}</section>`;
 }
-pages.innerHTML = cover + index + Array.from({length: products.length}, (_, i) => productPage(i + 3)).join('');
+pages.innerHTML = cover + index + Array.from({length: totalPages - 2}, (_, i) => productPage(i + 3)).join('');
 document.body.insertAdjacentHTML('beforeend', `<div class="catalog-lightbox" id="catalog-lightbox" role="dialog" aria-modal="true" aria-labelledby="catalog-lightbox-title" hidden><button class="catalog-lightbox__close" type="button" aria-label="Fechar imagem ampliada">×</button><div class="catalog-lightbox__dialog"><div class="catalog-lightbox__stage"></div><div class="catalog-lightbox__caption"><h2 id="catalog-lightbox-title"></h2><p></p></div></div></div>`);
 const lightbox = document.getElementById('catalog-lightbox');
 const lightboxStage = lightbox.querySelector('.catalog-lightbox__stage');

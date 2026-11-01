@@ -3,3 +3,18 @@
 👗 Tamanho único | Veste do 38 ao 42
 💰 Atacado: R$ 90,00
 🛍️ Varejo: R$ 124,90
+
+Descrição pro site
+--------------------------
+
+Titulo: Vestido em alfaiataria com cinto 💕
+
+Descrição produto:
+👗 Tamanho único | Veste do *38 ao 42*
+
+💰 *Atacado:* R$ 90,00
+🛍️ *Varejo:* R$ 124,90
+
+🦋 Jhonny Stylos
+
+(Onde tem * é onde deve ficar em negrito)
