@@ -85,10 +85,10 @@ function setLightboxPan(media, x, y) {
   media.style.setProperty('--pan-x', `${panX}px`);
   media.style.setProperty('--pan-y', `${panY}px`);
 }
-function setLightboxZoom(media, value) {
+function setLightboxZoom(media, value, snap = true) {
   if (!media) return;
   updateLightboxZoomTarget(media);
-  const zoom = Math.max(1, Math.min(3, Math.round(value * 4) / 4));
+  const zoom = Math.max(1, Math.min(3, snap ? Math.round(value * 4) / 4 : value));
   media.dataset.zoom = zoom;
   media.style.setProperty('--zoom', zoom);
   media.classList.toggle('is-zoomed', zoom > 1);
@@ -192,9 +192,37 @@ let panStartX = 0;
 let panStartY = 0;
 let panOriginX = 0;
 let panOriginY = 0;
+const lightboxTouchPoints = new Map();
+let pinchGestureActive = false;
+let pinchInitialDistance = 0;
+let pinchInitialZoom = 1;
+let pinchMedia = null;
+function touchDistance() {
+  const [first, second] = [...lightboxTouchPoints.values()];
+  return first && second ? Math.hypot(second.x - first.x, second.y - first.y) : 0;
+}
 document.addEventListener('pointerdown', event => {
   const media = event.target.closest('.catalog-item__media');
   if (!media || event.target.closest('.catalog-item__arrow')) return;
+  if (event.pointerType === 'touch' && media.classList.contains('catalog-lightbox__media')) {
+    lightboxTouchPoints.set(event.pointerId, {x:event.clientX, y:event.clientY});
+    if (lightboxTouchPoints.size === 2) {
+      pinchGestureActive = true;
+      pinchMedia = media;
+      pinchInitialDistance = touchDistance();
+      pinchInitialZoom = Number(media.dataset.zoom) || 1;
+      panningMedia?.classList.remove('is-panning');
+      panningMedia = null;
+      if (draggedMedia) {
+        draggedMedia.classList.remove('is-dragging');
+        draggedMedia.querySelector('.catalog-item__track').style.transform = `translate3d(-${(Number(draggedMedia.dataset.image) + 1) * 100}%,0,0)`;
+        draggedMedia = null;
+      }
+      suppressMediaClick = true;
+      media.setPointerCapture(event.pointerId);
+      return;
+    }
+  }
   if (media.classList.contains('catalog-lightbox__media') && Number(media.dataset.zoom) > 1) {
     panningMedia = media;
     panStartX = event.clientX;
@@ -216,6 +244,14 @@ document.addEventListener('pointerdown', event => {
   media.setPointerCapture(event.pointerId);
 });
 document.addEventListener('pointermove', event => {
+  if (lightboxTouchPoints.has(event.pointerId)) {
+    lightboxTouchPoints.set(event.pointerId, {x:event.clientX, y:event.clientY});
+    if (pinchGestureActive && lightboxTouchPoints.size >= 2) {
+      const distance = touchDistance();
+      if (pinchInitialDistance > 0) setLightboxZoom(pinchMedia, pinchInitialZoom * distance / pinchInitialDistance, false);
+      return;
+    }
+  }
   if (panningMedia) {
     setLightboxPan(panningMedia, panOriginX + event.clientX - panStartX, panOriginY + event.clientY - panStartY);
     return;
@@ -227,6 +263,16 @@ document.addEventListener('pointermove', event => {
   draggedMedia.querySelector('.catalog-item__track').style.transform = `translate3d(calc(-${(imageIndex + 1) * 100}% + ${dragDistance}px),0,0)`;
 });
 document.addEventListener('pointerup', event => {
+  if (lightboxTouchPoints.has(event.pointerId)) {
+    lightboxTouchPoints.delete(event.pointerId);
+    if (pinchGestureActive) {
+      if (lightboxTouchPoints.size === 0) {
+        pinchGestureActive = false;
+        pinchMedia = null;
+      }
+      return;
+    }
+  }
   if (panningMedia) {
     panningMedia.classList.remove('is-panning');
     panningMedia = null;
@@ -246,7 +292,12 @@ document.addEventListener('pointerup', event => {
     track.style.transform = `translate3d(-${(Number(media.dataset.image) + 1) * 100}%,0,0)`;
   }
 });
-document.addEventListener('pointercancel', () => {
+document.addEventListener('pointercancel', event => {
+  lightboxTouchPoints.delete(event.pointerId);
+  if (lightboxTouchPoints.size === 0) {
+    pinchGestureActive = false;
+    pinchMedia = null;
+  }
   if (panningMedia) panningMedia.classList.remove('is-panning');
   panningMedia = null;
   if (draggedMedia) {
