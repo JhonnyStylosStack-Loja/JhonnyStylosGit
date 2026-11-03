@@ -66,6 +66,14 @@ const lightbox = document.getElementById('catalog-lightbox');
 const lightboxStage = lightbox.querySelector('.catalog-lightbox__stage');
 let lightboxTrigger = null;
 let lightboxCloseTimer = 0;
+function updateLightboxZoomTarget(media) {
+  const images = media?.querySelectorAll('.catalog-item__track img');
+  if (!images?.length) return;
+  images.forEach(image => image.classList.remove('catalog-lightbox__zoom-target'));
+  const product = products[Number(media.dataset.product)];
+  const visualIndex = product.images.length > 1 ? Number(media.dataset.image) + 1 : 0;
+  images[visualIndex]?.classList.add('catalog-lightbox__zoom-target');
+}
 function setLightboxPan(media, x, y) {
   const zoom = Number(media.dataset.zoom) || 1;
   const maxX = media.clientWidth * (zoom - 1) / 2;
@@ -79,6 +87,7 @@ function setLightboxPan(media, x, y) {
 }
 function setLightboxZoom(media, value) {
   if (!media) return;
+  updateLightboxZoomTarget(media);
   const zoom = Math.max(1, Math.min(3, Math.round(value * 4) / 4));
   media.dataset.zoom = zoom;
   media.style.setProperty('--zoom', zoom);
