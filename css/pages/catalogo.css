@@ -36,22 +36,34 @@ body.catalog-lightbox-open{overflow:hidden}
 .catalog-lightbox[hidden]{display:none}
 .catalog-lightbox{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:clamp(18px,4vw,44px);background:#2c1018d9;backdrop-filter:blur(10px);opacity:0;transition:opacity 220ms cubic-bezier(.4,0,.2,1)}
 .catalog-lightbox.is-open{opacity:1}
-.catalog-lightbox__dialog{display:flex;max-width:94vw;max-height:94vh;flex-direction:column;align-items:center;gap:14px;transform:translateY(14px) scale(.985);transition:transform 360ms cubic-bezier(.4,0,.2,1)}
+.catalog-lightbox__dialog{display:flex;max-width:94vw;max-height:94vh;flex-direction:column;align-items:center;gap:12px;transform:translateY(14px) scale(.985);transition:transform 360ms cubic-bezier(.4,0,.2,1)}
 .catalog-lightbox.is-open .catalog-lightbox__dialog{transform:translateY(0) scale(1)}
 .catalog-lightbox__stage{display:flex;align-items:center;justify-content:center;min-height:0}
-.catalog-lightbox__media{position:relative;width:min(88vw,calc(78vh * .75));aspect-ratio:3/4;overflow:hidden;border-radius:12px;background:#f5e7e5;box-shadow:0 22px 60px #17060b80;touch-action:pan-y;cursor:grab;user-select:none}
+.catalog-lightbox__media{position:relative;width:min(88vw,calc(66vh * .75));aspect-ratio:3/4;overflow:hidden;border-radius:12px;background:#f5e7e5;box-shadow:0 22px 60px #17060b80;touch-action:pan-y;cursor:grab;user-select:none}
 .catalog-lightbox__media.is-dragging{cursor:grabbing}
+.catalog-lightbox__media.is-zoomed{touch-action:none;cursor:grab}
+.catalog-lightbox__media.is-panning{cursor:grabbing}
+.catalog-lightbox__media .catalog-item__track img{transform:translate3d(var(--pan-x,0),var(--pan-y,0),0) scale(var(--zoom,1));transform-origin:center;transition:transform 180ms ease}
+.catalog-lightbox__media.is-panning .catalog-item__track img{transition:none}
 .catalog-lightbox__media .catalog-item__arrow{width:44px;height:44px;font-size:2rem}
 .catalog-lightbox__close{position:fixed;z-index:2;top:max(14px,env(safe-area-inset-top));right:max(16px,env(safe-area-inset-right));display:grid;width:46px;height:46px;padding:0;place-items:center;border:1px solid #ffffff80;border-radius:50%;background:#fffaf0e8;color:#691d2d;box-shadow:0 8px 24px #17060b4d;font:300 2rem/1 Arial,sans-serif;cursor:pointer}
 .catalog-lightbox__close:focus-visible{outline:3px solid #fff;outline-offset:3px}
-.catalog-lightbox__caption{max-width:min(88vw,620px);text-align:center;color:#fff}
-.catalog-lightbox__caption h2{margin:0 0 5px;font:600 clamp(1rem,2.4vw,1.35rem)/1.3 var(--font-body)}
-.catalog-lightbox__caption p{margin:0;color:#ffe8ec;font-size:clamp(.75rem,1.7vw,.9rem);line-height:1.45}
+.catalog-lightbox__zoom{display:flex;align-items:center;justify-content:center;gap:7px;color:#fff}
+.catalog-lightbox__zoom button{display:grid;min-width:36px;height:34px;padding:0 10px;place-items:center;border:1px solid #ffffff70;border-radius:999px;background:#fffaf0e8;color:#691d2d;font:600 1rem/1 var(--font-body);cursor:pointer}
+.catalog-lightbox__zoom button:disabled{opacity:.42;cursor:default}
+.catalog-lightbox__zoom button:focus-visible{outline:3px solid #fff;outline-offset:2px}
+.catalog-lightbox__zoom output{min-width:52px;text-align:center;font:600 .78rem var(--font-body)}
+.catalog-lightbox__zoom .catalog-lightbox__zoom-reset{font-size:.72rem}
+.catalog-lightbox__caption{box-sizing:border-box;width:min(88vw,620px);padding:14px 20px 16px;border:1px solid #ffffff70;border-radius:14px;background:#fff8f3f2;box-shadow:0 12px 35px #17060b42;text-align:center;color:#671a2a;backdrop-filter:blur(12px)}
+.catalog-lightbox__caption h2{margin:0 0 7px;font:700 clamp(1.12rem,2.4vw,1.5rem)/1.25 var(--font-body)}
+.catalog-lightbox__caption p{margin:0;color:#7f4650;font-size:clamp(.84rem,1.7vw,1rem);font-weight:500;line-height:1.5}
 @media(max-width:600px){
   .catalog-lightbox{padding:54px 12px 18px}
-  .catalog-lightbox__media{width:min(92vw,calc(72vh * .75))}
+  .catalog-lightbox__media{width:min(92vw,calc(59vh * .75))}
   .catalog-lightbox__media .catalog-item__arrow{width:36px;height:36px;font-size:1.7rem}
   .catalog-lightbox__dialog{gap:10px}
+  .catalog-lightbox__zoom button{min-width:34px;height:32px;padding:0 9px}
+  .catalog-lightbox__caption{width:min(92vw,620px);padding:11px 14px 13px}
 }
 @media(prefers-reduced-motion:reduce){.catalog-lightbox,.catalog-lightbox__dialog{transition-duration:.01ms}}
 @media(prefers-reduced-motion:reduce){.catalog-item__track{transition-duration:.01ms}}

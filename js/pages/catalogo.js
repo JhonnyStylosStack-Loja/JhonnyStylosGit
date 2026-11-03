@@ -61,11 +61,35 @@ function productPage(page) {
   return `<section class="catalog-page catalog-products" id="pagina-${page}" style="--page-background:url('${assetRoot}Background Paginas/Back${background}.webp')" aria-label="Página ${page}, ${pageData.category}"><div class="catalog-page__body"><div class="catalog-products__heading"><h1>${pageData.category}</h1><p>Elegância e estilo<br>em cada detalhe.</p></div><div class="${gridClass}">${cards}</div></div>${footer(page)}</section>`;
 }
 pages.innerHTML = cover + index + catalogPages.map((_, index) => productPage(index + 3)).join('');
-document.body.insertAdjacentHTML('beforeend', `<div class="catalog-lightbox" id="catalog-lightbox" role="dialog" aria-modal="true" aria-labelledby="catalog-lightbox-title" hidden><button class="catalog-lightbox__close" type="button" aria-label="Fechar imagem ampliada">×</button><div class="catalog-lightbox__dialog"><div class="catalog-lightbox__stage"></div><div class="catalog-lightbox__caption"><h2 id="catalog-lightbox-title"></h2><p></p></div></div></div>`);
+document.body.insertAdjacentHTML('beforeend', `<div class="catalog-lightbox" id="catalog-lightbox" role="dialog" aria-modal="true" aria-labelledby="catalog-lightbox-title" hidden><button class="catalog-lightbox__close" type="button" aria-label="Fechar imagem ampliada">×</button><div class="catalog-lightbox__dialog"><div class="catalog-lightbox__stage"></div><div class="catalog-lightbox__zoom" aria-label="Controles de zoom"><button type="button" data-zoom-action="out" aria-label="Diminuir zoom">−</button><output aria-live="polite">100%</output><button type="button" data-zoom-action="in" aria-label="Aumentar zoom">+</button><button class="catalog-lightbox__zoom-reset" type="button" data-zoom-action="reset">Restaurar</button></div><div class="catalog-lightbox__caption"><h2 id="catalog-lightbox-title"></h2><p></p></div></div></div>`);
 const lightbox = document.getElementById('catalog-lightbox');
 const lightboxStage = lightbox.querySelector('.catalog-lightbox__stage');
 let lightboxTrigger = null;
 let lightboxCloseTimer = 0;
+function setLightboxPan(media, x, y) {
+  const zoom = Number(media.dataset.zoom) || 1;
+  const maxX = media.clientWidth * (zoom - 1) / 2;
+  const maxY = media.clientHeight * (zoom - 1) / 2;
+  const panX = Math.max(-maxX, Math.min(maxX, x));
+  const panY = Math.max(-maxY, Math.min(maxY, y));
+  media.dataset.panX = panX;
+  media.dataset.panY = panY;
+  media.style.setProperty('--pan-x', `${panX}px`);
+  media.style.setProperty('--pan-y', `${panY}px`);
+}
+function setLightboxZoom(media, value) {
+  if (!media) return;
+  const zoom = Math.max(1, Math.min(3, Math.round(value * 4) / 4));
+  media.dataset.zoom = zoom;
+  media.style.setProperty('--zoom', zoom);
+  media.classList.toggle('is-zoomed', zoom > 1);
+  if (zoom === 1) setLightboxPan(media, 0, 0);
+  else setLightboxPan(media, Number(media.dataset.panX) || 0, Number(media.dataset.panY) || 0);
+  lightbox.querySelector('.catalog-lightbox__zoom output').textContent = `${Math.round(zoom * 100)}%`;
+  lightbox.querySelector('[data-zoom-action="out"]').disabled = zoom <= 1;
+  lightbox.querySelector('[data-zoom-action="in"]').disabled = zoom >= 3;
+  lightbox.querySelector('[data-zoom-action="reset"]').disabled = zoom === 1;
+}
 function openLightbox(sourceMedia) {
   clearTimeout(lightboxCloseTimer);
   lightboxTrigger = sourceMedia;
@@ -76,8 +100,11 @@ function openLightbox(sourceMedia) {
   media.removeAttribute('tabindex');
   media.removeAttribute('aria-label');
   media.dataset.animating = 'false';
+  media.dataset.panX = '0';
+  media.dataset.panY = '0';
   media.querySelector('.catalog-item__track').style.transform = product.images.length > 1 ? `translate3d(-${(Number(media.dataset.image) + 1) * 100}%,0,0)` : 'none';
   lightboxStage.replaceChildren(media);
+  setLightboxZoom(media, 1);
   lightbox.querySelector('h2').textContent = `${product.name} ${product.icon}`;
   lightbox.querySelector('.catalog-lightbox__caption p').textContent = `${product.size} · Atacado: ${product.wholesale} · Varejo: ${product.retail}`;
   lightbox.hidden = false;
@@ -99,6 +126,7 @@ const carouselAnimations = new WeakMap();
 function moveProductImage(media, direction) {
   const product = products[Number(media.dataset.product)];
   if (product.images.length < 2 || media.dataset.animating === 'true') return false;
+  if (media.classList.contains('catalog-lightbox__media')) setLightboxZoom(media, 1);
   const track = media.querySelector('.catalog-item__track');
   const currentIndex = Number(media.dataset.image);
   const visualIndex = currentIndex + direction;
@@ -127,6 +155,13 @@ function moveProductImage(media, direction) {
 }
 let suppressMediaClick = false;
 document.addEventListener('click', event => {
+  const zoomAction = event.target.closest('[data-zoom-action]');
+  if (zoomAction) {
+    const media = lightbox.querySelector('.catalog-lightbox__media');
+    const zoom = Number(media?.dataset.zoom) || 1;
+    setLightboxZoom(media, zoomAction.dataset.zoomAction === 'in' ? zoom + .25 : zoomAction.dataset.zoomAction === 'out' ? zoom - .25 : 1);
+    return;
+  }
   const arrow = event.target.closest('.catalog-item__arrow');
   if (arrow) {
     moveProductImage(arrow.closest('.catalog-item__media'), Number(arrow.dataset.direction));
@@ -143,9 +178,25 @@ document.addEventListener('click', event => {
 let draggedMedia = null;
 let dragStartX = 0;
 let dragDistance = 0;
+let panningMedia = null;
+let panStartX = 0;
+let panStartY = 0;
+let panOriginX = 0;
+let panOriginY = 0;
 document.addEventListener('pointerdown', event => {
   const media = event.target.closest('.catalog-item__media');
   if (!media || event.target.closest('.catalog-item__arrow')) return;
+  if (media.classList.contains('catalog-lightbox__media') && Number(media.dataset.zoom) > 1) {
+    panningMedia = media;
+    panStartX = event.clientX;
+    panStartY = event.clientY;
+    panOriginX = Number(media.dataset.panX) || 0;
+    panOriginY = Number(media.dataset.panY) || 0;
+    suppressMediaClick = true;
+    media.classList.add('is-panning');
+    media.setPointerCapture(event.pointerId);
+    return;
+  }
   carouselAnimations.get(media)?.finish();
   dragDistance = 0;
   suppressMediaClick = false;
@@ -156,6 +207,10 @@ document.addEventListener('pointerdown', event => {
   media.setPointerCapture(event.pointerId);
 });
 document.addEventListener('pointermove', event => {
+  if (panningMedia) {
+    setLightboxPan(panningMedia, panOriginX + event.clientX - panStartX, panOriginY + event.clientY - panStartY);
+    return;
+  }
   if (!draggedMedia) return;
   dragDistance = event.clientX - dragStartX;
   if (Math.abs(dragDistance) > 6) suppressMediaClick = true;
@@ -163,6 +218,11 @@ document.addEventListener('pointermove', event => {
   draggedMedia.querySelector('.catalog-item__track').style.transform = `translate3d(calc(-${(imageIndex + 1) * 100}% + ${dragDistance}px),0,0)`;
 });
 document.addEventListener('pointerup', event => {
+  if (panningMedia) {
+    panningMedia.classList.remove('is-panning');
+    panningMedia = null;
+    return;
+  }
   if (!draggedMedia) return;
   const media = draggedMedia;
   const track = media.querySelector('.catalog-item__track');
@@ -178,6 +238,8 @@ document.addEventListener('pointerup', event => {
   }
 });
 document.addEventListener('pointercancel', () => {
+  if (panningMedia) panningMedia.classList.remove('is-panning');
+  panningMedia = null;
   if (draggedMedia) {
     draggedMedia.classList.remove('is-dragging');
     draggedMedia.querySelector('.catalog-item__track').style.transform = `translate3d(-${(Number(draggedMedia.dataset.image) + 1) * 100}%,0,0)`;
@@ -187,6 +249,16 @@ document.addEventListener('pointercancel', () => {
 document.addEventListener('dragstart', event => {
   if (event.target.closest('.catalog-item__media')) event.preventDefault();
 });
+lightbox.addEventListener('dblclick', event => {
+  const media = event.target.closest('.catalog-lightbox__media');
+  if (media && !event.target.closest('.catalog-item__arrow')) setLightboxZoom(media, Number(media.dataset.zoom) > 1 ? 1 : 2);
+});
+lightbox.addEventListener('wheel', event => {
+  const media = event.target.closest('.catalog-lightbox__media');
+  if (!media) return;
+  event.preventDefault();
+  setLightboxZoom(media, (Number(media.dataset.zoom) || 1) + (event.deltaY < 0 ? .25 : -.25));
+}, {passive:false});
 document.addEventListener('keydown', event => {
   if (lightbox.hidden) {
     const media = event.target.closest?.('.catalog-products .catalog-item__media');
@@ -197,6 +269,20 @@ document.addEventListener('keydown', event => {
     return;
   }
   if (event.key === 'Escape') closeLightbox();
+  if (event.key === '+' || event.key === '=') {
+    event.preventDefault();
+    const media = lightbox.querySelector('.catalog-lightbox__media');
+    setLightboxZoom(media, (Number(media?.dataset.zoom) || 1) + .25);
+  }
+  if (event.key === '-') {
+    event.preventDefault();
+    const media = lightbox.querySelector('.catalog-lightbox__media');
+    setLightboxZoom(media, (Number(media?.dataset.zoom) || 1) - .25);
+  }
+  if (event.key === '0') {
+    event.preventDefault();
+    setLightboxZoom(lightbox.querySelector('.catalog-lightbox__media'), 1);
+  }
   if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
     event.preventDefault();
     const media = lightbox.querySelector('.catalog-item__media');
