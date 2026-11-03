@@ -95,9 +95,10 @@ function closeLightbox() {
   }, 220);
   lightboxTrigger?.focus?.({preventScroll:true});
 }
+const carouselAnimations = new WeakMap();
 function moveProductImage(media, direction) {
   const product = products[Number(media.dataset.product)];
-  if (product.images.length < 2 || media.dataset.animating === 'true') return;
+  if (product.images.length < 2 || media.dataset.animating === 'true') return false;
   const track = media.querySelector('.catalog-item__track');
   const currentIndex = Number(media.dataset.image);
   const visualIndex = currentIndex + direction;
@@ -106,15 +107,23 @@ function moveProductImage(media, direction) {
   media.dataset.animating = 'true';
   track.style.transform = `translate3d(-${(visualIndex + 1) * 100}%,0,0)`;
   media.querySelector('.catalog-item__image-count').textContent = `${imageIndex + 1}/${product.images.length}`;
-  track.addEventListener('transitionend', () => {
-    if (visualIndex < 0 || visualIndex >= product.images.length) {
-      track.classList.add('is-resetting');
-      track.style.transform = `translate3d(-${(imageIndex + 1) * 100}%,0,0)`;
-      track.getBoundingClientRect();
-      track.classList.remove('is-resetting');
-    }
+  let settled = false;
+  const finishAnimation = event => {
+    if (settled || (event && (event.target !== track || event.propertyName !== 'transform'))) return;
+    settled = true;
+    window.clearTimeout(carouselAnimations.get(media)?.timer);
+    carouselAnimations.delete(media);
+    track.removeEventListener('transitionend', finishAnimation);
+    track.classList.add('is-resetting');
+    track.style.transform = `translate3d(-${(imageIndex + 1) * 100}%,0,0)`;
+    track.getBoundingClientRect();
+    track.classList.remove('is-resetting');
     media.dataset.animating = 'false';
-  }, {once:true});
+  };
+  track.addEventListener('transitionend', finishAnimation);
+  const timer = window.setTimeout(finishAnimation, 520);
+  carouselAnimations.set(media, {timer, finish: finishAnimation});
+  return true;
 }
 let suppressMediaClick = false;
 document.addEventListener('click', event => {
@@ -137,6 +146,7 @@ let dragDistance = 0;
 document.addEventListener('pointerdown', event => {
   const media = event.target.closest('.catalog-item__media');
   if (!media || event.target.closest('.catalog-item__arrow')) return;
+  carouselAnimations.get(media)?.finish();
   dragDistance = 0;
   suppressMediaClick = false;
   if (products[Number(media.dataset.product)].images.length < 2) return;
@@ -155,12 +165,16 @@ document.addEventListener('pointermove', event => {
 document.addEventListener('pointerup', event => {
   if (!draggedMedia) return;
   const media = draggedMedia;
+  const track = media.querySelector('.catalog-item__track');
   media.classList.remove('is-dragging');
   draggedMedia = null;
+  track.getBoundingClientRect();
   if (Math.abs(dragDistance) >= Math.min(70, media.clientWidth * .18)) {
-    moveProductImage(media, dragDistance < 0 ? 1 : -1);
+    if (!moveProductImage(media, dragDistance < 0 ? 1 : -1)) {
+      track.style.transform = `translate3d(-${(Number(media.dataset.image) + 1) * 100}%,0,0)`;
+    }
   } else {
-    media.querySelector('.catalog-item__track').style.transform = `translate3d(-${(Number(media.dataset.image) + 1) * 100}%,0,0)`;
+    track.style.transform = `translate3d(-${(Number(media.dataset.image) + 1) * 100}%,0,0)`;
   }
 });
 document.addEventListener('pointercancel', () => {
