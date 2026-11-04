@@ -58,15 +58,74 @@ function productPage(page) {
   const cards = pageProducts.map(product => {
     const productIndex = products.indexOf(product);
     const controls = product.images.length > 1 ? `<button class="catalog-item__arrow catalog-item__arrow--previous" type="button" data-direction="-1" aria-label="Foto anterior de ${product.name}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 4.5-7.5 7.5 7.5 7.5"/></svg></button><button class="catalog-item__arrow catalog-item__arrow--next" type="button" data-direction="1" aria-label="Próxima foto de ${product.name}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 4.5 7.5 7.5L9 19.5"/></svg></button><span class="catalog-item__image-count" aria-live="polite">1/${product.images.length}</span>` : '';
-    const slides = product.images.map((image, imageIndex) => `<img src="${assetRoot}${image}" alt="${product.name}, foto ${imageIndex + 1} de ${product.images.length}" loading="lazy" decoding="async">`).join('');
-    const track = product.images.length > 1 ? `<div class="catalog-item__track"><img src="${assetRoot}${product.images.at(-1)}" alt="" aria-hidden="true" loading="lazy" decoding="async">${slides}<img src="${assetRoot}${product.images[0]}" alt="" aria-hidden="true" loading="lazy" decoding="async"></div>` : `<div class="catalog-item__track catalog-item__track--single">${slides}</div>`;
+    const slides = product.images.map((image, imageIndex) => `<img data-src="${assetRoot}${image}" alt="${product.name}, foto ${imageIndex + 1} de ${product.images.length}" decoding="async">`).join('');
+    const track = product.images.length > 1 ? `<div class="catalog-item__track"><img data-src="${assetRoot}${product.images.at(-1)}" alt="" aria-hidden="true" decoding="async">${slides}<img data-src="${assetRoot}${product.images[0]}" alt="" aria-hidden="true" decoding="async"></div>` : `<div class="catalog-item__track catalog-item__track--single">${slides}</div>`;
     return `<article class="catalog-item"><div class="catalog-item__media" data-product="${productIndex}" data-image="0" role="button" tabindex="0" aria-label="Ampliar fotos de ${product.name}">${track}${controls}</div><div class="catalog-item__copy"><h2>${product.name} <span class="catalog-item__title-icon" aria-hidden="true">${product.icon}</span></h2><p>${product.size}</p><span>Atacado: ${product.wholesale}</span><span>Varejo: ${product.retail}</span></div></article>`;
   }).join('');
   const background = ((index % 3) + 1).toString().padStart(2, '0');
   const gridClass = pageProducts.length === 1 ? 'catalog-grid catalog-grid--single' : 'catalog-grid';
   return `<section class="catalog-page catalog-products" id="pagina-${page}" style="--page-background:url('${assetRoot}Background Paginas/Back${background}.webp')" aria-label="Página ${page}, ${pageData.category}"><div class="catalog-page__body"><div class="catalog-products__heading"><h1>${pageData.category}</h1><p>Elegância e estilo<br>em cada detalhe.</p></div><div class="${gridClass}">${cards}</div></div>${footer(page)}</section>`;
 }
-pages.innerHTML = cover + index + catalogPages.map((_, index) => productPage(index + 3)).join('');
+const PRODUCTS_PER_BATCH = 10;
+pages.innerHTML = `${cover}${index}<div class="catalog-load-more"><button id="catalog-load-more" type="button">Ver mais produtos</button><p aria-live="polite"></p></div>`;
+function loadCatalogImage(image) {
+  if (!image?.dataset.src) return;
+  image.src = image.dataset.src;
+  delete image.dataset.src;
+}
+function loadVisibleProductImages(page) {
+  page.querySelectorAll('.catalog-item__media').forEach(media => {
+    const product = products[Number(media.dataset.product)];
+    const images = media.querySelectorAll('.catalog-item__track img');
+    loadCatalogImage(images[product.images.length > 1 ? Number(media.dataset.image) + 1 : 0]);
+  });
+}
+const catalogImageObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    loadVisibleProductImages(entry.target);
+    catalogImageObserver.unobserve(entry.target);
+  });
+}, {rootMargin:'900px 0px'});
+const loadMore = document.getElementById('catalog-load-more');
+const loadMoreStatus = loadMore.nextElementSibling;
+let loadedCatalogPageCount = 0;
+let pageObserver = null;
+function updateLoadMoreStatus() {
+  const loadedProducts = catalogPages.slice(0, loadedCatalogPageCount).reduce((total, page) => total + page.products.length, 0);
+  const remainingProducts = products.length - loadedProducts;
+  loadMoreStatus.textContent = `${loadedProducts} de ${products.length} produtos exibidos`;
+  loadMore.parentElement.hidden = remainingProducts <= 0;
+  if (remainingProducts > 0) loadMore.textContent = `Ver mais ${Math.min(PRODUCTS_PER_BATCH, remainingProducts)} produtos`;
+}
+function renderNextProductBatch() {
+  let batchProducts = 0;
+  let end = loadedCatalogPageCount;
+  while (end < catalogPages.length && batchProducts < PRODUCTS_PER_BATCH) {
+    batchProducts += catalogPages[end].products.length;
+    end += 1;
+  }
+  const fragment = document.createRange().createContextualFragment(
+    catalogPages.slice(loadedCatalogPageCount, end).map((_, index) => productPage(loadedCatalogPageCount + index + 3)).join('')
+  );
+  const addedPages = [...fragment.querySelectorAll('.catalog-page')];
+  loadMore.parentElement.before(fragment);
+  addedPages.forEach(page => {
+    catalogImageObserver.observe(page);
+    pageObserver?.observe(page);
+  });
+  loadedCatalogPageCount = end;
+  updateLoadMoreStatus();
+}
+function ensurePageRendered(pageNumber) {
+  while (pageNumber > loadedCatalogPageCount + 2 && loadedCatalogPageCount < catalogPages.length) renderNextProductBatch();
+}
+loadMore.addEventListener('click', renderNextProductBatch);
+document.addEventListener('click', event => {
+  const link = event.target.closest('a[href^="#pagina-"]');
+  if (link) ensurePageRendered(Number(link.hash.replace('#pagina-', '')));
+});
+renderNextProductBatch();
 document.body.insertAdjacentHTML('beforeend', `<div class="catalog-lightbox" id="catalog-lightbox" role="dialog" aria-modal="true" aria-labelledby="catalog-lightbox-title" hidden><button class="catalog-lightbox__close" type="button" aria-label="Fechar imagem ampliada">×</button><div class="catalog-lightbox__dialog"><div class="catalog-lightbox__stage"></div><div class="catalog-lightbox__zoom" aria-label="Controles de zoom"><button type="button" data-zoom-action="out" aria-label="Diminuir zoom">−</button><output aria-live="polite">100%</output><button type="button" data-zoom-action="in" aria-label="Aumentar zoom">+</button><button class="catalog-lightbox__zoom-reset" type="button" data-zoom-action="reset">Restaurar</button></div><div class="catalog-lightbox__caption"><h2 id="catalog-lightbox-title"></h2><p></p></div></div></div>`);
 const lightbox = document.getElementById('catalog-lightbox');
 const lightboxStage = lightbox.querySelector('.catalog-lightbox__stage');
@@ -146,6 +205,9 @@ function moveProductImage(media, direction) {
   const currentIndex = Number(media.dataset.image);
   const visualIndex = currentIndex + direction;
   const imageIndex = (visualIndex + product.images.length) % product.images.length;
+  const images = track.querySelectorAll('img');
+  loadCatalogImage(images[visualIndex + 1]);
+  loadCatalogImage(images[imageIndex + 1]);
   media.dataset.image = imageIndex;
   media.dataset.animating = 'true';
   track.style.transform = `translate3d(-${(visualIndex + 1) * 100}%,0,0)`;
@@ -356,14 +418,21 @@ document.addEventListener('keydown', event => {
   }
 });
 select.innerHTML = Array.from({length: totalPages}, (_, i) => `<option value="pagina-${i + 1}">${String(i + 1).padStart(2, '0')}</option>`).join('');
-select.addEventListener('change', () => document.getElementById(select.value).scrollIntoView({behavior:'smooth'}));
-const observer = new IntersectionObserver(entries => {
+select.addEventListener('change', () => {
+  const page = Number(select.value.replace('pagina-', ''));
+  ensurePageRendered(page);
+  document.getElementById(select.value).scrollIntoView({behavior:'smooth'});
+});
+pageObserver = new IntersectionObserver(entries => {
   const visible = entries.filter(entry => entry.isIntersecting).sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
   if (visible) { select.value = visible.target.id; updateFloatingNavigation(); }
 }, {rootMargin:'-20% 0px -50% 0px', threshold:0});
-document.querySelectorAll('.catalog-page').forEach(page => observer.observe(page));
+document.querySelectorAll('.catalog-page').forEach(page => pageObserver.observe(page));
 const requestedPage = Number(new URLSearchParams(location.search).get('pagina'));
-if (requestedPage >= 1 && requestedPage <= totalPages) requestAnimationFrame(() => document.getElementById(`pagina-${requestedPage}`).scrollIntoView());
+if (requestedPage >= 1 && requestedPage <= totalPages) {
+  ensurePageRendered(requestedPage);
+  requestAnimationFrame(() => document.getElementById(`pagina-${requestedPage}`).scrollIntoView());
+}
 
 const floatingPrevious = document.getElementById('catalog-prev');
 const floatingNext = document.getElementById('catalog-next');
@@ -380,6 +449,7 @@ function updateFloatingNavigation() {
 }
 function movePage(direction) {
   const target = Math.max(1, Math.min(totalPages, currentPageNumber() + direction));
+  ensurePageRendered(target);
   stopWheelMotion();
   document.getElementById(`pagina-${target}`).scrollIntoView({behavior:'smooth', block:'start'});
   select.value = `pagina-${target}`;
@@ -396,6 +466,7 @@ pageInput.addEventListener('focus', () => pageInput.select());
 pageInput.addEventListener('change', () => {
   const page = Number(pageInput.value);
   if (Number.isInteger(page) && page >= 1 && page <= totalPages) {
+    ensurePageRendered(page);
     stopWheelMotion();
     document.getElementById(`pagina-${page}`).scrollIntoView({behavior:'smooth', block:'start'});
     select.value = `pagina-${page}`;
