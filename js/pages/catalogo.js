@@ -67,8 +67,8 @@ function productPage(page) {
   const gridClass = pageProducts.length === 1 ? 'catalog-grid catalog-grid--single' : 'catalog-grid';
   return `<section class="catalog-page catalog-products" id="pagina-${page}" style="--page-background:url('${assetRoot}Background Paginas/Back${background}.webp')" aria-label="Página ${page}, ${pageData.category}"><div class="catalog-page__body"><div class="catalog-products__heading"><h1>${pageData.category}</h1><p>Elegância e estilo<br>em cada detalhe.</p></div><div class="${gridClass}">${cards}</div></div>${footer(page)}</section>`;
 }
-const INITIAL_PRODUCTS = 6;
-const PRODUCTS_PER_BATCH = 8;
+const INITIAL_PRODUCTS = 20;
+const PRODUCTS_PER_BATCH = 6;
 pages.innerHTML = `${cover}${index}<div class="catalog-load-more" id="catalog-load-more" role="status" aria-live="polite"><span aria-hidden="true"></span><p>Carregando mais produtos...</p></div>`;
 function loadCatalogImage(image) {
   if (!image?.dataset.src) return;
@@ -116,11 +116,14 @@ const catalogCarouselObserver = new IntersectionObserver(entries => {
       loadCatalogImage(image);
       preloadFullCatalogImage(image.dataset.fullSrc);
     });
+    extendCatalogBuffer(Number(entry.target.dataset.catalogOrder));
     catalogCarouselObserver.unobserve(entry.target);
   });
 }, {rootMargin:'180px 0px', threshold:.15});
 const loadMore = document.getElementById('catalog-load-more');
 let loadedCatalogPageCount = 0;
+let loadedProductCount = 0;
+let nextBufferTrigger = 5;
 let pageObserver = null;
 let loadingNextBatch = false;
 function appendProductBatch(productLimit) {
@@ -134,15 +137,25 @@ function appendProductBatch(productLimit) {
     catalogPages.slice(loadedCatalogPageCount, end).map((_, index) => productPage(loadedCatalogPageCount + index + 3)).join('')
   );
   const addedPages = [...fragment.querySelectorAll('.catalog-page')];
+  const addedMedia = [...fragment.querySelectorAll('.catalog-item__media')];
+  addedMedia.forEach((media, index) => { media.dataset.catalogOrder = loadedProductCount + index; });
   loadMore.before(fragment);
   addedPages.forEach(page => {
+    loadVisibleProductImages(page);
     catalogImageObserver.observe(page);
     page.querySelectorAll('.catalog-item__media').forEach(media => catalogCarouselObserver.observe(media));
     pageObserver?.observe(page);
   });
+  loadedProductCount += addedMedia.length;
   loadedCatalogPageCount = end;
   loadMore.hidden = loadedCatalogPageCount >= catalogPages.length;
   requestAnimationFrame(updateWheelBounds);
+}
+function extendCatalogBuffer(visibleProductOrder) {
+  while (visibleProductOrder >= nextBufferTrigger && loadedCatalogPageCount < catalogPages.length) {
+    appendProductBatch(PRODUCTS_PER_BATCH);
+    nextBufferTrigger += PRODUCTS_PER_BATCH;
+  }
 }
 function renderNextProductBatch() {
   if (loadingNextBatch || loadedCatalogPageCount >= catalogPages.length) return;
