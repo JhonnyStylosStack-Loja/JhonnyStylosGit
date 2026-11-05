@@ -1,5 +1,27 @@
 {
   "regions": ["gru1"],
+  "rewrites": [
+    { "source": "/", "destination": "/maintenance.html" },
+    { "source": "/index.html", "destination": "/maintenance.html" },
+    { "source": "/account.html", "destination": "/maintenance.html" },
+    { "source": "/admin.html", "destination": "/maintenance.html" },
+    { "source": "/blog.html", "destination": "/maintenance.html" },
+    { "source": "/blog-post.html", "destination": "/maintenance.html" },
+    { "source": "/cart.html", "destination": "/maintenance.html" },
+    { "source": "/checkout.html", "destination": "/maintenance.html" },
+    { "source": "/forgot-password.html", "destination": "/maintenance.html" },
+    { "source": "/login.html", "destination": "/maintenance.html" },
+    { "source": "/loja-fisica.html", "destination": "/maintenance.html" },
+    { "source": "/novidades.html", "destination": "/maintenance.html" },
+    { "source": "/privacy.html", "destination": "/maintenance.html" },
+    { "source": "/product.html", "destination": "/maintenance.html" },
+    { "source": "/set-password.html", "destination": "/maintenance.html" },
+    { "source": "/shop.html", "destination": "/maintenance.html" },
+    { "source": "/sitemap.html", "destination": "/maintenance.html" },
+    { "source": "/terms.html", "destination": "/maintenance.html" },
+    { "source": "/wishlist.html", "destination": "/maintenance.html" },
+    { "source": "/catalogo", "destination": "/catalogo.html" }
+  ],
   "headers": [
     {
       "source": "/(.*)\\.(webp|jpg|jpeg|png|svg|css|js|woff2)",
