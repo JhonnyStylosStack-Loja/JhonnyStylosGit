@@ -2,8 +2,12 @@ Options -MultiViews
 
 RewriteEngine On
 
-# Mantem o catalogo publico, inclusive pelo endereco curto.
-RewriteRule ^catalogo/?$ catalogo.html [L,NC]
+# Mantem o catalogo publico somente pelo endereco exclusivo.
+RewriteRule ^catalogo-atacado/?$ catalogo.html [L,NC]
+
+# Impede o acesso pelos enderecos antigos divulgados anteriormente.
+RewriteCond %{THE_REQUEST} \s/+catalogo\.html(?:[?\s]) [NC]
+RewriteRule ^catalogo\.html$ maintenance.html [L]
 RewriteRule ^(?:catalogo|maintenance)\.html$ - [L,NC]
 
 # Nao bloqueia os recursos usados pelo catalogo e pela tela de manutencao.
