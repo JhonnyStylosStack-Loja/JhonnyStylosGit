@@ -70,8 +70,15 @@ const PRODUCTS_PER_BATCH = 10;
 pages.innerHTML = `${cover}${index}<div class="catalog-load-more"><button id="catalog-load-more" type="button">Ver mais produtos</button><p aria-live="polite"></p></div>`;
 function loadCatalogImage(image) {
   if (!image?.dataset.src) return;
+  const revealImage = () => {
+    image.classList.remove('is-loading');
+    image.classList.add('is-loaded');
+  };
+  image.classList.add('is-loading');
+  image.addEventListener('load', revealImage, {once:true});
   image.src = image.dataset.src;
   delete image.dataset.src;
+  if (image.complete && image.naturalWidth) revealImage();
 }
 function loadVisibleProductImages(page) {
   page.querySelectorAll('.catalog-item__media').forEach(media => {
@@ -86,7 +93,7 @@ const catalogImageObserver = new IntersectionObserver(entries => {
     loadVisibleProductImages(entry.target);
     catalogImageObserver.unobserve(entry.target);
   });
-}, {rootMargin:'900px 0px'});
+}, {rootMargin:'2600px 0px'});
 const loadMore = document.getElementById('catalog-load-more');
 const loadMoreStatus = loadMore.nextElementSibling;
 let loadedCatalogPageCount = 0;
