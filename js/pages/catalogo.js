@@ -47,7 +47,6 @@ categories.forEach(category => {
 });
 const totalPages = catalogPages.length + 2;
 const thumbnailUrl = image => `${assetRoot}Thumbs/${image.replace(/\.(?:jpe?g|webp)$/i, '.webp')}`;
-const largeImageUrl = image => `${assetRoot}Large/${image.replace(/\.(?:jpe?g|webp)$/i, '.webp')}`;
 const footer = page => `<footer class="catalog-page__footer"><span>Jhonny Styles　|　Catálogo de produtos atacado</span><span>${String(page).padStart(2, '0')}</span></footer>`;
 const categoryLinks = categories.map((category, index) => `<a href="#pagina-${categoryStartPages.get(category.name)}"><span>${String(index + 1).padStart(2, '0')}</span>${category.name}<span>↗</span></a>`).join('');
 const coverLinks = categories.map(category => `<a href="#pagina-${categoryStartPages.get(category.name)}">${category.name}</a>`).join('');
@@ -60,8 +59,8 @@ function productPage(page) {
   const cards = pageProducts.map(product => {
     const productIndex = products.indexOf(product);
     const controls = product.images.length > 1 ? `<button class="catalog-item__arrow catalog-item__arrow--previous" type="button" data-direction="-1" aria-label="Foto anterior de ${product.name}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 4.5-7.5 7.5 7.5 7.5"/></svg></button><button class="catalog-item__arrow catalog-item__arrow--next" type="button" data-direction="1" aria-label="Próxima foto de ${product.name}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 4.5 7.5 7.5L9 19.5"/></svg></button><span class="catalog-item__image-count" aria-live="polite">1/${product.images.length}</span>` : '';
-    const slides = product.images.map((image, imageIndex) => `<img data-src="${thumbnailUrl(image)}" data-full-src="${largeImageUrl(image)}" alt="${product.name}, foto ${imageIndex + 1} de ${product.images.length}" decoding="async">`).join('');
-    const track = product.images.length > 1 ? `<div class="catalog-item__track"><img data-src="${thumbnailUrl(product.images.at(-1))}" data-full-src="${largeImageUrl(product.images.at(-1))}" alt="" aria-hidden="true" decoding="async">${slides}<img data-src="${thumbnailUrl(product.images[0])}" data-full-src="${largeImageUrl(product.images[0])}" alt="" aria-hidden="true" decoding="async"></div>` : `<div class="catalog-item__track catalog-item__track--single">${slides}</div>`;
+    const slides = product.images.map((image, imageIndex) => `<img data-src="${thumbnailUrl(image)}" data-full-src="${thumbnailUrl(image)}" alt="${product.name}, foto ${imageIndex + 1} de ${product.images.length}" decoding="async">`).join('');
+    const track = product.images.length > 1 ? `<div class="catalog-item__track"><img data-src="${thumbnailUrl(product.images.at(-1))}" data-full-src="${thumbnailUrl(product.images.at(-1))}" alt="" aria-hidden="true" decoding="async">${slides}<img data-src="${thumbnailUrl(product.images[0])}" data-full-src="${thumbnailUrl(product.images[0])}" alt="" aria-hidden="true" decoding="async"></div>` : `<div class="catalog-item__track catalog-item__track--single">${slides}</div>`;
     return `<article class="catalog-item"><div class="catalog-item__media" data-product="${productIndex}" data-image="0" role="button" tabindex="0" aria-label="Ampliar fotos de ${product.name}">${track}${controls}</div><div class="catalog-item__copy"><h2>${product.name} <span class="catalog-item__title-icon" aria-hidden="true">${product.icon}</span></h2><p>${product.size}</p><span>Atacado: ${product.wholesale}</span><span>Varejo: ${product.retail}</span></div></article>`;
   }).join('');
   const background = ((index % 3) + 1).toString().padStart(2, '0');
@@ -212,8 +211,7 @@ async function preloadInitialCatalog() {
   const progressOutput = preloader.querySelector('output');
   const assetsByUrl = new Map();
   initialProductsToPreload().forEach(product => product.images.forEach(image => {
-    assetsByUrl.set(thumbnailUrl(image), {url:thumbnailUrl(image), full:false});
-    assetsByUrl.set(largeImageUrl(image), {url:largeImageUrl(image), full:true});
+    assetsByUrl.set(thumbnailUrl(image), {url:thumbnailUrl(image), full:true});
   }));
   const assets = [...assetsByUrl.values()];
   let completed = 0;
