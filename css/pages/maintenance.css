@@ -25,9 +25,9 @@ body:after{width:min(68vw,760px);aspect-ratio:1;left:50%;top:50%;translate:-50% 
 .maintenance__rule span{width:7px;height:7px;rotate:45deg;border:1px solid var(--maintenance-gold);background:var(--maintenance-ivory)}
 h1{max-width:14ch;margin:0 auto 20px;color:var(--maintenance-wine);font:400 clamp(2.25rem,7vw,4.85rem)/.98 Georgia,"Times New Roman",serif;letter-spacing:-.055em}
 p{max-width:54ch;margin:0 auto;color:var(--maintenance-ink);font-size:clamp(.98rem,2.1vw,1.15rem);line-height:1.72}
-.maintenance__catalog{display:inline-block;margin:clamp(28px,5vw,42px) auto 25px;padding:14px 24px;border:1px solid var(--maintenance-wine);border-radius:999px;background:var(--maintenance-wine);color:#fff;text-decoration:none;font-size:.88rem;font-weight:700;letter-spacing:.025em;transition:background 160ms ease,color 160ms ease,transform 160ms ease}
-.maintenance__catalog:hover{background:transparent;color:var(--maintenance-wine);transform:translateY(-2px)}
-.maintenance__catalog:focus-visible{outline:3px solid var(--maintenance-rose);outline-offset:4px}
+.maintenance__instagram{display:inline-block;margin:clamp(28px,5vw,42px) auto 25px;padding:14px 24px;border:1px solid var(--maintenance-wine);border-radius:999px;background:var(--maintenance-wine);color:#fff;text-decoration:none;font-size:.88rem;font-weight:700;letter-spacing:.025em;transition:background 160ms ease,color 160ms ease,transform 160ms ease}
+.maintenance__instagram:hover{background:transparent;color:var(--maintenance-wine);transform:translateY(-2px)}
+.maintenance__instagram:focus-visible{outline:3px solid var(--maintenance-rose);outline-offset:4px}
 small{display:block;max-width:46ch;margin:auto;color:#835965;font:italic .85rem/1.55 Georgia,"Times New Roman",serif}
 @keyframes maintenance-arrival{from{opacity:0;transform:translateY(14px) scale(.99)}to{opacity:1;transform:none}}
 @media(max-width:520px){
@@ -36,4 +36,4 @@ small{display:block;max-width:46ch;margin:auto;color:#835965;font:italic .85rem/
   .maintenance__logo{width:min(74%,260px)}
   h1{font-size:clamp(2.35rem,13vw,3.35rem)}
 }
-@media(prefers-reduced-motion:reduce){.maintenance__content{animation:none}.maintenance__catalog{transition:none}}
+@media(prefers-reduced-motion:reduce){.maintenance__content{animation:none}.maintenance__instagram{transition:none}}
