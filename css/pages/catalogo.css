@@ -227,6 +227,10 @@ body{background:#f8ebea}
   .catalog-products .catalog-item__media{flex:1;min-height:0;aspect-ratio:auto}
   .catalog-products .catalog-item__copy{flex:0 0 auto}
 }
+/* A página exclusiva da peça horizontal preserva o enquadramento 16:9. */
+.catalog-products--landscape .catalog-grid{height:auto}
+.catalog-products--landscape .catalog-item__media{flex:none;min-height:0;aspect-ratio:16/9}
+.catalog-products--landscape .catalog-item__track img{object-fit:contain}
 .catalog-load-more{display:grid;justify-items:center;gap:8px;width:min(100%,720px);min-height:84px;padding:22px 16px 34px;visibility:hidden}
 .catalog-load-more[hidden]{display:none}
 .catalog-load-more.is-loading{visibility:visible}
