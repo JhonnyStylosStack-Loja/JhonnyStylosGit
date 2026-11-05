@@ -89,6 +89,19 @@ function loadVisibleProductImages(page) {
     loadCatalogImage(images[product.images.length > 1 ? Number(media.dataset.image) + 1 : 0]);
   });
 }
+const requestedFullImages = new Set();
+const activeFullImagePreloads = new Map();
+function preloadFullCatalogImage(url) {
+  if (!url || requestedFullImages.has(url)) return;
+  const preload = new Image();
+  requestedFullImages.add(url);
+  activeFullImagePreloads.set(url, preload);
+  const release = () => activeFullImagePreloads.delete(url);
+  preload.addEventListener('load', release, {once:true});
+  preload.addEventListener('error', release, {once:true});
+  preload.decoding = 'async';
+  preload.src = url;
+}
 const catalogImageObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (!entry.isIntersecting) return;
@@ -96,6 +109,16 @@ const catalogImageObserver = new IntersectionObserver(entries => {
     catalogImageObserver.unobserve(entry.target);
   });
 }, {rootMargin:'2600px 0px'});
+const catalogCarouselObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    entry.target.querySelectorAll('.catalog-item__track img').forEach(image => {
+      loadCatalogImage(image);
+      preloadFullCatalogImage(image.dataset.fullSrc);
+    });
+    catalogCarouselObserver.unobserve(entry.target);
+  });
+}, {rootMargin:'180px 0px', threshold:.15});
 const loadMore = document.getElementById('catalog-load-more');
 let loadedCatalogPageCount = 0;
 let pageObserver = null;
@@ -114,6 +137,7 @@ function appendProductBatch(productLimit) {
   loadMore.before(fragment);
   addedPages.forEach(page => {
     catalogImageObserver.observe(page);
+    page.querySelectorAll('.catalog-item__media').forEach(media => catalogCarouselObserver.observe(media));
     pageObserver?.observe(page);
   });
   loadedCatalogPageCount = end;
