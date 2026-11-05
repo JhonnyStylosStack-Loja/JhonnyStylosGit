@@ -29,12 +29,12 @@ async function generateThumbnail(source) {
   await Promise.all([
     sharp(source)
       .rotate()
-      .resize({width: 600, height: 800, fit: 'cover', position: 'top', withoutEnlargement: true})
+      .resize({width: 600, height: 800, fit: 'cover', position: 'centre', withoutEnlargement: true})
       .webp({quality: 76, effort: 5})
       .toFile(output),
     sharp(source)
       .rotate()
-      .resize({width: 1000, height: 1333, fit: 'cover', position: 'top', withoutEnlargement: true})
+      .resize({width: 1000, height: 1333, fit: 'cover', position: 'centre', withoutEnlargement: true})
       .webp({quality: 80, effort: 5})
       .toFile(largeOutput)
   ])
