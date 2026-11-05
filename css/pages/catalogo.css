@@ -280,7 +280,7 @@ body{background:#f8ebea}
   .catalog-cover .catalog-cover__logo{width:84%;height:12%;margin-left:0}
   .catalog-cover__headline h1 span{font-size:clamp(1.32rem,5.75vw,1.68rem)}
   .catalog-cover__headline h1 em{font-size:clamp(2.02rem,8.85vw,2.55rem)}
-  .catalog-cover__headline h1 small{font-size:clamp(1.18rem,5.2vw,1.5rem)}
+  .catalog-cover__headline h1 small{font-size:clamp(1.18rem,5.2vw,1.5rem);transform:translateX(-4%)}
   .catalog-cover .catalog-cover__eyebrow{font-size:clamp(.45rem,2vw,.56rem)}
   .catalog-cover__benefits{width:80%}
   .catalog-cover__benefits li{grid-template-columns:36px 1fr;min-height:41px}
