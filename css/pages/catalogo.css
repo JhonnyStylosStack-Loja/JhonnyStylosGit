@@ -231,6 +231,18 @@ body{background:#f8ebea}
 .catalog-products--landscape .catalog-grid{height:auto}
 .catalog-products--landscape .catalog-item__media{flex:none;min-height:0;aspect-ratio:16/9}
 .catalog-products--landscape .catalog-item__track img{object-fit:contain}
+.catalog-cover__rule{margin:4% 0 7% 28%}
+.catalog-cover .catalog-cover__title{margin:0 0 8%;font-size:clamp(1.75rem,3.75vw,3.45rem);line-height:1.02;letter-spacing:-.04em}
+.catalog-cover__title>span{font-family:"Segoe UI Emoji","Apple Color Emoji",sans-serif;font-size:.55em;vertical-align:.2em}
+.catalog-cover__terms{display:grid;gap:clamp(8px,1.5vw,15px);margin:0;padding:0;list-style:none;color:#702334;font-size:clamp(.58rem,1.05vw,.82rem);line-height:1.42}
+.catalog-cover__terms li{display:grid;grid-template-columns:1.35em 1fr;gap:.45em;align-items:start}
+.catalog-cover__terms li>span:first-child{color:#bf5268;font-weight:700;text-align:center}
+.catalog-cover .catalog-cover__closing{margin:8% 0 0;color:#9a334b;font-size:clamp(.58rem,1.04vw,.8rem);font-weight:700;letter-spacing:.01em;line-height:1.45;text-transform:none}
+@media(max-width:600px){
+  .catalog-cover .catalog-cover__title{margin-bottom:7%;font-size:clamp(1.35rem,6.2vw,1.9rem)}
+  .catalog-cover__terms{gap:6px;font-size:clamp(.52rem,2.25vw,.66rem);line-height:1.32}
+  .catalog-cover .catalog-cover__closing{margin-top:7%;font-size:clamp(.51rem,2.2vw,.64rem);line-height:1.35}
+}
 .catalog-load-more{display:grid;justify-items:center;gap:8px;width:min(100%,720px);min-height:84px;padding:22px 16px 34px;visibility:hidden}
 .catalog-load-more[hidden]{display:none}
 .catalog-load-more.is-loading{visibility:visible}
