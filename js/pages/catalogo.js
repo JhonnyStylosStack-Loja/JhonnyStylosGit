@@ -111,7 +111,7 @@ function appendProductBatch(productLimit) {
     catalogPages.slice(loadedCatalogPageCount, end).map((_, index) => productPage(loadedCatalogPageCount + index + 3)).join('')
   );
   const addedPages = [...fragment.querySelectorAll('.catalog-page')];
-  loadMore.parentElement.before(fragment);
+  loadMore.before(fragment);
   addedPages.forEach(page => {
     catalogImageObserver.observe(page);
     pageObserver?.observe(page);
