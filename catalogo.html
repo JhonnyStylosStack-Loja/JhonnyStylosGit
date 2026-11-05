@@ -21,10 +21,16 @@
   <link rel="preload" as="image" href="Catálogo Jhonny Styles (Atacado)/Imagem da Capa Catálogo.webp" type="image/webp" fetchpriority="high">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/variables.css">
-  <link rel="stylesheet" href="css/pages/catalogo.css?v=52">
-  <script src="js/pages/catalogo.js?v=42" defer></script>
+  <link rel="stylesheet" href="css/pages/catalogo.css?v=53">
+  <script src="js/pages/catalogo.js?v=43" defer></script>
 </head>
-<body>
+<body class="catalog-preloading">
+  <div class="catalog-preloader" id="catalog-preloader" role="status" aria-live="polite">
+    <img src="assets/images/logotipo/LOGO-MENU-catalog.webp" width="300" height="145" alt="Jhonny Styles">
+    <p>Preparando seu catálogo...</p>
+    <div class="catalog-preloader__bar" aria-hidden="true"><span></span></div>
+    <output>0%</output>
+  </div>
   <div class="catalog-copyright">© 2026 Jhonny Styles. Todos os direitos reservados.</div>
   <main class="catalog-shell">
     <select id="catalog-select" hidden aria-hidden="true" tabindex="-1"></select>
