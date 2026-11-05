@@ -83,6 +83,7 @@ for (const [folder, label] of categoryLabels) {
     products.push({
       category: label,
       icon: '✨',
+      ...(folder === 'Blusas' && entry.name === '#01' ? {layout: 'landscape'} : {}),
       ...productCopy(description, entry.name),
       images
     })

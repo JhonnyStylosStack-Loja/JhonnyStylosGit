@@ -582,10 +582,10 @@ window.catalogProducts = [
   {
     "category": "Conjuntos / Macaquinhos",
     "icon": "✨",
-    "name": "Produto 04",
-    "size": "Consulte os tamanhos disponíveis",
-    "wholesale": "Consulte",
-    "retail": "Consulte",
+    "name": "Conjuntos e macaquinhos no crepe",
+    "size": "Tamanho único | Veste até o 42",
+    "wholesale": "R$ 80,00",
+    "retail": "R$ 105,00",
     "images": [
       "Itens/Categorias/Conjuntos%20e%20Macaquinhos/%2304/WhatsApp%20Image%202026-11-04%20at%2017.09.51%20(1).jpeg",
       "Itens/Categorias/Conjuntos%20e%20Macaquinhos/%2304/WhatsApp%20Image%202026-11-04%20at%2017.09.51.jpeg",
@@ -612,6 +612,7 @@ window.catalogProducts = [
   {
     "category": "Blusas",
     "icon": "✨",
+    "layout": "landscape",
     "name": "Blusas Bordadas na Malha",
     "size": "Tamanhos: P, M, G e GG",
     "wholesale": "R$ 65,00",

@@ -24,17 +24,20 @@ async function generateThumbnail(source) {
   const relative = path.relative(sourceRoot, source)
   const output = path.join(outputRoot, relative.replace(/\.(?:jpe?g|png|webp)$/i, '.webp'))
   const largeOutput = path.join(largeOutputRoot, relative.replace(/\.(?:jpe?g|png|webp)$/i, '.webp'))
+  const isLandscape = relative.split(path.sep).slice(0, 2).join('/') === 'Blusas/#01'
+  const thumbnailSize = isLandscape ? {width: 800, height: 450} : {width: 600, height: 800}
+  const largeSize = isLandscape ? {width: 1400, height: 788} : {width: 1000, height: 1333}
   await fs.mkdir(path.dirname(output), {recursive: true})
   await fs.mkdir(path.dirname(largeOutput), {recursive: true})
   await Promise.all([
     sharp(source)
       .rotate()
-      .resize({width: 600, height: 800, fit: 'cover', position: 'centre', withoutEnlargement: true})
+      .resize({...thumbnailSize, fit: 'cover', position: 'centre', withoutEnlargement: true})
       .webp({quality: 76, effort: 5})
       .toFile(output),
     sharp(source)
       .rotate()
-      .resize({width: 1000, height: 1333, fit: 'cover', position: 'centre', withoutEnlargement: true})
+      .resize({...largeSize, fit: 'cover', position: 'centre', withoutEnlargement: true})
       .webp({quality: 80, effort: 5})
       .toFile(largeOutput)
   ])
