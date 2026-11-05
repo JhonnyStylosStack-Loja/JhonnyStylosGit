@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="only light">
   <meta name="theme-color" content="#ffffff">
+  <script>
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+    window.addEventListener('pageshow', () => requestAnimationFrame(() => window.scrollTo(0, 0)));
+  </script>
   <!-- Mantém o canvas claro antes mesmo do carregamento dos estilos externos. -->
   <style>
     html { color-scheme: light; color-scheme: only light; background: #ffffff; color: #2d2226; }
