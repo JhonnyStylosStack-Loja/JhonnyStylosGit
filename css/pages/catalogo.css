@@ -253,7 +253,7 @@ body{background:#f8ebea}
 .catalog-cover__headline h1 span{font-size:clamp(1.9rem,4.05vw,3.6rem)}
 .catalog-cover__headline h1 em{position:relative;z-index:0;font-size:clamp(2.9rem,6.2vw,5.55rem);font-weight:400}
 .catalog-cover__headline h1 em:before{content:'';position:absolute;z-index:-1;left:-5%;right:8%;bottom:1%;height:54%;border-radius:999px;background:#f5a8b5aa;transform:rotate(-2deg)}
-.catalog-cover__headline h1 small{margin-top:.16em;font-size:clamp(1.7rem,3.6vw,3.2rem);font-style:italic;font-weight:700;letter-spacing:-.035em;text-transform:none;white-space:nowrap;transform:translateX(-4%)}
+.catalog-cover__headline h1 small{margin-top:.16em;font-size:clamp(1.7rem,3.6vw,3.2rem);font-style:italic;font-weight:700;letter-spacing:-.035em;text-transform:none;white-space:nowrap;transform:translateX(-18%)}
 .catalog-cover__headline h1 small:after{content:'♡';margin-left:.15em;color:#bd4157;font-family:Arial,sans-serif;font-size:.9em;font-weight:400}
 .catalog-cover .catalog-cover__eyebrow{margin:5% 0 4% 3%;color:#9d3b4d;font:600 clamp(.58rem,1.05vw,.82rem)/1.45 Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase}
 .catalog-cover__eyebrow strong{color:#7f1d30;font-weight:800}
