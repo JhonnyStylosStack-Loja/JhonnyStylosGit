@@ -27,19 +27,32 @@ async function generateThumbnail(source) {
   const isLandscape = relative.split(path.sep).slice(0, 2).join('/') === 'Blusas/#01'
   const thumbnailSize = isLandscape ? {width: 800, height: 450} : {width: 600, height: 800}
   const largeSize = isLandscape ? {width: 1400, height: 788} : {width: 1000, height: 1333}
+  const resizeImage = (size, quality) => {
+    let image = sharp(source).rotate()
+    if (isLandscape) {
+      const innerWidth = Math.round(size.width * .88)
+      const innerHeight = Math.round(size.height * .88)
+      const horizontalPadding = size.width - innerWidth
+      const verticalPadding = size.height - innerHeight
+      image = image
+        .resize({width: innerWidth, height: innerHeight, fit: 'contain', withoutEnlargement: true})
+        .extend({
+          left: Math.floor(horizontalPadding / 2),
+          right: Math.ceil(horizontalPadding / 2),
+          top: Math.floor(verticalPadding / 2),
+          bottom: Math.ceil(verticalPadding / 2),
+          background: '#f5e7e5'
+        })
+    } else {
+      image = image.resize({...size, fit: 'cover', position: 'centre', withoutEnlargement: true})
+    }
+    return image.webp({quality, effort: 5})
+  }
   await fs.mkdir(path.dirname(output), {recursive: true})
   await fs.mkdir(path.dirname(largeOutput), {recursive: true})
   await Promise.all([
-    sharp(source)
-      .rotate()
-      .resize({...thumbnailSize, fit: 'cover', position: 'centre', withoutEnlargement: true})
-      .webp({quality: 76, effort: 5})
-      .toFile(output),
-    sharp(source)
-      .rotate()
-      .resize({...largeSize, fit: 'cover', position: 'centre', withoutEnlargement: true})
-      .webp({quality: 80, effort: 5})
-      .toFile(largeOutput)
+    resizeImage(thumbnailSize, 76).toFile(output),
+    resizeImage(largeSize, 80).toFile(largeOutput)
   ])
 }
 

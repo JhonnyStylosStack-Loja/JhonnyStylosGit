@@ -14,8 +14,9 @@ categories.forEach(category => {
 });
 const totalPages = catalogPages.length + 2;
 const optimizedImagePath = image => image.replace(/\.(?:jpe?g|png|webp)$/i, '.webp');
-const thumbnailUrl = image => `${assetRoot}Thumbs/${optimizedImagePath(image)}`;
-const largeUrl = image => `${assetRoot}Large/${optimizedImagePath(image)}`;
+const optimizedImageVersion = image => image.includes('Blusas/%2301/') ? '?v=2' : '';
+const thumbnailUrl = image => `${assetRoot}Thumbs/${optimizedImagePath(image)}${optimizedImageVersion(image)}`;
+const largeUrl = image => `${assetRoot}Large/${optimizedImagePath(image)}${optimizedImageVersion(image)}`;
 const footer = page => `<footer class="catalog-page__footer"><span>Jhonny Styles　|　Catálogo de produtos atacado</span><span>${String(page).padStart(2, '0')}</span></footer>`;
 const categoryLinks = categories.map((category, index) => `<a href="#pagina-${categoryStartPages.get(category.name)}"><span>${String(index + 1).padStart(2, '0')}</span>${category.name}<span>↗</span></a>`).join('');
 const coverLinks = categories.map(category => `<a href="#pagina-${categoryStartPages.get(category.name)}">${category.name}</a>`).join('');
