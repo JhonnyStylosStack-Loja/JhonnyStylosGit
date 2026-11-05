@@ -1,8 +1,14 @@
 {
   "name": "jhonny-styles",
   "version": "1.0.0",
+  "scripts": {
+    "catalog:thumbnails": "node scripts/generate-catalog-thumbnails.js"
+  },
   "dependencies": {
     "@supabase/supabase-js": "^2.116.0",
     "mercadopago": "^2.0.0"
+  },
+  "devDependencies": {
+    "sharp": "^0.35.5"
   }
 }

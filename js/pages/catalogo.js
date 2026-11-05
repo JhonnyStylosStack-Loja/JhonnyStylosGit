@@ -46,10 +46,11 @@ categories.forEach(category => {
   }
 });
 const totalPages = catalogPages.length + 2;
+const thumbnailUrl = image => `${assetRoot}Thumbs/${image.replace(/\.(?:jpe?g|webp)$/i, '.webp')}`;
 const footer = page => `<footer class="catalog-page__footer"><span>Jhonny Styles　|　Catálogo de produtos atacado</span><span>${String(page).padStart(2, '0')}</span></footer>`;
 const categoryLinks = categories.map((category, index) => `<a href="#pagina-${categoryStartPages.get(category.name)}"><span>${String(index + 1).padStart(2, '0')}</span>${category.name}<span>↗</span></a>`).join('');
 const coverLinks = categories.map(category => `<a href="#pagina-${categoryStartPages.get(category.name)}">${category.name}</a>`).join('');
-const cover = `<section class="catalog-page catalog-cover" id="pagina-1" aria-label="Capa"><div class="catalog-cover__content"><img class="catalog-cover__logo" src="assets/images/logotipo/LOGO-MENU.webp" alt="Jhonny Styles"><div class="catalog-cover__rule"></div><h1>Catálogo<br>de Produtos<br>Atacado</h1><p>Elegância e estilo<br>em cada detalhe</p><nav aria-label="Categorias">${coverLinks}</nav><small>Moda feminina<br>atacado e varejo<br>físico e online</small></div></section>`;
+const cover = `<section class="catalog-page catalog-cover" id="pagina-1" aria-label="Capa"><div class="catalog-cover__content"><img class="catalog-cover__logo" src="assets/images/logotipo/LOGO-MENU-catalog.webp" width="600" height="290" alt="Jhonny Styles" decoding="async"><div class="catalog-cover__rule"></div><h1>Catálogo<br>de Produtos<br>Atacado</h1><p>Elegância e estilo<br>em cada detalhe</p><nav aria-label="Categorias">${coverLinks}</nav><small>Moda feminina<br>atacado e varejo<br>físico e online</small></div></section>`;
 const index = `<section class="catalog-page catalog-index" id="pagina-2" aria-label="Índice"><div class="catalog-page__body"><p class="catalog-eyebrow">Jhonny Styles · Moda feminina</p><h1>Encontre o seu estilo</h1><p class="catalog-index__intro">Explore as peças por categoria. Confirme modelos e disponibilidade antes de fazer seu pedido.</p><div class="catalog-index__links">${categoryLinks}</div></div>${footer(2)}</section>`;
 function productPage(page) {
   const index = page - 3;
@@ -58,16 +59,17 @@ function productPage(page) {
   const cards = pageProducts.map(product => {
     const productIndex = products.indexOf(product);
     const controls = product.images.length > 1 ? `<button class="catalog-item__arrow catalog-item__arrow--previous" type="button" data-direction="-1" aria-label="Foto anterior de ${product.name}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 4.5-7.5 7.5 7.5 7.5"/></svg></button><button class="catalog-item__arrow catalog-item__arrow--next" type="button" data-direction="1" aria-label="Próxima foto de ${product.name}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 4.5 7.5 7.5L9 19.5"/></svg></button><span class="catalog-item__image-count" aria-live="polite">1/${product.images.length}</span>` : '';
-    const slides = product.images.map((image, imageIndex) => `<img data-src="${assetRoot}${image}" alt="${product.name}, foto ${imageIndex + 1} de ${product.images.length}" decoding="async">`).join('');
-    const track = product.images.length > 1 ? `<div class="catalog-item__track"><img data-src="${assetRoot}${product.images.at(-1)}" alt="" aria-hidden="true" decoding="async">${slides}<img data-src="${assetRoot}${product.images[0]}" alt="" aria-hidden="true" decoding="async"></div>` : `<div class="catalog-item__track catalog-item__track--single">${slides}</div>`;
+    const slides = product.images.map((image, imageIndex) => `<img data-src="${thumbnailUrl(image)}" data-full-src="${assetRoot}${image}" alt="${product.name}, foto ${imageIndex + 1} de ${product.images.length}" decoding="async">`).join('');
+    const track = product.images.length > 1 ? `<div class="catalog-item__track"><img data-src="${thumbnailUrl(product.images.at(-1))}" data-full-src="${assetRoot}${product.images.at(-1)}" alt="" aria-hidden="true" decoding="async">${slides}<img data-src="${thumbnailUrl(product.images[0])}" data-full-src="${assetRoot}${product.images[0]}" alt="" aria-hidden="true" decoding="async"></div>` : `<div class="catalog-item__track catalog-item__track--single">${slides}</div>`;
     return `<article class="catalog-item"><div class="catalog-item__media" data-product="${productIndex}" data-image="0" role="button" tabindex="0" aria-label="Ampliar fotos de ${product.name}">${track}${controls}</div><div class="catalog-item__copy"><h2>${product.name} <span class="catalog-item__title-icon" aria-hidden="true">${product.icon}</span></h2><p>${product.size}</p><span>Atacado: ${product.wholesale}</span><span>Varejo: ${product.retail}</span></div></article>`;
   }).join('');
   const background = ((index % 3) + 1).toString().padStart(2, '0');
   const gridClass = pageProducts.length === 1 ? 'catalog-grid catalog-grid--single' : 'catalog-grid';
   return `<section class="catalog-page catalog-products" id="pagina-${page}" style="--page-background:url('${assetRoot}Background Paginas/Back${background}.webp')" aria-label="Página ${page}, ${pageData.category}"><div class="catalog-page__body"><div class="catalog-products__heading"><h1>${pageData.category}</h1><p>Elegância e estilo<br>em cada detalhe.</p></div><div class="${gridClass}">${cards}</div></div>${footer(page)}</section>`;
 }
-const PRODUCTS_PER_BATCH = 10;
-pages.innerHTML = `${cover}${index}<div class="catalog-load-more"><button id="catalog-load-more" type="button">Ver mais produtos</button><p aria-live="polite"></p></div>`;
+const INITIAL_PRODUCTS = 6;
+const PRODUCTS_PER_BATCH = 8;
+pages.innerHTML = `${cover}${index}<div class="catalog-load-more" id="catalog-load-more" role="status" aria-live="polite"><span aria-hidden="true"></span><p>Carregando mais produtos...</p></div>`;
 function loadCatalogImage(image) {
   if (!image?.dataset.src) return;
   const revealImage = () => {
@@ -95,20 +97,13 @@ const catalogImageObserver = new IntersectionObserver(entries => {
   });
 }, {rootMargin:'2600px 0px'});
 const loadMore = document.getElementById('catalog-load-more');
-const loadMoreStatus = loadMore.nextElementSibling;
 let loadedCatalogPageCount = 0;
 let pageObserver = null;
-function updateLoadMoreStatus() {
-  const loadedProducts = catalogPages.slice(0, loadedCatalogPageCount).reduce((total, page) => total + page.products.length, 0);
-  const remainingProducts = products.length - loadedProducts;
-  loadMoreStatus.textContent = `${loadedProducts} de ${products.length} produtos exibidos`;
-  loadMore.parentElement.hidden = remainingProducts <= 0;
-  if (remainingProducts > 0) loadMore.textContent = `Ver mais ${Math.min(PRODUCTS_PER_BATCH, remainingProducts)} produtos`;
-}
-function renderNextProductBatch() {
+let loadingNextBatch = false;
+function appendProductBatch(productLimit) {
   let batchProducts = 0;
   let end = loadedCatalogPageCount;
-  while (end < catalogPages.length && batchProducts < PRODUCTS_PER_BATCH) {
+  while (end < catalogPages.length && batchProducts < productLimit) {
     batchProducts += catalogPages[end].products.length;
     end += 1;
   }
@@ -122,17 +117,31 @@ function renderNextProductBatch() {
     pageObserver?.observe(page);
   });
   loadedCatalogPageCount = end;
-  updateLoadMoreStatus();
+  loadMore.hidden = loadedCatalogPageCount >= catalogPages.length;
+  requestAnimationFrame(updateWheelBounds);
+}
+function renderNextProductBatch() {
+  if (loadingNextBatch || loadedCatalogPageCount >= catalogPages.length) return;
+  loadingNextBatch = true;
+  loadMore.classList.add('is-loading');
+  window.setTimeout(() => {
+    appendProductBatch(PRODUCTS_PER_BATCH);
+    loadMore.classList.remove('is-loading');
+    loadingNextBatch = false;
+  }, 180);
 }
 function ensurePageRendered(pageNumber) {
-  while (pageNumber > loadedCatalogPageCount + 2 && loadedCatalogPageCount < catalogPages.length) renderNextProductBatch();
+  while (pageNumber > loadedCatalogPageCount + 2 && loadedCatalogPageCount < catalogPages.length) appendProductBatch(PRODUCTS_PER_BATCH);
 }
-loadMore.addEventListener('click', renderNextProductBatch);
+const loadMoreObserver = new IntersectionObserver(entries => {
+  if (entries.some(entry => entry.isIntersecting)) renderNextProductBatch();
+}, {rootMargin:'500px 0px'});
+loadMoreObserver.observe(loadMore);
 document.addEventListener('click', event => {
   const link = event.target.closest('a[href^="#pagina-"]');
   if (link) ensurePageRendered(Number(link.hash.replace('#pagina-', '')));
 });
-renderNextProductBatch();
+appendProductBatch(INITIAL_PRODUCTS);
 document.body.insertAdjacentHTML('beforeend', `<div class="catalog-lightbox" id="catalog-lightbox" role="dialog" aria-modal="true" aria-labelledby="catalog-lightbox-title" hidden><button class="catalog-lightbox__close" type="button" aria-label="Fechar imagem ampliada">×</button><div class="catalog-lightbox__dialog"><div class="catalog-lightbox__stage"></div><div class="catalog-lightbox__zoom" aria-label="Controles de zoom"><button type="button" data-zoom-action="out" aria-label="Diminuir zoom">−</button><output aria-live="polite">100%</output><button type="button" data-zoom-action="in" aria-label="Aumentar zoom">+</button><button class="catalog-lightbox__zoom-reset" type="button" data-zoom-action="reset">Restaurar</button></div><div class="catalog-lightbox__caption"><h2 id="catalog-lightbox-title"></h2><p></p></div></div></div>`);
 const lightbox = document.getElementById('catalog-lightbox');
 const lightboxStage = lightbox.querySelector('.catalog-lightbox__stage');
@@ -183,7 +192,14 @@ function openLightbox(sourceMedia) {
   media.dataset.animating = 'false';
   media.dataset.panX = '0';
   media.dataset.panY = '0';
+  media.querySelectorAll('.catalog-item__track img').forEach(image => {
+    image.removeAttribute('src');
+    image.classList.remove('is-loaded');
+    image.dataset.src = image.dataset.fullSrc;
+  });
   media.querySelector('.catalog-item__track').style.transform = product.images.length > 1 ? `translate3d(-${(Number(media.dataset.image) + 1) * 100}%,0,0)` : 'none';
+  const lightboxImages = media.querySelectorAll('.catalog-item__track img');
+  loadCatalogImage(lightboxImages[product.images.length > 1 ? Number(media.dataset.image) + 1 : 0]);
   lightboxStage.replaceChildren(media);
   setLightboxZoom(media, 1);
   lightbox.querySelector('h2').textContent = `${product.name} ${product.icon}`;
@@ -501,6 +517,10 @@ const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 let wheelTarget = window.scrollY;
 let wheelPosition = window.scrollY;
 let wheelFrame = 0;
+let wheelMaxScroll = 0;
+function updateWheelBounds() {
+  wheelMaxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+}
 function stopWheelMotion() {
   if (wheelFrame) cancelAnimationFrame(wheelFrame);
   wheelFrame = 0;
@@ -523,11 +543,13 @@ window.addEventListener('wheel', event => {
   if (!lightbox.hidden || reducedMotion.matches || event.ctrlKey || event.metaKey || event.shiftKey || event.target.closest('input, select, textarea')) return;
   event.preventDefault();
   if (!wheelFrame) wheelTarget = wheelPosition = window.scrollY;
-  const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
   const delta = event.deltaMode === WheelEvent.DOM_DELTA_LINE ? event.deltaY * 16 : event.deltaMode === WheelEvent.DOM_DELTA_PAGE ? event.deltaY * window.innerHeight : event.deltaY;
-  wheelTarget = Math.max(0, Math.min(maxScroll, wheelTarget + delta));
+  wheelTarget = Math.max(0, Math.min(wheelMaxScroll, wheelTarget + delta));
   if (!wheelFrame) wheelFrame = requestAnimationFrame(animateWheel);
 }, {passive:false});
+window.addEventListener('resize', updateWheelBounds, {passive:true});
+window.addEventListener('load', updateWheelBounds, {once:true});
+updateWheelBounds();
 reducedMotion.addEventListener('change', stopWheelMotion);
 window.addEventListener('pointerdown', stopWheelMotion, {passive:true});
 window.addEventListener('touchstart', stopWheelMotion, {passive:true});
