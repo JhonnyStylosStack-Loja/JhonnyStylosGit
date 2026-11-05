@@ -2,7 +2,9 @@
   "name": "jhonny-styles",
   "version": "1.0.0",
   "scripts": {
-    "catalog:thumbnails": "node scripts/generate-catalog-thumbnails.js"
+    "catalog:data": "node scripts/generate-catalog-data.js",
+    "catalog:thumbnails": "node scripts/generate-catalog-thumbnails.js",
+    "catalog:build": "npm run catalog:data && npm run catalog:thumbnails"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.116.0",

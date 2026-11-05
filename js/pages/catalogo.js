@@ -1,41 +1,8 @@
-const assetRoot = new URL('Catálogo Jhonny Styles (Atacado)/', document.baseURI).href;
+const assetRoot = new URL('Catálogo Jhonny Styles/Catálogo (Atacado)/', document.baseURI).href;
 const pages = document.getElementById('catalog-pages');
 const select = document.getElementById('catalog-select');
-const products = [
-  {icon:'✨💖', name:'Vestido de Festa em Tule Trabalhado', size:'Veste do 38 ao 42', wholesale:'R$ 110,00', retail:'R$ 135,00', images:['Itens/Categorias/Vestidos/%2301/Adjust_proportions,_faithful_image._47fc5d77_2K.webp','Itens/Categorias/Vestidos/%2301/Recreate_image_from_new_angle_fb473cd6_2K.webp']},
-  {icon:'🌸✨', name:'Vestido em Tule Bordado', size:'Veste do 36 ao 42', wholesale:'R$ 90,00', retail:'R$ 125,00', images:['Itens/Categorias/Vestidos/%2302/Adjust_proportion,_faithful_image._005d01ea_2K.webp','Itens/Categorias/Vestidos/%2302/Recreate_image_from_new_angle_9d4ceaca_2K.webp']},
-  {icon:'✨💕', name:'Vestido em Alfaiataria com Cinto', size:'Veste do 38 ao 42', wholesale:'Consulte', retail:'R$ 125,00', images:['Itens/Categorias/Vestidos/%2303/Adjust_proportions,_faithful_image._5226ce27_2K.webp','Itens/Categorias/Vestidos/%2303/Recreating_image_from_new_angle_405d1b2f_2K.webp']},
-  {icon:'🌸', name:'Vestido em Renda Forrado', size:'Tamanho único · Veste até o 42', wholesale:'R$ 90,00', retail:'R$ 126,00', images:['Itens/Categorias/Vestidos/%2304/Adjust_proportions,_faithful_image._61aaa233_2K.webp','Itens/Categorias/Vestidos/%2304/Requesting_image_recreation_from…_aebdf0ca_2K.webp']},
-  {icon:'✨💕', name:'Vestido em Alfaiataria com Cinto', size:'Tamanho único · Veste do 38 ao 42', wholesale:'R$ 90,00', retail:'R$ 124,90', images:['Itens/Categorias/Vestidos/%2305/Adjust_proportions,_faithful_image._8ad278de_2K.webp','Itens/Categorias/Vestidos/%2305/Translate_image_request_into_Eng…_b67a63f1_2K.webp']},
-  {icon:'🌸✨', name:'Vestido Longo em Cambraia Bordada', size:'Veste até o 44', wholesale:'R$ 120,00', retail:'R$ 145,00', images:['Itens/Categorias/Vestidos/%2306/Vase_with_flowers_against_wall_dffe61f6_2K%20copiar.webp','Itens/Categorias/Vestidos/%2306/Recreate_dress_model_image_6bbba825_2K.webp','Itens/Categorias/Vestidos/%2306/Recreate_dress_on_mannequin_5fe59037_2K.webp']},
-  {icon:'🌸✨', name:'Vestido Midi em Tule Estampado', size:'Veste do 38 ao 42', wholesale:'R$ 85,00', retail:'R$ 125,00', images:['Itens/Categorias/Vestidos/%2307/Adjust_proportion,_faithful_image._c48f94ea_2K.webp','Itens/Categorias/Vestidos/%2307/Adjust_proportions,_faithful_image._f4dfaf60_2K.webp','Itens/Categorias/Vestidos/%2307/Recreate_image_from_new_angle_7c4d420c_2K.webp']},
-  {icon:'🌸', name:'Vestido Plus Size em Viscolinho', size:'Tamanhos 44 ao 48', wholesale:'R$ 110,00', retail:'R$ 45,90', images:['Itens/Categorias/Vestidos/%238/Adjust_proportions,_faithful_image._b9ceb441_2K.webp','Itens/Categorias/Vestidos/%238/Recreate_image_from_new_angle_f4ab7040_2K.webp']},
-  {icon:'🌸', name:'Vestido Longo Floral com Tule', size:'Tamanho único · Veste até 42/44', wholesale:'R$ 95,00', retail:'R$ 124,90', images:['Itens/Categorias/Vestidos/%239/Adjust_image_aspect_ratio_4112e689_2K.webp','Itens/Categorias/Vestidos/%239/Recreate_image_from_new_angle_b02b8789_2K.webp']},
-  {icon:'🌸', name:'Vestido com Elastex no Busto', size:'Modelo com elastex no busto', wholesale:'R$ 85,00', retail:'R$ 124,90', images:['Itens/Categorias/Vestidos/%2310/Adjust_proportion,_faithful_image._851466fd_2K.webp','Itens/Categorias/Vestidos/%2310/Recreate_image_from_new_angle_5aadb77c_2K%20(1).webp']},
-  {icon:'🌸', name:'Vestido Golinha em Tule com Forro', size:'Tamanho único · Veste até 42/44', wholesale:'R$ 85,00', retail:'R$ 124,90', images:['Itens/Categorias/Vestidos/%2311/Adjust_image_proportions_f8c3097e_2K.webp','Itens/Categorias/Vestidos/%2311/Translate_image_prompt_to_English_48164d50_2K.webp']},
-  {icon:'🌸✨', name:'Vestido Elegante com Cinto', size:'Tamanho único · Veste até 44 · Acompanha cinto', wholesale:'R$ 110,00', retail:'R$ 145,00', images:['Itens/Categorias/Vestidos/%2312/Adjust_proportion,_faithful_image._e6b2afa4_2K.webp','Itens/Categorias/Vestidos/%2312/Recreate_image_from_new_angle_2c6dd0c2_2K.webp']},
-  {icon:'🌸✨', name:'Vestido de Chiffon Assimétrico com Faixa', size:'Tamanho único · Veste até 42 · Acompanha faixa', wholesale:'R$ 110,00', retail:'R$ 144,90', images:['Itens/Categorias/Vestidos/%2313/Adjusting_image_aspect_ratio_ef114a51_2K.webp','Itens/Categorias/Vestidos/%2313/Recreate_image_from_new_angle_2585de82_2K.webp']},
-  {icon:'🌸✨', name:'Vestido em Tule Forrado', size:'Veste até o 42 · Zíper nas costas', wholesale:'R$ 90,00', retail:'R$ 124,90', images:['Itens/Categorias/Vestidos/%2314/Adjust_proportion_faithful_image_85b4e523_2K.webp','Itens/Categorias/Vestidos/%2314/Recreate_image_from_new_angle_29491fbd_2K.webp']},
-  {icon:'🌸', name:'Vestido em Renda Bordada', size:'Tamanho único · Veste até 44', wholesale:'R$ 110,00', retail:'R$ 144,90', images:['Itens/Categorias/Vestidos/%2315/Adjust_proportion,_faithful_image._61fcd575_2K.webp','Itens/Categorias/Vestidos/%2315/Recreate_image_from_new_angle_ca9fe469_2K.webp']},
-  {icon:'🌸✨', name:'Vestido Longo em Crepe com Elastex', size:'Modelo forrado', wholesale:'R$ 90,00', retail:'R$ 124,90', images:['Itens/Categorias/Vestidos/%2316/Adjust_proportion,_faithful_image._e99b0c6a_2K.webp']},
-  {icon:'🌸✨', name:'Vestido em Alfaiataria', size:'Tamanho único · Veste até 42 · Acompanha cinto', wholesale:'R$ 95,00', retail:'R$ 134,90', images:['Itens/Categorias/Vestidos/%2317/Adjust_proportions,_faithful_image._1af144a1_2K.webp','Itens/Categorias/Vestidos/%2317/Recreate_image_from_new_angle_1e675034_2K.webp']},
-  {icon:'🌸✨', name:'Vestido Longo com Manguinha em Crepe Airflow', size:'Modelo forrado · Veste até o 42', wholesale:'R$ 95,00', retail:'R$ 134,90', images:['Itens/Categorias/Vestidos/%2318/Adjust_proportion,_faithful_image._812e0cd7_2K.webp','Itens/Categorias/Vestidos/%2318/Recreate_image_from_new_angle_26464a1a_2K.webp']},
-  {icon:'🌸✨', name:'Vestido Poá em Tecido Linen', size:'Tamanho único · Veste até 42 · Acompanha cinto', wholesale:'R$ 90,00', retail:'R$ 134,90', images:['Itens/Categorias/Vestidos/%2319/Adjust_proportion,_faithful_image._1ce26c86_2K.webp','Itens/Categorias/Vestidos/%2319/Recreate_image_from_new_angle_05fc2fdd_2K.webp']},
-  {icon:'🌸✨', name:'Vestido Longo em Malha Jacquard', size:'Veste até o 44 · Babadinho nos ombros', wholesale:'R$ 110,00', retail:'R$ 144,90', images:['Itens/Categorias/Vestidos/%2320/Adjust_proportion,_faithful_image._96001b7d_2K.webp','Itens/Categorias/Vestidos/%2320/Recreate_image_from_new_angle_4c7e0ee0_2K.webp']},
-  {icon:'🌸✨', name:'Vestido em Tule Chiffon Forrado', size:'Veste até o 42 · Acompanha faixa', wholesale:'R$ 90,00', retail:'R$ 124,90', images:['Itens/Categorias/Vestidos/%2321/01.webp','Itens/Categorias/Vestidos/%2321/02.webp','Itens/Categorias/Vestidos/%2321/03.webp','Itens/Categorias/Vestidos/%2321/04.webp']},
-  {icon:'🌸💕', name:'Vestido Plus Size Estampado', size:'Tule chiffon forrado', wholesale:'R$ 100,00', retail:'R$ 124,90', images:['Itens/Categorias/Vestidos/%2322/Adjust_proportion,_faithful_image._757da265_2K.webp','Itens/Categorias/Vestidos/%2322/Recreate_image_from_new_angle_62ca1ed5_2K.webp']},
-  {icon:'🌸✨', name:'Vestido Plus Size em Renda Forrada', size:'Veste do 48 ao 52', wholesale:'R$ 120,00', retail:'R$ 144,90', images:['Itens/Categorias/Vestidos/%2323/Adjust_proportion,_faithful_image._08f4f6ac_2K.webp','Itens/Categorias/Vestidos/%2323/Adjust_proportion,_faithful_image._ee190479_2K.webp']},
-  {icon:'🌸✨', name:'Vestido Florido em Tule Chiffon Forrado', size:'Tamanho único · Veste até o 42', wholesale:'R$ 85,00', retail:'R$ 154,90', images:['Itens/Categorias/Vestidos/%2324/Adjust_proportion,_faithful_image._a0eaafff_2K.webp','Itens/Categorias/Vestidos/%2324/Adjust_proportion,_faithful_image._b72ad550_2K.webp']},
-  {icon:'✨', name:'Conjunto Saia Plissada', size:'Tecido alfaiataria · Tamanho único · Veste até 44', wholesale:'R$ 110,00', retail:'R$ 139,90', images:['Itens/Categorias/Vestidos/%2325/Adjust_proportion,_faithful_image._7b15dc01_2K.webp']},
-  {category:'Conjuntos', icon:'✨', name:'Conjunto Acetinado', size:'Tamanhos P, M, G e GG · Fivela dourada na blusa', wholesale:'R$ 80,00', retail:'R$ 115,90', images:['Itens/Categorias/Conjuntos/%2301/01.webp','Itens/Categorias/Conjuntos/%2301/02.webp','Itens/Categorias/Conjuntos/%2301/03.webp','Itens/Categorias/Conjuntos/%2301/04.webp','Itens/Categorias/Conjuntos/%2301/05.webp','Itens/Categorias/Conjuntos/%2301/06.webp','Itens/Categorias/Conjuntos/%2301/07.webp','Itens/Categorias/Conjuntos/%2301/08.webp','Itens/Categorias/Conjuntos/%2301/09.webp','Itens/Categorias/Conjuntos/%2301/10.webp','Itens/Categorias/Conjuntos/%2301/11.webp']}
-  ,{icon:'🌸✨', name:'Vestido em Cambraia Bordada e Forrado', size:'Veste até o 44', wholesale:'R$ 120,00', retail:'R$ 144,90', images:['Itens/Categorias/Vestidos/%2326/01.jpeg','Itens/Categorias/Vestidos/%2326/02.jpeg','Itens/Categorias/Vestidos/%2326/03.jpeg','Itens/Categorias/Vestidos/%2326/04.jpeg']}
-  ,{icon:'🌸✨', name:'Vestido em Malha Lese Forrado', size:'Veste até o 44/46', wholesale:'Consulte', retail:'R$ 134,90', images:['Itens/Categorias/Vestidos/%2327/01.jpeg','Itens/Categorias/Vestidos/%2327/02.jpeg','Itens/Categorias/Vestidos/%2327/03.jpeg']}
-  ,{icon:'✨', name:'Vestido de Festa em Tule', size:'Veste até o 44', wholesale:'R$ 110,00', retail:'R$ 144,90', images:['Itens/Categorias/Vestidos/%2328/01.jpeg','Itens/Categorias/Vestidos/%2328/02.jpeg','Itens/Categorias/Vestidos/%2328/03.jpeg','Itens/Categorias/Vestidos/%2328/04.jpeg','Itens/Categorias/Vestidos/%2328/05.jpeg','Itens/Categorias/Vestidos/%2328/06.jpeg']}
-  ,{icon:'🌸✨', name:'Vestido Longo em Cambraia Bordada', size:'Tamanho único · Veste até o 44', wholesale:'R$ 120,00', retail:'R$ 144,90', images:['Itens/Categorias/Vestidos/%2329/01.jpeg','Itens/Categorias/Vestidos/%2329/02.jpeg','Itens/Categorias/Vestidos/%2329/03.jpeg','Itens/Categorias/Vestidos/%2329/04.jpeg']}
-  ,{icon:'🌸', name:'Vestido Camponesa Estampado', size:'Tamanho único · Veste até o 42/44 · Elástico nas costas', wholesale:'R$ 80,00', retail:'R$ 115,90', images:['Itens/Categorias/Vestidos/%2330/01.jpeg','Itens/Categorias/Vestidos/%2330/02.jpeg','Itens/Categorias/Vestidos/%2330/03.jpeg','Itens/Categorias/Vestidos/%2330/04.jpeg','Itens/Categorias/Vestidos/%2330/05.jpeg']}
-  ,{category:'Vestidos Longos', icon:'✨', name:'Vestido Longo Bicolor', size:'Tecido crepe · Tamanho único · Veste até o 42', wholesale:'R$ 75,00', retail:'R$ 99,00', images:['Itens/Categorias/Vestidos%20Longos/%2301/02.jpeg','Itens/Categorias/Vestidos%20Longos/%2301/01.jpeg','Itens/Categorias/Vestidos%20Longos/%2301/03.jpeg','Itens/Categorias/Vestidos%20Longos/%2301/04.jpeg','Itens/Categorias/Vestidos%20Longos/%2301/05.jpeg','Itens/Categorias/Vestidos%20Longos/%2301/06.jpeg','Itens/Categorias/Vestidos%20Longos/%2301/07.jpeg','Itens/Categorias/Vestidos%20Longos/%2301/08.jpeg']}
-];
-const categoryNames = ['Vestidos', 'Vestidos Longos', 'Conjuntos'];
+const products = window.catalogProducts || [];
+const categoryNames = window.catalogCategoryNames || [];
 const categories = categoryNames.map(name => ({name, products: products.filter(product => (product.category || 'Vestidos') === name)}));
 const catalogPages = [];
 const categoryStartPages = new Map();
@@ -46,7 +13,9 @@ categories.forEach(category => {
   }
 });
 const totalPages = catalogPages.length + 2;
-const thumbnailUrl = image => `${assetRoot}Thumbs/${image.replace(/\.(?:jpe?g|webp)$/i, '.webp')}`;
+const optimizedImagePath = image => image.replace(/\.(?:jpe?g|png|webp)$/i, '.webp');
+const thumbnailUrl = image => `${assetRoot}Thumbs/${optimizedImagePath(image)}`;
+const largeUrl = image => `${assetRoot}Large/${optimizedImagePath(image)}`;
 const footer = page => `<footer class="catalog-page__footer"><span>Jhonny Styles　|　Catálogo de produtos atacado</span><span>${String(page).padStart(2, '0')}</span></footer>`;
 const categoryLinks = categories.map((category, index) => `<a href="#pagina-${categoryStartPages.get(category.name)}"><span>${String(index + 1).padStart(2, '0')}</span>${category.name}<span>↗</span></a>`).join('');
 const coverLinks = categories.map(category => `<a href="#pagina-${categoryStartPages.get(category.name)}">${category.name}</a>`).join('');
@@ -59,8 +28,8 @@ function productPage(page) {
   const cards = pageProducts.map(product => {
     const productIndex = products.indexOf(product);
     const controls = product.images.length > 1 ? `<button class="catalog-item__arrow catalog-item__arrow--previous" type="button" data-direction="-1" aria-label="Foto anterior de ${product.name}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 4.5-7.5 7.5 7.5 7.5"/></svg></button><button class="catalog-item__arrow catalog-item__arrow--next" type="button" data-direction="1" aria-label="Próxima foto de ${product.name}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 4.5 7.5 7.5L9 19.5"/></svg></button><span class="catalog-item__image-count" aria-live="polite">1/${product.images.length}</span>` : '';
-    const slides = product.images.map((image, imageIndex) => `<img data-src="${thumbnailUrl(image)}" data-full-src="${thumbnailUrl(image)}" alt="${product.name}, foto ${imageIndex + 1} de ${product.images.length}" decoding="async">`).join('');
-    const track = product.images.length > 1 ? `<div class="catalog-item__track"><img data-src="${thumbnailUrl(product.images.at(-1))}" data-full-src="${thumbnailUrl(product.images.at(-1))}" alt="" aria-hidden="true" decoding="async">${slides}<img data-src="${thumbnailUrl(product.images[0])}" data-full-src="${thumbnailUrl(product.images[0])}" alt="" aria-hidden="true" decoding="async"></div>` : `<div class="catalog-item__track catalog-item__track--single">${slides}</div>`;
+    const slides = product.images.map((image, imageIndex) => `<img data-src="${thumbnailUrl(image)}" data-full-src="${largeUrl(image)}" alt="${product.name}, foto ${imageIndex + 1} de ${product.images.length}" decoding="async">`).join('');
+    const track = product.images.length > 1 ? `<div class="catalog-item__track"><img data-src="${thumbnailUrl(product.images.at(-1))}" data-full-src="${largeUrl(product.images.at(-1))}" alt="" aria-hidden="true" decoding="async">${slides}<img data-src="${thumbnailUrl(product.images[0])}" data-full-src="${largeUrl(product.images[0])}" alt="" aria-hidden="true" decoding="async"></div>` : `<div class="catalog-item__track catalog-item__track--single">${slides}</div>`;
     return `<article class="catalog-item"><div class="catalog-item__media" data-product="${productIndex}" data-image="0" role="button" tabindex="0" aria-label="Ampliar fotos de ${product.name}">${track}${controls}</div><div class="catalog-item__copy"><h2>${product.name} <span class="catalog-item__title-icon" aria-hidden="true">${product.icon}</span></h2><p>${product.size}</p><span>Atacado: ${product.wholesale}</span><span>Varejo: ${product.retail}</span></div></article>`;
   }).join('');
   const background = ((index % 3) + 1).toString().padStart(2, '0');
@@ -68,6 +37,7 @@ function productPage(page) {
   return `<section class="catalog-page catalog-products" id="pagina-${page}" style="--page-background:url('${assetRoot}Background Paginas/Back${background}.webp')" aria-label="Página ${page}, ${pageData.category}"><div class="catalog-page__body"><div class="catalog-products__heading"><h1>${pageData.category}</h1><p>Elegância e estilo<br>em cada detalhe.</p></div><div class="${gridClass}">${cards}</div></div>${footer(page)}</section>`;
 }
 const INITIAL_PRODUCTS = 25;
+const PRELOAD_PRODUCTS = 50;
 const PRODUCTS_PER_BATCH = 6;
 pages.innerHTML = `${cover}${index}<div class="catalog-load-more" id="catalog-load-more" role="status" aria-live="polite"><span aria-hidden="true"></span><p>Carregando mais produtos...</p></div>`;
 function loadCatalogImage(image) {
@@ -182,7 +152,7 @@ function initialProductsToPreload() {
   const initialProducts = [];
   for (const page of catalogPages) {
     initialProducts.push(...page.products);
-    if (initialProducts.length >= INITIAL_PRODUCTS) break;
+    if (initialProducts.length >= PRELOAD_PRODUCTS) break;
   }
   return initialProducts;
 }
@@ -211,7 +181,7 @@ async function preloadInitialCatalog() {
   const progressOutput = preloader.querySelector('output');
   const assetsByUrl = new Map();
   initialProductsToPreload().forEach(product => product.images.forEach(image => {
-    assetsByUrl.set(thumbnailUrl(image), {url:thumbnailUrl(image), full:true});
+    assetsByUrl.set(thumbnailUrl(image), {url:thumbnailUrl(image), full:false});
   }));
   const assets = [...assetsByUrl.values()];
   let completed = 0;
