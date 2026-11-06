@@ -2,6 +2,10 @@ Options -MultiViews
 
 RewriteEngine On
 
+# Normaliza barras duplicadas no endereco publico do atacado.
+RewriteCond %{THE_REQUEST} \s/{2,}catalogo-atacado(?:[?\s]|/) [NC]
+RewriteRule ^catalogo-atacado/?$ /catalogo-atacado [R=301,L,NE]
+
 # Mantem o catalogo publico somente pelo endereco exclusivo.
 RewriteRule ^catalogo-atacado/?$ catalogo.html [L,NC]
 

@@ -6,6 +6,10 @@
   <meta name="color-scheme" content="only light">
   <meta name="theme-color" content="#ffffff">
   <script>
+    // Alguns proxies preservam barras duplicadas mesmo quando servem a página.
+    if (/^\/{2,}catalogo-atacado\/?$/i.test(location.pathname)) {
+      history.replaceState(history.state, '', '/catalogo-atacado' + location.search + location.hash);
+    }
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
     window.scrollTo(0, 0);
     window.addEventListener('pageshow', () => requestAnimationFrame(() => window.scrollTo(0, 0)));
