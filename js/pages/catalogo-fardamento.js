@@ -28,22 +28,45 @@ const catalogue = productPages.map((products, index) => {
 const back = `<section class="uniform-page uniform-back" id="fardamento-pagina-${totalPages}" aria-label="Contracapa"><div><img src="assets/images/logotipo/LOGO-MENU-catalog.webp" alt="Jhonny Styles" width="300" height="145"><h1>Vamos vestir<br>o seu grupo?</h1><p>Conte o que você precisa e fale com a nossa equipe sobre seu pedido.</p><a href="https://wa.me/5585986348334?text=Olá!%20Gostaria%20de%20conhecer%20os%20modelos%20de%20fardamento." target="_blank" rel="noopener">Falar no WhatsApp</a></div>${footer(totalPages)}</section>`;
 uniformPages.innerHTML = cover + portfolio + catalogue + back;
 
-document.body.insertAdjacentHTML('beforeend', `<dialog class="uniform-dialog" aria-label="Visualização de fotos"><div class="uniform-dialog__inner"><button class="uniform-dialog__close" type="button" aria-label="Fechar">×</button><div class="uniform-dialog__stage"><button class="uniform-dialog__prev" type="button" aria-label="Foto anterior">‹</button><img alt=""><button class="uniform-dialog__next" type="button" aria-label="Próxima foto">›</button></div><div class="uniform-dialog__info"><h2></h2><p></p><p class="uniform-dialog__sizes"></p><span class="uniform-dialog__counter" aria-live="polite"></span><a target="_blank" rel="noopener">Consultar este modelo</a></div></div></dialog>`);
+document.body.insertAdjacentHTML('beforeend', `<dialog class="uniform-dialog" aria-labelledby="uniform-dialog-title"><button class="uniform-dialog__close" type="button" aria-label="Fechar imagem ampliada">×</button><div class="uniform-dialog__inner"><div class="uniform-dialog__stage"><div class="uniform-dialog__media"><img alt=""><button class="uniform-dialog__prev" type="button" aria-label="Foto anterior">‹</button><button class="uniform-dialog__next" type="button" aria-label="Próxima foto">›</button><span class="uniform-dialog__counter" aria-live="polite"></span></div></div><div class="uniform-dialog__zoom" aria-label="Controles de zoom"><button type="button" data-uniform-zoom="out" aria-label="Diminuir zoom">−</button><output aria-live="polite">100%</output><button type="button" data-uniform-zoom="in" aria-label="Aumentar zoom">+</button><button type="button" data-uniform-zoom="reset">Restaurar</button></div><div class="uniform-dialog__info"><h2 id="uniform-dialog-title"></h2><p></p><p class="uniform-dialog__sizes"></p><a target="_blank" rel="noopener">Consultar este modelo</a></div></div></dialog>`);
 const dialog = document.querySelector('.uniform-dialog');
+const galleryMedia = dialog.querySelector('.uniform-dialog__media');
+const galleryImage = galleryMedia.querySelector('img');
 let gallery = [];
 let galleryIndex = 0;
 let lastTrigger;
+let zoom = 1;
+let panX = 0;
+let panY = 0;
+const pointers = new Map();
+let gesture = null;
+const setZoom = (value, snap = true) => {
+  zoom = Math.max(1, Math.min(3, snap ? Math.round(value * 4) / 4 : value));
+  const maxX = galleryMedia.clientWidth * (zoom - 1) / 2;
+  const maxY = galleryMedia.clientHeight * (zoom - 1) / 2;
+  panX = Math.max(-maxX, Math.min(maxX, panX));
+  panY = Math.max(-maxY, Math.min(maxY, panY));
+  galleryImage.style.transform = `translate3d(${panX}px, ${panY}px, 0) scale(${zoom})`;
+  galleryMedia.classList.toggle('is-zoomed', zoom > 1);
+  dialog.querySelector('.uniform-dialog__zoom output').textContent = `${Math.round(zoom * 100)}%`;
+  dialog.querySelector('[data-uniform-zoom="out"]').disabled = zoom <= 1;
+  dialog.querySelector('[data-uniform-zoom="in"]').disabled = zoom >= 3;
+  dialog.querySelector('[data-uniform-zoom="reset"]').disabled = zoom === 1;
+};
 const renderGallery = () => {
-  dialog.querySelector('img').src = imageUrl(gallery[galleryIndex]);
-  dialog.querySelector('img').alt = `${dialog.querySelector('h2').textContent} — foto ${galleryIndex + 1}`;
+  galleryImage.src = imageUrl(gallery[galleryIndex]);
+  galleryImage.alt = `${dialog.querySelector('h2').textContent} — foto ${galleryIndex + 1}`;
   dialog.querySelector('.uniform-dialog__counter').textContent = `${galleryIndex + 1} / ${gallery.length}`;
+  dialog.querySelector('.uniform-dialog__counter').hidden = gallery.length < 2;
   dialog.querySelectorAll('.uniform-dialog__prev, .uniform-dialog__next').forEach(button => { button.hidden = gallery.length < 2; });
+  panX = 0; panY = 0; setZoom(1);
 };
 const openGallery = (trigger, type, index) => {
   lastTrigger = trigger;
   const product = type === 'product' ? uniformProducts[index] : null;
   gallery = product ? product.images : uniformClients;
   galleryIndex = product ? 0 : index;
+  galleryMedia.classList.toggle('uniform-dialog__media--clients', !product);
   dialog.querySelector('h2').textContent = product ? `${product.name} ${product.code}` : 'Nossas clientes';
   dialog.querySelector('p').textContent = product ? `${product.details} · ${product.price}` : 'Momentos reais com Jhonny Styles';
   dialog.querySelector('.uniform-dialog__sizes').textContent = product ? 'Grade por numeração: P 36/38 · M 38/40 · G 42/44 · GG 46/48 · XGG 48/52.' : '';
@@ -52,6 +75,8 @@ const openGallery = (trigger, type, index) => {
   if (product) link.href = `https://wa.me/5585986348334?text=${encodeURIComponent(`Olá! Gostaria de saber mais sobre ${product.name}, modelo ${product.code}.`)}`;
   renderGallery();
   dialog.showModal();
+  document.body.classList.add('uniform-lightbox-open');
+  dialog.querySelector('.uniform-dialog__close').focus({preventScroll: true});
 };
 document.addEventListener('click', event => {
   const trigger = event.target.closest('[data-gallery], [data-details]');
@@ -59,13 +84,52 @@ document.addEventListener('click', event => {
 });
 dialog.querySelector('.uniform-dialog__close').addEventListener('click', () => dialog.close());
 dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
-dialog.addEventListener('close', () => lastTrigger?.focus());
+dialog.addEventListener('close', () => { document.body.classList.remove('uniform-lightbox-open'); pointers.clear(); gesture = null; lastTrigger?.focus({preventScroll: true}); });
 const moveGallery = direction => { galleryIndex = (galleryIndex + direction + gallery.length) % gallery.length; renderGallery(); };
 dialog.querySelector('.uniform-dialog__prev').addEventListener('click', () => moveGallery(-1));
 dialog.querySelector('.uniform-dialog__next').addEventListener('click', () => moveGallery(1));
+dialog.querySelector('.uniform-dialog__zoom').addEventListener('click', event => {
+  const action = event.target.closest('[data-uniform-zoom]')?.dataset.uniformZoom;
+  if (action) setZoom(action === 'in' ? zoom + .25 : action === 'out' ? zoom - .25 : 1);
+});
+galleryMedia.addEventListener('pointerdown', event => {
+  if (event.target.closest('button')) return;
+  pointers.set(event.pointerId, {x: event.clientX, y: event.clientY});
+  galleryMedia.setPointerCapture(event.pointerId);
+  if (pointers.size === 2) {
+    const [a, b] = [...pointers.values()];
+    gesture = {type: 'pinch', distance: Math.hypot(a.x - b.x, a.y - b.y), zoom};
+  } else if (pointers.size === 1) gesture = {type: zoom > 1 ? 'pan' : 'swipe', x: event.clientX, y: event.clientY, panX, panY};
+});
+galleryMedia.addEventListener('pointermove', event => {
+  if (!pointers.has(event.pointerId)) return;
+  pointers.set(event.pointerId, {x: event.clientX, y: event.clientY});
+  if (gesture?.type === 'pinch' && pointers.size >= 2) {
+    const [a, b] = [...pointers.values()];
+    if (gesture.distance) setZoom(gesture.zoom * Math.hypot(a.x - b.x, a.y - b.y) / gesture.distance, false);
+  } else if (gesture?.type === 'pan') {
+    panX = gesture.panX + event.clientX - gesture.x;
+    panY = gesture.panY + event.clientY - gesture.y;
+    setZoom(zoom, false);
+  }
+});
+const endGesture = event => {
+  if (!pointers.has(event.pointerId)) return;
+  if (event.type === 'pointerup' && gesture?.type === 'swipe' && gallery.length > 1 && Math.abs(event.clientX - gesture.x) >= Math.min(70, galleryMedia.clientWidth * .18)) moveGallery(event.clientX < gesture.x ? 1 : -1);
+  pointers.delete(event.pointerId);
+  if (gesture?.type === 'pinch' && pointers.size) gesture = null;
+  if (!pointers.size) gesture = null;
+};
+galleryMedia.addEventListener('pointerup', endGesture);
+galleryMedia.addEventListener('pointercancel', endGesture);
+galleryMedia.addEventListener('dblclick', () => setZoom(zoom > 1 ? 1 : 2));
+galleryMedia.addEventListener('wheel', event => { event.preventDefault(); setZoom(zoom + (event.deltaY < 0 ? .25 : -.25)); }, {passive: false});
 dialog.addEventListener('keydown', event => {
-  if (event.key === 'ArrowLeft') moveGallery(-1);
-  if (event.key === 'ArrowRight') moveGallery(1);
+  if (event.key === 'ArrowLeft') { event.preventDefault(); moveGallery(-1); }
+  if (event.key === 'ArrowRight') { event.preventDefault(); moveGallery(1); }
+  if (event.key === '+' || event.key === '=') { event.preventDefault(); setZoom(zoom + .25); }
+  if (event.key === '-') { event.preventDefault(); setZoom(zoom - .25); }
+  if (event.key === '0') { event.preventDefault(); setZoom(1); }
 });
 
 const pages = [...document.querySelectorAll('.uniform-page')];

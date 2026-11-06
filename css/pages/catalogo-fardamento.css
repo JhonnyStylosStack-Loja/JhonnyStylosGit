@@ -125,3 +125,32 @@ body{font-family:"Times New Roman",serif}
   .uniform-products .uniform-card__copy p{margin-bottom:4.5%;font-size:clamp(.61rem,2.35vw,.75rem);line-height:1.4}
   .uniform-products .uniform-card__copy strong,.uniform-products .uniform-card__copy button{font-size:clamp(.6rem,2.3vw,.73rem)}
 }
+
+/* Visualização ampliada com o mesmo padrão do catálogo de atacado. */
+body.uniform-lightbox-open{overflow:hidden}
+.uniform-dialog{position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:clamp(18px,4vw,44px);overflow:auto;border:0;border-radius:0;background:#2c1018d9;color:#fff;box-shadow:none;backdrop-filter:blur(10px)}
+.uniform-dialog::backdrop{background:transparent}
+.uniform-dialog[open]{display:grid;place-items:center}
+.uniform-dialog__inner{position:static;display:flex;width:max-content;max-width:94vw;max-height:94vh;min-height:0;flex-direction:column;align-items:center;gap:12px}
+.uniform-dialog__close{position:fixed;z-index:2;top:max(14px,env(safe-area-inset-top));right:max(16px,env(safe-area-inset-right));display:grid;width:46px;height:46px;padding:0;place-items:center;border:1px solid #ffffff80;border-radius:50%;background:#fffaf0e8;color:#691d2d;box-shadow:0 8px 24px #17060b4d;font:300 2rem/1 Arial,sans-serif}
+.uniform-dialog__stage{display:flex;align-items:center;justify-content:center;min-height:0;background:none}
+.uniform-dialog__media{position:relative;width:min(88vw,calc(66vh * .75));aspect-ratio:3/4;overflow:hidden;border-radius:12px;background:#f5e7e5;box-shadow:0 22px 60px #17060b80;touch-action:none;cursor:grab;user-select:none}
+.uniform-dialog__media.is-zoomed{cursor:grab}
+.uniform-dialog__media img{display:block;width:100%;height:100%;object-fit:cover;transform-origin:center;transition:transform 180ms ease;pointer-events:none}
+.uniform-dialog__media--clients img{object-fit:contain}
+.uniform-dialog__stage button{width:44px;height:44px;border:1px solid #ffffffb8;background:#fffaf0df;box-shadow:0 3px 10px #4b202a33;color:#752332;font:400 2rem/1 Georgia,serif}
+.uniform-dialog__counter{position:absolute;right:9px;bottom:9px;padding:3px 7px;border-radius:10px;background:#5e2636b8;color:#fff;font:600 .65rem/1 var(--font-body)}
+.uniform-dialog__counter[hidden]{display:none}
+.uniform-dialog__zoom{display:flex;align-items:center;justify-content:center;gap:7px;color:#fff}
+.uniform-dialog__zoom button{display:grid;min-width:36px;height:34px;padding:0 10px;place-items:center;border:1px solid #ffffff70;border-radius:999px;background:#fffaf0e8;color:#691d2d;font:600 1rem/1 var(--font-body);cursor:pointer}
+.uniform-dialog__zoom button:disabled{opacity:.42;cursor:default}
+.uniform-dialog__zoom output{min-width:52px;text-align:center;font:600 .78rem var(--font-body)}
+.uniform-dialog__zoom [data-uniform-zoom="reset"]{font-size:.72rem}
+.uniform-dialog__info{align-self:center;box-sizing:border-box;width:min(88vw,620px);padding:14px 20px 16px;border:1px solid #ffffff70;border-radius:14px;background:#fff8f3f2;box-shadow:0 12px 35px #17060b42;text-align:center;color:#671a2a;backdrop-filter:blur(12px)}
+.uniform-dialog__info h2{margin:0 0 7px;color:#671a2a;font:700 clamp(1.12rem,2.4vw,1.5rem)/1.25 var(--font-body)}
+.uniform-dialog__info p{margin:0;color:#7f4650;font-size:clamp(.84rem,1.7vw,1rem);font-weight:500;line-height:1.5}
+.uniform-dialog__info a{margin-top:6px;color:#7c273b;font-size:.8rem;font-weight:700}
+.uniform-dialog__close:focus-visible,.uniform-dialog__zoom button:focus-visible,.uniform-dialog__stage button:focus-visible{outline:3px solid #fff;outline-offset:3px}
+@media(max-width:600px){.uniform-dialog{padding:54px 12px 18px}.uniform-dialog__inner{gap:10px}.uniform-dialog__media{width:min(92vw,calc(59vh * .75))}.uniform-dialog__stage button{width:36px;height:36px;font-size:1.7rem}.uniform-dialog__zoom button{min-width:34px;height:32px;padding:0 9px}.uniform-dialog__info{width:min(92vw,620px);padding:11px 14px 13px}}
+@media(max-width:600px) and (max-height:650px){.uniform-dialog__media{width:min(92vw,calc(46vh * .75))}}
+@media(prefers-reduced-motion:reduce){.uniform-dialog__media img{transition:none}}
