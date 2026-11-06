@@ -9,6 +9,11 @@ RewriteRule ^catalogo-atacado/?$ /catalogo-atacado [R=301,L,NE]
 # Mantem o catalogo publico somente pelo endereco exclusivo.
 RewriteRule ^catalogo-atacado/?$ catalogo.html [L,NC]
 
+# Publica o catalogo de fardamento e normaliza barras duplicadas.
+RewriteCond %{THE_REQUEST} \s/{2,}catalogo-fardamento(?:[?\s]|/) [NC]
+RewriteRule ^catalogo-fardamento/?$ /catalogo-fardamento [R=301,L,NE]
+RewriteRule ^catalogo-fardamento/?$ catalogo-fardamento.html [L,NC]
+
 # Impede o acesso pelos enderecos antigos divulgados anteriormente.
 RewriteCond %{THE_REQUEST} \s/+catalogo\.html(?:[?\s]) [NC]
 RewriteRule ^catalogo\.html$ maintenance.html [L]
