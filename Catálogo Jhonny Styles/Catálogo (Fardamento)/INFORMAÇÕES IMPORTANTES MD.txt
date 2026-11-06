@@ -1,0 +1,3 @@
+Catálogo 3:4 , estilo páginas scrol, igual o Acrobat na adobe quando abre um PDF.
+Seguir o estilo da REF TOTAL, com 4 produtos por pagina, capa, indice, e contra capa.
+Deixei o arquivo principal da capa tbm CAPA ARQUIVO PRINCIPAL.
