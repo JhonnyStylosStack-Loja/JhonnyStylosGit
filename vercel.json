@@ -20,7 +20,8 @@
     { "source": "/sitemap.html", "destination": "/maintenance.html" },
     { "source": "/terms.html", "destination": "/maintenance.html" },
     { "source": "/wishlist.html", "destination": "/maintenance.html" },
-    { "source": "/catalogo", "destination": "/catalogo.html" }
+    { "source": "/catalogo", "destination": "/catalogo.html" },
+    { "source": "/catalogo-fardamento", "destination": "/catalogo-fardamento.html" }
   ],
   "headers": [
     {

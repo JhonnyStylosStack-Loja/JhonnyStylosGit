@@ -12,7 +12,7 @@ categories.forEach(category => {
     catalogPages.push({category: category.name, products: category.products.slice(index, index + 2)});
   }
 });
-const totalPages = catalogPages.length + 2;
+const totalPages = catalogPages.length + 3;
 const optimizedImagePath = image => image.replace(/\.(?:jpe?g|png|webp)$/i, '.webp');
 const optimizedImageVersion = image => image.includes('Blusas/%2301/') ? '?v=2' : '';
 const thumbnailUrl = image => `${assetRoot}Thumbs/${optimizedImagePath(image)}${optimizedImageVersion(image)}`;
@@ -21,6 +21,7 @@ const footer = page => `<footer class="catalog-page__footer"><span>Jhonny Styles
 const categoryLinks = categories.map((category, index) => `<a href="#pagina-${categoryStartPages.get(category.name)}"><span>${String(index + 1).padStart(2, '0')}</span>${category.name}<span>↗</span></a>`).join('');
 const cover = `<section class="catalog-page catalog-cover" id="pagina-1" aria-label="Informações do atacado Jhonny Stylos"><div class="catalog-cover__content"><img class="catalog-cover__logo" src="assets/images/logotipo/LOGO-MENU-catalog.webp" width="600" height="290" alt="Jhonny Styles" decoding="async"><div class="catalog-cover__rule"></div><div class="catalog-cover__headline"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M18 22v-7a14 14 0 0 1 28 0v7M12 20l-5 36h50l-5-36zM23 20v8m18-8v8"/></svg><h1><span>Catálogo</span><em>Atacado</em><small>Jhonny Stylos</small></h1></div><p class="catalog-cover__eyebrow">Confira nosso catálogo digital<br>exclusivo <strong>para atacado!</strong></p><ul class="catalog-cover__benefits"><li><span class="catalog-cover__benefit-icon"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 27 24 16l16 11M12 27h24v10H12zM24 16v-5c0-4 6-4 6 0"/></svg></span><p><strong>Pedido mínimo</strong><span>de <b>5 peças</b> variadas.</span></p></li><li><span class="catalog-cover__benefit-icon"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M18 8c1 5 11 5 12 0l5 9-4 3 3 20H14l3-20-4-3z"/></svg></span><p><strong>Diversos modelos,</strong><span>cores e tamanhos.</span></p></li><li><span class="catalog-cover__benefit-icon"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M5 14h25v20H5zM30 22h7l6 7v5H30zM13 39a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm23 0a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM2 20h10M1 25h8"/></svg></span><p><strong>Enviamos para<br>todo o Brasil</strong><span>pelos Correios, transporte aéreo, excursões e transportadoras.</span></p></li></ul><div class="catalog-cover__closing"><svg viewBox="0 0 56 64" aria-hidden="true"><path d="M15 22v-7a13 13 0 0 1 26 0v7M10 20 5 58h46l-5-38zM20 20v8m16-8v8"/></svg><p>Monte seu pedido com as peças de sua preferência e <strong>garanta suas novidades!</strong></p></div><a class="catalog-cover__cta" href="#pagina-2"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M5 11c7-3 13-2 19 3v25c-6-5-12-6-19-3zm38 0c-7-3-13-2-19 3v25c6-5 12-6 19-3z"/></svg><span>Acesse agora nosso<strong>Catálogo Digital</strong></span><b aria-hidden="true">›</b></a></div></section>`;
 const index = `<section class="catalog-page catalog-index" id="pagina-2" aria-label="Índice"><div class="catalog-page__body"><p class="catalog-eyebrow">Jhonny Styles · Moda feminina</p><h1>Encontre o seu estilo</h1><p class="catalog-index__intro">Explore as peças por categoria. Confirme modelos e disponibilidade antes de fazer seu pedido.</p><div class="catalog-index__links">${categoryLinks}</div></div>${footer(2)}</section>`;
+const back = `<section class="catalog-page catalog-back" id="pagina-${totalPages}" aria-label="Contracapa"><div><img src="assets/images/logotipo/LOGO-MENU-catalog.webp" alt="Jhonny Styles" width="300" height="145"><h1>Vamos montar<br>o seu pedido?</h1><p>Conte o que você precisa e fale com a nossa equipe sobre seu pedido no atacado.</p><a href="https://wa.me/5585986348334?text=Olá!%20Gostaria%20de%20montar%20meu%20pedido%20no%20atacado." target="_blank" rel="noopener">Falar no WhatsApp</a></div>${footer(totalPages)}</section>`;
 function productPage(page) {
   const index = page - 3;
   const pageData = catalogPages[index];
@@ -126,6 +127,10 @@ function appendProductBatch(productLimit) {
   loadedProductCount += addedMedia.length;
   loadedCatalogPageCount = end;
   loadMore.hidden = loadedCatalogPageCount >= catalogPages.length;
+  if (loadMore.hidden && !document.getElementById(`pagina-${totalPages}`)) {
+    loadMore.insertAdjacentHTML('afterend', back);
+    pageObserver?.observe(document.getElementById(`pagina-${totalPages}`));
+  }
   requestAnimationFrame(updateWheelBounds);
 }
 function extendCatalogBuffer(visibleProductOrder) {

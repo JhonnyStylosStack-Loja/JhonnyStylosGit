@@ -1,0 +1,127 @@
+:root{--uniform-wine:#73182a;--uniform-rose:#d75b77;--uniform-paper:#fff9f7;--uniform-ink:#37272b}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:#f3d8d6}
+body{min-width:320px;margin:0;background:radial-gradient(circle at 50% 10%,#fff2ef 0,#f0d1cf 68%,#e8c3c1 100%);color:var(--uniform-ink);font-family:var(--font-body,Arial,sans-serif)}
+.uniform-shell{max-width:1080px;margin:auto;padding:25px 20px 100px}.uniform-pages{display:grid;justify-items:center;gap:28px}.uniform-page{position:relative;width:min(100%,720px);aspect-ratio:3/4;overflow:hidden;background:var(--uniform-paper);box-shadow:0 18px 45px #6d32323d;scroll-margin-top:18px}.uniform-page__body{height:93%;padding:7%}.uniform-page__footer{position:absolute;right:7%;bottom:0;left:7%;height:7%;display:flex;align-items:center;justify-content:space-between;border-top:1px solid #e5a8b1;color:#934957;font-size:clamp(.45rem,.9vw,.66rem);letter-spacing:.2em;text-transform:uppercase}.uniform-page__footer b{font-family:Georgia,serif;font-size:1.45em}
+.uniform-cover{background:#fff1ef url('../../Catálogo Jhonny Styles/Catálogo (Fardamento)/Imagem da Capa Catálogo.webp') center/cover no-repeat}.uniform-cover__copy{position:absolute;inset:7% auto 6% 7%;display:flex;width:44%;flex-direction:column;align-items:flex-start}.uniform-cover__copy>img{width:55%;height:auto;margin-left:7%;object-fit:contain}.uniform-cover__copy>i{width:24%;height:1px;margin:5% 0 9% 28%;background:#db7187}.uniform-cover h1{margin:0;color:var(--uniform-wine);font:italic 400 clamp(2.4rem,6vw,5.2rem)/.9 Georgia,serif;letter-spacing:-.055em}.uniform-cover__copy>p{max-width:27ch;margin:8% 0 0;color:#b83b57;font-size:clamp(.55rem,1.15vw,.82rem);font-weight:700;letter-spacing:.18em;line-height:1.7;text-transform:uppercase}.uniform-cover ul{display:grid;gap:10px;margin:10% 0 0;padding:0;list-style:none;color:#8d4b57;font-size:clamp(.52rem,1vw,.72rem);line-height:1.35}.uniform-cover li:before{content:'✓';margin-right:8px;color:var(--uniform-rose);font-weight:800}.uniform-cover a{display:flex;width:100%;align-items:center;justify-content:space-between;margin-top:auto;padding:11px 15px;border:1px solid #d87789;color:var(--uniform-wine);font-size:clamp(.54rem,1vw,.72rem);font-weight:700;letter-spacing:.08em;text-decoration:none;text-transform:uppercase}.uniform-cover a span{font:1.5em Georgia,serif}
+.uniform-index{background:linear-gradient(#ffffff85,#ffffff85),url('../../Catálogo Jhonny Styles/Catálogo (Fardamento)/Background Paginas/Back01.webp') center/cover}.uniform-kicker{margin:0;color:var(--uniform-rose);font-size:clamp(.55rem,1vw,.78rem);font-weight:700;letter-spacing:.23em}.uniform-index h1,.uniform-back h1{margin:8% 0 4%;color:var(--uniform-wine);font:italic 400 clamp(2.5rem,5vw,4.7rem)/.95 Georgia,serif;letter-spacing:-.04em}.uniform-intro{max-width:42ch;color:#73545b;font-size:clamp(.72rem,1.4vw,1rem);line-height:1.65}.uniform-index nav{margin-top:9%;border-top:1px solid #e6aeb7}.uniform-index nav a{display:flex;align-items:center;justify-content:space-between;padding:5% 1%;border-bottom:1px solid #e6aeb7;color:var(--uniform-wine);font:400 clamp(1.05rem,2.3vw,1.65rem) Georgia,serif;text-decoration:none}.uniform-index nav b{color:#c15d70;font:600 .55em var(--font-body,Arial,sans-serif);letter-spacing:.15em}
+.uniform-products{background:linear-gradient(#ffffff82,#ffffff82),var(--uniform-bg) center/cover}.uniform-products header{display:flex;min-height:10%;align-items:center;gap:4%;margin-bottom:4%}.uniform-products header h1{margin:0;color:var(--uniform-wine);font:400 clamp(1.7rem,4vw,3rem) Georgia,serif;text-transform:uppercase}.uniform-products header:after{content:'';height:1px;flex:1;background:#dfa0ab}.uniform-products header p{order:3;margin:0;color:#a85968;font-size:clamp(.43rem,.85vw,.62rem);letter-spacing:.16em;line-height:1.45;text-transform:uppercase}.uniform-grid{display:grid;height:82%;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:3%}.uniform-card{min-height:0;overflow:hidden;border:1px solid #efdfe0;border-radius:8px;background:#fffdfc}.uniform-card__media{height:60%;overflow:hidden;background:#f6e6e6}.uniform-card__media>img{width:100%;height:100%;object-fit:cover}.uniform-card__placeholder{display:flex;height:100%;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(145deg,#fff9f7,#f4d9dc);color:#bd6677}.uniform-card__placeholder>span{font-size:clamp(.45rem,.8vw,.6rem);letter-spacing:.18em}.uniform-card__placeholder svg{width:28%;margin:6% 0;fill:none;stroke:#d58a98;stroke-width:1.4}.uniform-card__placeholder small{font-size:clamp(.48rem,.85vw,.62rem)}.uniform-card__copy{padding:4% 5%}.uniform-card h2{margin:0 0 2%;color:#432f33;font-size:clamp(.62rem,1.25vw,.9rem)}.uniform-card p{margin:0 0 2%;color:var(--uniform-rose);font-size:clamp(.48rem,.9vw,.65rem);font-weight:700;letter-spacing:.08em}.uniform-card span{display:block;color:#7f696d;font-size:clamp(.46rem,.9vw,.65rem);line-height:1.35}.uniform-card a{display:inline-block;margin-top:3%;color:var(--uniform-wine);font-size:clamp(.46rem,.85vw,.62rem);font-weight:700;text-decoration:underline;text-underline-offset:2px}
+.uniform-back{display:flex;align-items:center;justify-content:center;background:linear-gradient(#ffffff70,#ffffff70),url('../../Catálogo Jhonny Styles/Catálogo (Fardamento)/Background Paginas/Back02.webp') center/cover;text-align:center}.uniform-back>div{width:66%}.uniform-back img{width:45%;height:auto}.uniform-back p{margin:0 auto;max-width:34ch;color:#72545a;line-height:1.6}.uniform-back a{display:inline-block;margin-top:8%;padding:12px 20px;border:1px solid var(--uniform-wine);color:var(--uniform-wine);font-size:.75rem;font-weight:700;text-decoration:none;text-transform:uppercase}
+.uniform-nav{position:fixed;z-index:10;bottom:max(14px,env(safe-area-inset-bottom));left:50%;display:flex;align-items:center;gap:5px;padding:5px;border:1px solid #ead2d3;border-radius:999px;background:#fffdfbf2;box-shadow:0 8px 24px #71383820;transform:translateX(-50%);backdrop-filter:blur(14px)}.uniform-nav button{min-width:96px;padding:9px 12px;border:0;border-radius:999px;background:transparent;color:#86444f;font:600 .76rem var(--font-body,Arial,sans-serif);cursor:pointer}.uniform-nav button:disabled{opacity:.35}.uniform-nav label{display:flex;align-items:center;color:#9a6870;font-size:.7rem}.uniform-nav input{width:37px;padding:6px 2px;border:1px solid #ead7d7;border-radius:7px;background:#fff;text-align:center;color:#71323d;font:700 .72rem var(--font-body,Arial,sans-serif);appearance:textfield}.uniform-action{position:fixed;z-index:9;right:max(16px,calc((100vw - 1050px)/2));display:grid;width:44px;height:44px;place-items:center;border:1px solid #ead0d1;border-radius:50%;background:#fffdfbed;color:var(--uniform-wine);box-shadow:0 5px 18px #71383822;font-weight:800;text-decoration:none;cursor:pointer}.uniform-action--top{bottom:76px}.uniform-action--whatsapp{bottom:24px;background:#277d50;color:#fff}.uniform-copyright{position:fixed;z-index:8;top:50%;left:6px;color:#8d5f6666;font-size:.55rem;letter-spacing:.08em;transform:rotate(-90deg) translateX(-50%);transform-origin:left top}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #d95f78;outline-offset:3px}
+@media(max-width:600px){.uniform-shell{padding:12px 8px 88px}.uniform-pages{gap:16px}.uniform-page{scroll-margin-top:10px}.uniform-cover__copy{inset-left:6%;width:47%}.uniform-cover h1{font-size:clamp(1.8rem,10vw,3rem)}.uniform-cover ul{gap:5px}.uniform-card__media{height:57%}.uniform-nav button{min-width:82px;padding-inline:8px}.uniform-action{right:10px;width:40px;height:40px}.uniform-copyright{display:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* Portfólio: uma composição editorial para as fotos dos eventos. */
+.portfolio{padding:6.5%;background:#f8f4ef;color:#30272a}
+.portfolio--3{background:#ece3df}
+.portfolio__header{display:flex;justify-content:space-between;padding-bottom:3%;border-bottom:1px solid #b9a5a4;color:#705458;font-size:clamp(.48rem,.95vw,.68rem);font-weight:700;letter-spacing:.09em}
+.portfolio__intro{display:flex;align-items:end;justify-content:space-between;gap:5%;padding:5% 0}
+.portfolio__intro h1{margin:0;color:#672335;font:400 clamp(2rem,5vw,4rem)/.95 Georgia,serif;letter-spacing:-.045em}
+.portfolio__intro p{width:37%;margin:0;color:#705f60;font-size:clamp(.58rem,1.12vw,.83rem);line-height:1.5}
+.portfolio__grid{height:64%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:1.05fr 1fr;gap:2%}
+.portfolio-photo{position:relative;min-width:0;min-height:0;padding:0;overflow:hidden;border:0;background:#d9ccca;cursor:pointer}
+.portfolio-photo:first-child{grid-column:span 2}
+.portfolio--2 .portfolio__grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+.portfolio--2 .portfolio-photo:last-child{grid-column:span 2}
+.portfolio-photo img{width:100%;height:100%;object-fit:cover;transition:transform .35s ease}
+.portfolio-photo:hover img{transform:scale(1.05)}
+.portfolio-photo span{position:absolute;right:8px;bottom:8px;display:grid;width:28px;height:28px;place-items:center;border:1px solid #ffffffa8;border-radius:50%;background:#302329a8;color:#fff;font-size:1rem}
+.portfolio--3 .portfolio-photo:first-child{grid-column:span 2;grid-row:span 2}
+.portfolio--3 .portfolio__grid{grid-template-columns:1fr 1fr 1fr;grid-template-rows:repeat(4,1fr)}
+.portfolio--3 .portfolio-photo:nth-child(2){grid-column:3;grid-row:span 2}
+.portfolio--3 .portfolio-photo:nth-child(3){grid-column:1;grid-row:span 2}
+.portfolio--3 .portfolio-photo:nth-child(4){grid-column:2;grid-row:span 2}
+.portfolio--3 .portfolio-photo:nth-child(5){grid-column:3;grid-row:span 2}
+.portfolio__bottom{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-top:4%;color:#75575b;font-size:clamp(.48rem,.95vw,.69rem)}
+.portfolio__bottom p{margin:0;font-family:Georgia,serif;font-style:italic;font-size:1.3em}
+.uniform-card__media{position:relative;display:block;width:100%;height:67%;padding:0;border:0;cursor:pointer}
+.uniform-card__media img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 30%}
+.uniform-card__count{position:absolute;right:6px;bottom:6px;padding:4px 7px;border-radius:99px;background:#451f2bbd;color:#fff;font-size:clamp(.45rem,.8vw,.6rem);line-height:1}
+.uniform-card__copy{padding:3% 5%;line-height:1.15}
+.uniform-card__copy h2{display:flex;justify-content:space-between;gap:4px;margin:0 0 2%;font-size:clamp(.62rem,1.2vw,.88rem)}
+.uniform-card__copy h2 span{color:#a66670;font-size:.75em;white-space:nowrap}
+.uniform-card__copy p{margin:0;color:#785e62;font-size:clamp(.48rem,.88vw,.65rem);font-weight:400;letter-spacing:0;line-height:1.25}
+.uniform-card__copy strong{display:inline-block;margin-top:2%;color:#bd3655;font-size:clamp(.65rem,1.25vw,.9rem)}
+.uniform-card__copy button{display:block;margin-top:2%;padding:0;border:0;background:none;color:#71303e;font-size:clamp(.46rem,.8vw,.6rem);text-decoration:underline;cursor:pointer}
+.uniform-dialog{position:fixed;inset:0;width:min(94vw,900px);max-width:calc(100vw - 24px);max-height:calc(100vh - 24px);max-height:calc(100dvh - 24px);margin:auto;padding:0;overflow:auto;border:0;border-radius:12px;background:#fff9f7;color:#39282d;box-shadow:0 20px 80px #1b101077}
+.uniform-dialog::backdrop{background:#25161edb}
+.uniform-dialog__inner{position:relative;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(180px,.7fr);min-height:300px}
+.uniform-dialog__close{position:absolute;z-index:2;top:10px;right:10px;width:38px;height:38px;border:0;border-radius:50%;background:#fff;color:#682837;font-size:1.7rem;cursor:pointer}
+.uniform-dialog__stage{position:relative;display:flex;min-height:0;align-items:center;justify-content:center;background:#251d21}
+.uniform-dialog__stage img{width:100%;height:min(76vh,700px);object-fit:contain}
+.uniform-dialog__stage button{position:absolute;top:50%;width:38px;height:38px;border:0;border-radius:50%;background:#ffffffe0;color:#682837;font:2rem/1 Georgia,serif;transform:translateY(-50%);cursor:pointer}
+.uniform-dialog__stage button[hidden],.uniform-dialog__info a[hidden]{display:none}
+.uniform-dialog__prev{left:10px}.uniform-dialog__next{right:10px}
+.uniform-dialog__info{align-self:center;padding:42px 24px}
+.uniform-dialog__info h2{margin:0 0 12px;color:#6f2032;font:1.8rem/1.1 Georgia,serif}
+.uniform-dialog__info p{margin:0 0 14px;color:#75575f;font-size:.85rem;line-height:1.5}
+.uniform-dialog__counter{display:block;margin:12px 0;color:#9c6671;font-size:.75rem}
+.uniform-dialog__info a{display:inline-block;color:#7c273b;font-size:.8rem;font-weight:700}
+@media(max-width:600px){.portfolio{padding:6%}.portfolio__intro h1{font-size:clamp(1.8rem,8vw,2.8rem)}.portfolio__intro p{font-size:.55rem}.portfolio__grid{height:62%}.portfolio-photo span{width:22px;height:22px;right:4px;bottom:4px;font-size:.8rem}.portfolio__bottom{font-size:.5rem}.uniform-card__media{height:65%}.uniform-card__copy{padding:3% 4%}.uniform-card__copy h2{font-size:clamp(.58rem,2.2vw,.72rem)}.uniform-card__copy p{font-size:clamp(.46rem,1.7vw,.58rem)}.uniform-card__copy button{font-size:clamp(.45rem,1.6vw,.55rem)}.uniform-dialog__inner{display:block}.uniform-dialog__stage img{height:55vh}.uniform-dialog__info{padding:16px 20px 20px}.uniform-dialog__info h2{font-size:1.35rem}.uniform-dialog__info p{font-size:.75rem;margin-bottom:8px}}
+@media(prefers-reduced-motion:reduce){.portfolio-photo img{transition:none}}
+
+/* Dois modelos por página, com fotos em destaque. */
+.uniform-products{aspect-ratio:auto}
+.uniform-products .uniform-page__body{height:auto;padding:7% 7% 0}
+.uniform-products header{min-height:0}
+.uniform-products .uniform-grid{height:auto;grid-template-rows:auto;align-items:stretch;gap:4%}
+.uniform-products .uniform-page__footer{position:static;height:auto;margin:6% 7% 0;padding:3% 0}
+.uniform-products .uniform-card__media{height:auto;aspect-ratio:3/4}
+.uniform-products .uniform-card__copy{padding:5%}
+.uniform-products .uniform-card__copy h2{font-size:clamp(.75rem,1.5vw,1.1rem)}
+.uniform-products .uniform-card__copy p{font-size:clamp(.58rem,1.1vw,.8rem)}
+.uniform-products .uniform-card__copy strong{font-size:clamp(.75rem,1.45vw,1rem)}
+.uniform-products .uniform-card__copy button{font-size:clamp(.55rem,.95vw,.7rem)}
+
+/* Controles flutuantes no mesmo padrão do catálogo de atacado. */
+.catalog-bottom-nav{position:fixed;z-index:10;left:50%;bottom:max(18px,env(safe-area-inset-bottom));transform:translateX(-50%);display:flex;align-items:center;gap:0;min-height:48px;padding:4px 7px;border:1px solid #f1e4e3;border-radius:14px;background:#fffaf9;box-shadow:0 5px 15px #7138381a;backdrop-filter:none}
+.catalog-bottom-nav button{display:flex;align-items:center;justify-content:center;min-width:45px;width:45px;height:38px;padding:0 0 3px;border:0;border-radius:10px;background:transparent;color:#6b1e2b;font:400 1.8rem/1 Arial,sans-serif;white-space:nowrap;cursor:pointer;transform:translateY(2px)}
+.catalog-bottom-nav button span{display:none}
+.catalog-bottom-nav button:hover:not(:disabled){background:#f8eeee;color:#6b1e2b}
+.catalog-bottom-nav button:disabled{opacity:.35;cursor:not-allowed}
+.catalog-bottom-nav button:focus-visible{outline:3px solid #e86c83;outline-offset:3px}
+.catalog-bottom-nav__jump{display:flex;align-items:center;justify-content:center;gap:2px;min-width:66px;height:38px;padding:0 4px;border:0;color:#6b1e2b;font-size:.92rem;font-weight:700;line-height:1;white-space:nowrap;transform:translateY(2px)}
+.catalog-bottom-nav__jump input{width:26px;height:38px;padding:0;border:0;outline:0;background:transparent;color:#6b1e2b;font:700 .92rem/38px var(--font-body);text-align:right;appearance:textfield;-moz-appearance:textfield}
+.catalog-bottom-nav__jump input::-webkit-inner-spin-button,.catalog-bottom-nav__jump input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+.catalog-bottom-nav__jump:focus-within{border-radius:5px;outline:2px solid #8b3342;outline-offset:2px}
+.catalog-floating-action{position:fixed;z-index:10;bottom:max(18px,env(safe-area-inset-bottom));display:flex;align-items:center;justify-content:center;width:62px;height:62px;border:1px solid #ead9d9;border-radius:50%;box-shadow:0 5px 15px #71383820;cursor:pointer}
+.catalog-floating-action--top{left:20px;background:#fffaf9;color:#6b1e2b}
+.catalog-floating-action--whatsapp{right:20px;background:#25d366;border-color:#25d366;color:#fff}
+.catalog-floating-action svg{width:32px;height:32px}
+.catalog-floating-action--top svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.catalog-floating-action--whatsapp svg{fill:currentColor}
+.catalog-floating-action:hover{transform:translateY(-2px)}
+.catalog-floating-action:focus-visible{outline:3px solid #9a4b5d;outline-offset:3px}
+@media(max-width:600px){.catalog-bottom-nav{bottom:max(12px,env(safe-area-inset-bottom));min-height:46px;padding:4px 5px}.catalog-bottom-nav button{min-width:40px;width:40px;height:36px;font-size:1.65rem}.catalog-bottom-nav__jump{min-width:62px;height:36px;font-size:.86rem}.catalog-bottom-nav__jump input{width:24px;height:36px;line-height:36px;font-size:.86rem}.catalog-floating-action{bottom:max(12px,env(safe-area-inset-bottom));width:56px;height:56px}.catalog-floating-action svg{width:30px;height:30px}.catalog-floating-action--top{left:12px}.catalog-floating-action--whatsapp{right:12px}}
+
+/* Mesma escala tipográfica utilizada no catálogo de atacado. */
+body{font-family:"Times New Roman",serif}
+.uniform-cover h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(2rem,4.15vw,3.7rem);font-weight:400;line-height:1.02;letter-spacing:-.045em}
+.uniform-cover__copy>p{font:600 clamp(.58rem,1.05vw,.82rem)/1.45 Arial,sans-serif;letter-spacing:.2em}
+.uniform-cover ul{font:400 clamp(.64rem,1.1vw,.86rem)/1.18 Arial,sans-serif}
+.uniform-cover a{font:italic 700 clamp(.61rem,1.08vw,.86rem)/1.05 Arial,sans-serif;letter-spacing:0}
+.uniform-products header h1{font-family:Georgia,serif;font-size:clamp(1.8rem,4vw,3.3rem);font-weight:400;line-height:1.5}
+.uniform-products header p{font-size:clamp(.43rem,.85vw,.65rem);letter-spacing:.25em;line-height:1.5}
+.uniform-products .uniform-card__copy{padding:6% 8% 7%;color:#352b2b}
+.uniform-products .uniform-card__copy h2{margin:0 0 3.5%;font-size:clamp(.88rem,1.65vw,1.12rem);font-weight:700;line-height:1.3;letter-spacing:.005em}
+.uniform-products .uniform-card__copy p{margin:0 0 4%;font-size:clamp(.72rem,1.2vw,.88rem);font-weight:400;line-height:1.45}
+.uniform-products .uniform-card__copy strong,.uniform-products .uniform-card__copy button{font-size:clamp(.7rem,1.15vw,.85rem);line-height:1.35}
+.uniform-products .uniform-card__copy strong{font-weight:700}
+.uniform-card__count{font-size:.65rem!important;font-weight:600}
+.uniform-page__footer{font-size:clamp(.45rem,.8vw,.64rem);letter-spacing:.25em}
+.uniform-page__footer b{font:inherit;font-size:1.5em;letter-spacing:0}
+.uniform-dialog__info h2{font:700 clamp(1.12rem,2.4vw,1.5rem)/1.25 var(--font-body)}
+.uniform-dialog__info p{font-size:clamp(.84rem,1.7vw,1rem);font-weight:500;line-height:1.5}
+@media(max-width:600px){
+  .uniform-cover h1{font-size:clamp(1.65rem,7.4vw,2.2rem)}
+  .uniform-cover__copy>p{font-size:clamp(.45rem,2vw,.56rem)}
+  .uniform-cover ul{font-size:clamp(.52rem,2.27vw,.64rem)}
+  .uniform-cover a{font-size:clamp(.49rem,2.1vw,.61rem)}
+  .uniform-products header h1{font-size:clamp(1.25rem,6vw,2rem)}
+  .uniform-products header p{letter-spacing:.1em}
+  .uniform-products .uniform-card__copy{padding:7% 8% 8%}
+  .uniform-products .uniform-card__copy h2{margin-bottom:4%;font-size:clamp(.7rem,2.75vw,.86rem)}
+  .uniform-products .uniform-card__copy p{margin-bottom:4.5%;font-size:clamp(.61rem,2.35vw,.75rem);line-height:1.4}
+  .uniform-products .uniform-card__copy strong,.uniform-products .uniform-card__copy button{font-size:clamp(.6rem,2.3vw,.73rem)}
+}

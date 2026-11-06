@@ -304,3 +304,11 @@ body{background:#f8ebea}
 .catalog-preloader__bar span{display:block;width:0;height:100%;border-radius:inherit;background:linear-gradient(90deg,#9f3548,#e87388);transition:width 160ms ease}
 .catalog-preloader output{font:700 .82rem var(--font-body);color:#9b5963}
 @media(prefers-reduced-motion:reduce){.catalog-preloader,.catalog-preloader__bar span{transition-duration:.01ms}}
+
+/* Contracapa no mesmo estilo do catálogo de fardamento. */
+.catalog-back{background:linear-gradient(#ffffff70,#ffffff70),url('../../Catálogo Jhonny Styles/Catálogo (Fardamento)/Background Paginas/Back02.webp') center/cover;text-align:center}
+.catalog-back>div{width:66%;max-width:none}
+.catalog-back img{width:45%;height:auto;margin:0}
+.catalog-back h1{margin:8% 0 4%;color:#73182a;font:italic 400 clamp(2.5rem,5vw,4.7rem)/.95 Georgia,serif;letter-spacing:-.04em}
+.catalog-back p{max-width:34ch;margin:0 auto;color:#72545a;line-height:1.6}
+.catalog-back a{display:inline-block;margin-top:8%;padding:12px 20px;border:1px solid #73182a;color:#73182a;font-size:.75rem;font-weight:700;text-decoration:none;text-transform:uppercase}
