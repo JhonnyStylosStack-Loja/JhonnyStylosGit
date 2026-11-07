@@ -60,7 +60,52 @@ const prefetchLarge = image => (image?.dataset.large || '').split('|').forEach(u
 });
 const pageImages = [...uniformPages.querySelectorAll('img[data-src]')];
 const isInitial = image => image.closest('.portfolio') || Number(image.closest('[data-index]')?.dataset.index) < INITIAL_PRODUCTS;
-pageImages.filter(isInitial).forEach(loadImage);
+// Tela de carregamento: espera a capa, os fundos, as fotos das clientes e os 15 primeiros modelos.
+// Assim o cliente já encontra tudo pronto, sem fotos vazias. Limite de 18 s para nunca travar.
+const preloadInitialCatalog = async () => {
+  const preloader = document.getElementById('catalog-preloader');
+  const initialImages = pageImages.filter(isInitial);
+  const urls = [...new Set([
+    imageUrl('Capa/capa.webp'),
+    imageUrl('Background%20Paginas/Back01.webp'),
+    imageUrl('Background%20Paginas/Back02.webp'),
+    ...initialImages.map(image => image.dataset.src),
+  ])];
+  if (preloader) {
+    const bar = preloader.querySelector('.catalog-preloader__bar span');
+    const output = preloader.querySelector('output');
+    let done = 0;
+    const progress = () => {
+      done += 1;
+      const percent = `${Math.round(done / urls.length * 100)}%`;
+      bar.style.width = percent;
+      output.textContent = percent;
+    };
+    const fetchImage = url => new Promise(resolve => {
+      const image = new Image();
+      const finish = () => { clearTimeout(timer); progress(); resolve(); };
+      const timer = setTimeout(finish, 12000);
+      image.addEventListener('load', finish, { once: true });
+      image.addEventListener('error', finish, { once: true });
+      image.decoding = 'async';
+      image.src = url;
+    });
+    let cursor = 0;
+    const worker = async () => { while (cursor < urls.length) await fetchImage(urls[cursor++]); };
+    const workers = Promise.all(Array.from({ length: Math.min(8, urls.length) }, worker));
+    await Promise.race([workers, new Promise(resolve => setTimeout(resolve, 18000))]);
+    bar.style.width = '100%';
+    output.textContent = '100%';
+  }
+  initialImages.forEach(loadImage);
+  resetToFirstPage();
+  if (preloader) {
+    preloader.classList.add('is-complete');
+    setTimeout(() => preloader.remove(), 280);
+  }
+  document.body.classList.remove('catalog-preloading');
+};
+preloadInitialCatalog();
 const aheadObserver = new IntersectionObserver(entries => entries.forEach(entry => {
   if (!entry.isIntersecting) return;
   loadImage(entry.target);

@@ -19,12 +19,18 @@
   <link rel="stylesheet" href="css/variables.css">
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/poppins-400.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/playfair-display-italic.woff2" crossorigin>
-  <link rel="stylesheet" href="css/pages/catalog-base.css?v=4">
+  <link rel="stylesheet" href="css/pages/catalog-base.css?v=5">
   <link rel="stylesheet" href="css/pages/catalogo-fardamento.css?v=16">
   <script src="js/pages/catalog-products-fardamento.js?v=2" defer></script>
-  <script src="js/pages/catalogo-fardamento.js?v=11" defer></script>
+  <script src="js/pages/catalogo-fardamento.js?v=12" defer></script>
 </head>
-<body>
+<body class="catalog-preloading">
+  <div class="catalog-preloader" id="catalog-preloader" role="status" aria-live="polite">
+    <img src="assets/images/logotipo/LOGO-MENU-catalog.webp" width="300" height="145" alt="Jhonny Stylos">
+    <p>Preparando seu catálogo...</p>
+    <div class="catalog-preloader__bar" aria-hidden="true"><span></span></div>
+    <output>0%</output>
+  </div>
   <div class="uniform-copyright">© 2026 Jhonny Stylos. Todos os direitos reservados.</div>
   <main class="uniform-shell">
     <div id="uniform-pages" class="uniform-pages"></div>
