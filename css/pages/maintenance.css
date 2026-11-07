@@ -1,5 +1,5 @@
 :root{
-  color-scheme:light;
+  color-scheme:light;color-scheme:only light;
   --maintenance-blush:#f6e8e6;
   --maintenance-ivory:#fffaf7;
   --maintenance-wine:#6d1f31;
@@ -9,7 +9,8 @@
 }
 *{box-sizing:border-box}
 html,body{min-height:100%}
-body{margin:0;background:var(--maintenance-blush);color:var(--maintenance-ink);font-family:Arial,Helvetica,sans-serif}
+html{background:#fff linear-gradient(#fff,#fff) fixed}
+body{margin:0;background:var(--maintenance-blush) linear-gradient(var(--maintenance-blush),var(--maintenance-blush));color:var(--maintenance-ink);font-family:Arial,Helvetica,sans-serif}
 body:before,body:after{content:"";position:fixed;pointer-events:none}
 body:before{inset:0;background:repeating-linear-gradient(90deg,transparent 0,transparent 39px,#8c42500a 40px);mask-image:linear-gradient(90deg,transparent,#000 20%,#000 80%,transparent)}
 body:after{width:min(68vw,760px);aspect-ratio:1;left:50%;top:50%;translate:-50% -50%;border:1px solid #a14c5d1f;border-radius:50%;box-shadow:0 0 0 44px #ffffff18,0 0 0 45px #a14c5d12,0 0 0 92px #ffffff12}
@@ -37,3 +38,6 @@ small{display:block;max-width:46ch;margin:auto;color:#835965;font:italic .85rem/
   h1{font-size:clamp(2.35rem,13vw,3.35rem)}
 }
 @media(prefers-reduced-motion:reduce){.maintenance__content{animation:none}.maintenance__catalog{transition:none}}
+
+/* Sempre claro, mesmo com modo escuro forçado no celular. */
+@media (prefers-color-scheme:dark){:root{color-scheme:only light}html{background:#fff linear-gradient(#fff,#fff) fixed}body{background-color:var(--maintenance-blush);color:var(--maintenance-ink)}}

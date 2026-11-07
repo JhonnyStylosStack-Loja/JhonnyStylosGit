@@ -28,8 +28,17 @@
   --cat-whatsapp:#25d366;
 }
 
-html{background:var(--cat-canvas)}
-body{margin:0;background:var(--cat-canvas);color:var(--cat-ink);font-family:var(--cat-sans);-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--cat-canvas) linear-gradient(var(--cat-canvas),var(--cat-canvas));color:var(--cat-ink);font-family:var(--cat-sans);-webkit-font-smoothing:antialiased}
+
+/* Sempre claro: alguns celulares (Samsung Internet, Xiaomi) escurecem o site à força no modo escuro.
+   O fundo vem como degradê branco opaco, que esses navegadores não escurecem,
+   e o bloco de modo escuro repete as cores claras para o navegador entender que o site já cuida disso. */
+html{color-scheme:only light;background:#fff linear-gradient(#fff,#fff) fixed}
+@media (prefers-color-scheme:dark){
+  :root{color-scheme:only light}
+  html{background:#fff linear-gradient(#fff,#fff) fixed}
+  body{background-color:var(--cat-canvas);color:var(--cat-ink)}
+}
 
 /* Faixa de copyright no topo */
 .catalog-copyright,.uniform-copyright{padding:10px 16px;background:var(--cat-paper);border-bottom:1px solid #f0e0de;color:var(--cat-muted);font:400 .75rem/1.4 var(--cat-sans);letter-spacing:.02em;text-align:center}
