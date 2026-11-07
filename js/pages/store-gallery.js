@@ -30,7 +30,7 @@ const StoreGallery = {
     }
     root.innerHTML = this.images.slice(0, 3).map((item, index) => `
       <div class="${index === 0 ? 'store-gallery__main' : 'store-gallery__item'}">
-        <img src="${item.url}" alt="${item.alt || 'Loja Jhonny Styles'}" loading="lazy"
+        <img src="${item.url}" alt="${item.alt || 'Loja Jhonny Stylos'}" loading="lazy"
           style="object-position:${item.crop_x}% ${item.crop_y}%;transform:scale(${item.crop_zoom})">
         ${index === 0 ? '<div class="store-gallery__label"><span class="store-gallery__label-tag">Loja Física</span></div>' : ''}
         ${this.staff ? this.editButton : ''}

@@ -4,24 +4,27 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="only light">
-  <meta name="theme-color" content="#f7e6e4">
+  <meta name="theme-color" content="#f8ecea">
   <script>
     if (/^\/{2,}catalogo-fardamento\/?$/i.test(location.pathname)) {
       history.replaceState(history.state, '', '/catalogo-fardamento' + location.search + location.hash);
     }
   </script>
-  <title>Catálogo Fardamento — Jhonny Styles</title>
-  <meta name="description" content="Catálogo digital de fardamentos personalizados Jhonny Styles.">
+  <title>Catálogo Fardamento — Jhonny Stylos</title>
+  <meta name="description" content="Catálogo digital de fardamentos personalizados Jhonny Stylos.">
   <link rel="icon" type="image/webp" href="assets/images/logotipo/ICONE CIRCULAR.webp">
-  <link rel="preload" as="image" href="Catálogo Jhonny Styles/Catálogo (Fardamento)/Imagem da Capa Catálogo.webp" type="image/webp" fetchpriority="high">
+  <link rel="preload" as="image" href="Catálogo Jhonny Styles/Catálogo (Fardamento)/Capa/capa.webp" type="image/webp" fetchpriority="high">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/variables.css">
-  <link rel="stylesheet" href="css/pages/catalogo-fardamento.css?v=8">
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/poppins-400.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/playfair-display-italic.woff2" crossorigin>
+  <link rel="stylesheet" href="css/pages/catalog-base.css?v=3">
+  <link rel="stylesheet" href="css/pages/catalogo-fardamento.css?v=16">
   <script src="js/pages/catalog-products-fardamento.js?v=2" defer></script>
-  <script src="js/pages/catalogo-fardamento.js?v=5" defer></script>
+  <script src="js/pages/catalogo-fardamento.js?v=11" defer></script>
 </head>
 <body>
-  <div class="uniform-copyright">© 2026 Jhonny Styles. Todos os direitos reservados.</div>
+  <div class="uniform-copyright">© 2026 Jhonny Stylos. Todos os direitos reservados.</div>
   <main class="uniform-shell">
     <div id="uniform-pages" class="uniform-pages"></div>
   </main>

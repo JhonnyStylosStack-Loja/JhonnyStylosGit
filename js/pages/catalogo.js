@@ -14,34 +14,46 @@ categories.forEach(category => {
 });
 const totalPages = catalogPages.length + 3;
 const optimizedImagePath = image => image.replace(/\.(?:jpe?g|png|webp)$/i, '.webp');
+// Nomes chegam em formatos variados (CAIXA ALTA, Título, frase); exibimos todos em frase.
+const displayName = name => {
+  const text = String(name).trim().replace(/[.\s]+$/, '').toLocaleLowerCase('pt-BR');
+  return (text.charAt(0).toLocaleUpperCase('pt-BR') + text.slice(1))
+    .replace(/jhonny stylos/g, 'Jhonny Stylos')
+    .replace(/plus size/g, 'Plus Size');
+};
+const isPrice = value => /\d/.test(value);
+const priceBlock = product => `<div class="catalog-item__prices"><p class="catalog-item__price${isPrice(product.wholesale) ? '' : ' catalog-item__price--consult'}"><small>Atacado</small><strong>${isPrice(product.wholesale) ? product.wholesale : 'Sob consulta'}</strong></p><p class="catalog-item__retail">Varejo <b>${product.retail}</b></p></div>`;
 const optimizedImageVersion = image => image.includes('Blusas/%2301/') ? '?v=2' : '';
 const thumbnailUrl = image => `${assetRoot}Thumbs/${optimizedImagePath(image)}${optimizedImageVersion(image)}`;
 const largeUrl = image => `${assetRoot}Large/${optimizedImagePath(image)}${optimizedImageVersion(image)}`;
-const footer = page => `<footer class="catalog-page__footer"><span>Jhonny Styles　|　Catálogo de produtos atacado</span><span>${String(page).padStart(2, '0')}</span></footer>`;
+const footer = page => `<footer class="catalog-page__footer"><span>Jhonny Stylos · Catálogo Atacado</span><span>${String(page).padStart(2, '0')}</span></footer>`;
 const categoryLinks = categories.map((category, index) => `<a href="#pagina-${categoryStartPages.get(category.name)}"><span>${String(index + 1).padStart(2, '0')}</span>${category.name}<span>↗</span></a>`).join('');
-const cover = `<section class="catalog-page catalog-cover" id="pagina-1" aria-label="Informações do atacado Jhonny Stylos"><div class="catalog-cover__content"><img class="catalog-cover__logo" src="assets/images/logotipo/LOGO-MENU-catalog.webp" width="600" height="290" alt="Jhonny Styles" decoding="async"><div class="catalog-cover__rule"></div><div class="catalog-cover__headline"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M18 22v-7a14 14 0 0 1 28 0v7M12 20l-5 36h50l-5-36zM23 20v8m18-8v8"/></svg><h1><span>Catálogo</span><em>Atacado</em><small>Jhonny Stylos</small></h1></div><p class="catalog-cover__eyebrow">Confira nosso catálogo digital<br>exclusivo <strong>para atacado!</strong></p><ul class="catalog-cover__benefits"><li><span class="catalog-cover__benefit-icon"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 27 24 16l16 11M12 27h24v10H12zM24 16v-5c0-4 6-4 6 0"/></svg></span><p><strong>Pedido mínimo</strong><span>de <b>5 peças</b> variadas.</span></p></li><li><span class="catalog-cover__benefit-icon"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M18 8c1 5 11 5 12 0l5 9-4 3 3 20H14l3-20-4-3z"/></svg></span><p><strong>Diversos modelos,</strong><span>cores e tamanhos.</span></p></li><li><span class="catalog-cover__benefit-icon"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M5 14h25v20H5zM30 22h7l6 7v5H30zM13 39a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm23 0a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM2 20h10M1 25h8"/></svg></span><p><strong>Enviamos para<br>todo o Brasil</strong><span>pelos Correios, transporte aéreo, excursões e transportadoras.</span></p></li></ul><div class="catalog-cover__closing"><svg viewBox="0 0 56 64" aria-hidden="true"><path d="M15 22v-7a13 13 0 0 1 26 0v7M10 20 5 58h46l-5-38zM20 20v8m16-8v8"/></svg><p>Monte seu pedido com as peças de sua preferência e <strong>garanta suas novidades!</strong></p></div><a class="catalog-cover__cta" href="#pagina-2"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M5 11c7-3 13-2 19 3v25c-6-5-12-6-19-3zm38 0c-7-3-13-2-19 3v25c6-5 12-6 19-3z"/></svg><span>Acesse agora nosso<strong>Catálogo Digital</strong></span><b aria-hidden="true">›</b></a></div></section>`;
-const index = `<section class="catalog-page catalog-index" id="pagina-2" aria-label="Índice"><div class="catalog-page__body"><p class="catalog-eyebrow">Jhonny Styles · Moda feminina</p><h1>Encontre o seu estilo</h1><p class="catalog-index__intro">Explore as peças por categoria. Confirme modelos e disponibilidade antes de fazer seu pedido.</p><div class="catalog-index__links">${categoryLinks}</div></div>${footer(2)}</section>`;
-const back = `<section class="catalog-page catalog-back" id="pagina-${totalPages}" aria-label="Contracapa"><div><img src="assets/images/logotipo/LOGO-MENU-catalog.webp" alt="Jhonny Styles" width="300" height="145"><h1>Vamos montar<br>o seu pedido?</h1><p>Conte o que você precisa e fale com a nossa equipe sobre seu pedido no atacado.</p><a href="https://wa.me/5585986348334?text=Olá!%20Gostaria%20de%20montar%20meu%20pedido%20no%20atacado." target="_blank" rel="noopener">Falar no WhatsApp</a></div>${footer(totalPages)}</section>`;
+const cover = `<section class="catalog-page catalog-cover" id="pagina-1" aria-label="Informações do atacado Jhonny Stylos"><div class="catalog-cover__content"><img class="catalog-cover__logo" src="assets/images/logotipo/LOGO-MENU-catalog.webp" width="600" height="290" alt="Jhonny Stylos" decoding="async"><div class="catalog-cover__rule"></div><div class="catalog-cover__headline"><h1><span><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M18 22v-7a14 14 0 0 1 28 0v7M12 20l-5 36h50l-5-36zM23 20v8m18-8v8"/></svg>Catálogo</span><em>Atacado</em><small>Jhonny Stylos</small></h1></div><p class="catalog-cover__eyebrow">Catálogo digital<br>exclusivo <strong>para atacado</strong></p><ul class="catalog-cover__benefits"><li><span class="catalog-cover__benefit-icon"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 27 24 16l16 11M12 27h24v10H12zM24 16v-5c0-4 6-4 6 0"/></svg></span><p>Pedido mínimo de <b>5 peças</b></p></li><li><span class="catalog-cover__benefit-icon"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M18 8c1 5 11 5 12 0l5 9-4 3 3 20H14l3-20-4-3z"/></svg></span><p>Modelos, cores e tamanhos</p></li><li><span class="catalog-cover__benefit-icon"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M5 14h25v20H5zM30 22h7l6 7v5H30zM13 39a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm23 0a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM2 20h10M1 25h8"/></svg></span><p>Enviamos para todo o Brasil</p></li></ul><div class="catalog-cover__closing"><svg viewBox="0 0 56 64" aria-hidden="true"><path d="M15 22v-7a13 13 0 0 1 26 0v7M10 20 5 58h46l-5-38zM20 20v8m16-8v8"/></svg><p>Monte seu pedido com as peças de sua preferência e <strong>garanta suas novidades!</strong></p></div><a class="catalog-cover__cta" href="#pagina-2"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M5 11c7-3 13-2 19 3v25c-6-5-12-6-19-3zm38 0c-7-3-13-2-19 3v25c6-5 12-6 19-3z"/></svg><span>Acesse agora nosso<strong>Catálogo Digital</strong></span><b aria-hidden="true">›</b></a></div></section>`;
+const index = `<section class="catalog-page catalog-index" id="pagina-2" aria-label="Índice"><div class="catalog-page__body"><p class="catalog-eyebrow">Jhonny Stylos · Moda feminina</p><h1>Encontre o seu estilo</h1><p class="catalog-index__intro">Explore as peças por categoria. Confirme modelos e disponibilidade antes de fazer seu pedido.</p><div class="catalog-index__links">${categoryLinks}</div></div>${footer(2)}</section>`;
+const back = `<section class="catalog-page catalog-back" id="pagina-${totalPages}" aria-label="Contracapa"><div class="catalog-back__inner"><span class="catalog-brand-mark" role="img" aria-label="Jhonny Stylos"></span><h1>Vamos montar<br>o seu pedido?</h1><p>Conte o que você precisa e fale com a nossa equipe sobre seu pedido no atacado.</p><a class="catalog-back__cta" href="https://wa.me/5585986348334?text=Olá!%20Gostaria%20de%20montar%20meu%20pedido%20no%20atacado." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.47-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.91-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41-.08-.13-.27-.2-.57-.35M12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88a9.88 9.88 0 0 1 9.88 9.89c0 5.45-4.44 9.88-9.88 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.89a11.82 11.82 0 0 0-3.48-8.41"/></svg>Falar no WhatsApp</a></div>${footer(totalPages)}</section>`;
 function productPage(page) {
   const index = page - 3;
   const pageData = catalogPages[index];
   const pageProducts = pageData.products;
   const cards = pageProducts.map(product => {
     const productIndex = products.indexOf(product);
-    const controls = product.images.length > 1 ? `<button class="catalog-item__arrow catalog-item__arrow--previous" type="button" data-direction="-1" aria-label="Foto anterior de ${product.name}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 4.5-7.5 7.5 7.5 7.5"/></svg></button><button class="catalog-item__arrow catalog-item__arrow--next" type="button" data-direction="1" aria-label="Próxima foto de ${product.name}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 4.5 7.5 7.5L9 19.5"/></svg></button><span class="catalog-item__image-count" aria-live="polite">1/${product.images.length}</span>` : '';
-    const slides = product.images.map((image, imageIndex) => `<img data-src="${thumbnailUrl(image)}" data-full-src="${largeUrl(image)}" alt="${product.name}, foto ${imageIndex + 1} de ${product.images.length}" decoding="async">`).join('');
+    const controls = product.images.length > 1 ? `<button class="catalog-item__arrow catalog-item__arrow--previous" type="button" data-direction="-1" aria-label="Foto anterior de ${displayName(product.name)}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 4.5-7.5 7.5 7.5 7.5"/></svg></button><button class="catalog-item__arrow catalog-item__arrow--next" type="button" data-direction="1" aria-label="Próxima foto de ${displayName(product.name)}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 4.5 7.5 7.5L9 19.5"/></svg></button><span class="catalog-item__image-count" aria-live="polite">1/${product.images.length}</span>` : '';
+    const slides = product.images.map((image, imageIndex) => `<img data-src="${thumbnailUrl(image)}" data-full-src="${largeUrl(image)}" alt="${displayName(product.name)}, foto ${imageIndex + 1} de ${product.images.length}" decoding="async">`).join('');
     const track = product.images.length > 1 ? `<div class="catalog-item__track"><img data-src="${thumbnailUrl(product.images.at(-1))}" data-full-src="${largeUrl(product.images.at(-1))}" alt="" aria-hidden="true" decoding="async">${slides}<img data-src="${thumbnailUrl(product.images[0])}" data-full-src="${largeUrl(product.images[0])}" alt="" aria-hidden="true" decoding="async"></div>` : `<div class="catalog-item__track catalog-item__track--single">${slides}</div>`;
     const layoutClass = product.layout === 'landscape' ? ' catalog-item__media--landscape' : '';
-    return `<article class="catalog-item"><div class="catalog-item__media${layoutClass}" data-product="${productIndex}" data-image="0" role="button" tabindex="0" aria-label="Ampliar fotos de ${product.name}">${track}${controls}</div><div class="catalog-item__copy"><h2>${product.name} <span class="catalog-item__title-icon" aria-hidden="true">${product.icon}</span></h2><p>${product.size}</p><span>Atacado: ${product.wholesale}</span><span>Varejo: ${product.retail}</span></div></article>`;
+    return `<article class="catalog-item"><div class="catalog-item__media${layoutClass}" data-product="${productIndex}" data-image="0" role="button" tabindex="0" aria-label="Ampliar fotos de ${displayName(product.name)}">${track}${controls}</div><div class="catalog-item__copy"><h2>${displayName(product.name)} <span class="catalog-item__title-icon" aria-hidden="true">${product.icon}</span></h2><p class="catalog-item__size">${product.size}</p>${priceBlock(product)}</div></article>`;
   }).join('');
   const background = ((index % 3) + 1).toString().padStart(2, '0');
   const gridClass = pageProducts.length === 1 ? 'catalog-grid catalog-grid--single' : 'catalog-grid';
   const pageLayoutClass = pageProducts.length === 1 && pageProducts[0].layout === 'landscape' ? ' catalog-products--landscape' : '';
   return `<section class="catalog-page catalog-products${pageLayoutClass}" id="pagina-${page}" style="--page-background:url('${assetRoot}Background Paginas/Back${background}.webp')" aria-label="Página ${page}, ${pageData.category}"><div class="catalog-page__body"><div class="catalog-products__heading"><h1>${pageData.category}</h1><p>Elegância e estilo<br>em cada detalhe.</p></div><div class="${gridClass}">${cards}</div></div>${footer(page)}</section>`;
 }
-const INITIAL_PRODUCTS = 25;
-const PRELOAD_PRODUCTS = 50;
-const PRODUCTS_PER_BATCH = 6;
+// Abertura rápida: a tela de carregamento espera só os 15 primeiros produtos.
+// Depois, conforme a rolagem, sempre há ao menos 10 produtos prontos à frente.
+const INITIAL_PRODUCTS = 15;
+const PRELOAD_PRODUCTS = 15;
+const PRODUCTS_PER_BATCH = 5;
+const PRODUCTS_AHEAD = 10;
 pages.innerHTML = `${cover}${index}<div class="catalog-load-more" id="catalog-load-more" role="status" aria-live="polite"><span aria-hidden="true"></span><p>Carregando mais produtos...</p></div>`;
 function loadCatalogImage(image) {
   if (!image?.dataset.src) return;
@@ -69,6 +81,7 @@ function preloadFullCatalogImage(url) {
   const preload = new Image();
   requestedFullImages.add(url);
   activeFullImagePreloads.set(url, preload);
+  preload.fetchPriority = 'low';
   const release = () => activeFullImagePreloads.delete(url);
   preload.addEventListener('load', release, {once:true});
   preload.addEventListener('error', release, {once:true});
@@ -82,11 +95,18 @@ const catalogImageObserver = new IntersectionObserver(entries => {
     catalogImageObserver.unobserve(entry.target);
   });
 }, {rootMargin:'2600px 0px'});
+function loadPrimaryImage(media) {
+  const product = products[Number(media.dataset.product)];
+  const images = media.querySelectorAll('.catalog-item__track img');
+  const primary = images[product.images.length > 1 ? Number(media.dataset.image) + 1 : 0];
+  if (primary?.dataset.src) primary.fetchPriority = 'high';
+  loadCatalogImage(primary);
+}
 function preloadProductCarousel(media) {
-  media.querySelectorAll('.catalog-item__track img').forEach(image => {
-    loadCatalogImage(image);
-    preloadFullCatalogImage(image.dataset.fullSrc);
-  });
+  const images = [...media.querySelectorAll('.catalog-item__track img')];
+  images.forEach(loadCatalogImage);
+  const product = products[Number(media.dataset.product)];
+  preloadFullCatalogImage(images[product.images.length > 1 ? Number(media.dataset.image) + 1 : 0]?.dataset.fullSrc);
 }
 const catalogCarouselObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
@@ -95,11 +115,10 @@ const catalogCarouselObserver = new IntersectionObserver(entries => {
     extendCatalogBuffer(Number(entry.target.dataset.catalogOrder));
     catalogCarouselObserver.unobserve(entry.target);
   });
-}, {rootMargin:'180px 0px', threshold:.15});
+}, {rootMargin:'60% 0px', threshold:0});
 const loadMore = document.getElementById('catalog-load-more');
 let loadedCatalogPageCount = 0;
 let loadedProductCount = 0;
-let nextBufferTrigger = 5;
 let pageObserver = null;
 let loadingNextBatch = false;
 function appendProductBatch(productLimit) {
@@ -119,7 +138,8 @@ function appendProductBatch(productLimit) {
   addedPages.forEach(page => {
     catalogImageObserver.observe(page);
     page.querySelectorAll('.catalog-item__media').forEach(media => {
-      preloadProductCarousel(media);
+      // Primeiro a foto principal de cada produto; o resto do carrossel e a versão grande quando ele se aproxima da tela.
+      loadPrimaryImage(media);
       catalogCarouselObserver.observe(media);
     });
     pageObserver?.observe(page);
@@ -134,9 +154,8 @@ function appendProductBatch(productLimit) {
   requestAnimationFrame(updateWheelBounds);
 }
 function extendCatalogBuffer(visibleProductOrder) {
-  while (visibleProductOrder >= nextBufferTrigger && loadedCatalogPageCount < catalogPages.length) {
+  while (visibleProductOrder + PRODUCTS_AHEAD >= loadedProductCount && loadedCatalogPageCount < catalogPages.length) {
     appendProductBatch(PRODUCTS_PER_BATCH);
-    nextBufferTrigger += PRODUCTS_PER_BATCH;
   }
 }
 function renderNextProductBatch() {
@@ -288,8 +307,8 @@ function openLightbox(sourceMedia) {
   loadCatalogImage(lightboxImages[product.images.length > 1 ? Number(media.dataset.image) + 1 : 0]);
   lightboxStage.replaceChildren(media);
   setLightboxZoom(media, 1);
-  lightbox.querySelector('h2').textContent = `${product.name} ${product.icon}`;
-  lightbox.querySelector('.catalog-lightbox__caption p').textContent = `${product.size} · Atacado: ${product.wholesale} · Varejo: ${product.retail}`;
+  lightbox.querySelector('h2').textContent = `${displayName(product.name)} ${product.icon}`;
+  lightbox.querySelector('.catalog-lightbox__caption p').textContent = `${product.size} · Atacado: ${isPrice(product.wholesale) ? product.wholesale : 'sob consulta'} · Varejo: ${product.retail}`;
   lightbox.hidden = false;
   document.body.classList.add('catalog-lightbox-open');
   requestAnimationFrame(() => lightbox.classList.add('is-open'));

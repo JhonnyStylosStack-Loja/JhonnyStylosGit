@@ -51,7 +51,7 @@ function renderSpotlight(SPOTLIGHT) {
     <div class="nov-spotlight__info">
       <p class="nov-spotlight__cat">${SPOTLIGHT.category}</p>
       <h2 class="nov-spotlight__name">${SPOTLIGHT.name}</h2>
-      <p class="nov-spotlight__desc">Peça exclusiva da nova coleção Jhonny Styles. Tecido de alta qualidade, modelagem cuidadosa para valorizar cada silhueta.</p>
+      <p class="nov-spotlight__desc">Peça exclusiva da nova coleção Jhonny Stylos. Tecido de alta qualidade, modelagem cuidadosa para valorizar cada silhueta.</p>
       <div class="nov-spotlight__price-row">
         <span class="nov-spotlight__price">${Formatter.price(SPOTLIGHT.price)}</span>
         ${SPOTLIGHT.comparePrice ? `<span class="nov-spotlight__compare">${Formatter.price(SPOTLIGHT.comparePrice)}</span>` : ''}

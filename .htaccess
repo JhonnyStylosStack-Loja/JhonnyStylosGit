@@ -17,7 +17,9 @@ RewriteRule ^catalogo-fardamento/?$ catalogo-fardamento.html [L,NC]
 # Impede o acesso pelos enderecos antigos divulgados anteriormente.
 RewriteCond %{THE_REQUEST} \s/+catalogo\.html(?:[?\s]) [NC]
 RewriteRule ^catalogo\.html$ maintenance.html [L]
-RewriteRule ^(?:catalogo|maintenance)\.html$ - [L,NC]
+RewriteCond %{THE_REQUEST} \s/+catalogo-fardamento\.html(?:[?\s]) [NC]
+RewriteRule ^catalogo-fardamento\.html$ maintenance.html [L,NC]
+RewriteRule ^(?:catalogo|catalogo-fardamento|maintenance)\.html$ - [L,NC]
 
 # Nao bloqueia os recursos usados pelo catalogo e pela tela de manutencao.
 RewriteRule ^(?:assets|css|js|api)(?:/|$) - [L,NC]

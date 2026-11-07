@@ -1613,7 +1613,7 @@ async function renderCmsBlog() {
               </div>
               <div class="cms-field">
                 <label class="cms-label">Autor</label>
-                <input class="cms-input" id="cms-blog-author" type="text" placeholder="Jhonny Styles">
+                <input class="cms-input" id="cms-blog-author" type="text" placeholder="Jhonny Stylos">
               </div>
             </div>
             <div class="cms-field cms-field--full">
@@ -1719,7 +1719,7 @@ function bindCmsBlog() {
       slug:     title.toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,''),
       category: document.getElementById('cms-blog-cat').value,
       date:     document.getElementById('cms-blog-date').value,
-      author:   document.getElementById('cms-blog-author').value.trim() || 'Jhonny Styles',
+      author:   document.getElementById('cms-blog-author').value.trim() || 'Jhonny Stylos',
       excerpt:  document.getElementById('cms-blog-excerpt').value.trim(),
       content:  document.getElementById('cms-blog-content').value,
       image:    document.getElementById('cms-blog-img').value || '',
@@ -1739,7 +1739,7 @@ function _cmsBlogOpenModal(p) {
   document.getElementById('cms-blog-title').value   = p?.title ?? ''
   document.getElementById('cms-blog-cat').value     = p?.category ?? 'Moda'
   document.getElementById('cms-blog-date').value    = p?.date ?? new Date().toISOString().slice(0,10)
-  document.getElementById('cms-blog-author').value  = p?.author ?? 'Jhonny Styles'
+  document.getElementById('cms-blog-author').value  = p?.author ?? 'Jhonny Stylos'
   document.getElementById('cms-blog-excerpt').value = p?.excerpt ?? ''
   document.getElementById('cms-blog-content').value = p?.content ?? ''
   document.getElementById('cms-blog-url').value = ''
