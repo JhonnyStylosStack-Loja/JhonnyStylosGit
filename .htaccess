@@ -20,16 +20,3 @@ RewriteRule ^catalogo\.html$ maintenance.html [L]
 RewriteCond %{THE_REQUEST} \s/+catalogo-fardamento\.html(?:[?\s]) [NC]
 RewriteRule ^catalogo-fardamento\.html$ maintenance.html [L,NC]
 RewriteRule ^(?:catalogo|catalogo-fardamento|maintenance)\.html$ - [L,NC]
-
-# Nao bloqueia os recursos usados pelo catalogo e pela tela de manutencao.
-RewriteRule ^(?:assets|css|js|api)(?:/|$) - [L,NC]
-RewriteRule \.(?:avif|css|gif|ico|jpe?g|js|json|map|mp4|png|svg|webm|webp|woff2?|ttf|eot)$ - [L,NC]
-
-# A pagina inicial e as demais paginas do site ficam em manutencao.
-RewriteRule ^$ maintenance.html [L]
-RewriteRule ^.*\.html$ maintenance.html [L,NC]
-
-# Rotas amigaveis que nao correspondem a arquivos tambem exibem a manutencao.
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^ maintenance.html [L]
