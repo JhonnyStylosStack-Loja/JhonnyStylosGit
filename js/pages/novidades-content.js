@@ -1,12 +1,12 @@
 const NOVIDADES_LOCAL_IMAGES = [
-  'assets/images/IMAGENS%20SITE/Novidades/Eleg%C3%A2ncia%20Branca%20no%20Espelho.webp?v=20261026-1',
-  'assets/images/IMAGENS%20SITE/Novidades/Eleg%C3%A2ncia%20dourada%20em%20vestido%20floral.webp?v=20261026-1',
-  'assets/images/IMAGENS%20SITE/Novidades/leveza%20em%20tons%20naturais/01.webp?v=20261026-2',
-  'assets/images/IMAGENS%20SITE/Novidades/Retrato%20elegante%20em%20vestido%20rosa%20pastel.webp?v=20261026-1',
-  'assets/images/IMAGENS%20SITE/Novidades/Selfie%20elegante%20em%20vestido%20azul%20lavanda.webp?v=20261026-1',
-  'assets/images/IMAGENS%20SITE/Novidades/produ%C3%A7%C3%B5es%20para%20todos%20os%20momentos/01.webp?v=20261026-2',
-  'assets/images/IMAGENS%20SITE/Novidades/Selfie%20elegante%20em%20vestido%20de%20tweed%20preto.webp?v=20261026-1',
-  'assets/images/IMAGENS%20SITE/Novidades/Selfie%20elegante%20em%20vestido%20rosa%20floral.webp?v=20261026-1'
+  'assets/images/IMAGENS%20SITE/Novidades/Eleg%C3%A2ncia%20Branca%20no%20Espelho.webp?v=20261026-1-r1110',
+  'assets/images/IMAGENS%20SITE/Novidades/Eleg%C3%A2ncia%20dourada%20em%20vestido%20floral.webp?v=20261026-1-r1110',
+  'assets/images/IMAGENS%20SITE/Novidades/leveza%20em%20tons%20naturais/01.webp?v=20261026-2-r1110',
+  'assets/images/IMAGENS%20SITE/Novidades/Retrato%20elegante%20em%20vestido%20rosa%20pastel.webp?v=20261026-1-r1110',
+  'assets/images/IMAGENS%20SITE/Novidades/Selfie%20elegante%20em%20vestido%20azul%20lavanda.webp?v=20261026-1-r1110',
+  'assets/images/IMAGENS%20SITE/Novidades/produ%C3%A7%C3%B5es%20para%20todos%20os%20momentos/01.webp?v=20261026-2-r1110',
+  'assets/images/IMAGENS%20SITE/Novidades/Selfie%20elegante%20em%20vestido%20de%20tweed%20preto.webp?v=20261026-1-r1110',
+  'assets/images/IMAGENS%20SITE/Novidades/Selfie%20elegante%20em%20vestido%20rosa%20floral.webp?v=20261026-1-r1110'
 ]
 
 const NovidadesContent = {

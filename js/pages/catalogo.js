@@ -23,7 +23,7 @@ const displayName = name => {
 };
 const isPrice = value => /\d/.test(value);
 const priceBlock = product => `<div class="catalog-item__prices"><p class="catalog-item__price${isPrice(product.wholesale) ? '' : ' catalog-item__price--consult'}"><small>Atacado</small><strong>${isPrice(product.wholesale) ? product.wholesale : 'Sob consulta'}</strong></p><p class="catalog-item__retail">Varejo <b>${product.retail}</b></p></div>`;
-const optimizedImageVersion = image => image.includes('Blusas/%2301/') ? '?v=2' : '';
+const optimizedImageVersion = image => image.includes('Blusas/%2301/') ? '?v=2-r1110' : '';
 const thumbnailUrl = image => `${assetRoot}Thumbs/${optimizedImagePath(image)}${optimizedImageVersion(image)}`;
 const largeUrl = image => `${assetRoot}Large/${optimizedImagePath(image)}${optimizedImageVersion(image)}`;
 const footer = page => `<footer class="catalog-page__footer"><span>Jhonny Stylos · Catálogo Atacado</span><span>${String(page).padStart(2, '0')}</span></footer>`;
