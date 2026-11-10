@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <link rel="icon" type="image/webp" href="assets/images/logotipo/ICONE CIRCULAR.webp">
+  <link rel="icon" type="image/webp" href="assets/images/logotipo/ICONE-CIRCULAR-192.webp">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="only light">
   <meta name="theme-color" content="#ffffff">
@@ -21,6 +21,10 @@
 })()
 </script>
   <title>Novidades — Jhonny Stylos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Poppins:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
   <link rel="stylesheet" href="css/reset.css?v=20261024-9-r1110">
   <link rel="stylesheet" href="css/variables.css?v=20261026-light-1-r1110">
   <link rel="stylesheet" href="css/global.css?v=20261026-light-1-r1110">
@@ -46,7 +50,7 @@
   <div class="container">
     <div class="header__inner">
       <a href="index.html" class="header__logo">
-        <img src="assets/images/logotipo/LOGO-MENU.webp" alt="Jhonny Stylos" class="header__logo-img">
+        <img src="assets/images/logotipo/LOGO-MENU-400.webp" alt="Jhonny Stylos" class="header__logo-img">
       </a>
       <div class="header__search">
         <input type="search" class="header__search-input" placeholder="O que você está buscando?" aria-label="Buscar">
@@ -55,17 +59,17 @@
         </button>
       </div>
       <div class="header__actions">
-        <a href="account.html" class="header__action-btn">
+        <a href="account.html" class="header__action-btn" aria-label="Minha conta">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           <span class="header__action-label">Login</span>
         </a>
-        <a href="wishlist.html" class="header__action-btn">
+        <a href="wishlist.html" class="header__action-btn" aria-label="Lista de desejos">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
         </a>
-        <a href="cart.html" class="header__action-btn" style="position:relative;">
+        <a href="cart.html" class="header__action-btn" aria-label="Carrinho" style="position:relative;">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
           <span class="header__badge cart-count-badge" style="display:none">0</span>
-        </a><a href="admin.html" class="header__action-btn header__action-btn--admin" title="Painel Admin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></a>
+        </a><a href="admin.html" class="header__action-btn header__action-btn--admin" title="Painel Admin" aria-label="Painel Admin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></a>
       </div>
     </div>
   </div>
@@ -99,9 +103,9 @@
 </nav>
 
 <!-- MOBILE MENU -->
-<nav class="nav__mobile" aria-hidden="true">
+<nav class="nav__mobile" aria-hidden="true" inert>
   <div class="nav__mobile-header">
-    <img src="assets/images/logotipo/LOGO-MENU.webp" alt="Jhonny Stylos" style="height:44px;object-fit:contain;">
+    <img src="assets/images/logotipo/LOGO-MENU-400.webp" alt="Jhonny Stylos" style="height:44px;object-fit:contain;">
     <button class="nav__mobile-close" aria-label="Fechar menu">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
@@ -232,7 +236,7 @@
     <div class="footer__grid">
       <div>
         <div class="footer__logo">
-          <img src="assets/images/logotipo/ICONE CIRCULAR.webp" alt="Jhonny Stylos" style="height:64px;width:64px;object-fit:contain;border-radius:50%;">
+          <img src="assets/images/logotipo/ICONE-CIRCULAR-192.webp" width="64" height="64" loading="lazy" alt="Jhonny Stylos" style="height:64px;width:64px;object-fit:contain;border-radius:50%;">
         </div>
         <p class="footer__desc">Moda feminina com estilo, qualidade e personalidade. Peças exclusivas pensadas para a mulher moderna que se ama e se cuida.</p>
         <div class="footer__social">
@@ -243,7 +247,7 @@
         </div>
       </div>
       <div>
-        <h4 class="footer__col-title">Categorias</h4>
+        <h3 class="footer__col-title">Categorias</h3>
         <ul class="footer__links">
           <li><a href="shop.html" class="footer__link">Vestidos</a></li>
           <li><a href="shop.html" class="footer__link">Conjuntos</a></li>
@@ -254,7 +258,7 @@
         </ul>
       </div>
       <div>
-        <h4 class="footer__col-title">Links Rápidos</h4>
+        <h3 class="footer__col-title">Links Rápidos</h3>
         <ul class="footer__links">
           <li><a href="index.html" class="footer__link">Início</a></li>
           <li><a href="shop.html" class="footer__link">Produtos</a></li>
@@ -265,7 +269,7 @@
         </ul>
       </div>
       <div>
-        <h4 class="footer__col-title">Newsletter</h4>
+        <h3 class="footer__col-title">Newsletter</h3>
         <p class="footer__newsletter-text">Receba novidades, promoções exclusivas e dicas de moda diretamente no seu e-mail.</p>
         <form class="footer__newsletter-form" onsubmit="return false">
           <input type="email" class="footer__newsletter-input" placeholder="Seu e-mail">

@@ -85,6 +85,7 @@ const Header = {
       hamburger.setAttribute('aria-expanded', 'true')
       mobileNav.classList.add('is-open')
       mobileNav.setAttribute('aria-hidden', 'false')
+      mobileNav.removeAttribute('inert')
       overlay?.classList.add('is-visible')
       document.body.classList.add('menu-open')
       closeBtn?.focus()
@@ -94,6 +95,7 @@ const Header = {
       hamburger.setAttribute('aria-expanded', 'false')
       mobileNav.classList.remove('is-open')
       mobileNav.setAttribute('aria-hidden', 'true')
+      mobileNav.setAttribute('inert', '')
       overlay?.classList.remove('is-visible')
       document.body.classList.remove('menu-open')
     }

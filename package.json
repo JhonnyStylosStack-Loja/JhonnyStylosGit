@@ -7,7 +7,9 @@
     "catalog:build": "npm run catalog:data && npm run catalog:thumbnails",
     "uniform:data": "node scripts/generate-uniform-catalog.js",
     "uniform:images": "node scripts/generate-uniform-images.js",
-    "uniform:build": "npm run uniform:data && npm run uniform:images"
+    "uniform:build": "npm run uniform:data && npm run uniform:images",
+    "images:responsive": "node scripts/generate-responsive-images.js",
+    "css:home": "node scripts/build-home-css.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.116.0",

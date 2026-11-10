@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <link rel="icon" type="image/webp" href="assets/images/logotipo/ICONE CIRCULAR.webp">
+  <link rel="icon" type="image/webp" href="assets/images/logotipo/ICONE-CIRCULAR-192.webp">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="only light">
   <meta name="theme-color" content="#ffffff">
@@ -21,23 +21,13 @@
 })()
 </script>
   <title>Jhonny Stylos | Moda Feminina</title>
-  <link rel="stylesheet" href="css/reset.css?v=20261024-9-r1110">
-  <link rel="stylesheet" href="css/variables.css?v=20261026-light-1-r1110">
-  <link rel="stylesheet" href="css/global.css?v=20261026-light-1-r1110">
-  <link rel="stylesheet" href="css/components/header.css?v=20261025-16-r1110">
-  <link rel="stylesheet" href="css/components/hero.css?v=20261025-12-r1110">
-  <link rel="stylesheet" href="css/components/product-card.css?v=20261026-2-r1110">
-  <link rel="stylesheet" href="css/components/tabs.css?v=20261024-9-r1110">
-  <link rel="stylesheet" href="css/components/new-arrivals.css?v=20261025-10-r1110">
-  <link rel="stylesheet" href="css/components/banner.css?v=20261026-light-1-r1110">
-  <link rel="stylesheet" href="css/components/countdown.css?v=20261026-2-r1110">
-  <link rel="stylesheet" href="css/components/mini-list.css?v=20261025-10-r1110">
-  <link rel="stylesheet" href="css/components/blog-card.css?v=20261024-9-r1110">
-  <link rel="stylesheet" href="css/components/footer.css?v=20261025-11-r1110">
-  <link rel="stylesheet" href="css/components/modal.css?v=20261024-9-r1110">
-  <link rel="stylesheet" href="css/components/toast.css?v=20261024-9-r1110">
-  <link rel="stylesheet" href="css/components/animations.css?v=20261024-9-r1110">
-  <link rel="stylesheet" href="css/pages/home-mobile.css?v=20261026-light-2-r1110">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Poppins:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
+  <link rel="preload" as="image" href="assets/images/banners/MOBILE/banner1.webp?v=20261026-2-r1110" media="(max-width: 580px)" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/images/banners/banner1.webp?v=20261026-1-r1110" media="(min-width: 581px)" fetchpriority="high">
+  <link rel="stylesheet" href="css/bundles/home.css?v=f1515c09b2">
 </head>
 <body>
 <div style="display:none">
@@ -59,7 +49,7 @@
   <div class="container">
     <div class="header__inner">
       <a href="index.html" class="header__logo">
-        <img src="assets/images/logotipo/LOGO-MENU.webp" alt="Jhonny Stylos" class="header__logo-img">
+        <img src="assets/images/logotipo/LOGO-MENU-400.webp" alt="Jhonny Stylos" class="header__logo-img">
       </a>
       <div class="header__search">
         <input type="search" class="header__search-input" placeholder="O que você está buscando?" aria-label="Buscar">
@@ -68,18 +58,18 @@
         </button>
       </div>
       <div class="header__actions">
-        <a href="account.html" class="header__action-btn">
+        <a href="account.html" class="header__action-btn" aria-label="Minha conta">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           <span class="header__action-label">Login</span>
         </a>
-        <a href="wishlist.html" class="header__action-btn">
+        <a href="wishlist.html" class="header__action-btn" aria-label="Lista de desejos">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
         </a>
-        <a href="cart.html" class="header__action-btn" style="position:relative;">
+        <a href="cart.html" class="header__action-btn" aria-label="Carrinho" style="position:relative;">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
           <span class="header__badge cart-count-badge" style="display:none">0</span>
         </a>
-        <a href="admin.html" class="header__action-btn header__action-btn--admin" title="Painel Admin">
+        <a href="admin.html" class="header__action-btn header__action-btn--admin" title="Painel Admin" aria-label="Painel Admin">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
         </a>
       </div>
@@ -115,9 +105,9 @@
 </nav>
 
 <!-- MOBILE MENU -->
-<nav class="nav__mobile" aria-hidden="true">
+<nav class="nav__mobile" aria-hidden="true" inert>
   <div class="nav__mobile-header">
-    <img src="assets/images/logotipo/LOGO-MENU.webp" alt="Jhonny Stylos" style="height:44px;object-fit:contain;">
+    <img src="assets/images/logotipo/LOGO-MENU-400.webp" alt="Jhonny Stylos" style="height:44px;object-fit:contain;">
     <button class="nav__mobile-close" aria-label="Fechar menu">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
@@ -148,7 +138,7 @@
         <div class="hero-slide__inner">
           <picture>
             <source media="(max-width: 580px)" srcset="assets/images/banners/MOBILE/banner1.webp?v=20261026-2-r1110">
-            <img class="hero-slide__bg" src="assets/images/banners/banner1.webp?v=20261026-1-r1110" alt="Nova Coleção Jhonny Stylos">
+            <img class="hero-slide__bg" src="assets/images/banners/banner1.webp?v=20261026-1-r1110" width="2245" height="650" fetchpriority="high" decoding="async" alt="Nova Coleção Jhonny Stylos">
           </picture>
           <div class="hero-slide__center">
             <span class="hero-slide__handle">@jhonnystylos</span>
@@ -164,7 +154,7 @@
         <div class="hero-slide__inner">
           <picture>
             <source media="(max-width: 580px)" srcset="assets/images/banners/MOBILE/banner2.webp?v=20261026-2-r1110">
-            <img class="hero-slide__bg" src="assets/images/banners/banner2.webp?v=20261026-2-r1110" alt="Coleção Premium Jhonny Stylos">
+            <img class="hero-slide__bg" width="2245" height="650" fetchpriority="low" decoding="async" src="assets/images/banners/banner2.webp?v=20261026-2-r1110" alt="Coleção Premium Jhonny Stylos">
           </picture>
           <div class="hero-slide__center">
             <span class="hero-slide__handle">@jhonnystylos</span>
@@ -248,7 +238,7 @@
       </div>
       <div class="banners-double__grid">
         <div class="banner-card">
-          <img class="banner-card__image" src="assets/images/IMAGENS%20SITE/destaque%20container%201%20inicio/02.webp?v=20261026-1-r1110" alt="Nova Coleção">
+          <img class="banner-card__image" src="assets/images/IMAGENS%20SITE/destaque%20container%201%20inicio/02.webp?v=20261026-1-r1110" srcset="assets/images/_resp/400/IMAGENS%20SITE/destaque%20container%201%20inicio/02.webp 400w, assets/images/_resp/800/IMAGENS%20SITE/destaque%20container%201%20inicio/02.webp 800w" sizes="(max-width: 580px) 92vw, 50vw" loading="lazy" decoding="async" alt="Nova Coleção">
           <div class="banner-card__overlay">
             <p class="banner-card__tag">Nova Coleção</p>
             <h2 class="banner-card__title">Looks Completos</h2>
@@ -257,7 +247,7 @@
           </div>
         </div>
         <div class="banner-card">
-          <img class="banner-card__image" src="assets/images/IMAGENS%20SITE/destaque%20container%201%20inicio/01.webp?v=20261026-1-r1110" alt="Vestidos Exclusivos">
+          <img class="banner-card__image" src="assets/images/IMAGENS%20SITE/destaque%20container%201%20inicio/01.webp?v=20261026-1-r1110" srcset="assets/images/_resp/400/IMAGENS%20SITE/destaque%20container%201%20inicio/01.webp 400w, assets/images/_resp/800/IMAGENS%20SITE/destaque%20container%201%20inicio/01.webp 800w" sizes="(max-width: 580px) 92vw, 50vw" loading="lazy" decoding="async" alt="Vestidos Exclusivos">
           <div class="banner-card__overlay">
             <p class="banner-card__tag">Destaque</p>
             <h2 class="banner-card__title">Vestidos Exclusivos</h2>
@@ -300,7 +290,7 @@
   <section class="banner-offer">
     <picture>
       <source media="(max-width: 580px)" srcset="assets/images/banners/MOBILE/banner1.webp?v=20261026-2-r1110">
-      <img class="banner-offer__bg" src="assets/images/banners/banner1.webp?v=20261026-1-r1110" alt="">
+      <img class="banner-offer__bg" loading="lazy" decoding="async" src="assets/images/banners/banner1.webp?v=20261026-1-r1110" alt="">
     </picture>
     <div class="banner-offer__overlay"></div>
     <div class="container">
@@ -344,7 +334,7 @@
       </div>
       <div class="banners-promo__grid">
         <div class="promo-card">
-          <img class="promo-card__image" src="assets/images/IMAGENS%20SITE/container%204%20inicio/01.webp?v=20261026-1-r1110" alt="Blusas">
+          <img class="promo-card__image" src="assets/images/IMAGENS%20SITE/container%204%20inicio/01.webp?v=20261026-1-r1110" srcset="assets/images/_resp/400/IMAGENS%20SITE/container%204%20inicio/01.webp 400w, assets/images/_resp/800/IMAGENS%20SITE/container%204%20inicio/01.webp 800w" sizes="(max-width: 580px) 85vw, 33vw" loading="lazy" decoding="async" alt="Blusas">
           <div class="promo-card__content">
             <span class="promo-card__discount">Oferta: 20% Off</span>
             <h3 class="promo-card__title">Blusas Exclusivas</h3>
@@ -352,7 +342,7 @@
           </div>
         </div>
         <div class="promo-card">
-          <img class="promo-card__image" src="assets/images/IMAGENS%20SITE/container%204%20inicio/02.webp?v=20261026-1-r1110" alt="Saias">
+          <img class="promo-card__image" src="assets/images/IMAGENS%20SITE/container%204%20inicio/02.webp?v=20261026-1-r1110" srcset="assets/images/_resp/400/IMAGENS%20SITE/container%204%20inicio/02.webp 400w, assets/images/_resp/800/IMAGENS%20SITE/container%204%20inicio/02.webp 800w" sizes="(max-width: 580px) 85vw, 33vw" loading="lazy" decoding="async" alt="Saias">
           <div class="promo-card__content">
             <span class="promo-card__discount">Novidade</span>
             <h3 class="promo-card__title">Saias Midi</h3>
@@ -360,7 +350,7 @@
           </div>
         </div>
         <div class="promo-card">
-          <img class="promo-card__image" src="assets/images/IMAGENS%20SITE/container%204%20inicio/03.webp?v=20261026-1-r1110" alt="Conjuntos">
+          <img class="promo-card__image" src="assets/images/IMAGENS%20SITE/container%204%20inicio/03.webp?v=20261026-1-r1110" srcset="assets/images/_resp/400/IMAGENS%20SITE/container%204%20inicio/03.webp 400w, assets/images/_resp/800/IMAGENS%20SITE/container%204%20inicio/03.webp 800w" sizes="(max-width: 580px) 85vw, 33vw" loading="lazy" decoding="async" alt="Conjuntos">
           <div class="promo-card__content">
             <span class="promo-card__discount">25% Off Selecionados</span>
             <h3 class="promo-card__title">Conjuntos Premium</h3>
@@ -403,7 +393,7 @@
       </div>
       <div class="daily-deals__body">
         <div class="daily-deals__featured">
-          <img class="daily-deals__featured-image" src="assets/images/roupas/640145856_18127728499550228_8066820905867045664_n.webp" alt="Destaque">
+          <img class="daily-deals__featured-image" src="assets/images/roupas/640145856_18127728499550228_8066820905867045664_n.webp" srcset="assets/images/_resp/400/roupas/640145856_18127728499550228_8066820905867045664_n.webp 400w, assets/images/_resp/800/roupas/640145856_18127728499550228_8066820905867045664_n.webp 800w" sizes="(max-width: 580px) 92vw, 40vw" loading="lazy" decoding="async" alt="Destaque">
           <div class="daily-deals__featured-body">
             <p class="daily-deals__featured-name">Calça Alfaiataria Premium</p>
             <p class="daily-deals__featured-price">R$119,90</p>
@@ -468,7 +458,7 @@
     <div class="footer__grid">
       <div>
         <div class="footer__logo">
-          <img src="assets/images/logotipo/ICONE CIRCULAR.webp" alt="Jhonny Stylos" style="height:64px;width:64px;object-fit:contain;border-radius:50%;">
+          <img src="assets/images/logotipo/ICONE-CIRCULAR-192.webp" width="64" height="64" loading="lazy" alt="Jhonny Stylos" style="height:64px;width:64px;object-fit:contain;border-radius:50%;">
         </div>
         <p class="footer__desc">Moda feminina com estilo, qualidade e personalidade. Peças exclusivas pensadas para a mulher moderna que se ama e se cuida.</p>
         <div class="footer__social">
@@ -487,7 +477,7 @@
         </div>
       </div>
       <div>
-        <h4 class="footer__col-title">Categorias</h4>
+        <h3 class="footer__col-title">Categorias</h3>
         <ul class="footer__links">
           <li><a href="shop.html" class="footer__link">Vestidos</a></li>
           <li><a href="shop.html" class="footer__link">Conjuntos</a></li>
@@ -498,7 +488,7 @@
         </ul>
       </div>
       <div>
-        <h4 class="footer__col-title">Links Rápidos</h4>
+        <h3 class="footer__col-title">Links Rápidos</h3>
         <ul class="footer__links">
           <li><a href="index.html" class="footer__link">Início</a></li>
           <li><a href="shop.html" class="footer__link">Produtos</a></li>
@@ -509,7 +499,7 @@
         </ul>
       </div>
       <div>
-        <h4 class="footer__col-title">Newsletter</h4>
+        <h3 class="footer__col-title">Newsletter</h3>
         <p class="footer__newsletter-text">Receba novidades, promoções exclusivas e dicas de moda diretamente no seu e-mail.</p>
         <form class="footer__newsletter-form" onsubmit="return false">
           <input type="email" class="footer__newsletter-input" placeholder="Seu e-mail">

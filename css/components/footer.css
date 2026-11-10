@@ -143,11 +143,11 @@
   flex-wrap: wrap;
   gap: var(--space-md);
 }
-.footer__copy { font-size: var(--font-size-xs); color: var(--color-text-muted); }
+.footer__copy { font-size: var(--font-size-xs); color: #4f3f44; }
 .footer__bottom-links { display: flex; gap: var(--space-lg); }
 .footer__bottom-link {
   font-size: var(--font-size-xs);
-  color: var(--color-text-muted);
+  color: #4f3f44;
   transition: color var(--transition-fast);
 }
 .footer__bottom-link:hover { color: var(--color-primary-text); }

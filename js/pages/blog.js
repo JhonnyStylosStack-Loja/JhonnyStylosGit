@@ -7,7 +7,7 @@ function renderBlogCard(post) {
   return `
   <article class="blog-card">
     <a href="blog-post.html?id=${post.id}" class="blog-card__image-wrap" style="display:block;text-decoration:none">
-      <img class="blog-card__image" src="${post.image}" alt="${post.title}" loading="lazy" style="object-position:${post.coverCropX}% ${post.coverCropY}%;transform:scale(${post.coverCropZoom})">
+      <img class="blog-card__image" ${Formatter.imgAttrs(post.image)} alt="${post.title}" loading="lazy" style="object-position:${post.coverCropX}% ${post.coverCropY}%;transform:scale(${post.coverCropZoom})">
     </a>
     <div class="blog-card__body">
       <div class="blog-card__meta">

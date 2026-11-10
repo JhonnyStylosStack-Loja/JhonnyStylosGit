@@ -223,7 +223,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (relGrid) relGrid.innerHTML = related.map(p => `
     <article class="product-card">
       <div class="product-card__image-wrap">
-        <a href="product.html?id=${p.id}"><img src="${p.image}" alt="${p.name}" loading="lazy"></a>
+        <a href="product.html?id=${p.id}"><img ${Formatter.imgAttrs(p.image)} alt="${p.name}" loading="lazy"></a>
         <button class="product-card__quickadd js-addcart-rel" data-id="${p.id}">Adicionar ao Carrinho</button>
       </div>
       <div class="product-card__body">

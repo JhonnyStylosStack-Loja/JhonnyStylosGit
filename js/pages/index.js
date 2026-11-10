@@ -7,7 +7,7 @@ function renderLatestBlogCard(post) {
   return `
   <article class="blog-card">
     <a href="blog-post.html?id=${post.id}" class="blog-card__image-wrap" style="display:block;text-decoration:none">
-      <img class="blog-card__image" src="${post.image}" alt="${post.title}" loading="lazy">
+      <img class="blog-card__image" ${Formatter.imgAttrs(post.image)} alt="${post.title}" loading="lazy">
     </a>
     <div class="blog-card__body">
       <div class="blog-card__meta">
@@ -36,7 +36,7 @@ function renderProductCard(p) {
   return `
   <article class="product-card" data-id="${p.id}">
     <div class="product-card__image-wrap">
-      <a href="product.html?id=${p.id}"><img src="${p.image}" alt="${p.name}" loading="lazy"></a>
+      <a href="product.html?id=${p.id}"><img ${Formatter.imgAttrs(p.image)} alt="${p.name}" loading="lazy"></a>
       <div class="product-card__badges">
         ${p.isNew ? '<span class="badge badge--new">Novo</span>' : ''}
         ${p.isSale ? `<span class="badge badge--sale">-${salePct}%</span>` : ''}
@@ -78,7 +78,7 @@ function renderIllustrativeDealCard(product) {
   return `
   <article class="product-card product-card--illustrative">
     <div class="product-card__image-wrap">
-      <a href="shop.html"><img src="${product.image}" alt="${product.name}" loading="lazy"></a>
+      <a href="shop.html"><img ${Formatter.imgAttrs(product.image)} alt="${product.name}" loading="lazy"></a>
       <div class="product-card__badges">
         <span class="badge badge--sale">-${salePct}%</span>
       </div>
@@ -103,7 +103,7 @@ function renderFeaturedNew(p) {
   const salePct = p.comparePrice ? Math.round((1 - p.price / p.comparePrice) * 100) : 0
   return `
   <div class="na-feature-img-wrap">
-    <img src="${p.image}" alt="${p.name}" loading="lazy">
+    <img ${Formatter.imgAttrs(p.image)} alt="${p.name}" loading="lazy">
     <div class="na-feature-badges">
       ${p.isNew ? '<span class="badge badge--new">Novo</span>' : ''}
       ${p.isSale ? `<span class="badge badge--sale">-${salePct}%</span>` : ''}
@@ -127,7 +127,7 @@ function renderFeaturedNew(p) {
 function renderMiniItem(p) {
   return `
   <a href="product.html?id=${p.id}" class="mini-item">
-    <img class="mini-item__image" src="${p.image}" alt="${p.name}" loading="lazy">
+    <img class="mini-item__image" ${Formatter.imgAttrs(p.image)} alt="${p.name}" loading="lazy">
     <div class="mini-item__content">
       <p class="mini-item__name">${p.name}</p>
       <div class="mini-item__rating"><div class="stars">${renderStars(p.rating)}</div></div>

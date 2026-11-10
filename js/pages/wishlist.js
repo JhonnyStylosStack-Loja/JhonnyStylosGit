@@ -4,7 +4,7 @@ function renderCard(product) {
   <article class="product-card" data-id="${product.id}">
     <div class="product-card__image-wrap">
       <a href="product.html?id=${product.id}">
-        <img src="${product.image}" alt="${product.name}" loading="lazy">
+        <img ${Formatter.imgAttrs(product.image)} alt="${product.name}" loading="lazy">
       </a>
       <div class="product-card__badges">
         ${product.isNew ? '<span class="badge badge--new">Novo</span>' : ''}

@@ -79,7 +79,7 @@ function renderMosaic() {
   const items = allProducts.slice(0, 6)
   el.innerHTML = items.map(p => `
     <div class="mos-card" data-id="${p.id}">
-      <img src="${p.image}" alt="${p.name}" class="mos-card__img" loading="lazy">
+      <img ${Formatter.imgAttrs(p.image)} alt="${p.name}" class="mos-card__img" loading="lazy">
       <div class="mos-card__overlay"></div>
       ${p.isNew ? '<span class="mos-badge-novo">Novo</span>' : ''}
       <div class="mos-card__body">
@@ -169,7 +169,7 @@ function renderCard(p) {
   return `
     <article class="product-card" data-id="${p.id}">
       <div class="product-card__image-wrap">
-        <a href="product.html?id=${p.id}"><img src="${p.image}" alt="${p.name}" loading="lazy"></a>
+        <a href="product.html?id=${p.id}"><img ${Formatter.imgAttrs(p.image)} alt="${p.name}" loading="lazy"></a>
         <div class="product-card__badges">
           <span class="badge badge--new">Novo</span>
           ${p.isSale ? `<span class="badge badge--sale">-${salePct}%</span>` : ''}
